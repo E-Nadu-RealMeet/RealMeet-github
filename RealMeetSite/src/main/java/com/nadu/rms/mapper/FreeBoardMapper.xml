@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.nadu.rms.mapper.FreeBoardMapper">
+
+	<select id="selectFreeBoard" resultType="com.nadu.rms.vo.FreeBoard">
+	SELECT * FROM NOTICES
+	</select>
+	
+	<select id="selectFreeDetail" parameterType="String" resultType="com.nadu.rms.vo.FreeBoard">
+	SELECT * FROM NOTICE WHERE NIDX = #{nidx}
+	</select>
+	
+</mapper>

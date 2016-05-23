@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.nadu.rms.mapper.customerMapper">
+
+	<select id="selectAllFAQs" resultType="com.nadu.rms.vo.FAQ">
+	SELECT * FROM FAQ 
+	</select>
+	<select id="selectAllNotices" resultType="com.nadu.rms.vo.Notices">
+	SELECT * FROM NOTICES 
+	</select>
+	<select id="selectNoticesDetail" resultType="com.nadu.rms.vo.Notices">
+	SELECT TITLE, CONTENT FROM NOTICES WHERE TITLE = '#{title, jdbcType=VARCHAR}'
+	</select>
+	<select id="selectAllQNAs" resultType="com.nadu.rms.vo.QNA">
+	SELECT * FROM QNA
+	</select>
+	<select id="insertQNAs" resultType="com.nadu.rms.vo.QNA">
+	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'n')
+	</select>
+</mapper>

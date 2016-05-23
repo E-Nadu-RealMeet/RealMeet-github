@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RealMeetSite
+Bundle-SymbolicName: RealMeetSite
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.nadu.rms.config,
+ com.nadu.rms.controller,
+ com.nadu.rms.dao,
+ com.nadu.rms.mapper,
+ com.nadu.rms.service,
+ com.nadu.rms.task,
+ com.nadu.rms.vo,
+ com.rms.mybatis.repository.session

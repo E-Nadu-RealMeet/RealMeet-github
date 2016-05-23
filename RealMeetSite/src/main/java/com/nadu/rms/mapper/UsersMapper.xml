@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.nadu.rms.mapper.UsersMapper">
+
+	<insert id="insertUsers" parameterType="com.nadu.rms.vo.Users">
+	INSERT INTO USERS(ID, PWD, NICKNAME, PHONE, INTEREST)
+	VALUES(#{id, jdbcType=NVARCHAR}, #{pwd, jdbcType=VARCHAR}, #{nickname,
+	jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{interest,
+	jdbcType=VARCHAR})
+	</insert>
+
+	<select id="selectUsers" resultType="com.nadu.rms.vo.Users">
+		SELECT * FROM USERS WHERE ID = #{id}
+	</select>
+	
+	<update id="updateUsers" parameterType="com.nadu.rms.vo.Users">
+		UPDATE USERS SET PWD=#{pwd, jdbcType=VARCHAR}, NICKNAME=#{nickname, jdbcType=VARCHAR}, PHONE=#{phone, jdbcType=VARCHAR}, INTEREST=#{interest, jdbcType=VARCHAR} WHERE ID=#{id, jdbcType=NVARCHAR} 
+	</update>
+
+</mapper>
