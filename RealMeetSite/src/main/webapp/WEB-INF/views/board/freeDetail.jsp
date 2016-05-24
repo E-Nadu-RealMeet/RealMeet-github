@@ -71,21 +71,8 @@
 					</div>
 					<div class="panel-body">29</div>
 				</div> 
-				
-				<table class="table table-condensed">
-				<tr>
-				<td>
-				ㅇㅇ
-				</td>
-				<td>
-				ㄴㄴ
-				</td>
-				</tr>
-				</table>
-
 				<div class="article-content">
-					<%-- ${aa.getContent()} --%>
-					여기는 내용이 들어갈 칸 입니다.
+					${aa.getContent()}
 				</div>
 			</div>
 

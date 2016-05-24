@@ -7,11 +7,16 @@
 <mapper namespace="com.nadu.rms.mapper.FreeBoardMapper">
 
 	<select id="selectFreeBoard" resultType="com.nadu.rms.vo.FreeBoard">
-	SELECT * FROM NOTICES
+	SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC
 	</select>
 	
 	<select id="selectFreeDetail" parameterType="String" resultType="com.nadu.rms.vo.FreeBoard">
-	SELECT * FROM NOTICE WHERE NIDX = #{nidx}
+	SELECT * FROM NOTICES WHERE NIDX = #{nidx}
 	</select>
+	
+	<insert id="insertFreeBoard" parameterType="com.nadu.rms.vo.FreeBoard">
+	INSERT INTO NOTICES(NIDX, WRITER, TITLE, CONTENT, REGDATE) 
+	VALUES(TO_CHAR(NOTICES_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE)
+	</insert>
 	
 </mapper>
