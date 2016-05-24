@@ -140,7 +140,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     
     @Bean(autowire = Autowire.BY_NAME)
     public FileSystemResource uploadDirResource(){
-    	String uploadPath = context.getRealPath("")+"resources\\core\\images\\upload\\temp\\";
+    	String uploadPath = uploadRepository()+"temp\\";
     	System.out.println("uploadPath : "+uploadPath);
     	FileSystemResource uploadDirResource = new FileSystemResource(uploadPath);
     	return uploadDirResource;
@@ -148,7 +148,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     
     @Bean
     public UploadController uploadController(){
-    	String uploadPath = context.getRealPath("")+"resources\\core\\images\\upload\\";
+    	String uploadPath = uploadRepository();
     	System.out.println("uploadPath : "+uploadPath);
     	UploadController uploadController = new UploadController();
     	/*uploadController.setMethodNameResolver(new MethodNameResolver() {

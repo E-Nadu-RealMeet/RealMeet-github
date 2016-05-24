@@ -2,41 +2,45 @@
 
 .selectBox {
 	border: solid 1px;
-    width: 100%;
-    padding: 10px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    overflow: auto;
-    max-width: 1000px;
-    background-color: white;
+	width: 100%;
+	padding: 10px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	overflow: auto;
+	max-width: 1000px;
+	background-color: white;
 }
+
 input#selectEnd2 {
-    float: right;
-    width: 21%;
+	float: right;
+	width: 21%;
 }
+
 input#selectEnd3 {
-    float: right;
-    width: 21%;
+	float: right;
+	width: 21%;
 }
+
 input#selectEnd4 {
-    float: right;
-    width: 21%;
+	float: right;
+	width: 21%;
 }
+
 input#regInput1 {
-    width: 72%;
-    float: left;
-    margin: 0;
-    height: 2.2em;
-    
+	width: 72%;
+	float: left;
+	margin: 0;
+	height: 2.2em;
 }
+
 input#regInput2 {
-    width: 72%;
-    float: left;
-    margin: 0;
-    height: 2.2em;
-    
+	width: 72%;
+	float: left;
+	margin: 0;
+	height: 2.2em;
 }
+
 .regButton {
 	border: 1px solid #0a3c59;
 	background: #4e9c3e;
@@ -91,4 +95,82 @@ input#regInput2 {
 	background: -o-linear-gradient(top, #3e779d, #65a9d7);
 	background-image: -ms-linear-gradient(top, #3e779d 0%, #65a9d7 100%);
 	color: #fff;
+}
+
+.dragAndDropDiv {
+	border: 2px dashed #92AAB0;
+	/* width: 650px; */
+	height: 200px;
+	color: #92AAB0;
+	text-align: center;
+	vertical-align: middle;
+	padding: 10px 0px 10px 10px;
+	font-size: 200%;
+	/* display: table-cell; */
+	margin-top: 1.5em;
+	margin-bottom: 0.5em;
+}
+
+.progressBar {
+	width: 200px;
+	height: 22px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+	display: inline-block;
+	margin: 0px 10px 5px 5px;
+	vertical-align: top;
+}
+
+.progressBar div {
+	height: 100%;
+	color: #fff;
+	text-align: right;
+	line-height: 22px;
+	/* same as #progressBar height if we want text middle aligned */
+	width: 0;
+	background-color: #0ba1b5;
+	border-radius: 3px;
+}
+
+.statusbar {
+	border-top: 1px solid #A9CCD1;
+	min-height: 25px;
+	width: 99%;
+	padding: 10px 10px 0px 10px;
+	vertical-align: top;
+	font-size: 1en;
+}
+
+.statusbar:nth-child(odd) {
+	background: #EBEFF0;
+}
+
+.filename {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.filesize {
+	display: inline-block;
+	vertical-align: top;
+	color: #30693D;
+	width: 100px;
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.abort {
+	background-color: #A8352F;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	display: inline-block;
+	color: #fff;
+	font-family: arial;
+	font-size: 13px;
+	font-weight: normal;
+	padding: 4px 15px;
+	cursor: pointer;
+	vertical-align: top
 }
