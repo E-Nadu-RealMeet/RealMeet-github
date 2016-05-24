@@ -12,7 +12,22 @@
 	SELECT * FROM NOTICES 
 	</select>
 	<select id="selectNoticesDetail" resultType="com.nadu.rms.vo.Notices">
-	SELECT TITLE, CONTENT FROM NOTICES WHERE TITLE = '#{title, jdbcType=VARCHAR}'
+	SELECT TITLE, CONTENT FROM NOTICES WHERE NIDX = #{nidx}
+	</select>
+	<select id="searchNotices" resultType="com.nadu.rms.vo.Notices">
+	SELECT * FROM NOTICES WHERE TITLE LIKE '%'||#{title}||'%'
+	</select>
+	<select id="selectFAQsDetail" resultType="com.nadu.rms.vo.FAQ">
+	SELECT TITLE, CONTENT FROM FAQ WHERE FIDX = #{fidx}
+	</select>
+	<select id="searchFAQs" resultType="com.nadu.rms.vo.FAQ">
+	SELECT * FROM FAQ WHERE TITLE LIKE '%'||#{title}||'%'
+	</select>
+	<select id="selectQNAsDetail" resultType="com.nadu.rms.vo.QNA">
+	SELECT TITLE, CONTENT FROM QNA WHERE QIDX = #{qidx}
+	</select>
+	<select id="searchQNAs" resultType="com.nadu.rms.vo.QNA">
+	SELECT * FROM QNA WHERE TITLE LIKE '%'||#{title}||'%'
 	</select>
 	<select id="selectAllQNAs" resultType="com.nadu.rms.vo.QNA">
 	SELECT * FROM QNA

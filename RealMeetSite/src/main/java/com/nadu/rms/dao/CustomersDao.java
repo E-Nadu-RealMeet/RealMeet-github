@@ -54,13 +54,37 @@ private SqlSessionFactory getSqlSessionFactory(){
 			sqlSession.close();
 		}
 	}
-	public List<Notices> selectNoticesDetail(){
+	public Notices selectNoticesDetail(String nidx){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try{
 			String statement = "com.nadu.rms.mapper.customerMapper.selectNoticesDetail";
 			System.out.println(statement);
-			return sqlSession.selectList(statement);
+			return sqlSession.selectOne(statement,nidx);
+			
+		}finally {
+			sqlSession.close();
+		}
+	}
+	public FAQ selectFAQsDetail(String fidx){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try{
+			String statement = "com.nadu.rms.mapper.customerMapper.selectFAQsDetail";
+			System.out.println(statement);
+			return sqlSession.selectOne(statement,fidx);
+			
+		}finally {
+			sqlSession.close();
+		}
+	}
+	public QNA selectQNAsDetail(String qidx){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try{
+			String statement = "com.nadu.rms.mapper.customerMapper.selectQNAsDetail";
+			System.out.println(statement);
+			return sqlSession.selectOne(statement,qidx);
 			
 		}finally {
 			sqlSession.close();
@@ -86,6 +110,42 @@ private SqlSessionFactory getSqlSessionFactory(){
 			return sqlSession.insert(statement, q);
 		}finally{
 			sqlSession.commit(); //commit을 안하면 데이터 입력이 안됩니다.
+			sqlSession.close();
+		}
+	}
+	public List<FAQ> searchFAQs(String title){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try{
+			String statement = "com.nadu.rms.mapper.customerMapper.searchFAQs";
+			System.out.println(statement);
+			return sqlSession.selectList(statement,title);
+			
+		}finally {
+			sqlSession.close();
+		}
+	}
+	public List<Notices> searchNotices(String title){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try{
+			String statement = "com.nadu.rms.mapper.customerMapper.searchNotices";
+			System.out.println(statement);
+			return sqlSession.selectList(statement,title);
+			
+		}finally {
+			sqlSession.close();
+		}
+	}
+	public List<FAQ> searchQNAs(String title){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try{
+			String statement = "com.nadu.rms.mapper.customerMapper.searchQNAs";
+			System.out.println(statement);
+			return sqlSession.selectList(statement,title);
+			
+		}finally {
 			sqlSession.close();
 		}
 	}

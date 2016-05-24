@@ -89,23 +89,21 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>내용</th>
 					<th>작성일</th>
 				</tr>
 
 
 				<c:forEach var="Notices" items="${Notices}">
 					<tr>
-						<td>${Notices.nidx}</td>
-						<td><a href="NoticesDetail">${Notices.title}</a></td>
-						<td>${Notices.content}</td>
+						<td><a href="NoticesDetail/${Notices.nidx}">${Notices.nidx}</a></td>
+						<td>${Notices.title}</td>
 						<td>${Notices.regdate}</td>
 					</tr>
 				</c:forEach>
 
 			</table>
 
-			<form method="post" action="Notices">
+			<form method="get" action="Notices/title">
 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
 				</form>
 			

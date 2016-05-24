@@ -86,7 +86,7 @@
 
 			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 				
-				<c:forEach var="NoticesDetail", items="NoticesDetail">
+				
 				<tr>
 					<th>力格</th>
 					<th>${NoticesDetail.title}</th>
@@ -95,15 +95,13 @@
 
 				
 					<tr>
-						<td>${NoticesDetail.content}</td>
+					<td>${NoticesDetail.content}</td>
 					</tr>
-				</c:forEach>
+			
 
 			</table>
 
-			<form method="post" action="Notices">
-				<div class="12u" align="center"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="第肺" /></div>
-				</form>
+			<a href="../Notices"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="第肺" /></a>
 			
 		</div>
 					</section>

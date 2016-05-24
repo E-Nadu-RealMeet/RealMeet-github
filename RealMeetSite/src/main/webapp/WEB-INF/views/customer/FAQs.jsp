@@ -90,22 +90,20 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>내용</th>
 					<th>작성일</th>
 				</tr>
 
 
 				<c:forEach var="FAQs" items="${FAQs}">
 					<tr>
-						<td>${FAQs.fidx}</td>
+						<td><a href="FAQsDetail/${FAQs.fidx}">${FAQs.fidx}</a></td>
 						<td>${FAQs.title}</td>
-						<td>${FAQs.content}</td>
 						<td>${FAQs.regdate}</td>
 					</tr>
 				</c:forEach>
 
 			</table>
-<form method="post" action="FAQ">
+				<form method="get" action="FAQs/title">
 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
 				</form>
 				

@@ -19,7 +19,6 @@
 	<body>
 
 
-
 <div id="header">
 
 				<div class="top">
@@ -80,35 +79,30 @@
 						<div class="container">
 
 							<header>
-								<h2>내 문의내역</h2>
+								<h2>공지사항</h2>
 							</header>
+				
 
 
 			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
-
+				
+				
 				<tr>
-					<th>번호</th>
 					<th>제목</th>
-					<th>작성일</th>
-					<th>답변</th>
+					<th>${QNADetail.title}</th>
 				</tr>
 
 
-				<c:forEach var="QNA" items="${QNA}">
+				
 					<tr>
-						<td><a href="QNADetail/${QNA.qidx}">${QNA.qidx}</a></td>
-						<td>${QNA.title}</td>
-						<td>${QNA.regdate}</td>
-						<td>${QNA.answer}</td>
+					<td>${QNADetail.content}</td>
 					</tr>
-				</c:forEach>
-
-			</table>
 			
 
-				<form method="get" action="QNA">
-				<div class="4u" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
+			</table>
+
+			<a href="../QNA"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+			
 		</div>
 					</section>
 
@@ -137,10 +131,6 @@
 
 
 
-
-			
-			
-			
 			
 			
 </body>
