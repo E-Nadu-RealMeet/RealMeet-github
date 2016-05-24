@@ -49,13 +49,20 @@ public class FreeBoardController {
 		return "board/freeDetail";
 	}
 	
+	//게시물등록
 	@RequestMapping(value="/freeReg", method = RequestMethod.GET)
 	public String freeReg(){
 		return "board/freeBoardReg";
 	}
+	
+	//게시물등록proc
 	@RequestMapping(value="/freeReg", method = RequestMethod.POST)
-	public String freeReg(Model model, FreeBoard board ){
-		return "board/freeBoardReg";
+	public String freeReg(FreeBoard board ){
+		
+		int bd = boardDao.insertBoard(board);
+		return "redirect:freeBoard";
+		
+		
 	}
 	
 	/*@RequestMapping(value="/freeboard", method = RequestMethod.GET)

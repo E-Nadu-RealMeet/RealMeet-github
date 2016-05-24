@@ -79,4 +79,16 @@ public class BoardDao {
 		}
 		
 	}
+	
+	public int insertBoard(FreeBoard fb){
+		SqlSession sqlSesstion = getSqlSessionFactory().openSession();
+		try {
+			String statement = "com.nadu.rms.mapper.FreeBoardMapper.insertFreeBoard";
+			return sqlSesstion.insert(statement, fb);
+		} finally {
+			sqlSesstion.commit();
+			sqlSesstion.close();
+		}
+		
+	}
 }

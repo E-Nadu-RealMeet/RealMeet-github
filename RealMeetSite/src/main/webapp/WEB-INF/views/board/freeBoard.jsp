@@ -49,12 +49,13 @@
 				<tR>
 					<Th>NO</th>
 					<Th>CATEGORY</th>
-					<Th>SUBJECT</th>
+					<Th style="text-align: center;">SUBJECT</th>
 					<Th>WRITER</th>
 					<Th>DATE</th>
 				</tr>
-				<c:forEach var="aa" items="${list }">
+				<c:forEach var="aa" items="${list}">
 				<tr>
+					<td>${aa.getNidx()}</td>
 					<td class='c1' colspan='2'><b>질문</b></td>
 					<td class='subject'><a href=""><b>${aa.getTitle()}</b></td>
 					<td>${aa.getWriter()}</td>
@@ -101,15 +102,19 @@
 					<span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span>
 			</div>
 			<form name="searchbbs" action="" method="post">
+			
 				<div class="searchbbs" style="width: 500px; margin-left: 30%">
-					<select name='key' style="height: 50px; font-size:medium; width:">
+				<div class="col-sm-3">
+					<select name='key' style="height: 50px; font-size:medium;">
 						<option value='subject' >제목</option>
 						<option value='mem_name'>작성자</option>
 						<option value='memo'>메모</option>
-					</select> <input type='text' name='keyword' value='' style='height: 18px;'>
-					<input type='image'
-						src="${pageContext.request.contextPath}/resources/core/images/btn_find.gif">
+					</select> 
+					</div>
+					<div class="col-sm-8"><input type='text' name='keyword' value='' style='height: 18px;'></div>
+					<input type='image' src="${pageContext.request.contextPath}/resources/core/images/btn_find.gif">
 				</div>
+				
 			</form>
 		</div>
 		</div>
