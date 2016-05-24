@@ -12,6 +12,7 @@
 		<typeAlias type="com.nadu.rms.vo.FAQ" alias="FAQ"/>
 		<typeAlias type="com.nadu.rms.vo.QNA" alias="QNA"/>
 		<typeAlias type="com.nadu.rms.vo.FreeBoard" alias="FreeBoard"/>
+		<typeAlias type="com.nadu.rms.vo.Review" alias="Review"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -33,7 +34,7 @@
 		<mapper resource="com/nadu/rms/mapper/UsersMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/FreeBoardMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/customerMapper.xml"/>
-		
+		<mapper resource="com/nadu/rms/mapper/ReviewsMapper.xml"/>
 	</mappers>
 
 </configuration>
