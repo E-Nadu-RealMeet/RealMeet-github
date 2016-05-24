@@ -31,6 +31,7 @@ import com.nadu.rms.dao.BannerDao;
 import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.dao.CustomersDao;
 import com.nadu.rms.dao.EventsDao;
+import com.nadu.rms.dao.ReviewsDao;
 import com.nadu.rms.dao.UsersDao;
 
 import oracle.net.aso.u;
@@ -175,10 +176,13 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public BoardDao boardDao(){
     	return new BoardDao();
     }
-    
     @Bean
     public CustomersDao customersDao(){
     	return new CustomersDao();
+    }
+    @Bean
+    public ReviewsDao reviewsDao(){
+    	return new ReviewsDao();
     }
 
 

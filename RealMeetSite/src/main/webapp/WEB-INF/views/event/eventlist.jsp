@@ -1,7 +1,6 @@
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page session="false" %>
 
 <!DOCTYPE HTML>
 <!--
@@ -15,9 +14,13 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/docs.min.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/eventlist.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/bootstrap.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/eventlist.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/docs.min.css" />
+
 
 		
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -40,82 +43,184 @@
 								<h2>이벤트 리스트</h2>
 							</header>
 							
-							<div style= "width: 100%; padding: 10px; margin-bottom: 10px; margin-top: 10px">
+							<div style= "max-width: 1000px; padding: 10px; margin: 10px auto;">
 								<button class="btn btn-lg btn-success" type=button>날짜별</button>
 								<button class="btn btn-lg" type=button>이름별</button>
 								<button class="btn btn-lg btn-success" type=button>지역별</button>
 							</div>
 							
-							<div class="btn-group" role="group" aria-label="Basic example" style="">
-								<button type="button" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></button>
-						        <button type="button" class="btn btn-default btn-xs" aria-label="Center Align"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></button>
-						        <button type="button" class="btn btn-default btn-xs" aria-label="Center Align"><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"></span></button>
-						        <button type="button" class="btn btn-default btn-xs" aria-label="Center Align"><span class="glyphicon glyphicon-sort-by-order-alt" aria-hidden="true"></span></button>
-						        <button type="button" class="btn btn-default btn-xs" aria-label="Right Align"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
-						    </div>
-							<br>
 							
 							
-							
-							
-							<c:forEach var="item" items="${list}">
-							
-							<!-- 한 이벤트에 대한 셀 -->
-							<div class="bs-example">
-								<div style="overflow: auto;">
-									<div class="col-md-3">
-										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="Responsive image" class="img-rounded img-responsive">
-									</div>
-									<div class="col-md-6">
-										<dl class="dl-horizontal">
-										  <dt>Name</dt>
-										  <dd>${item.get("EVENTNAME")}</dd>
-										</dl>
-										<hr>
-										<dl class="dl-horizontal">
-										  <dt><h6>Description</h6></dt>
-										  <dd>${item.get("DESCRIPTION")}</dd> 
-										</dl>
-									</div>
-									<div class="col-md-3">
-										<div class="bs-example">
-											<div class="col-md-4">
-												<img src="${pageContext.request.contextPath}/resources/core/images/pic.jpg" alt="Responsive image" class="img-rounded img-responsive">
-												</div>
-												<div class="col-md-8">
-													<h6> Nick : ${item.get("NICKNAME")} 님</h6>
-													<h6> ID : ${item.get("ID")}</h6>
+							<!--  버튼형 시작 -->
+							<c:forEach begin="0" var="i" end="${list.size()}">
+								<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">
+									<div style="">
+										<div class="col-md-3">
+											<img
+												src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg"
+												alt="Responsive image" class="img-rounded img-responsive">
+										</div>
+										<div class="col-md-9">
+											<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-align: left;">
+												Name : ${list.get(i).get("EVENTNAME")}
 											</div>
-											<div style="text-align: left">
-												<div>RAITNG : ${item.get("RATING") }</div>
-												<div>INTEREST : ${item.get("INTEREST") }</div>
-												<div>PHONE : ${item.get("PHONE") }</div>
+											<hr>
+											<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-overflow: ellipsis; text-align: left; white-space: nowrap; ">
+												설명 : ${list.get(i).get("DESCRIPTION")}
+											</div>
+											<hr>
+										</div>
+										
+									</div>
+									<div id=detail>
+										<div class="col-md-12">
+											<button type="button" class="btn btn-primary btn-lg"
+												data-toggle="modal" data-target="#detail${i}">더보기</button>
+										</div>
+									</div>
+				
+								</div>
+				
+								<!-- 상세정보 오버랩 창 내용 -->
+								<div class="modal fade" id="detail${i}" tabindex="-1" role="dialog"
+									aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h4 class="modal-title" id="myModalLabel">상세 내용</h4>
+											</div>
+											<div class="modal-body" style="overflow: auto">
+												<div class="col-md-12" style="text-align: left">Description	: ${list.get(i).get("DESCRIPTION")}</div>
+												<hr>
+												<div class="col-md-2">
+													<img
+														src="${pageContext.request.contextPath}/resources/core/images/pic.jpg"
+														alt="Responsive image" class="img-rounded img-responsive"
+														style="width: 100px; height: 100px">
+												</div>
+												<div class="col-md-10">
+													<div style="text-align: left; font-size: 0.8em;">
+														<div>Nick : ${list.get(i).get("NICKNAME")} 님</div>
+														<div>ID : ${list.get(i).get("ID")}</div>
+				
+														<div>RAITNG : ${list.get(i).get("RATING") }</div>
+														<div>INTEREST : ${list.get(i).get("INTEREST") }</div>
+														<div>PHONE : ${list.get(i).get("PHONE") }</div>
+													</div>
+												</div>
+												
+				
+				
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">닫기</button>
+												<a href = '${pageContext.request.contextPath}/event/${list.get(i).get("ESIDX")}'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div id=detail>
-								<div class="col-md-5">a</div>
-								<div class="col-md-2">
-								<a href="${item.get('EIDX')} ">
-										<button type="button" class="btn btn-default btn-xs" style="right: 3px; bottom: 1px;">
-										<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-										</button> 
-										</a></div>
-								<div class="col-md-5">c</div>
-								</div>
-							</div>
 							</c:forEach>
-							<!-- 이벤트 셀 종료 -->
-						</div>
-						
-						
-					</section>
-			</div>
+				<!--  버튼형 종료 -->
+							</div>
+						</section>
+				</div>
+
+
+
+
+
+
+
+
+<%-- 
+					<c:forEach begin="0" var="i" end="${list.size()}">
+						<a
+							href='${pageContext.request.contextPath}/event/${list.get(i).get("ESIDX")}'>
+							<div class="bs-example">
+								<div class="panel-group" id="accordion" role="tablist"
+									aria-multiselectable="true">
+									<!-- 								  <div class="panel panel-default"> -->
+									<div class="panel-heading" role="tab" id="heading${i }">
+
+										<!-- 내용 -->
+										<div style="overflow: auto;">
+											<div class="col-md-3">
+												<img
+													src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg"
+													alt="Responsive image" class="img-rounded img-responsive">
+											</div>
+											<div class="col-md-9">
+												<dl class="dl-horizontal">
+													<dt>Name</dt>
+													<dd>${list.get(i).get("EVENTNAME")}</dd>
+												</dl>
+												${list.get(i).get("DESCRIPTION")}
+											</div>
+										</div>
+										<div id=detail>
+											<div class="col-md-5"></div>
+											<div class="col-md-2">
+												<a data-toggle="collapse" data-parent="#accordion"
+													href="#collapse${i }" aria-expanded="true"
+													aria-controls="collapse${i }">
+													<button type="button" class="btn btn-default btn-xs"
+														style="right: 3px; bottom: 1px;">
+														<span class="glyphicon glyphicon-chevron-down"
+															aria-hidden="true"></span>
+													</button>
+												</a>
+											</div>
+											<div class="col-md-5"></div>
+										</div>
+
+										<!-- 내용 끝 -->
+
+									</div>
+									<div id="collapse${i }" class="panel-collapse collapse"
+										role="tabpanel" aria-labelledby="heading${i }">
+										<div class="panel-body">
+											<div class="col-md-12" style="text-align: left">Description
+												: ${list.get(i).get("DESCRIPTION")}</div>
+											<hr>
+											<div class="col-md-2">
+												<img
+													src="${pageContext.request.contextPath}/resources/core/images/pic.jpg"
+													alt="Responsive image" class="img-rounded img-responsive"
+													style="width: 100px; height: 100px">
+											</div>
+											<div class="col-md-10">
+												<div style="text-align: left; font-size: 0.8em;">
+													<div>Nick : ${list.get(i).get("NICKNAME")} 님</div>
+													<div>ID : ${list.get(i).get("ID")}</div>
+
+													<div>RAITNG : ${list.get(i).get("RATING") }</div>
+													<div>INTEREST : ${list.get(i).get("INTEREST") }</div>
+													<div>PHONE : ${list.get(i).get("PHONE") }</div>
+												</div>
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+								<!-- 						</div> -->
+
+							</div>
+						</a>
+
+					</c:forEach> --%>
+
+					
+					<!-- 이벤트 셀 종료 -->
+					
 			
-			<div>
 			
-			</div>
+
 
 		<!-- Footer -->
 			<div id="footer">
@@ -132,9 +237,9 @@
 			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script> --%>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
-
+			
 	</body>
 </html>
