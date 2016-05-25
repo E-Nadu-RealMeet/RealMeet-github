@@ -2,7 +2,15 @@
  * 
  */
 
-var map;
+	function inputCheck(arg){
+		if(arg.length===0){
+			alert('글자가 없습니다.')
+			return false;
+		}else{
+			alert(arg);
+			return true;
+		}
+	}
 	function cateClick() {
 		var a = $('#selectEnd1a');
 		$('#selectBox1').hide();
@@ -81,25 +89,42 @@ var map;
     }
 	$(document).ready(function() {
 		var regForm = $('#regForm');
-		var selectBoxs = regForm.find('.selectBox');
-		var regButtons = selectBoxs[0].find('.regButton');
-		regButtons.click(function(){
-			alert(this.id)
-			$('#category').val(this.id);
-			//cateClick();
+		var selectBox1 = regForm.children('#selectBox1');
+		var selectBox2 = regForm.children('#selectBox2');
+		var reg1 = selectBox1.children('.regButton');
+		reg1.click(function(){
+			var text = $(this).text();
+			$('#category').val(text);
+			reg1.css("background-color","#9ececc");
+			$(this).css("background-color", "#65a9d7");
+			selectBox1.fadeOut();
+			selectBox2.fadeIn();
 		})
-		for (var i = 0; i < selectBoxs.length; i++) {
-			selectBoxs.show();
-		}
+		var regSave =  $('.regButton-save');
+		var regBack =  $('.regButton-back');
+		var regFirst = $('.regButton-first');
+		regSave.click(function(){
+			var par = $(this).parent();
+			var input = par.children('.regInput');
+			if(inputCheck(input.val())){
+				par.fadeOut();
+				par.next().fadeIn();
+			}
+		})
+		regBack.click(function(){
+			var par = $(this).parent();
+			par.fadeOut();
+			par.prev().fadeIn();
+		})
+		regFirst.click(function(){
+			var par = $(this).parent();
+			var input = par.children('.regInput');
+			selectBox1.fadeIn();
+			par.fadeOut();
+		})
 		/*$('#selectBox1').show();
 		$('#selectBox2').hide();
 		$('#selectBox3').hide();
 		$('#selectBox4').hide();
 		$('#selectBox5').hide();*/
-
-		/* map = new GMaps({
-			div : '#map',
-			lat : -12.043333,
-			lng : -77.028333
-		}); */
 	});
