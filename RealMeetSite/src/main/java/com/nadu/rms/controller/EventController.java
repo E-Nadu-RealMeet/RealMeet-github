@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.ReviewsDao;
+import com.nadu.rms.service.EventsService;
 import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Review;
 
@@ -28,6 +29,7 @@ public class EventController {
 
 	EventsDao eventsDAO;
 	ReviewsDao reviewsDAO;
+	EventsService eventsService;
 
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	@Autowired
@@ -38,8 +40,10 @@ public class EventController {
 	public void setReviewsDAO(ReviewsDao reviewsDAO) {
 		this.reviewsDAO = reviewsDAO;
 	}
-
-
+	@Autowired
+	public void setEventsService(EventsService eventsService) {
+		this.eventsService = eventsService;
+	}
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
@@ -61,33 +65,13 @@ public class EventController {
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
 		
-		List<Map<Object, Object>> datas = eventsDAO.selectEventsNUser();
 		
+		String returnValue = eventsService.listLoad(req, eventsDAO);
 		
-		Gson gson = new Gson();
-		
-		log.info("접속 ㅇㅇ");
-		
-		class DataSet{
-			int variable;
-
-			public int getVariable() {
-				return variable;
-			}
-
-			public void setVariable(int variable) {
-				this.variable = variable;
-			}
-			
-			
-		}
-		
-		DataSet s = new DataSet();
-		s.setVariable(1324);
-		log.info("sV : "+s.getVariable());
-		log.info("gson.toJson(s) :"+gson.toJson(s));
-		log.info("gson : " + gson.toJson(datas));
-		return gson.toJson(datas);
+		// 얻은 값 반환.
+		 
+		//log.info("gson : " + gson.toJson(datas));
+		return returnValue;
 	}
 	
 	// 특정 이벤트 뷰 상세 보기

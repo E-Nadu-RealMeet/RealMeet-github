@@ -25,6 +25,9 @@
 	</selectKey>
 	</insert>
 	
+	<select id="getCntFromEvents" resultType="Integer">
+		SELECT COUNT(ESIDX) FROM EVENTS
+	</select>
 
 	
 </mapper>

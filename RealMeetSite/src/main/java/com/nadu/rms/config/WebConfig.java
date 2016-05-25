@@ -33,6 +33,7 @@ import com.nadu.rms.dao.CustomersDao;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.ReviewsDao;
 import com.nadu.rms.dao.UsersDao;
+import com.nadu.rms.service.EventsService;
 
 import oracle.net.aso.u;
 
@@ -183,6 +184,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public ReviewsDao reviewsDao(){
     	return new ReviewsDao();
+    }
+    @Bean
+    public EventsService eventsService(){
+    	return new EventsService();
     }
 
 
