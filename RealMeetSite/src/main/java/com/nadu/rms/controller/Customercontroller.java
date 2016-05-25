@@ -46,8 +46,9 @@ public class Customercontroller {
 		model.addAttribute("Notices", customersDao.selectAllNotices());
 		return "customer/Notices";	
 	}
-	@RequestMapping(value="Notices/{title}", method=RequestMethod.GET)
-	public String searchNotices(Model model, @PathVariable String title){
+	@RequestMapping(value="Notices", method=RequestMethod.POST)
+	public String searchNotices(Model model, Notices n){
+		String title = n.getTitle();
 		model.addAttribute("Notices", customersDao.searchNotices(title));
 		System.out.println(title);
 		return "customer/Notices";	
@@ -63,8 +64,9 @@ public class Customercontroller {
 		model.addAttribute("FAQs", FAQs);
 		return "customer/FAQs";	
 	}
-	@RequestMapping(value="FAQs/{title}", method=RequestMethod.GET)
-	public String searchFAQs(Model model, @PathVariable String title){
+	@RequestMapping(value="FAQs", method=RequestMethod.POST)
+	public String searchFAQs(Model model, FAQ f){
+		String title = f.getTitle();
 		model.addAttribute("FAQs", customersDao.searchFAQs(title));
 		System.out.println(title);
 		return "customer/FAQs";	
@@ -101,8 +103,9 @@ public class Customercontroller {
 		}
 	}
 	
-	@RequestMapping(value="QNA/{title}", method=RequestMethod.GET)
-	public String searchQNAs(Model model, @PathVariable String title){
+	@RequestMapping(value="QNA", method=RequestMethod.POST)
+	public String searchQNAs(Model model, QNA q){
+		String title = q.getTitle();
 		model.addAttribute("QNA", customersDao.searchQNAs(title));
 		System.out.println(title);
 		return "customer/FAQs";	
