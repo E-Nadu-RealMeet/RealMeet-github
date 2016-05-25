@@ -23,6 +23,79 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg-map.js"></script>
+<script type="text/javascript">
+var map;
+$(document).ready(function(){
+  map = new GMaps({
+    div: '#map',
+    zoom: 16,
+    lat: 37.553152,
+    lng: 126.936894,
+    click: function(e) {
+      alert('click');
+    },
+    dragend: function(e) {
+      alert('dragend');
+    }
+  });
+  $('#addr').keyup(function(){
+	  GMaps.geocode({
+		  address: $('#addr').val().trim(),
+		  callback: function(results, status) {
+		    if (status == 'OK') {
+		      var latlng = results[0].geometry.location;
+		      map.setCenter(latlng.lat(), latlng.lng());
+		      map.addMarker({
+		        lat: latlng.lat(),
+		        lng: latlng.lng()
+		      });
+		    }
+		  }
+		});
+  });
+ 
+  
+  /* map.addMarker({
+	  lat: 37.553152,
+	  lng: 126.936894,
+	  title: 'Double_Dragon',
+	  click: function(e) {
+	    alert('You are DD student.');
+	  },
+	  infoWindow: {
+		  content: '<p>Double_Dragon</p>'
+		}
+	}); */
+  map.setContextMenu({
+	  control: 'map',
+	  options: [{
+	    title: '이벤트 장소로 등록합니다.',
+	    name: 'add_marker',
+	    action: function(e) {
+	    	var addr = $('#addr');
+	    	addr.val(e.latLng.lat()+", "+e.latLng.lng());
+	    	
+	    }
+	  }]
+	});
+  map.addControl({
+	  position: 'top_right',
+	  content: 'Geolocate',
+	  style: {
+	    margin: '5px',
+	    padding: '1px 6px',
+	    border: 'solid 1px #717B87',
+	    background: '#fff'
+	  },
+	  events: {
+	    click: function(){
+	      console.log(this);
+	    }
+	  }
+	});
+});
+</script>
 </head>
 <body onkeypress="userKeyPress();">
 	<!-- Header -->
@@ -53,64 +126,84 @@
 						<div>
 							<h3>무엇을 함께할 만남을 만드실껀가요?</h3>
 						</div>
-						<button type="button" id="인연" class='regButton'>인연</button>
-						<button type="button" id="맛집" class='regButton'>맛집</button>
-						<button type="button" id="지식" class='regButton'>지식</button>
+						<button type="button" class='regButton'>인연</button>
+						<button type="button" class='regButton'>맛집</button>
+						<button type="button" class='regButton'>지식</button>
 					</div>
-					<div class="selectBox" id="selectBox2" style="display:none">
+					<div class="selectBox" id="selectBox2" style="display:none;">
+					
 						<div>
 							<h3>이벤트의 이름은 무엇으로 하실껀가요?</h3>
 						</div>
-						<input type="text" name="eventname" id="regInput1">
-						<button type="button" id="selectEnd2" class='regButton' onclick="dclick();">저장</button>
-						<button type="button" class='regButton' onclick="window.location.reload();;">처음으로</button>
+						<input type="text" name="eventname" class="regInput">
+						<button type="button" class="regButton-save">저장</button>
+						<button type="button" class="regButton-back">뒤로가기</button>
+						<button type="button" class="regButton-first">처음으로</button>
 					</div>
-					<div class="selectBox" id="selectBox3" style="display:none">
+					<div class="selectBox" id="selectBox3" style="display:none;">
 						<div>
 							<h3>생성할 이벤트의 간단한 설명 부탁드립니다.</h3>
 							
 						</div>
 						
-						<input type="text" name="abs" id="regInput2">
-						<button type="button" id="selectEnd3" class='regButton' onclick="eclick();">저장</button>
-						<a href="reg" class='regButton'>처음으로</a>
+						<input type="text" name="abs" class="regInput">
+						<button type="button" class="regButton-save">저장</button>
+						<button type="button" class="regButton-back">뒤로가기</button>
+						<button type="button" class="regButton-first">처음으로</button>
 					</div>
-					<div class="selectBox" id="selectBox4" style="display:none">
+					<div class="selectBox" id="selectBox4" style="display:none;">
 						<div>
 							<h3>설명을 위한 사진을 넣어주세요.</h3>
 						</div>
 						<div id="fileUpload" class="dragAndDropDiv">이벤트와 관련된 사진을 끌어다 넣어주세요.</div>
 						
-						<button type="button" id="selectEnd4" class='regButton' onclick="gclick();">저장</button>
-						<input type="text" name="imgsrc" id="imgsrc"/>
-						<a href="reg" class='regButton'>처음으로</a>
+						<button type="button" class="regButton-save">저장</button>
+						<button type="button" class="regButton-back">뒤로가기</button>
+						<button type="button" class="regButton-first">처음으로</button>
+						<input type="text" name="imgsrc" id="imgsrc" class="regInput" value="사진을 넣지 않습니다."/>
 					</div>
-					<div class="selectBox" id="selectBox5" style="display:none">
+					<div class="selectBox" id="selectBox5" style="display:none;">
 						<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
 							<h3>생성할 이벤트의 자세한 설명 부탁드립니다.</h3>
 
 							<br>
 						</div>
-						<div contenteditable="true" spellcheck="true" data-medium-editor-element="true" role="textbox" aria-multiline="true"
-							data-placeholder="Type your text" data-medium-focused="true" id="regInput3">
-							<p>어떤 이유로 모임을 만들게 됐나요? 간단한 자기소개로 시작합시다.</p>
-							<p>&nbsp</p>
-							<p>무엇을 하는 모임인가요?</p>
-							<p>&nbsp</p>
-							<p>우리 동네 사는 사람, 나와 취향이 비슷한 사람, 아니면 그냥 즐거운 시간을 보내고픈 사람? 누구를 만나 볼까요?</p>
-							<p>&nbsp</p>
-							<p>누구나 어색할 수 있는 처음 5분! 자, 우리 어떤 이야기로 친해질까요?</p>
-							<p>&nbsp</p>
+						<textarea name="description" id="description"></textarea>
+						<button type="button" class="regButton-save">저장</button>
+						<button type="button" class="regButton-back">뒤로가기</button>
+						<button type="button" class="regButton-first">처음으로</button>
+					</div>
+					<div class="selectBox" id="selectBox6">
+						<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
+							<h3>첫 이벤트가 진행될 날짜를 입력해주세요</h3>
+
+							<br>
 						</div>
-						<button type="submit" id="selectEnd5" class='regButton'>이벤트 생성</button>
-						<a href="reg" class='regButton'>처음으로</a>
+						<input type="text" name="addr" class="regInput">
+						<button type="button" class="regButton-save">저장</button>
+						<button type="button" class="regButton-back">뒤로가기</button>
+						<button type="button" class="regButton-first">처음으로</button>
+					</div>
+					<div class="selectBox" id="selectBox7">
+						<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
+							<h3>첫 이벤트가 진행될 주소를 입력해주세요</h3>
+							<br>
+							<input type="text" name="addr" id="addr"class="regInput" placeholder="주소를 입력해주세요">
+								
+							<br>
+							<br>
+						</div>
+						<input type="hidden">
+						<div id="map" style="height: 400px"></div>
+						<button type="button" class="regButton-save">저장</button>
+						<button type="button" class="regButton-back">뒤로가기</button>
+						<button type="button" class="regButton-first">처음으로</button>
 					</div>
 					<!-- <input type="hidden" name="description" id="description" /> --> 
 					<input type="text" name="category" id="category" />
-					
+					<button type="submit" id="selectEnd5" class='regButton'>이벤트 생성</button>
 				</form>
 			</div>
-			<div id="map" style="height: 400px;"></div>
 		</section>
 
 		</div>

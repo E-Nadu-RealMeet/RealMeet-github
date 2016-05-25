@@ -15,11 +15,72 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/bootstrap.min.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/eventlist.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/docs.min.css" />
+
+
+				
+		<script type="text/javascript">
+			var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.
+			 
+		
+			/* $(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
+			    //getEventList(page);
+			    page++;
+			}); */
+		
+			//스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+			$(window).scroll(function(){  
+			    if($(window).scrollTop() >= $(document).height() - $(window).height()){
+			    	alert("휠다운");
+			        getEventList(page);
+			        page++;   
+			    }
+			});
+			function getEventList(page){
+				alert("함수시작");
+				// 데이터 로드
+				$.ajax({
+					type : 'GET',  
+					dataType : 'json',
+				
+					data : {"page" : page},
+					url : 'list/dataload',
+				
+					    success : function(returnData) {
+							
+					    	alert("ss");
+					    	
+					    	alert(returnData.length);
+					    	
+							
+					    	/* 
+					    	alert("데이터를 가져오는데 성공하였습니다.");	
+							
+							alert($.returnData);
+						     */
+							
+							/*var html = '<a href="">ㄴ어라ㅣㅁㄴ어라ㅣㅓ</a>';
+						 	
+							//var html = data.variable;
+							
+							$("#sss").html(html); 
+					
+							html = html.replace(/%20/gi, " "); */
+				
+				       	}
+				       	
+				});
+			} 
+			
+			
+			// 핵심기능!!
+			
+		</script>
 
 
 		
@@ -53,7 +114,7 @@
 							
 							<!--  버튼형 시작 -->
 							<c:if test="${list!=null}">
-							<c:forEach begin="1" var="i" end="${list.size()}">
+							<c:forEach begin="1" var="i" end="${list.size()-1}">
 								<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">
 									<div style="">
 										<div class="col-md-3">
@@ -135,7 +196,7 @@
 					<!-- 이벤트 셀 종료 -->
 					
 			
-			
+			 <div id="sss"></div>
 
 
 		<!-- Footer -->

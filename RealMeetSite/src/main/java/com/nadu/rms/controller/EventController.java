@@ -1,19 +1,27 @@
 package com.nadu.rms.controller;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonFactoryBean;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.ReviewsDao;
 import com.nadu.rms.vo.Events;
@@ -25,7 +33,7 @@ public class EventController {
 
 	EventsDao eventsDAO;
 	ReviewsDao reviewsDAO;
-	
+
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	@Autowired
 	public void setEventsDao(EventsDao eventsDao) {
@@ -39,7 +47,7 @@ public class EventController {
 
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String eventList(HttpServletRequest req, Model model) {
+	public String eventListViewLoad(HttpServletRequest req, Model model) {
 
 		// 이벤트 정보 리스트  (select * from events)
 		/*
@@ -54,9 +62,42 @@ public class EventController {
 		return "event/eventlist";
 	}
 
+	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
+		
+		List<Map<Object, Object>> datas = eventsDAO.selectEventsNUser();
+		
+		
+		Gson gson = new Gson();
+		
+		log.info("접속 ㅇㅇ");
+		
+		class DataSet{
+			int variable;
+
+			public int getVariable() {
+				return variable;
+			}
+
+			public void setVariable(int variable) {
+				this.variable = variable;
+			}
+			
+			
+		}
+		
+		DataSet s = new DataSet();
+		s.setVariable(1324);
+		log.info("sV : "+s.getVariable());
+		log.info("gson.toJson(s) :"+gson.toJson(s));
+		log.info("gson : " + gson.toJson(datas));
+		return gson.toJson(datas);
+	}
+	
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
-	public String eventDetail(@PathVariable String esidx, Model model) {
+	public String eventDetailViewLoad(@PathVariable String esidx, Model model) {
 		
 		/* 해당 인덱스 번호  디테일 가져옴. */
 		Map<String,String> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
