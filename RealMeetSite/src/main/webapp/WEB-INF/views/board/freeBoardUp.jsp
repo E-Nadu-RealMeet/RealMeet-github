@@ -33,78 +33,52 @@
 	</div>
 
 	<!-- Main -->
-	<div id="main"">
+	<div id="main">
 		<div class="top-wrapper clear"
 			style="max-width: 1000px; margin: 0px auto;">
 			<div id="content">
 				<br> <br>
-				<h2 align="center">자유 게시판</h2>
-
-				<div class="panel panel-default">
-
-					<div class="row">
-						<div class="panel-heading">
-							<h5>제목</h5>
+				<h2 align="center">공지사항</h2>
+				<form action="${pageContext.request.contextPath}/freeUpdate/${aa.getNidx()}" method="post">
+					<div id="notice-article-detail" class="article-detail margin-large">
+						<dl class="article-detail-row">
+							<dt class="article-detail-title">제목</dt>
+							<dd class="article-detail-data">
+								<input type="text" name="title">
+							</dd>
+						</dl>
+						<dl class="article-detail-row half-row">
+							<dt class="article-detail-title">작성자</dt>
+							<dd class="article-detail-data half-data">
+								${aa.getWriter()}
+							</dd>
+						</dl>
+						<div class="article-content">
+							<textarea rows="10" cols="100" name="content"></textarea>
 						</div>
-						<div class="panel-body">
-							${aa.getTitle()}
-						</div>
-					</div>
-					<div class="panel-heading">
-						<h5>작성일</h5>
-					</div>
-					<div class="panel-body">
-						${aa.getRegdate()}
-						
 					</div>
 
-					<div class="panel-heading">
-						<h5>작성자</h5>
-					</div>
-					<div class="panel-body">
-						${aa.getWriter()} 
-						
-					</div>
 
-					<div class="panel-heading">
-						<h5>조회수</h5>
-					</div>
-					<div class="panel-body">29</div>
-				</div> 
-				<div class="article-content">
-					${aa.getContent()}
-				</div>
+					<p class="article-comment margin-small" align="center">
+						<a class="btn btn-primary" href="/freeBoard">목록</a> 
+						<button class="btn btn-primary" type="submit">등록</button>
+
+					</p>
+				</form>
 			</div>
 
-
-			<p class="article-comment margin-small" align="center">
-				<a class="btn btn-primary" href="">목록</a> 
-				<a class="btn btn-primary" href="freeUpdate/${aa.getNidx()}">수정</a> 
-				<a class="btn btn-primary" href="">삭제</a>
-			</p>
-			<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
-				<br>
-				<dl class="article-detail-row">
-					<dt class="article-detail-title">다음글</dt>
-					<dd class="article-detail-data">다음 글이 없습니다.</dd>
-				</dl>
-				<dl class="article-detail-row">
-					<dt class="article-detail-title">이전글</dt>
-					<dd class="article-detail-data">이전 글이 없습니다.</dd>
-				</dl>
-			</div>
 		</div>
-
 	</div>
-
 
 	<!-- Footer -->
 	<div id="footer">
+
 		<!-- Copyright -->
 		<ul class="copyright">
 			<li>&copy; Untitled. All rights reserved.</li>
 			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 		</ul>
+
 	</div>
 
 	<!-- Scripts -->

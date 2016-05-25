@@ -91,4 +91,30 @@ public class BoardDao {
 		}
 		
 	}
+	
+	public int updateBoard(FreeBoard fb){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = "com.nadu.rms.mapper.FreeBoardMapper.updateFreeBoard";
+			return sqlSession.update(statement, fb);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+
+	public void delBoard(String nidx) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try{
+			String statement = "com.nadu.rms.mapper.FreeBoardMapper.delFreeBoard";
+			
+			
+			sqlSession.delete(statement, nidx);
+
+		}finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		
+	}
 }

@@ -19,4 +19,12 @@
 	VALUES(TO_CHAR(NOTICES_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE)
 	</insert>
 	
+	<update id="updateFreeBoard" parameterType="com.nadu.rms.vo.FreeBoard">
+	UPDATE NOTICES SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE NIDX = #{nidx, jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="delFreeBoard" parameterType="String">
+	DELETE FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}
+	</delete>
+	
 </mapper>

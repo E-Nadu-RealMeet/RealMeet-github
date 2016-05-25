@@ -59,16 +59,32 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeReg", method = RequestMethod.POST)
 	public String freeReg(FreeBoard board ){
 		
-		int bd = boardDao.insertBoard(board);
+		boardDao.insertBoard(board);
 		return "redirect:freeBoard";
 		
 		
 	}
 	
-	/*@RequestMapping(value="/freeboard", method = RequestMethod.GET)
-	public String freeBoard(){
-		return "board/freeBoard";
-	}*/
+	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.GET)
+	public String freeUpate(@PathVariable String nidx, Model model){
+		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
+		return "board/freeBoardUp";
+	}
+	
+	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.POST)
+	public String freeUpdate(FreeBoard board, @PathVariable String nidx){
+		
+		boardDao.updateBoard(board);
+		return "redirect:../freeDetail/"+nidx;
+		
+		
+	}
+	@RequestMapping(value="/freeDel/{nidx}")
+	public String freeDel(@PathVariable String nidx){
+		boardDao.delBoard(nidx);
+		return "redirect:../freeBoard";
+	}
+	
 	
 	
 	
