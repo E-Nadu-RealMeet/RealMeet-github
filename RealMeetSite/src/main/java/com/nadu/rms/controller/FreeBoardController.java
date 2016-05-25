@@ -42,9 +42,11 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value="/freeDetail/{nidx}", method = RequestMethod.GET)
-	public String freeDetail(@PathVariable String nidx, Model model){
+	public String freeDetail(@PathVariable int nidx, Model model){
 		
 		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
+		model.addAttribute("bb", boardDao.selectFreeDetail(nidx+1));
+		model.addAttribute("cc", boardDao.selectFreeDetail(nidx-1));
 		
 		return "board/freeDetail";
 	}
@@ -66,7 +68,7 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.GET)
-	public String freeUpate(@PathVariable String nidx, Model model){
+	public String freeUpate(@PathVariable int nidx, Model model){
 		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
 		return "board/freeBoardUp";
 	}
