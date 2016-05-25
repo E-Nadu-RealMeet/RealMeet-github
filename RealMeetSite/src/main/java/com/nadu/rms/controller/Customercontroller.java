@@ -90,7 +90,7 @@ public class Customercontroller {
 		return "customer/QNA";	
 	}
 	
-	@RequestMapping(value = "QNA", method = RequestMethod.POST)
+	@RequestMapping(value = "insertQNA", method = RequestMethod.POST)
 	public String insertQNAs(Model model, QNA q) {
 		q.setTitle(q.getTitle());
 		q.setContent(q.getContent());
@@ -108,7 +108,7 @@ public class Customercontroller {
 		String title = q.getTitle();
 		model.addAttribute("QNA", customersDao.searchQNAs(title));
 		System.out.println(title);
-		return "customer/FAQs";	
+		return "customer/QNA";	
 	}
 	@RequestMapping(value="QNADetail/{qidx}", method=RequestMethod.GET)
 	public String QNADetail(HttpServletRequest request, Model model, @PathVariable String qidx){
