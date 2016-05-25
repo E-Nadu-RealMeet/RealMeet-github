@@ -53,18 +53,18 @@
 							</header>
 
 <!-- 문의하기 기본 뷰 -->
-							<form method="post" action="QNA">
+							<form method="post" action="insertQNA">
 								<div class="row">
 									<div class="12u"><input type="text" name="title" placeholder="제목" /></div>
 									<div class="12u$">
 										<textarea name="content" placeholder="내용"></textarea>
 									</div>
 									<div class="12u$">
-										<input type="submit" value="문의" />
+										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="문의" />
 									</div>
 								</div>
 							</form>
-				
+				<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
 		</div>
 					</section>
 
