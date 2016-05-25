@@ -19,7 +19,6 @@
 	<body>
 
 
-
 <div id="header">
 
 				<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
@@ -49,22 +48,30 @@
 						<div class="container">
 
 							<header>
-								<h2>문의하기</h2>
+								<h2>FAQ</h2>
 							</header>
-
-<!-- 문의하기 기본 뷰 -->
-							<form method="post" action="QNA">
-								<div class="row">
-									<div class="12u"><input type="text" name="title" placeholder="제목" /></div>
-									<div class="12u$">
-										<textarea name="content" placeholder="내용"></textarea>
-									</div>
-									<div class="12u$">
-										<input type="submit" value="문의" />
-									</div>
-								</div>
-							</form>
 				
+
+
+			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+				
+				
+				<tr>
+					<th>제목</th>
+					<th>${FAQsDetail.title}</th>
+				</tr>
+
+
+				
+					<tr>
+					<td>${FAQsDetail.content}</td>
+					</tr>
+			
+
+			</table>
+
+			<a href="../FAQs"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+			
 		</div>
 					</section>
 
@@ -93,10 +100,6 @@
 
 
 
-
-			
-			
-			
 			
 			
 </body>

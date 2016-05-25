@@ -52,7 +52,8 @@
 							
 							
 							<!--  버튼형 시작 -->
-							<c:forEach begin="0" var="i" end="${list.size()}">
+							<c:if test="${list!=null}">
+							<c:forEach begin="1" var="i" end="${list.size()}">
 								<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">
 									<div style="">
 										<div class="col-md-3">
@@ -125,97 +126,12 @@
 									</div>
 								</div>
 							</c:forEach>
+							</c:if>
 				<!--  버튼형 종료 -->
 							</div>
 						</section>
 				</div>
 
-
-
-
-
-
-
-
-<%-- 
-					<c:forEach begin="0" var="i" end="${list.size()}">
-						<a
-							href='${pageContext.request.contextPath}/event/${list.get(i).get("ESIDX")}'>
-							<div class="bs-example">
-								<div class="panel-group" id="accordion" role="tablist"
-									aria-multiselectable="true">
-									<!-- 								  <div class="panel panel-default"> -->
-									<div class="panel-heading" role="tab" id="heading${i }">
-
-										<!-- 내용 -->
-										<div style="overflow: auto;">
-											<div class="col-md-3">
-												<img
-													src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg"
-													alt="Responsive image" class="img-rounded img-responsive">
-											</div>
-											<div class="col-md-9">
-												<dl class="dl-horizontal">
-													<dt>Name</dt>
-													<dd>${list.get(i).get("EVENTNAME")}</dd>
-												</dl>
-												${list.get(i).get("DESCRIPTION")}
-											</div>
-										</div>
-										<div id=detail>
-											<div class="col-md-5"></div>
-											<div class="col-md-2">
-												<a data-toggle="collapse" data-parent="#accordion"
-													href="#collapse${i }" aria-expanded="true"
-													aria-controls="collapse${i }">
-													<button type="button" class="btn btn-default btn-xs"
-														style="right: 3px; bottom: 1px;">
-														<span class="glyphicon glyphicon-chevron-down"
-															aria-hidden="true"></span>
-													</button>
-												</a>
-											</div>
-											<div class="col-md-5"></div>
-										</div>
-
-										<!-- 내용 끝 -->
-
-									</div>
-									<div id="collapse${i }" class="panel-collapse collapse"
-										role="tabpanel" aria-labelledby="heading${i }">
-										<div class="panel-body">
-											<div class="col-md-12" style="text-align: left">Description
-												: ${list.get(i).get("DESCRIPTION")}</div>
-											<hr>
-											<div class="col-md-2">
-												<img
-													src="${pageContext.request.contextPath}/resources/core/images/pic.jpg"
-													alt="Responsive image" class="img-rounded img-responsive"
-													style="width: 100px; height: 100px">
-											</div>
-											<div class="col-md-10">
-												<div style="text-align: left; font-size: 0.8em;">
-													<div>Nick : ${list.get(i).get("NICKNAME")} 님</div>
-													<div>ID : ${list.get(i).get("ID")}</div>
-
-													<div>RAITNG : ${list.get(i).get("RATING") }</div>
-													<div>INTEREST : ${list.get(i).get("INTEREST") }</div>
-													<div>PHONE : ${list.get(i).get("PHONE") }</div>
-												</div>
-											</div>
-
-
-										</div>
-									</div>
-								</div>
-								<!-- 						</div> -->
-
-							</div>
-						</a>
-
-					</c:forEach> --%>
-
-					
 					<!-- 이벤트 셀 종료 -->
 					
 			
@@ -233,7 +149,7 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
+			<%-- <script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script> --%>
 			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>

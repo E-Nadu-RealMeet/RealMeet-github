@@ -21,39 +21,7 @@
 
 <div id="header">
 
-				<div class="top">
-
-					<!-- Logo -->
-						<div id="logo">
-							<span class="image avatar48"><img src="${pageContext.request.contextPath}/resources/core/images/avatar.jpg" alt="" /></span>
-							<h1 id="title">index</h1>
-							<p>${name}</p>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<!--
-
-								Prologue's nav expects links in one of two formats:
-
-								1. Hash link (scrolls to a different section within the page)
-
-								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
-
-								2. Standard link (sends the user to another page/site)
-
-								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
-
-							-->
-							<ul>
-								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
-								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
-								<li><a href="${pageContext.request.contextPath}/notice/" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
-								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
-								<li><a href="${pageContext.request.contextPath}/customer/customer" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">고객센터</span></a></li>
-							</ul>
-						</nav>
-
+				<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
 				</div>
 
 				<div class="bottom">
@@ -86,7 +54,7 @@
 
 			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 				
-				<c:forEach var="NoticesDetail", items="NoticesDetail">
+				
 				<tr>
 					<th>제목</th>
 					<th>${NoticesDetail.title}</th>
@@ -95,15 +63,13 @@
 
 				
 					<tr>
-						<td>${NoticesDetail.content}</td>
+					<td>${NoticesDetail.content}</td>
 					</tr>
-				</c:forEach>
+			
 
 			</table>
 
-			<form method="post" action="Notices">
-				<div class="12u" align="center"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></div>
-				</form>
+			<a href="../Notices"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
 			
 		</div>
 					</section>
