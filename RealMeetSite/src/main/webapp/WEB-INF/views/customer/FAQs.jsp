@@ -13,6 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" /> 
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
@@ -47,14 +48,14 @@
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
 						<div class="container">
-
+<div class="overlay"></div>
+  <div class="modal">
 							<header>
 								<h2>FAQ</h2>
 							</header>
 							
-					
-
-			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+  
+  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
 				<tr>
 					<th>번호</th>
@@ -77,6 +78,11 @@
 				</form>
 				<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
 		</div>
+  
+  </div>
+</div>	
+
+			
 					</section>
 
 				

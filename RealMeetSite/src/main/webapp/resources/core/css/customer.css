@@ -1,0 +1,47 @@
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    position: relative; /* needed for the overlay to extend when you scroll */
+    /* general styles */
+    padding: 30px;
+/*     font-family: 'Open Sans', sans-serif; */
+/*     color: #fff; */
+}
+
+/* overlay styles, all needed */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+/* just some content with arbitrary styles for explanation purposes */
+.modal {
+    width: 60%;
+    height: 75%;
+    line-height: 150%;
+    position: fixed;
+    top: 12.5%; 
+    left: 20%;
+    margin-top: 0%;
+    margin-left: 0%;
+    background-color: #CCC;
+    border-radius: 25px;
+    text-align: center;
+    z-index: 11; /* 1px higher than the overlay layer */
+}
+
+.content {
+    margin: 30px;
+}
+
+h1 {
+/*     font-family: 'Federo', sans-serif; */
+}
