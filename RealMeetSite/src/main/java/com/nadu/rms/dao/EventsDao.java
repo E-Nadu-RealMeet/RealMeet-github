@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Events;
 
 public class EventsDao {
@@ -47,7 +48,7 @@ public class EventsDao {
 	}
 	
 	
-	public int insertEvents(Events e){
+	public int insertEvents(Event_Eventlist e){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
 			String statement = "com.nadu.rms.mapper.EventsMapper.insertEvents";

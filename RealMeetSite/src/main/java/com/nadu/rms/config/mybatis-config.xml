@@ -7,6 +7,8 @@
 	<typeAliases>
 		<typeAlias type="com.nadu.rms.vo.Member" alias="Member"/>
 		<typeAlias type="com.nadu.rms.vo.Events" alias="Events"/>
+		<typeAlias type="com.nadu.rms.vo.Eventlist" alias="Eventlist"/>
+		<typeAlias type="com.nadu.rms.vo.Event_Eventlist" alias="Event_Eventlist"/>
 		<typeAlias type="com.nadu.rms.vo.Users" alias="Users"/>
 		<typeAlias type="com.nadu.rms.vo.Notices" alias="Notices"/>
 		<typeAlias type="com.nadu.rms.vo.FAQ" alias="FAQ"/>
@@ -30,6 +32,7 @@
 	<mappers>
 		<mapper resource="com/nadu/rms/mapper/ExampleMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/EventsMapper.xml"/>
+		<mapper resource="com/nadu/rms/mapper/EventlistMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/BannerMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/UsersMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/FreeBoardMapper.xml"/>

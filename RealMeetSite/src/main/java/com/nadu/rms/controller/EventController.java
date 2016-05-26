@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.ReviewsDao;
+import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.service.EventsService;
+import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Eventlist;
 import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Review;
 
@@ -30,8 +33,10 @@ public class EventController {
 	EventsDao eventsDAO;
 	ReviewsDao reviewsDAO;
 	EventsService eventsService;
-
+	EventRegService eventRegService;
+	
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	
 	@Autowired
 	public void setEventsDao(EventsDao eventsDao) {
 		this.eventsDAO = eventsDao;
@@ -43,6 +48,11 @@ public class EventController {
 	@Autowired
 	public void setEventsService(EventsService eventsService) {
 		this.eventsService = eventsService;
+	}
+	
+	@Autowired
+	public void setEventRegService(EventRegService eventRegService) {
+		this.eventRegService = eventRegService;
 	}
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -86,8 +96,6 @@ public class EventController {
 		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
 		model.addAttribute("reviews", reviews);
 		
-		
-		
 		//뷰 리턴(detail)
 		return "event/eventdetail";
 	}
@@ -100,12 +108,10 @@ public class EventController {
 
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
-	public String eventReg(Model model, Events e) {
-
-		//현재 로그인 기능이 없기 때문에 holder는 won으로 통일하겠습니다.
-		e.setHolder("won");
-		//로그인 기능 완료 후 삭제 요망 부분
-		int iv = eventsDAO.insertEvents(e);
+	public String eventReg(Event_Eventlist e) {
+		
+		int iv = eventRegService.eventReg(e);
+		
 		if(iv>0){
 			return "redirect:../event/"+e.getEsidx();
 		}else{

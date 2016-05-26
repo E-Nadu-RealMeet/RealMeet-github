@@ -1,7 +1,6 @@
 package com.nadu.rms.config;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +20,12 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.mvc.multiaction.MethodNameResolver;
-import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.nadu.rms.controller.UploadController;
-import com.nadu.rms.dao.BannerDao;
-import com.nadu.rms.dao.BoardDao;
-import com.nadu.rms.dao.CustomersDao;
-import com.nadu.rms.dao.EventsDao;
-import com.nadu.rms.dao.ReviewsDao;
-import com.nadu.rms.dao.UsersDao;
-import com.nadu.rms.service.EventsService;
-
-import oracle.net.aso.u;
-
+import com.nadu.rms.controller.*;
+import com.nadu.rms.dao.*;
+import com.nadu.rms.service.*;
 
 @Configuration
 @EnableWebMvc
@@ -189,6 +178,12 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public EventsService eventsService(){
     	return new EventsService();
     }
-
-
+    @Bean
+    public EventRegService eventRegService(){
+    	return new EventRegService();
+    }
+    @Bean
+    public EventlistDao eventlistDao(){
+    	return new EventlistDao();
+    }
 }

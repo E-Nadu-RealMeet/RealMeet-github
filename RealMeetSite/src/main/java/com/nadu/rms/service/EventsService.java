@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
+import com.nadu.rms.vo.Eventlist;
+import com.nadu.rms.vo.Events;
 
 public class EventsService {
 
