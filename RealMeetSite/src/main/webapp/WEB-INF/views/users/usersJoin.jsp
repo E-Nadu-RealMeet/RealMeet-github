@@ -16,9 +16,117 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/usersJoin.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		
-	</head>
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->	
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+
+var count = 0;
+
+function idCheck(){
+	
+	if ($("#id").val() == '' || $("#id").val() == null) {
+		alert("아이디를 입력하세요");
+		return false;
+	}
+	var text = $("#id").val();
+	var regexp = /[0-9a-zA-Z]/;
+
+	for (var i = 0; i < text.length; i++) {
+		if (text.charAt(i) != " " && regexp.test(text.charAt(i)) == false) {
+			alert("한글이나 특수문자는 입력불가능 합니다.");
+			return false;
+		}
+	}
+	$.ajax({
+		type:"POST",
+		dataType : 'text',
+		url : "idcheck",
+		data : {
+			"id" : $('#id').val()
+		},		
+		success : function(data) {
+			if ($.trim(data) == "YES") {
+				count = 1;
+				alert("아이디가 중복이 되지 않습니다. 쓰셔도 됩니다.");
+			} else {
+				alert("아이디가 중복이 됩니다. 다시 입력 해주세요");
+				return false;
+			}
+		},
+	});
+}
+
+
+function formCheck() {
+	var member_id = document.getElementById('id');
+	var member_nickname = document.getElementById('nickname');
+	var password = document.getElementById('password');
+	var password_check = document.getElementById('passwordCheck');
+	var member_phoneNumber = document.getElementById('phoneNumber');
+
+	if (member_id.value == '' || member_id.value == null) {
+		alert('ID를 입력하세요');
+		focus.member_id;
+		return false;
+	}
+	if (member_id.value.length < 4 || member_id.value.length > 20) {
+		alert('ID는 4~20자내로 입력해주세요.');
+		focus.member_id;
+		return false;
+	}
+	
+	if (password.value == '' || password.value == null) {
+		alert('비밀번호를 입력하세요');
+		focus.password;
+		return false;
+	}
+
+	if (password_check.value == '' || password_check.value == null) {
+		alert('비밀번호확인란을 입력하세요');
+		focus.password_check;
+		return false;
+	}
+	
+	if (password.value != password_check.value) {
+		alert("비밀번호와 비밀번호 확인란이 다릅니다.");
+		focus.passowrd;
+		return false;
+	}
+	
+	if (member_nickname.value == '' || member_nickname.value == null) {
+		alert('별명을 입력하세요');
+		focus.member_nickname;
+		return false;
+	}
+	
+	if (member_phoneNumber.value == '' || member_phoneNumber.value == null) {
+		alert('휴대폰번호를 입력하세요');
+		focus.member_phoneNumber;
+		return false;
+	}
+
+	if (member_phoneNumber.value.length <= 9 || member_phoneNumber.value.length >= 12) {
+		alert("휴대폰번호를 제대로 입력해주세요");
+		focus.member_phoneNumber;
+		return false;
+	}
+
+	if (isNaN(member_phoneNumber.value)) {
+		alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+		focus.member_phoneNumber;
+		return false;
+	}
+
+	if (count == 0) {
+		alert("아이디 중복확인을 눌러주세요");
+		return false;
+	}
+	return true;
+}	
+	
+</script>
+
+</head>
 	<body>
 	
 		<!-- Header -->
@@ -35,19 +143,7 @@
 
 					<!-- Nav -->
 						<nav id="nav">
-							<!--
 
-								Prologue's nav expects links in one of two formats:
-
-								1. Hash link (scrolls to a different section within the page)
-
-								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
-
-								2. Standard link (sends the user to another page/site)
-
-								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
-
-							-->
 							<ul>
 								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Intro</span></a></li>
 								<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Portfolio</span></a></li>
@@ -81,18 +177,22 @@
 			</ul>
 		</div>
 		<div></div>
-		<div class="container" style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
+		<div class="container" style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; position: ">
 
-			<form class="form-horizontal" role="form" method="post" action="join">	<!-- action="javascript:alert( 'success!' );" -->
+			<form class="form-horizontal" role="form" method="post" action="join" onsubmit="return formCheck()">	<!-- action="javascript:alert( 'success!' );" -->
 
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label" style="font-size: 20px;" >아이디</label>
-					<div class="col-lg-10">
+					<div class="col-lg-10" >
 						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id="id" data-rule-required="true" name="id";
-							placeholder="20자이내의 영문자,숫자만 입력 가능합니다." maxlength="20"
-							style="width: 80%; margin-top:1%;">
+							id="id" data-rule-required="true" name="id"
+							placeholder="4~20자이내의 소문자,숫자만 입력 가능합니다." maxlength="20"
+							style="width: 80%; margin-top:1%;">		
 					</div>
+					<div>
+						<input type="button" class="button" value="중복확인" onclick="idCheck();" style="width:10%; font-size:13px; font-weight:bold; text-align:center;">
+					</div>
+					
 				</div>
 				<div class="form-group" id="divPassword">
 					<label for="inputPassword" class="col-lg-2 control-label" style="font-size: 20px;">패스워드</label>
@@ -147,21 +247,12 @@
 							maxlength="11" style="width: 80%; margin-top:1%;">
 					</div>
 				</div>
-				<!-- <div class="form-group">
-					<label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
-					<div class="col-lg-10">
-						<select class="form-control" id="gender">
-							<option value="M">남</option>
-							<option value="F">여</option>
-						</select>
-					</div>
-				</div> -->
-
-				<div class="form-group">
+				<input type="hidden" name="rating" id="rating" value="10" />
+				<input type="hidden" name="interest" id="interest" value="sports" />
+				<div class="form-group" style="margin-top: 10px">
 					<div class="col-lg-offset-2 col-lg-10">
-						<input type="hidden" name="rating" id="rating" value="10" />
-						<input type="hidden" name="interest" id="interest" value="sports" />
-						<button type="submit" class="btn btn-default">회원 가입</button>
+						
+						<button type="submit" name="submit" id="submit" class="btn btn-default">회원 가입</button>
 					</div>
 				</div>
 			</form>

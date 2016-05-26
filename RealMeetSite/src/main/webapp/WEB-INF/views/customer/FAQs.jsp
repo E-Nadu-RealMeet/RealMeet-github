@@ -65,8 +65,8 @@
 
 				<c:forEach var="FAQs" items="${FAQs}">
 					<tr>
-						<td><a href="FAQsDetail/${FAQs.fidx}">${FAQs.fidx}</a></td>
-						<td>${FAQs.title}</td>
+						<td>${FAQs.fidx}</td>
+						<td><a href="FAQsDetail/${FAQs.fidx}">${FAQs.title}</a></td>
 						<td>${FAQs.regdate}</td>
 					</tr>
 				</c:forEach>

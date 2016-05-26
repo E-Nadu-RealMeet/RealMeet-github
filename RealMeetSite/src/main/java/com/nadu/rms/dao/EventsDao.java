@@ -70,7 +70,7 @@ public class EventsDao {
 		}
 	}
 	
-	// Events와 EventList 테이블 조인 결과 획득 ( 작동 X , 수정중 )
+	// Events와 EventList 테이블 조인 결과 획득 
 	public Map<String, String> selectEventsDetailByESIDX(String esidx){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Map<String, String> map = new HashMap<String, String>();
@@ -81,6 +81,17 @@ public class EventsDao {
 			return map;
 
 		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int getCntEvents(){
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try{
+			String statement = "com.nadu.rms.mapper.EventsMapper.getCntFromEvents";
+			return sqlSession.selectOne(statement);
+		}finally{
 			sqlSession.close();
 		}
 	}

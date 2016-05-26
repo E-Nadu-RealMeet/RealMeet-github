@@ -64,8 +64,8 @@
 
 				<c:forEach var="QNA" items="${QNA}">
 					<tr>
-						<td><a href="QNADetail/${QNA.qidx}">${QNA.qidx}</a></td>
-						<td>${QNA.title}</td>
+						<td>${QNA.qidx}</td>
+						<td><a href="QNADetail/${QNA.qidx}">${QNA.title}</a></td>
 						<td>${QNA.regdate}</td>
 					</tr>
 				</c:forEach>

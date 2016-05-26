@@ -64,8 +64,8 @@
 
 				<c:forEach var="Notices" items="${Notices}">
 					<tr>
-						<td><a href="NoticesDetail/${Notices.nidx}">${Notices.nidx}</a></td>
-						<td>${Notices.title}</td>
+						<td>${Notices.nidx}</td>
+						<td><a href="NoticesDetail/${Notices.nidx}">${Notices.title}</a></td>
 						<td>${Notices.regdate}</td>
 					</tr>
 				</c:forEach>

@@ -60,6 +60,7 @@
 											<h3>공지사항</h3>
 										</header>
 									</article>
+									
 									<article class="item">
 										<a href="information" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic03.jpg" alt="" width="150px" height="232px"/></a>
 										<header>
