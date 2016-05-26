@@ -147,10 +147,10 @@ $(document).ready(function(){
             data: formData,
             success: function(data){
                 status.setProgress(100);
-                if($('#imgsrc').val().length>0){
-              		$('#imgsrc').val($('#imgsrc').val()+":"+data);
+                if($('#imgsrc').val()==='사진을 넣지 않습니다.'){
+                	$('#imgsrc').val(data);
           		}else{
-          			$('#imgsrc').val(data);
+          			$('#imgsrc').val($('#imgsrc').val()+":"+data);
           		}
                 //$("#status1").append("File upload Done<br>");           
             }
