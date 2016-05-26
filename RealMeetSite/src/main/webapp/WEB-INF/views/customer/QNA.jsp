@@ -78,7 +78,7 @@
 				<form method="post" action="QNA">
 				<div class="4u" ><input style="margin-left: 100%;" type="text" name="title" placeholder="力格" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="八祸" /></div>
 				</form>
-				<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="第肺" /></a>
+				<a href="${pageContext.request.contextPath}"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="第肺" /></a>
 		</div>
 </div>
 </div>		

@@ -66,7 +66,7 @@
 									</div>
 								</div>
 							</form>
-				<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+				<a href="${pageContext.request.contextPath}"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
 				</div>
 		</div>
 					</section>
