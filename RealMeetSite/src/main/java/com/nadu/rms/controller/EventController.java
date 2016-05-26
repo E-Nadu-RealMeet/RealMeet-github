@@ -80,7 +80,7 @@ public class EventController {
 		
 		// 얻은 값 반환.
 		 
-		//log.info("gson : " + gson.toJson(datas));
+		log.info("gson : " + returnValue);
 		return returnValue;
 	}
 	

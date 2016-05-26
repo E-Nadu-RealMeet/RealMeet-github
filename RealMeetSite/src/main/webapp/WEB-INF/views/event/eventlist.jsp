@@ -23,16 +23,17 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/docs.min.css" />
 
 
-				
 		<script type="text/javascript">
-			var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.
-			 
 		
+
+		var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.
+				 
+			
 			$(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
 			    getEventList(page);
 			    page++;
 			}); 
-		
+
 			//스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
 			$(window).scroll(function(){  
 			    if($(window).scrollTop() >= $(document).height() - $(window).height()){
@@ -50,9 +51,77 @@
 				
 					data : {"page" : page},
 					url : 'list/dataload',
-				
-					    success : function(returnData) {
-							
+						
+						    success : function(returnData) {
+
+						    var list = returnData.datas;
+							var html = "";
+						    /* if(returnData.startNum <= returnData.cnt){ */
+						    	//뷰 만들기 ... 개 노가다 -ㅂ-
+						 
+						    	for(var i=0;i<1;i++){
+						    		html = '<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">'
+							    		+ '<div>'
+							    		+ '<div class="col-md-3">'
+							    		+ '<img	src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="Responsive image" class="img-rounded img-responsive">'
+							    		+ '</div>'
+							    		+ '<div class="col-md-9">'
+							    		+ '<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-overflow: ellipsis; text-align: left; ">'
+							    		+ 'Name : '+ list[i].EVENTNAME
+							    		+ '</div>'
+							    		+ '<hr>'
+							    		+ '<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-overflow: ellipsis; text-align: left; white-space: nowrap; ">'
+							    		+ '설명 : '+ list[i].DESCRIPTION
+							    		+ '</div>'
+							    		+ '<hr>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '<div id=detail>'
+							    		+ '<div class="col-md-12">'
+							    		+ '<button type="button" class="btn btn-primary btn-lg"data-toggle="modal" data-target="#detail'+ ((page-1)*10+i) +'">더보기</button>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '<div class="modal fade" id="detail'+ ((page-1)*10+i) +'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+							    		+ ''
+							    		+ '<div class="modal-dialog modal-lg">'
+							    		+ '<div class="modal-content">'
+							    		+ '<div class="modal-header">'
+							    		+ '<button type="button" class="close" data-dismiss="modal"	aria-label="Close">'
+							    		+ '<span aria-hidden="true">&times;</span>'
+							    		+ '</button>'
+							    		+ '<h4 class="modal-title" id="myModalLabel">상세 내용</h4>'
+							    		+ '</div>'
+							    		+ '<div class="modal-body" style="overflow: auto">'
+							    		+ '<div class="col-md-12" style="text-align: left">Description	: '+ list[i].DESCRIPTION +'</div>'
+							    		+ '<hr>'
+							    		+ '<div class="col-md-2">'
+							    		+ '<img	src="${pageContext.request.contextPath}/resources/core/images/pic.jpg" alt="Responsive image" class="img-rounded img-responsive" style="width: 100px; height: 100px">'
+							    		+ '</div>'
+							    		+ '<div class="col-md-10">'
+							    		+ '<div style="text-align: left; font-size: 0.8em;">'
+							    		+ '<div>Nick : '+ list[i].NICKNAME +' 님</div>'
+							    		+ '<div>ID : '+ list[i].ID +'</div>'
+							    		+ '<div>RAITNG : '+ list[i].RATING +'</div>'
+							    		+ '<div>INTEREST : '+ list[i].INTEREST +'</div>'
+							    		+ '<div>PHONE : '+ list[i].PHONE +'</div>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '<div class="modal-footer">'
+							    		+ '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>'
+							    		+ '<a href = '+'${pageContext.request.contextPath}/event/'+ list[i].ESIDX +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '</div>'
+							    		+ '</div>';	
+							    }	
+
+							$("#container").append(html); 
+							html = "";
+						    
+
+
 					    	//alert(returnData.datas[0].IMGSRC);							
 					    	/* 
 					    	alert("데이터를 가져오는데 성공하였습니다.");	
@@ -64,7 +133,7 @@
 						 	
 							//var html = data.variable;
 							
-							$("#sss").html(html); 
+							
 					
 							html = html.replace(/%20/gi, " "); */
 				
@@ -75,9 +144,13 @@
 			
 			
 			// 핵심기능!!
-			
-		</script>
+					
 
+		
+		
+		
+		
+		</script>
 
 		
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -94,7 +167,7 @@
 
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
-						<div class="container">
+						<div class="container" id="container">
 
 							<header>
 								<h2>이벤트 리스트</h2>
@@ -108,82 +181,7 @@
 							
 							
 							
-							<!--  버튼형 시작 -->
-							<c:if test="${list!=null}">
-							<c:forEach begin="1" var="i" end="${list.size()-1}">
-								<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">
-									<div style="">
-										<div class="col-md-3">
-											<img
-												src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg"
-												alt="Responsive image" class="img-rounded img-responsive">
-										</div>
-										<div class="col-md-9">
-											<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-align: left;">
-												Name : ${list.get(i).get("EVENTNAME")}
-											</div>
-											<hr>
-											<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-overflow: ellipsis; text-align: left; white-space: nowrap; ">
-												설명 : ${list.get(i).get("DESCRIPTION")}
-											</div>
-											<hr>
-										</div>
-										
-									</div>
-									<div id=detail>
-										<div class="col-md-12">
-											<button type="button" class="btn btn-primary btn-lg"
-												data-toggle="modal" data-target="#detail${i}">더보기</button>
-										</div>
-									</div>
-				
-								</div>
-				
-								<!-- 상세정보 오버랩 창 내용 -->
-								<div class="modal fade" id="detail${i}" tabindex="-1" role="dialog"
-									aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-lg">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-												<h4 class="modal-title" id="myModalLabel">상세 내용</h4>
-											</div>
-											<div class="modal-body" style="overflow: auto">
-												<div class="col-md-12" style="text-align: left">Description	: ${list.get(i).get("DESCRIPTION")}</div>
-												<hr>
-												<div class="col-md-2">
-													<img
-														src="${pageContext.request.contextPath}/resources/core/images/pic.jpg"
-														alt="Responsive image" class="img-rounded img-responsive"
-														style="width: 100px; height: 100px">
-												</div>
-												<div class="col-md-10">
-													<div style="text-align: left; font-size: 0.8em;">
-														<div>Nick : ${list.get(i).get("NICKNAME")} 님</div>
-														<div>ID : ${list.get(i).get("ID")}</div>
-				
-														<div>RAITNG : ${list.get(i).get("RATING") }</div>
-														<div>INTEREST : ${list.get(i).get("INTEREST") }</div>
-														<div>PHONE : ${list.get(i).get("PHONE") }</div>
-													</div>
-												</div>
-												
-				
-				
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">닫기</button>
-												<a href = '${pageContext.request.contextPath}/event/${list.get(i).get("ESIDX")}'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-							</c:if>
+							
 				<!--  버튼형 종료 -->
 							</div>
 						</section>

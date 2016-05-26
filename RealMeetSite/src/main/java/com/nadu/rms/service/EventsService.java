@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.vo.Eventlist;
@@ -24,7 +26,7 @@ public class EventsService {
 		/*
 		 * 필터 적용시 들어가야 할 부분.
 		 */
-
+		
 
 
 
@@ -34,15 +36,15 @@ public class EventsService {
 
 		// events 총 갯수 = 보여줄 리스트의 최대값
 		int cnt = eventsDAO.getCntEvents();
-
+		
 		// 시작번호
-		int startNum = 0;
+		int startNum = (page-1)*10;
 
 		//수정필요 -> page 이용하여 정해진 갯수만큼 불러오깅 ㅋㅋㅋ
-		List<Map<Object, Object>> datas = eventsDAO.selectEventsNUser();
+		List<Map<Object,Object>> datas = eventsDAO.selectEventsNUser();
 
 
-
+		
 		// 팩킹할 클래스 객체 선언
 		JsonClassForListLoad set = new JsonClassForListLoad();
 
@@ -58,7 +60,7 @@ public class EventsService {
 
 
 	class JsonClassForListLoad{
-		List<Map<Object, Object>> datas;
+		List<Map<Object,Object>> datas;
 		int cnt;
 		int startNum;
 
@@ -66,7 +68,7 @@ public class EventsService {
 		public void setStartNum(int startNum) {
 			this.startNum = startNum;
 		}
-		public void setDatas(List<Map<Object, Object>> datas) {
+		public void setDatas(List<Map<Object,Object>> datas) {
 			this.datas = datas;
 		}
 		public void setCnt(int cnt) {
