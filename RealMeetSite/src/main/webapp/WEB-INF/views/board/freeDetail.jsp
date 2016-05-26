@@ -78,9 +78,9 @@
 
 
 			<p class="article-comment margin-small" align="center">
-				<a class="btn btn-primary" href="">목록</a> 
-				<a class="btn btn-primary" href="freeUpdate/${aa.getNidx()}">수정</a> 
-				<a class="btn btn-primary" href="">삭제</a>
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/freeBoard">목록</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/freeUpdate/${aa.getNidx()}">수정</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/freeDel/${aa.getNidx()}">삭제</a>
 			</p>
 			<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
 				<br>

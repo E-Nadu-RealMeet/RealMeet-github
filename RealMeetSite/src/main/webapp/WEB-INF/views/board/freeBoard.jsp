@@ -57,7 +57,7 @@
 				<tr>
 					<td>${aa.getNidx()}</td>
 					<td class='c1' colspan='2'><b>질문</b></td>
-					<td class='subject'><a href=""><b>${aa.getTitle()}</b></td>
+					<td class='subject'><a href="${pageContext.request.contextPath}/freeDetail/${aa.getNidx()}"><b>${aa.getTitle()}</b></a></td>
 					<td>${aa.getWriter()}</td>
 					<td>${aa.getRegdate()}</td>
 				</tr>
@@ -87,7 +87,7 @@
 
 			</table>
 			<div class="board_list_button ">
-				<a href=""  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
+				<a href="${pageContext.request.contextPath}/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
 			</div>
 			<div class="paging_noline">
 				<span><a href="javascript:alert('처음페이지입니다.');"><img

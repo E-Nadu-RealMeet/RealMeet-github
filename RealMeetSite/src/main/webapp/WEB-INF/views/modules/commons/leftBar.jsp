@@ -66,9 +66,8 @@
 							<ul>
 								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
 							</ul>
-					
-					
 							<ul id="accordion">
     						<li><div><a href="#"><span class="icon fa-user">고객센터</span></a></div>
        							 <ul>

@@ -10,7 +10,7 @@
 	SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC
 	</select>
 	
-	<select id="selectFreeDetail" parameterType="String" resultType="com.nadu.rms.vo.FreeBoard">
+	<select id="selectFreeDetail" parameterType="Integer" resultType="com.nadu.rms.vo.FreeBoard">
 	SELECT * FROM NOTICES WHERE NIDX = #{nidx}
 	</select>
 	

@@ -67,7 +67,7 @@ public class BoardDao {
 			sqlSession.commit(); //commit�� ���ϸ� ������ �Է��� �ȵ˴ϴ�.
 	}*/
 	
-	public FreeBoard selectFreeDetail(String nidx){
+	public FreeBoard selectFreeDetail(int nidx){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
 			String statement = "com.nadu.rms.mapper.FreeBoardMapper.selectFreeDetail";
