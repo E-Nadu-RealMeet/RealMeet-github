@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Events;
 
 public class EventsDao {
@@ -39,7 +40,6 @@ public class EventsDao {
 
 		try{
 			String statement = "com.nadu.rms.mapper.EventsMapper.selectEvents";
-			System.out.println(statement);
 			return sqlSession.selectList(statement);
 
 		}finally {
@@ -59,13 +59,15 @@ public class EventsDao {
 		}
 	}
 	
-	//이벤트와 유저 정보 획득
-	public List<Map<Object, Object>> selectEventsNUser(){
-		//HashMap<String, String> hash = new HashMap<>();
+	//이벤트와 유저 정보 획득Map<Object, Object>
+	public List<Event_User> selectEventsNUser(int startNum, int endNum){
+		Map<String,Integer> paramMap = new HashMap<String,Integer>();
+		paramMap.put("startNum", startNum);
+		paramMap.put("endNum", endNum);
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
 			String statement = "com.nadu.rms.mapper.EventsMapper.selectEventsNUser";
-			return sqlSession.selectList(statement);
+			return sqlSession.selectList(statement, paramMap);
 		}finally{
 			sqlSession.close();
 		}

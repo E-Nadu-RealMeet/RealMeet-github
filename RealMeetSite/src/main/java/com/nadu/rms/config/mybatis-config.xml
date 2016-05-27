@@ -9,6 +9,7 @@
 		<typeAlias type="com.nadu.rms.vo.Events" alias="Events"/>
 		<typeAlias type="com.nadu.rms.vo.Eventlist" alias="Eventlist"/>
 		<typeAlias type="com.nadu.rms.vo.Event_Eventlist" alias="Event_Eventlist"/>
+		<typeAlias type="com.nadu.rms.vo.Event_User" alias="Event_User"/>
 		<typeAlias type="com.nadu.rms.vo.Users" alias="Users"/>
 		<typeAlias type="com.nadu.rms.vo.Notices" alias="Notices"/>
 		<typeAlias type="com.nadu.rms.vo.FAQ" alias="FAQ"/>

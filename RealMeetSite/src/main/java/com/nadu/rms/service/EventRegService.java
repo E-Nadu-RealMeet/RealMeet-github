@@ -12,6 +12,7 @@ import com.nadu.rms.vo.Event_Eventlist;
 public class EventRegService {
 	EventsDao eventsDAO;
 	EventlistDao eventlistDAO;
+	
 	@Autowired
 	public void setEventsDao(EventsDao eventsDao) {
 		this.eventsDAO = eventsDao;

@@ -22,6 +22,7 @@ import com.nadu.rms.dao.ReviewsDao;
 import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.service.EventsService;
 import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Eventlist;
 import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Review;
@@ -64,8 +65,8 @@ public class EventController {
 		model.addAttribute("list", list);*/
 		
 		// 이벤트 정보 및 홀더 정보 획득.
-		List<Map<Object,Object>> list = eventsDAO.selectEventsNUser();
-		model.addAttribute("list",list);
+		//List<Event_User> list = eventsDAO.selectEventsNUser(1,5);
+		//model.addAttribute("list",list);
 		// 필터 체크.
 		// 뷰 리턴
 		return "event/eventlist";
@@ -77,7 +78,6 @@ public class EventController {
 		
 		
 		String returnValue = eventsService.listLoad(req, eventsDAO);
-		
 		// 얻은 값 반환.
 		 
 		log.info("gson : " + returnValue);

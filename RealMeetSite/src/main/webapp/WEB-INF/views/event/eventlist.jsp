@@ -26,8 +26,7 @@
 		<script type="text/javascript">
 		
 
-		var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.
-				 
+		var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.		 
 			
 			$(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
 			    getEventList(page);
@@ -55,23 +54,25 @@
 						    success : function(returnData) {
 
 						    var list = returnData.datas;
+						    var startNum = returnData.startNum;
+						    var endNum = returnData.endNum;
 							var html = "";
-						    /* if(returnData.startNum <= returnData.cnt){ */
+						    if(returnData.startNum <= returnData.cnt){
 						    	//뷰 만들기 ... 개 노가다 -ㅂ-
 						 
-						    	for(var i=0;i<1;i++){
-						    		html = '<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">'
+						    	for(var i=0; i<(endNum-startNum+1); i++){
+						    		html = html+'<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">'
 							    		+ '<div>'
 							    		+ '<div class="col-md-3">'
 							    		+ '<img	src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="Responsive image" class="img-rounded img-responsive">'
 							    		+ '</div>'
 							    		+ '<div class="col-md-9">'
 							    		+ '<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-overflow: ellipsis; text-align: left; ">'
-							    		+ 'Name : '+ list[i].EVENTNAME
+							    		+ 'Name : '+ list[i].eventname
 							    		+ '</div>'
 							    		+ '<hr>'
 							    		+ '<div class="dl-horizontal" style="height: 40px; overflow: hidden; text-overflow: ellipsis; text-align: left; white-space: nowrap; ">'
-							    		+ '설명 : '+ list[i].DESCRIPTION
+							    		+ '설명 : '+ list[i].abs
 							    		+ '</div>'
 							    		+ '<hr>'
 							    		+ '</div>'
@@ -93,63 +94,41 @@
 							    		+ '<h4 class="modal-title" id="myModalLabel">상세 내용</h4>'
 							    		+ '</div>'
 							    		+ '<div class="modal-body" style="overflow: auto">'
-							    		+ '<div class="col-md-12" style="text-align: left">Description	: '+ list[i].DESCRIPTION +'</div>'
+							    		+ '<div class="col-md-12" style="text-align: left">Description	: '+ list[i].description +'</div>'
 							    		+ '<hr>'
 							    		+ '<div class="col-md-2">'
 							    		+ '<img	src="${pageContext.request.contextPath}/resources/core/images/pic.jpg" alt="Responsive image" class="img-rounded img-responsive" style="width: 100px; height: 100px">'
 							    		+ '</div>'
 							    		+ '<div class="col-md-10">'
 							    		+ '<div style="text-align: left; font-size: 0.8em;">'
-							    		+ '<div>Nick : '+ list[i].NICKNAME +' 님</div>'
-							    		+ '<div>ID : '+ list[i].ID +'</div>'
-							    		+ '<div>RAITNG : '+ list[i].RATING +'</div>'
-							    		+ '<div>INTEREST : '+ list[i].INTEREST +'</div>'
-							    		+ '<div>PHONE : '+ list[i].PHONE +'</div>'
+							    		+ '<div>Nick : '+ list[i].nickname +' 님</div>'
+							    		+ '<div>ID : '+ list[i].id +'</div>'
+							    		+ '<div>RAITNG : '+ list[i].rating +'</div>'
+							    		+ '<div>INTEREST : '+ list[i].interest +'</div>'
+							    		+ '<div>PHONE : '+ list[i].phone +'</div>'
 							    		+ '</div>'
 							    		+ '</div>'
 							    		+ '</div>'
 							    		+ '<div class="modal-footer">'
 							    		+ '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>'
-							    		+ '<a href = '+'${pageContext.request.contextPath}/event/'+ list[i].ESIDX +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
+							    		+ '<a href = '+'${pageContext.request.contextPath}/event/'+ list[i].esidx +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
 							    		+ '</div>'
 							    		+ '</div>'
 							    		+ '</div>'
 							    		+ '</div>';	
-							    }	
-
-							$("#container").append(html); 
-							html = "";
-						    
-
-
-					    	//alert(returnData.datas[0].IMGSRC);							
-					    	/* 
-					    	alert("데이터를 가져오는데 성공하였습니다.");	
-							
-							alert($.returnData);
-						     */
-							
-							/*var html = '<a href="">ㄴ어라ㅣㅁㄴ어라ㅣㅓ</a>';
-						 	
-							//var html = data.variable;
-							
-							
-					
-							html = html.replace(/%20/gi, " "); */
-				
-				       	}
+							    	
+						    	}
+						    	$("#container").append(html); 
+								html = "";
+				       		}
+						    else{
+						    	page--;
+						    }
+						}
 				       	
 				});
 			} 
 			
-			
-			// 핵심기능!!
-					
-
-		
-		
-		
-		
 		</script>
 
 		
@@ -178,19 +157,12 @@
 								<button class="btn btn-lg" type=button>이름별</button>
 								<button class="btn btn-lg btn-success" type=button>지역별</button>
 							</div>
-							
-							
-							
-							
-				<!--  버튼형 종료 -->
-							</div>
-						</section>
+						</div>
+					</section>
 				</div>
 
 					<!-- 이벤트 셀 종료 -->
 					
-			
-			 <div id="sss"></div>
 
 
 		<!-- Footer -->
