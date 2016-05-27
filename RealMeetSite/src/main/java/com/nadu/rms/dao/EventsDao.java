@@ -79,7 +79,7 @@ public class EventsDao {
 		Map<String, String> map = new HashMap<String, String>();
 		try{
 			String statement = "com.nadu.rms.mapper.EventsMapper.selectEventsDetailByESIDX";
-			System.out.println(statement);
+			//System.out.println(statement);
 			map = sqlSession.selectOne(statement, esidx);
 			return map;
 

@@ -17,16 +17,108 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/core/js/eventList.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/bootstrap.min.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/eventlist.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/docs.min.css" />
 
 
-		<script type="text/javascript">
 		
 
-		var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.		 
+		
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+	
+		<!-- Header -->
+			<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
+			
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container" id="container">
+
+							<header>
+								<h2>이벤트 리스트</h2>
+							</header>
+							
+							<div style= "max-width: 1000px; padding: 10px; margin: 10px auto;">
+								
+								<div style="width: 100%">
+								<div class="dropup">
+								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+								    Dropdown
+								    <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+								  </ul>
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+									<div class="dropdown">
+										<button class="btn btn-default dropdwon-toggle" type="button" id="dr1" data-toggle="dropdown" aria-expanded="true">
+										DropDown
+										<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dr1">
+										    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+										    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+										    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+										    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+										 </ul>
+									</div>
+								</div>
+							
+								<button class="btn btn-lg btn-success" type=button>날짜별</button>
+								<button class="btn btn-lg" type=button>이름별</button>
+								<button class="btn btn-lg btn-success" type=button>지역별</button>
+							</div>
+						</div>
+					</section>
+				</div>
+
+					<!-- 이벤트 셀 종료 -->
+					
+
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<%-- <script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script> --%>
+			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script> --%>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
+			
+			<script type="text/javascript">
+		
+
+			var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.		 
 			
 			$(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
 			    getEventList(page);
@@ -35,12 +127,14 @@
 
 			//스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
 			$(window).scroll(function(){  
+				//alert("얼럿");
 			    if($(window).scrollTop() >= $(document).height() - $(window).height()){
 			    	//alert("휠다운");
 			        getEventList(page);
 			        page++;   
 			    }
 			});
+			
 			function getEventList(page){
 				//alert("함수시작");
 				// 데이터 로드
@@ -130,59 +224,7 @@
 			} 
 			
 		</script>
-
-		
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	</head>
-	<body>
-	
-		<!-- Header -->
-			<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
 			
-
-		<!-- Main -->
-			<div id="main">
-
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container" id="container">
-
-							<header>
-								<h2>이벤트 리스트</h2>
-							</header>
-							
-							<div style= "max-width: 1000px; padding: 10px; margin: 10px auto;">
-								<button class="btn btn-lg btn-success" type=button>날짜별</button>
-								<button class="btn btn-lg" type=button>이름별</button>
-								<button class="btn btn-lg btn-success" type=button>지역별</button>
-							</div>
-						</div>
-					</section>
-				</div>
-
-					<!-- 이벤트 셀 종료 -->
-					
-
-
-		<!-- Footer -->
-			<div id="footer">
-
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-
-			</div>
-
-		<!-- Scripts -->
-			<%-- <script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script> --%>
-			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script> --%>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
 			
 	</body>
 </html>

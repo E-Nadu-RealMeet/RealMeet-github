@@ -42,8 +42,8 @@ public class EventsService {
 		int cnt = eventsDAO.getCntEvents();
 		
 		// 시작번호
-		int startNum = (page-1)*10+1;
-		int endNum = startNum+9;
+		int startNum = (page-1)*5+1;
+		int endNum = startNum+4;
 		
 		if(endNum > cnt) endNum = cnt;
 		//수정필요 -> page 이용하여 정해진 갯수만큼 불러오깅 ㅋㅋㅋ
