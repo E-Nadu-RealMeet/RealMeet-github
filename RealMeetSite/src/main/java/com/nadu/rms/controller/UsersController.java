@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,31 +25,34 @@ public class UsersController {
 		this.usersDao = usersDao;
 	}
 	
-	//회원정보
-	@RequestMapping(value="{id}", method = RequestMethod.GET)
-	public String usersinfo(Model model, @PathVariable String id){
+	//회원정보수정 
+	@RequestMapping(value="edit", method = RequestMethod.GET)
+	public String usersedit(Model model, HttpServletRequest req){
 
+		String id = req.getParameter("id");
 		Users users = null;
+		
 		users = usersDao.selectUsers(id);
 		model.addAttribute("users", users);
 		model.addAttribute("id", id);
-		return "users/usersinfo";
 		
+		return "users/usersEdit";
 	}
 	
-	//회원정보수정
-	@RequestMapping(value="{id}", method = RequestMethod.POST)
-	public String usersinfo(Users u, Model model, @PathVariable String id){
-		
+	//회원정보수정 proc
+	@RequestMapping(value="edit", method = RequestMethod.POST)
+	public String usersedit(Users u, Model model){
+	
 		System.out.println("회원정보수정시작");
 		int user = usersDao.updateUsers(u);
-		model.addAttribute(id);
+		model.addAttribute("id", u.getId());
+		
 		if(user>0){
 			System.out.println("회원정보수정 성공");
-			return "redirect:../";
+			return "redirect:../users/info";
 		}else{
 			System.out.println("회원정보수정 실패");
-			return "redirect:../users/"+u.getId(); 
+			return "redirect:../"; 
 		}
 	}
 
@@ -65,16 +67,29 @@ public class UsersController {
 	@RequestMapping(value="join", method = RequestMethod.POST)
 	public String usersJoin(Users u, Model model){
 
-
-		
 		int user = usersDao.insertUsers(u);
+		model.addAttribute("id", u.getId());
+		
 		if(user>0){
 			System.out.println("회원추가 성공");
-			return "redirect:../"+u.getId();
+			return "redirect:../users/info";
 		}else{
 			System.out.println("회원추가 실패");
 			return "redirect:join";	
 		}
+	}
+	
+	//회원정보
+	@RequestMapping(value="info", method = RequestMethod.GET)
+	public String usersInfo(Model model, HttpServletRequest req){
+		
+		String id = req.getParameter("id");
+		Users users = null;
+		users = usersDao.selectUsers(id);
+		model.addAttribute("users", users);
+		model.addAttribute("id", id);
+		
+		return "users/usersInfo";		
 	}
 	
 	@RequestMapping(value="idcheck")

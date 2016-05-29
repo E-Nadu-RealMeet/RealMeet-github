@@ -5,10 +5,18 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
+import com.nadu.rms.vo.Event_User;
+import com.nadu.rms.vo.Eventlist;
+import com.nadu.rms.vo.Events;
 
 public class EventsService {
+
 
 	public String listLoad(HttpServletRequest req, EventsDao eventsDAO){
 
@@ -22,7 +30,7 @@ public class EventsService {
 		/*
 		 * 필터 적용시 들어가야 할 부분.
 		 */
-
+		
 
 
 
@@ -32,14 +40,15 @@ public class EventsService {
 
 		// events 총 갯수 = 보여줄 리스트의 최대값
 		int cnt = eventsDAO.getCntEvents();
-
+		
 		// 시작번호
-		int startNum = 0;
-
+		int startNum = (page-1)*5+1;
+		int endNum = startNum+4;
+		
+		if(endNum > cnt) endNum = cnt;
 		//수정필요 -> page 이용하여 정해진 갯수만큼 불러오깅 ㅋㅋㅋ
-		List<Map<Object, Object>> datas = eventsDAO.selectEventsNUser();
-
-
+		//List<Map<Object,Object>> datas = eventsDAO.selectEventsNUser();
+		List<Event_User> datas = eventsDAO.selectEventsNUser(startNum,endNum);
 
 		// 팩킹할 클래스 객체 선언
 		JsonClassForListLoad set = new JsonClassForListLoad();
@@ -47,6 +56,7 @@ public class EventsService {
 		set.setCnt(cnt);
 		set.setDatas(datas);
 		set.setStartNum(startNum);
+		set.setEndNum(endNum);
 
 
 		return gson.toJson(set);
@@ -56,15 +66,18 @@ public class EventsService {
 
 
 	class JsonClassForListLoad{
-		List<Map<Object, Object>> datas;
+		List<Event_User> datas;
 		int cnt;
 		int startNum;
+		int endNum;
 
-
+		public void setEndNum(int endNum) {
+			this.endNum = endNum;
+		}
 		public void setStartNum(int startNum) {
 			this.startNum = startNum;
 		}
-		public void setDatas(List<Map<Object, Object>> datas) {
+		public void setDatas(List<Event_User> datas) {
 			this.datas = datas;
 		}
 		public void setCnt(int cnt) {

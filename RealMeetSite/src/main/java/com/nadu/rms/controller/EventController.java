@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.ReviewsDao;
+import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.service.EventsService;
+import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Event_User;
+import com.nadu.rms.vo.Eventlist;
 import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Review;
 
@@ -30,8 +34,10 @@ public class EventController {
 	EventsDao eventsDAO;
 	ReviewsDao reviewsDAO;
 	EventsService eventsService;
-
+	EventRegService eventRegService;
+	
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	
 	@Autowired
 	public void setEventsDao(EventsDao eventsDao) {
 		this.eventsDAO = eventsDao;
@@ -44,6 +50,11 @@ public class EventController {
 	public void setEventsService(EventsService eventsService) {
 		this.eventsService = eventsService;
 	}
+	
+	@Autowired
+	public void setEventRegService(EventRegService eventRegService) {
+		this.eventRegService = eventRegService;
+	}
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
@@ -54,8 +65,8 @@ public class EventController {
 		model.addAttribute("list", list);*/
 		
 		// 이벤트 정보 및 홀더 정보 획득.
-		List<Map<Object,Object>> list = eventsDAO.selectEventsNUser();
-		model.addAttribute("list",list);
+		//List<Event_User> list = eventsDAO.selectEventsNUser(1,5);
+		//model.addAttribute("list",list);
 		// 필터 체크.
 		// 뷰 리턴
 		return "event/eventlist";
@@ -67,10 +78,9 @@ public class EventController {
 		
 		
 		String returnValue = eventsService.listLoad(req, eventsDAO);
-		
 		// 얻은 값 반환.
 		 
-		//log.info("gson : " + gson.toJson(datas));
+		log.info("gson : " + returnValue);
 		return returnValue;
 	}
 	
@@ -86,8 +96,6 @@ public class EventController {
 		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
 		model.addAttribute("reviews", reviews);
 		
-		
-		
 		//뷰 리턴(detail)
 		return "event/eventdetail";
 	}
@@ -100,12 +108,10 @@ public class EventController {
 
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
-	public String eventReg(Model model, Events e) {
-
-		//현재 로그인 기능이 없기 때문에 holder는 won으로 통일하겠습니다.
-		e.setHolder("won");
-		//로그인 기능 완료 후 삭제 요망 부분
-		int iv = eventsDAO.insertEvents(e);
+	public String eventReg(Event_Eventlist e) {
+		
+		int iv = eventRegService.eventReg(e);
+		
 		if(iv>0){
 			return "redirect:../event/"+e.getEsidx();
 		}else{

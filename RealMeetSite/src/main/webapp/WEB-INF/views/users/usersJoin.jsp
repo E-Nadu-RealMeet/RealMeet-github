@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css" >
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/usersJoin.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersJoin.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->	
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

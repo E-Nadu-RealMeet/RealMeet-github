@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css" >
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/usersInfo.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersEdit.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		
@@ -126,7 +126,7 @@ function formCheck() {
 		<div></div>
 		<div class="container" style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
 
-			<form class="form-horizontal" role="form" method="post" action="${id }" onsubmit="return formCheck()">
+			<form class="form-horizontal" role="form" method="post" action="edit" onsubmit="return formCheck()">
 
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label" style="font-size: 20px;">아이디</label>
@@ -199,19 +199,10 @@ function formCheck() {
 							style="width: 80%; margin-top:1%;" value=${users.getInterest() }>
 					</div>
 				</div>
-<!-- 				<div class="form-group">
-					<label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
-					<div class="col-lg-10">
-						<select class="form-control" id="gender">
-							<option value="M">남</option>
-							<option value="F">여</option>
-						</select>
-					</div>
-				</div> -->
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" class="btn btn-default">회원정보 수정</button>
+						<button type="submit" name="submit" id="submit" class="btn btn-default">회원정보 수정</button>
 					</div>
 				</div>
 			</form>

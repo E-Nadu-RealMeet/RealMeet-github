@@ -5,6 +5,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style>
+#accordion {
+    list-style: none;
+    padding: 0 0 0 0;
+/*     width: 170px; */
+}
+#accordion div {
+    display: block;
+/*     background-color: #FF9927; */
+    font-weight: bold;
+    margin: 1px;
+    cursor: pointer;
+    padding: 5 5 5 7px;
+    list-style: circle;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#accordion ul {
+    list-style: none;
+    padding: 0 0 0 0;
+}
+#accordion ul{
+    display: none;
+}
+#accordion ul li {
+    font-weight: normal;
+    cursor: auto;
+/*     background-color: #fff; */
+    padding: 0 0 0 7px;
+}
+#accordion a {
+    text-decoration: none;
+}
+#accordion a:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+
 </head>
 <body>
 <!-- Header -->
@@ -24,9 +66,19 @@
 							<ul>
 								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
-								<li><a href="${pageContext.request.contextPath}/customer/customer" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">고객센터</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
 							</ul>
+							<ul id="accordion">
+    						<li><div><a href="#"><span class="icon fa-user">고객센터</span></a></div>
+       							 <ul>
+									<li><a href="${pageContext.request.contextPath}/customer/Notices" ><span class="icon fa-user">공지사항</span></a></li>
+									<li><a href="${pageContext.request.contextPath}/customer/FAQs" ><span class="icon fa-user">FAQ</span></a></li>
+									<li><a href="${pageContext.request.contextPath}/customer/QNA" ><span class="icon fa-user">내 문의내역</span></a></li>
+									</ul>
+   								 </li>
+								
+							</ul>	
+							
 						</nav>
 
 				</div>
@@ -45,5 +97,16 @@
 				</div>
 
 			</div>
+			
+			
+<script>
+$("#accordion > li > div").click(function(){
+	 
+    if(false == $(this).next().is(':visible')) {
+        $('#accordion ul').slideUp(300);
+    }
+    $(this).next().slideToggle(300);
+});
+</script>
 </body>
 </html>
