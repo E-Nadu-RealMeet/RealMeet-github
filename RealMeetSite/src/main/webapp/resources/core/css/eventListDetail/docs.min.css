@@ -923,7 +923,7 @@ h1[id] {
 		border-radius:4px 4px 4px 4px;
 		-webkit-box-shadow:none;
 		box-shadow:none;
-		max-width: 800px;
+		max-width: 1000px;
 	}
 	.bs-example+.highlight,.bs-example+.zero-clipboard+.highlight {
 		margin-top:-16px;

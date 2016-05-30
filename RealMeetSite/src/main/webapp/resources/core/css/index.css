@@ -1671,7 +1671,8 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 375px;
+	width: 15%;
+	max-width:300px;
 	height: 100%;
 	color: #fff;
 	background: #222629 url("images/overlay.png");
@@ -1761,6 +1762,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 }
 
 #nav ul li a span:before {
+	left: 103%;
 	position: absolute;
 	color: #41484c;
 	text-align: center;
@@ -1810,7 +1812,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
 /* Main */
 #main {
-	margin-left: 375px;
+	margin-left: 13%;
 }
 
 #main>section {
@@ -1870,31 +1872,84 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 	background-color: #e8edec;
 }
 
-/* Wide */
-@media screen and (min-width: 961px) and (max-width: 1880px) {
-	/* Basic */
+ /* Wide */
+/* @media screen and (min-width: 961px) and (max-width: 1880px) {
+	Basic
 	body, input, textarea, select {
 		font-size: 17pt;
 	}
 
+	Header
+	#header {
+		width: 19%;
+	}
+
+	Footer
+	#footer {
+		margin-left: 13%;
+	}
+
+	Main
+	#main {
+		margin-left: 13%;
+	}
+} */
+
+ /* Wide */
+@media screen and (min-width: 961px) and (max-width: 2300px) {
+	/* Basic */
+	body, input, textarea, select {
+		font-size: 16pt;
+	}
+	.container {
+		padding: 0 2em 0 2em;
+	}
+
+	/* List */
+	ul.icons li a {
+		width: 1.75em;
+	}
+
+	/* Item */
+	.item {
+		margin-bottom: 20px;
+	}
+
 	/* Header */
 	#header {
-		width: 300px;
+		width: 21%;
+	}
+	#logo .image {
+		position: relative;
+		margin: 0 0 0.5em 0;
+	}
+	#nav ul li a {
+		font-size: 0.8em;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+	#nav ul li a span {
+		padding-right: 2.25em;
+	}
+	#nav ul li a span:before {
+		left: 100%;
+		margin-left: -1.25em;
+		line-height: 2.25em;
 	}
 
 	/* Footer */
 	#footer {
-		margin-left: 300px;
+		margin-left: 20%;
 	}
 
 	/* Main */
 	#main {
-		margin-left: 300px;
+		margin-left: 13%;
 	}
 }
 
 /* Normal */
-@media screen and (min-width: 961px) and (max-width: 1620px) {
+@media screen and (min-width: 961px) and (max-width: 1320px) {
 	/* Main */
 	#main>section {
 		padding: 3em 0;
@@ -1926,7 +1981,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
 	/* Header */
 	#header {
-		width: 20%;
+		width: 21%;
 	}
 	#logo .image {
 		position: relative;
@@ -1953,7 +2008,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
 	/* Main */
 	#main {
-		margin-left: 20%;
+		margin-left: 13%;
 	}
 }
 
@@ -2008,9 +2063,8 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 		overflow-y: auto;
 		position: fixed;
 		top: 0;
-		width: 275px;
 		z-index: 10002;
-		width: 275px;
+		width: 12em;
 		background: #222729 url("images/overlay.png");
 		box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.125);
 	}

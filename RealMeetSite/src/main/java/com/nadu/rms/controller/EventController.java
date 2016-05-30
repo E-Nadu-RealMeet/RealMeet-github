@@ -50,25 +50,16 @@ public class EventController {
 	public void setEventsService(EventsService eventsService) {
 		this.eventsService = eventsService;
 	}
-	
 	@Autowired
 	public void setEventRegService(EventRegService eventRegService) {
 		this.eventRegService = eventRegService;
 	}
+	
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
 
-		// 이벤트 정보 리스트  (select * from events)
-		/*
-		List<Events> list = eventsDAO.selectEvents();
-		model.addAttribute("list", list);*/
 		
-		// 이벤트 정보 및 홀더 정보 획득.
-		//List<Event_User> list = eventsDAO.selectEventsNUser(1,5);
-		//model.addAttribute("list",list);
-		// 필터 체크.
-		// 뷰 리턴
 		return "event/eventlist";
 	}
 
