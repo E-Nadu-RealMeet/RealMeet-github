@@ -41,13 +41,14 @@ public class UsersController {
 	
 	//회원정보수정 proc
 	@RequestMapping(value="edit", method = RequestMethod.POST)
-	public String usersedit(Users u, Model model){
-	
-		System.out.println("회원정보수정시작");
-		int user = usersDao.updateUsers(u);
-		model.addAttribute("id", u.getId());
+	public String usersedit(Model model, Users users){
 		
-		if(user>0){
+
+		System.out.println("회원정보수정시작");
+		int af = usersDao.updateUsers(users);
+		model.addAttribute("id", users.getId());
+		
+		if(af>0){
 			System.out.println("회원정보수정 성공");
 			return "redirect:../users/info";
 		}else{
@@ -67,10 +68,10 @@ public class UsersController {
 	@RequestMapping(value="join", method = RequestMethod.POST)
 	public String usersJoin(Users u, Model model){
 
-		int user = usersDao.insertUsers(u);
+		int af = usersDao.insertUsers(u);
 		model.addAttribute("id", u.getId());
 		
-		if(user>0){
+		if(af>0){
 			System.out.println("회원추가 성공");
 			return "redirect:../users/info";
 		}else{
@@ -84,12 +85,39 @@ public class UsersController {
 	public String usersInfo(Model model, HttpServletRequest req){
 		
 		String id = req.getParameter("id");
+
 		Users users = null;
 		users = usersDao.selectUsers(id);
 		model.addAttribute("users", users);
 		model.addAttribute("id", id);
 		
 		return "users/usersInfo";		
+	}
+	
+	@RequestMapping(value="check", method = RequestMethod.GET)
+	public String usersCheck(Model model, HttpServletRequest req){
+		
+		String id = req.getParameter("id");
+		model.addAttribute("id", id);
+		
+		return "users/usersCheck";
+	}
+	
+	@RequestMapping(value="check", method = RequestMethod.POST)
+	public String usersCheck(String id, HttpServletRequest req){
+		
+		System.out.println(id);
+		
+		System.out.println("회원정보삭제시작");
+		int af = usersDao.delUsers(id);
+		
+		if(af>0){
+			System.out.println("회원삭제 성공");
+			return "redirect:../";
+		}else{
+			System.out.println("회원정보수정 실패");
+			return "redirect:../"; 
+		}
 	}
 	
 	@RequestMapping(value="idcheck")
@@ -104,6 +132,23 @@ public class UsersController {
 			out.write("YES");
 		}else{
 			System.out.println(users);
+			out.write("NO");
+		}
+	}
+	
+	@RequestMapping(value="pwdcheck")
+	public void checkpwd(String id, String pwd, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception { 
+		PrintWriter out = res.getWriter();
+		System.out.println("pwdcheck="+id);
+		System.out.println("pwdcheck="+pwd);
+		Users users = null;
+		users = usersDao.selectUsers(id);
+		
+		if(users.getPwd().equals(pwd)){
+			System.out.println("yes");
+			out.write("YES");
+		}else{
+			System.out.println("no");
 			out.write("NO");
 		}
 	}

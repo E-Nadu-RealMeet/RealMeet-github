@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Prologue by HTML5 UP</title>
+		<title>회원가입</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -130,9 +130,11 @@ function formCheck() {
 	<body>
 	
 		<!-- Header -->
-			<div id="header">
+				<div id="header">
+		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
+	</div>
 
-				<div class="top">
+				<%-- <div class="top">
 
 					<!-- Logo -->
 						<div id="logo">
@@ -168,7 +170,7 @@ function formCheck() {
 				</div>
 
 			</div>
-
+ --%>
 	<div id="main">
 		<div class="join-top">
 			<ul>
