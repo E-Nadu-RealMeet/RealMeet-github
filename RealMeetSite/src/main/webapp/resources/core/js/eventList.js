@@ -32,7 +32,7 @@ function getEventList(page){
 			var html = "";
 			if(returnData.startNum <= returnData.cnt){
 				//뷰 만들기 ... 개 노가다 -ㅂ-
-				var contextPath = '${pageContext.request.contextPath};
+				var contextPath = '${pageContext.request.contextPath}';
 				for(var i=0; i<(endNum-startNum+1); i++){
 					html = html+'<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">'
 					+ '<div>'
