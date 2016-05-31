@@ -29,5 +29,7 @@
 		SELECT COUNT(ESIDX) FROM EVENTS
 	</select>
 
-	
+	<select id="getCategories" resultType="String">
+		SELECT CNAME FROM CATEGORIES
+	</select>
 </mapper>

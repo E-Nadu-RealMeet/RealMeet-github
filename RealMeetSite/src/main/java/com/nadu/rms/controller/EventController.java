@@ -93,7 +93,9 @@ public class EventController {
 
 	// 이벤트 등록
 	@RequestMapping(value = "reg", method = RequestMethod.GET)
-	public String eventReg() {
+	public String eventReg(Model model) {
+		List<String> categories = eventsDAO.getCategories();
+		model.addAttribute("categories", categories);
 		return "event/eventReg";
 	}
 
