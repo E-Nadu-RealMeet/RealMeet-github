@@ -69,13 +69,13 @@
 								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
 							</ul>
 							<ul id="accordion">
-    						<li><div><a href="#"><span class="icon fa-user">고객센터</span></a></div>
+    						<li><div><a href="${pageContext.request.contextPath}/customer/customer"><span class="icon fa-user">고객센터</span></a></div>
        							 <ul>
 									<li><a href="${pageContext.request.contextPath}/customer/Notices" ><span class="icon fa-user">공지사항</span></a></li>
 									<li><a href="${pageContext.request.contextPath}/customer/FAQs" ><span class="icon fa-user">FAQ</span></a></li>
 									<li><a href="${pageContext.request.contextPath}/customer/QNA" ><span class="icon fa-user">내 문의내역</span></a></li>
 									</ul>
-   								 </li>
+   							 </li>
 								
 							</ul>	
 							
@@ -107,6 +107,8 @@ $("#accordion > li > div").click(function(){
     }
     $(this).next().slideToggle(300);
 });
+
+
 </script>
 </body>
 </html>

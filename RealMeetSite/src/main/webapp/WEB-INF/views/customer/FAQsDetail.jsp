@@ -47,8 +47,8 @@
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
 						<div class="container">
-<div class="overlay"></div>
-  <div class="modal">
+<div class="modal"></div>
+  <div class="modal-content">
 							<header>
 								<h2>FAQ</h2>
 							</header>

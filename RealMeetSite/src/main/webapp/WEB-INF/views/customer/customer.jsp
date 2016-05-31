@@ -21,7 +21,35 @@
 	
 		<div id="header">
 
-				<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
+				<div class="top">	
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/core/images/avatar.jpg" alt="" /></a></span>
+							<h1 id="title">index</h1>
+							<p>${name}</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
+							
+    						<li><a href="${pageContext.request.contextPath}/customer/customer"><span class="icon fa-user">고객센터</span></a></li>
+       							 
+									<li><a href="${pageContext.request.contextPath}/customer/Notices" ><span class="icon fa-user">공지사항</span></a></li>
+									<li><a href="${pageContext.request.contextPath}/customer/FAQs" ><span class="icon fa-user">FAQ</span></a></li>
+									<li><a href="${pageContext.request.contextPath}/customer/QNA" ><span class="icon fa-user">내 문의내역</span></a></li>
+									
+   							 
+								
+							</ul>	
+							
+						</nav>
+
+				</div>
 
 				</div>
 
@@ -55,14 +83,14 @@
 							<div class="row">
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="Notices" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="150px" height="232px"/></a>
+										<a href="Notices" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" /></a>
 										<header>
 											<h3>공지사항</h3>
 										</header>
 									</article>
 									
 									<article class="item">
-										<a href="information" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic03.jpg" alt="" width="150px" height="232px"/></a>
+										<a href="information" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic03.jpg" alt=""  /></a>
 										<header>
 											<h3>이용안내</h3>
 										</header>
@@ -70,13 +98,13 @@
 								</div>
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="FAQs" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="150px" height="232px"/></a>
+										<a href="FAQs" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" /></a>
 										<header>
 											<h3>FAQ</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="Call" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="150px" height="232px"/></a>
+										<a href="Call" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" /></a>
 										<header>
 											<h3>문의하기</h3>
 										</header>
@@ -84,7 +112,7 @@
 								</div>
 								<div class="4u$ 12u$(mobile)">
 									<article class="item">
-										<a href="QNA" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="150px" height="232px"/></a>
+										<a href="QNA" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" /></a>
 										<header>
 											<h3>내 문의내역</h3>
 										</header>
