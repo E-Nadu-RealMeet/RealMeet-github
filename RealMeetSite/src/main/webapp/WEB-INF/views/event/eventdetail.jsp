@@ -93,6 +93,44 @@
 					</div>
 				</div>
 				<hr>
+
+
+				<button type="button" class="btn btn-primary btn-lg"
+					data-toggle="modal" data-target="#apply">참여 하기</button>
+				<div class="modal fade" id="apply" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">참여 하기</h4>
+							</div>
+							<div class="modal-body" style="overflow: auto">
+								<div class="col-md-12" style="text-align: left"></div>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="apply1" class="btn btn-primary">참여 하기</button>
+								<button type="button" id="close" class="btn btn-default"
+									data-dismiss="modal">닫기</button>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
 			</div>
 			<!-- /.blog-post -->
 		</div>
@@ -117,7 +155,7 @@
 			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
-			
+			<script src="${pageContext.request.contextPath}/resources/core/js/eventDetail.js" type="text/javascript"></script>
 			
 		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		    <script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>

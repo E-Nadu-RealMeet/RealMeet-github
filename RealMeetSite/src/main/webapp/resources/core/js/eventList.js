@@ -32,7 +32,7 @@ function getEventList(page){
 			var html = "";
 			if(returnData.startNum <= returnData.cnt){
 				//뷰 만들기 ... 개 노가다 -ㅂ-
-				var contextPath = '${pageContext.request.contextPath}';
+				var contextPath = getContextPath();
 				for(var i=0; i<(endNum-startNum+1); i++){
 					html = html+'<div class="bs-example" style="overflow: hidden; margin-bottom: 10px">'
 					+ '<div>'
@@ -70,7 +70,7 @@ function getEventList(page){
 					+ '<div class="col-md-12" style="text-align: left">Description	: '+ list[i].description +'</div>'
 					+ '<hr>'
 					+ '<div class="col-md-2">'
-					+ '<img	src="${pageContext.request.contextPath}/resources/core/images/pic.jpg" alt="Responsive image" class="img-rounded img-responsive" style="width: 100px; height: 100px">'
+					+ '<img	src="'+contextPath+'/resources/core/images/pic.jpg" alt="Responsive image" class="img-rounded img-responsive" style="width: 100px; height: 100px">'
 					+ '</div>'
 					+ '<div class="col-md-10">'
 					+ '<div style="text-align: left; font-size: 0.8em;">'
@@ -84,7 +84,7 @@ function getEventList(page){
 					+ '</div>'
 					+ '<div class="modal-footer">'
 					+ '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>'
-					+ '<a href = '+'${pageContext.request.contextPath}/event/'+ list[i].esidx +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
+					+ '<a href = '+contextPath +'/event/'+ list[i].esidx +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
 					+ '</div>'
 					+ '</div>'
 					+ '</div>'
@@ -101,3 +101,11 @@ function getEventList(page){
 
 	});
 } 
+
+
+/*contextPath 가져오는 함수 by 지원 */
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
