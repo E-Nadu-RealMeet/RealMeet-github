@@ -29,7 +29,7 @@
 	<!-- Main -->
 	<div id="main">
 	<section>
-	<div id="container">
+	<div class="container">
 		<div id="real_cnt" style="max-width: 1000px; margin: 0px auto;">
 			<div id="page_title">
 				<span><font color="333333" style="font-size:xx-large; ">FREE BOARD</font></span>

@@ -13,7 +13,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/index.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		
@@ -41,8 +41,7 @@
 				<!-- Intro -->
 					<section id="top" class="one dark cover">
 					
-					
-						<div class="container">
+						<div class="mainContainer">
 							<jsp:include page="modules/commons/slideBanner.jsp"></jsp:include>
 							<!-- <header>
 								<h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
@@ -60,7 +59,6 @@
 								<h2 class="alt">Homepage MainView</h2>
 								<p> Homepage Describe</p>
 							</header>
-
 						</div>
 					</section>
 
@@ -114,10 +112,9 @@
 										<a href="#" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" /></a>
 									</article>
 								</div>
-								<span style="width: 64%; height: 230px; text-align:left; border-left: solid; border-left-color: white;">
+								<span style="width: 58%; height: 230px; text-align:left; border-left: solid; border-left-color: white;">
 								<div style="font-weight: bold;">이벤트 명 : ${item.getEventname()}<br></div>
-								설명 : ${item.getDescription() }<br>
-								<br>
+								<div style="font-size:0.8em;height:50%; overflow: hidden;">설명 : ${item.getDescription() }</div>
 								<a href="${item.getEsidx()}">더보기</a>
 								</span>
 								<span style="float: right; width: 14%; height: 230px; font-size: 15px; text-align:center; border-left: solid; border-left-color: white;">

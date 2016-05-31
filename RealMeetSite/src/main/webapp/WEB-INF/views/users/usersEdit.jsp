@@ -8,16 +8,16 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Prologue by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css" >
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersEdit.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		
+<head>
+<title>회원정보수정</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersEdit.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
 <script type="text/javascript">
 
 function formCheck() {
@@ -70,15 +70,17 @@ function formCheck() {
 	return true;
 }
 
-</script>		
-		
-	</head>
-	<body>
-	
-		<!-- Header -->
-			<div id="header">
+</script>
 
-				<div class="top">
+</head>
+<body>
+
+	<!-- Header -->
+	<div id="header">
+		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
+	</div>
+
+	<%-- <div class="top">
 
 					<!-- Logo -->
 						<div id="logo">
@@ -114,8 +116,8 @@ function formCheck() {
 				</div>
 
 			</div>
+ --%>
 
-		
 	<div id="main">
 		<div class="join-top">
 			<ul>
@@ -124,34 +126,40 @@ function formCheck() {
 			</ul>
 		</div>
 		<div></div>
-		<div class="container" style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
+		<div class="container"
+			style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
 
-			<form class="form-horizontal" role="form" method="post" action="edit" onsubmit="return formCheck()">
+			<form class="form-horizontal" role="form" method="post" action="edit"
+				onsubmit="return formCheck()">
 
 				<div class="form-group" id="divId">
-					<label for="inputId" class="col-lg-2 control-label" style="font-size: 20px;">아이디</label>
+					<label for="inputId" class="col-lg-2 control-label"
+						style="font-size: 20px;">아이디</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
 							id="id" data-rule-required="true" name="id"
 							value=${users.getId() } maxlength="20"
-							style="width: 80%; margin-top:1%;; margin-top:1%;" readonly="readonly">
+							style="width: 80%; margin-top: 1%;; margin-top: 1%;"
+							readonly="readonly">
 					</div>
 				</div>
 				<div class="form-group" id="divPassword">
-					<label for="inputPassword" class="col-lg-2 control-label" style="font-size: 20px;">패스워드</label>
+					<label for="inputPassword" class="col-lg-2 control-label"
+						style="font-size: 20px;">패스워드</label>
 					<div class="col-lg-10">
 						<input type="password" class="form-control" id="password"
-							name="excludeHangul" data-rule-required="true" name="pwd" placeholder="패스워드"
-							maxlength="30" style="width: 80%; margin-top:1%;">
+							name="excludeHangul" data-rule-required="true" name="pwd"
+							placeholder="패스워드" maxlength="30"
+							style="width: 80%; margin-top: 1%;">
 					</div>
 				</div>
 				<div class="form-group" id="divPasswordCheck">
-					<label for="inputPasswordCheck" class="col-lg-2 control-label" style="font-size: 20px;">패스워드
-						확인</label>
+					<label for="inputPasswordCheck" class="col-lg-2 control-label"
+						style="font-size: 20px;">패스워드 확인</label>
 					<div class="col-lg-10">
 						<input type="password" class="form-control" id="passwordCheck"
-							data-rule-required="true" placeholder="패스워드 확인" maxlength="30"
-							style="width: 80%;margin-top:1%;">
+							name="pwd" data-rule-required="true" placeholder="패스워드 확인"
+							maxlength="30" style="width: 80%; margin-top: 1%;">
 					</div>
 				</div>
 				<!-- <div class="form-group" id="divName">
@@ -164,11 +172,12 @@ function formCheck() {
 				</div> -->
 
 				<div class="form-group" id="divNickname">
-					<label for="inputNickname" class="col-lg-2 control-label" style="font-size: 20px;">별명</label>
+					<label for="inputNickname" class="col-lg-2 control-label"
+						style="font-size: 20px;">별명</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="nickname"
 							data-rule-required="true" name="nickname" maxlength="15"
-							style="width: 80%;margin-top:1%;" value=${users.getNickname() }>
+							style="width: 80%; margin-top: 1%;" value=${users.getNickname() }>
 					</div>
 				</div>
 
@@ -179,53 +188,62 @@ function formCheck() {
 							data-rule-required="true" placeholder="이메일" maxlength="40">
 					</div>
 				</div> -->
-				
-				
+
+
 				<div class="form-group" id="divPhoneNumber">
-					<label for="inputPhoneNumber" class="col-lg-2 control-label" style="font-size: 20px;">휴대폰
-						번호</label>
+					<label for="inputPhoneNumber" class="col-lg-2 control-label"
+						style="font-size: 20px;">휴대폰 번호</label>
 					<div class="col-lg-10">
 						<input type="tel" class="form-control onlyNumber" id="phoneNumber"
-							data-rule-required="true" name="phone"
-							maxlength="11" value=${users.getPhone() } style="width: 80%;margin-top:1%;">
+							data-rule-required="true" name="phone" maxlength="11"
+							value=${users.getPhone() } style="width: 80%; margin-top: 1%;">
 					</div>
 				</div>
-				
+
 				<div class="form-group" id="divNickname">
-					<label for="inputNickname" class="col-lg-2 control-label" style="font-size: 20px;">관심카테고리</label>
+					<label for="inputNickname" class="col-lg-2 control-label"
+						style="font-size: 20px;">관심카테고리</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="nickname"
-							data-rule-required="true" name="rating"
-							style="width: 80%; margin-top:1%;" value=${users.getInterest() }>
+						<input type="text" class="form-control" id="interest"
+							data-rule-required="true" name="interest"
+							style="width: 80%; margin-top: 1%;" value=${users.getInterest() }>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" name="submit" id="submit" class="btn btn-default">회원정보 수정</button>
+						<button type="submit" name="submit" id="submit"
+							class="btn btn-default">회원정보 수정</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 	<!-- Footer -->
-			<div id="footer">
+	<div id="footer">
 
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+		<!-- Copyright -->
+		<ul class="copyright">
+			<li>&copy; Untitled. All rights reserved.</li>
+			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		</ul>
 
-			</div>
+	</div>
 
-		<!-- Scripts -->
-			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
+	<!-- Scripts -->
+	<script
+		src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script
+		src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
 
-	</body>
+</body>
 </html>

@@ -62,4 +62,16 @@ public class UsersDao {
 			sqlSession.close();
 		}
 	}
+
+	public int delUsers(String id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			String statement = "com.nadu.rms.mapper.UsersMapper.delUsers";
+			return sqlSession.update(statement, id);
+		} finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
 }

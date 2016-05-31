@@ -16,6 +16,11 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		word-wrap: break-word;
+	}
+	
+	html{
+		background-color: #f5fafa;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -57,7 +62,12 @@
 	}
 
 /* Containers */
-
+	.mainContainer{
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+    	max-width: 1000px;
+	}
 	.container {
 		margin-left: auto;
 		margin-right: auto;
@@ -82,7 +92,10 @@
 	}
 
 	.container {
-		width: 1400px;
+		width: 80%;
+    	max-width: 1000px;
+    	background-color: white;
+    	border: 0.5px solid #cccccc;
 	}
 
 	@media screen and (min-width: 961px) and (max-width: 1880px) {
@@ -222,6 +235,7 @@
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
+		overflow-y: auto;
 	}
 
 	.row > * {
@@ -267,7 +281,7 @@
 	}
 
 	.row {
-		margin: -40px 0 -1px -40px;
+		/* margin: -40px 0 -1px -40px; */
 	}
 
 	.row.uniform > * {
@@ -391,7 +405,7 @@
 	}
 
 	.\34 u, .\34 u\24 {
-		width: 33.3333333333%;
+		width: 27.3333333333%;
 		clear: none;
 		margin-left: 0;
 	}

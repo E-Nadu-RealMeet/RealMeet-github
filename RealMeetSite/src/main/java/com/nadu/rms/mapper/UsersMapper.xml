@@ -20,5 +20,9 @@
 	<update id="updateUsers" parameterType="com.nadu.rms.vo.Users">
 		UPDATE USERS SET PWD=#{pwd, jdbcType=VARCHAR}, NICKNAME=#{nickname, jdbcType=VARCHAR}, PHONE=#{phone, jdbcType=VARCHAR}, INTEREST=#{interest, jdbcType=VARCHAR} WHERE ID=#{id, jdbcType=NVARCHAR} 
 	</update>
+	
+	<delete id="delUsers" parameterType="com.nadu.rms.vo.Users">
+		DELETE USERS WHERE ID = #{ID}
+	</delete>
 
 </mapper>

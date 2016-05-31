@@ -20,19 +20,9 @@
 		<script src="${pageContext.request.contextPath}/resources/core/js/eventList.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/bootstrap.min.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/eventlist.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/docs.min.css" />
 		<script>
-		
-		
-
-		
-
-		
-
-		
-		
-		
 		
 		</script>
 
