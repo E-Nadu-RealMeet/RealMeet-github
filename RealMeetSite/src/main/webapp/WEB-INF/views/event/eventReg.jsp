@@ -34,13 +34,9 @@
 
 		<!-- Intro -->
 		<section id="top" class="one dark cover">
-			<div class="container">
-
 				<header>
 					<h2>이벤트 등록해요</h2>
 				</header>
-
-			</div>
 		</section>
 
 		<!-- Portfolio -->
