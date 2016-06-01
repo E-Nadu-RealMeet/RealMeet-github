@@ -35,9 +35,9 @@ public class EventController {
 	ReviewsDao reviewsDAO;
 	EventsService eventsService;
 	EventRegService eventRegService;
-	
+
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
-	
+
 	@Autowired
 	public void setEventsDao(EventsDao eventsDao) {
 		this.eventsDAO = eventsDao;
@@ -54,55 +54,70 @@ public class EventController {
 	public void setEventRegService(EventRegService eventRegService) {
 		this.eventRegService = eventRegService;
 	}
-	
+
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
 
-		
+
 		return "event/eventlist";
 	}
+
+
+	// 이벤트 참여하기
+	@RequestMapping(value = "apply/{elidx}", produces="text/plain;charset=UTF-8")
+	public String eventApplyProc(@PathVariable String esidx, Model model) {
+
+		String returnValue = "";
+		
+		//뷰 리턴(detail)
+		return returnValue;
+	}
+
+
 
 	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
-		
-		
+
+
 		String returnValue = eventsService.listLoad(req, eventsDAO);
 		// 얻은 값 반환.
-		 
+
 		log.info("gson : " + returnValue);
 		return returnValue;
 	}
-	
+
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx, Model model) {
-		
+
 		/* 해당 인덱스 번호  디테일 가져옴. */
 		Map<String,String> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
 		model.addAttribute("detail",detail);	// detail로 뷰에 넘김
-		
+
 		/* 디테일에 해당하는 리뷰 가져오기.*/
 		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
 		model.addAttribute("reviews", reviews);
-		
+
 		//뷰 리턴(detail)
 		return "event/eventdetail";
 	}
 
 	// 이벤트 등록
 	@RequestMapping(value = "reg", method = RequestMethod.GET)
-	public String eventReg() {
+	public String eventReg(Model model) {
+		List<String> categories = eventsDAO.getCategories();
+		model.addAttribute("categories", categories);
 		return "event/eventReg";
 	}
 
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
 	public String eventReg(Event_Eventlist e) {
-		
+
 		int iv = eventRegService.eventReg(e);
-		
+
 		if(iv>0){
 			return "redirect:../event/"+e.getEsidx();
 		}else{

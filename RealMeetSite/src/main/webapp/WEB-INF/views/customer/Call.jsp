@@ -14,6 +14,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" /> 		
+		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
@@ -48,8 +49,9 @@
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
 						<div class="container">
-<div class="overlay"></div>
-  <div class="modal">
+<div class="modal"></div>
+  <div class="modal-content">
+  <span class="close">×</span>
 							<header>
 								<h2>문의하기</h2>
 							</header>
@@ -66,7 +68,7 @@
 									</div>
 								</div>
 							</form>
-				<a href="${pageContext.request.contextPath}"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+				<a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
 				</div>
 		</div>
 					</section>

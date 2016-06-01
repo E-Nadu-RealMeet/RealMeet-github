@@ -98,11 +98,17 @@
 				inputEight.val(regResult[check]);
 				inputEight=$(inputEight).next().next();
 				check++;
+				
 				par.fadeOut();
 				par.next().fadeIn();
 			}
 		})
-		
+		var regInput6 = $('#regInput6');
+		regInput6.blur(function(){
+			var value = regInput6.val();
+			value=value.replace('T',' ');
+			$('#date2').val(value.replace('T',' '));
+		})
 		//지도 불러오기.
 		regSave6.click(function(){
 			var map;
@@ -205,12 +211,14 @@
 		})
 		regBack.click(function(){
 			var par = $(this).parents('.selectBox');
+			inputEight=$(inputEight).prev().prev();
 			check--;
 			par.hide();
 			par.prev().fadeIn();
 		})
 		regFirst.click(function(){
 			check=0;
+			var inputEight = selectBox8.find('#category');
 			var par = $(this).parents('.selectBox');
 			var input = par.children('.regInput');
 			selectBox1.fadeIn();

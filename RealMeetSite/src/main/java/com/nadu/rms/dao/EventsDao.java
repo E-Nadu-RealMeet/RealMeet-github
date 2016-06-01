@@ -98,5 +98,15 @@ public class EventsDao {
 			sqlSession.close();
 		}
 	}
-	
+	public List<String> getCategories(){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try{
+			String statement = "com.nadu.rms.mapper.EventsMapper.getCategories";
+			return sqlSession.selectList(statement);
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
 }
