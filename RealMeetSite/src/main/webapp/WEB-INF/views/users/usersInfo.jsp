@@ -12,12 +12,14 @@
 <!-- 	<meta name="description" content="Bootstrap Bootstrap user profile show page example snippet for Bootstrap." /> -->
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersInfo.css" />
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css"> --%>
+<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersInfo.css" /> -->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
 </head>
 <body>
 
@@ -27,8 +29,13 @@
 	</div>
 
 	<div id="main">
-		<div class="container"
-			style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
+		<div class="join-top">
+			<ul>
+				<li><a href="${pageContext.request.contextPath}/">홈</a></li>
+				<li><a href="${pageContext.request.contextPath}/">로그아웃</a></li>
+			</ul>
+		</div>
+		<div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
 			<div class="row">
 				<div class="col-md-9">
 					<div class="panel panel-default">
@@ -66,7 +73,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<hr>
-									<button class="btn btn-default pull-right"
+									<button class="btn btn-default pull-right" style="color: #333 !important;"
 										onClick="location.href='../users/edit?id=${users.getId() }'">
 										<i class="glyphicon glyphicon-pencil"></i> 회원정보수정
 									</button>
@@ -74,13 +81,13 @@
 										<i class="glyphicon glyphicon-pencil" ></i> 회원탈퇴
 									</button> --%>
 									<button type="button" class="btn btn-default pull-right"
-										data-toggle="modal" data-target="#myModal" style="margin-right: 1%">탈퇴</button>
+										data-toggle="modal" data-target="#myModal" style="margin-right: 1%; color: #333 !important;" >탈퇴</button>
 
 									<div class="modal fade" id="myModal" role="dialog">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 												<div class="modal-header"></div>
-													<jsp:include page="usersCheck.jsp?id=${users.getId() }"></jsp:include>
+													<jsp:include page="usersCheck.jsp?id=${users.getId() }" flush="false"></jsp:include>
 											</div>	
 										</div>
 									</div>
