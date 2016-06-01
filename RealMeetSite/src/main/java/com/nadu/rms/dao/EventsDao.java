@@ -74,14 +74,12 @@ public class EventsDao {
 	}
 	
 	// Events와 EventList 테이블 조인 결과 획득 
-	public Map<String, String> selectEventsDetailByESIDX(String esidx){
+	public List<Event_Eventlist> selectEventsDetailByESIDX(String esidx){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		Map<String, String> map = new HashMap<String, String>();
 		try{
 			String statement = "com.nadu.rms.mapper.EventsMapper.selectEventsDetailByESIDX";
 			//System.out.println(statement);
-			map = sqlSession.selectOne(statement, esidx);
-			return map;
+			return sqlSession.selectList(statement, esidx);
 
 		}finally {
 			sqlSession.close();

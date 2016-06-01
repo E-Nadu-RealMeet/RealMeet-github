@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
 <!DOCTYPE HTML>
+
 <html>
 <head>
 <meta charset="utf-8" />
@@ -145,7 +146,7 @@ p {
 <script type="text/javascript">
 
 function pwdCheck(){
-	
+
 	if ($("#pwd").val() == '' || $("#pwd").val() == null) {
 		alert("비밀번호를 입력하세요");
 		return false;
@@ -196,7 +197,7 @@ function pwdCheck(){
 							<dl>
 								<dt>비밀번호 확인</dt>
 								<dd>
-									<input type="password" id="form-control" class="form-control" id="pwd" name="pwd">
+									<input type="password" class="form-control" id="pwd" name="pwd" >
 								</dd>
 							</dl>
 						</div>

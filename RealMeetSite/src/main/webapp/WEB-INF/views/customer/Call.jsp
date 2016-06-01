@@ -59,11 +59,11 @@
 <!-- 문의하기 기본 뷰 -->
 							<form method="post" action="insertQNA">
 								<div class="row">
-									<div class="12u"><input type="text" name="title" placeholder="제목" /></div>
-									<div class="12u$">
+									<div class="11u" style="margin-left: 2%"><input type="text" name="title" placeholder="제목" /></div>
+									<div class="11u$" style="margin-left: 2%">
 										<textarea name="content" placeholder="내용"></textarea>
 									</div>
-									<div class="12u$">
+									<div class="11u$" style="margin-left: 2%">
 										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="문의" />
 									</div>
 								</div>

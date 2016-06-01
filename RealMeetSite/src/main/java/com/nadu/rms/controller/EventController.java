@@ -73,6 +73,17 @@ public class EventController {
 		//뷰 리턴(detail)
 		return returnValue;
 	}
+	
+	// 이벤트 참여하기
+	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
+	public String eventCancleProc(@PathVariable String esidx, Model model) {
+
+		String returnValue = "";
+		
+		//뷰 리턴(detail)
+		return returnValue;
+	}
+
 
 
 
@@ -93,9 +104,9 @@ public class EventController {
 	public String eventDetailViewLoad(@PathVariable String esidx, Model model) {
 
 		/* 해당 인덱스 번호  디테일 가져옴. */
-		Map<String,String> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
+		List<Event_Eventlist> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
+		log.info("size : "+detail.size());
 		model.addAttribute("detail",detail);	// detail로 뷰에 넘김
-
 		/* 디테일에 해당하는 리뷰 가져오기.*/
 		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
 		model.addAttribute("reviews", reviews);

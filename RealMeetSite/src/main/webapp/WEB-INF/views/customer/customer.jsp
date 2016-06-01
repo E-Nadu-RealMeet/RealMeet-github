@@ -81,38 +81,38 @@
 
 							
 							<div class="row">
-								<div class="4u 12u$(mobile)">
-									<article class="item">
-										<a href="Notices" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" /></a>
+								<div class="4u" style="margin-left: 7%;">
+									<article class="item" >
+										<a href="Notices" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" height="100px"/></a>
 										<header>
 											<h3>공지사항</h3>
 										</header>
 									</article>
 									
 									<article class="item">
-										<a href="information" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic03.jpg" alt=""  /></a>
+										<a href="information" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic03.jpg" alt=""  height="100px"/></a>
 										<header>
 											<h3>이용안내</h3>
 										</header>
 									</article>
 								</div>
-								<div class="4u 12u$(mobile)">
+								<div class="4u">
 									<article class="item">
-										<a href="FAQs" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" /></a>
+										<a href="FAQs" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" height="100px"/></a>
 										<header>
 											<h3>FAQ</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="Call" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" /></a>
+										<a href="Call" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" height="100px"/></a>
 										<header>
 											<h3>문의하기</h3>
 										</header>
 									</article>
 								</div>
-								<div class="4u$ 12u$(mobile)">
+								<div class="4u">
 									<article class="item">
-										<a href="QNA" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" /></a>
+										<a href="QNA" class="image fit"><img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" height="100px"/></a>
 										<header>
 											<h3>내 문의내역</h3>
 										</header>
