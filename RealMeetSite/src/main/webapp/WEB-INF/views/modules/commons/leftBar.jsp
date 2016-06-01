@@ -108,20 +108,20 @@
 
 			</div>
 			
-			<div class="modal"></div>
-<div class="modal-content">
-     <form action="login" method ="post">
-     <ul >
-           <li>
-               <label> 아이디&nbsp;&nbsp; <input type = "text" size ="20" name="mid" value= ""></label >
-           </li>
-           <li>
-               <label> 비밀번호 <input type = "text" size="20" name="pwd" value= ""></label >
-           </li>
-     </ul >
-           <input type= "submit" value ="로그인" />
-     </form >
-   </div>
+<!-- 			<div class="modal"></div> -->
+<!-- <div class="modal-content"> -->
+<!--      <form action="login" method ="post"> -->
+<!--      <ul > -->
+<!--            <li> -->
+<!--                <label> 아이디&nbsp;&nbsp; <input type = "text" size ="20" name="mid" value= ""></label > -->
+<!--            </li> -->
+<!--            <li> -->
+<!--                <label> 비밀번호 <input type = "text" size="20" name="pwd" value= ""></label > -->
+<!--            </li> -->
+<!--      </ul > -->
+<!--            <input type= "submit" value ="로그인" /> -->
+<!--      </form > -->
+<!--    </div> -->
 <script>
 $("#accordion > li > div").click(function(){
 	 
