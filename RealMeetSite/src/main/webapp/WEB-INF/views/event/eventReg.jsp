@@ -114,7 +114,7 @@
 						<h3>첫 이벤트가 진행될 주소를 입력해주세요</h3>
 						<br>
 					</div>
-					<div id="map" style="height: 400px"></div>
+					<div id="map" style="width:100%;height: 400px;"></div>
 					<input type="text" id="addr" class="regInput" placeholder="주소를 입력해보세요">
 					<br>
 					<button type="button" class="regButton-save">저장</button>
@@ -136,13 +136,14 @@
 					<h3>업로드한 파일 : </h3>
 					<input type="text" name="imgsrc" id="imgsrc" class="regInput" readonly/>
 					<h3>자세한 설명 : </h3>
-					<input type="text" name="description" id="description" class="regInput" readonly>
+					<textarea id="description" class="regInput" disabled="disabled"></textarea>
 					<h3>이벤트 개최 날짜 : </h3>
 					<input type="datetime-local" class=regInput readonly/>
 					<h3>이벤트 개최 장소 : </h3>
 					<input type="text" name="addr" id="addr" class="regInput" readonly>
 					<br>
 					<input type="hidden" name="date" id="date2" readonly>
+					<input type="hidden" id="description" class="regInput" disabled="disabled">
 					<button type="submit" id="selectEnd" class='regButton'>이벤트 생성</button>
 					<button type="button" class="regButton-back">뒤로가기</button>
 					<button type="button" class="regButton-first">처음으로</button>
