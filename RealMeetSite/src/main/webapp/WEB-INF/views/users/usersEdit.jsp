@@ -13,10 +13,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersEdit.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css"> --%>
+
+
+<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersEdit.css" />-->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
 
@@ -196,7 +201,7 @@ function formCheck() {
 					<div class="col-lg-10">
 						<input type="tel" class="form-control onlyNumber" id="phoneNumber"
 							data-rule-required="true" name="phone" maxlength="11"
-							value=${users.getPhone() } style="width: 80%; margin-top: 1%;">
+							value=${users.getPhone() } style="width: 80%; margin-top: 1%; border: solid 2px rgba(0, 0, 0, 0.15); border-radius: 0.35em;">
 					</div>
 				</div>
 
@@ -212,8 +217,8 @@ function formCheck() {
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" name="submit" id="submit"
-							class="btn btn-default">회원정보 수정</button>
+						<!-- <button type="submit" name="submit" id="submit"	class="btn btn-default">회원정보 수정</button> -->
+						<button type="submit" name="submit" id="submit"	class="btn btn-default pull-right" style="margin-right: 20%; color: #333 !important;">회원정보 수정</button>
 					</div>
 				</div>
 			</form>
