@@ -34,9 +34,8 @@
 
 	<!-- Main -->
 	<div id="main"">
-		<div class="top-wrapper clear"
-			style="max-width: 1000px; margin: 0px auto;">
-			<div id="content">
+		<div class="top-wrapper clear">
+			<div class="container">
 				<br> <br>
 				<h2 align="center">자유 게시판</h2>
 

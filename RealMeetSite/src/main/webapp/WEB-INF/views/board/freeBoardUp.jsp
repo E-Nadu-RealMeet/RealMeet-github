@@ -34,9 +34,8 @@
 
 	<!-- Main -->
 	<div id="main">
-		<div class="top-wrapper clear"
-			style="max-width: 1000px; margin: 0px auto;">
-			<div id="content">
+		<div class="top-wrapper clear">
+			<div class="container">
 				<br> <br>
 				<h2 align="center">공지사항</h2>
 				<form action="${pageContext.request.contextPath}/freeUpdate/${aa.getNidx()}" method="post">
@@ -60,7 +59,7 @@
 
 
 					<p class="article-comment margin-small" align="center">
-						<a class="btn btn-primary" href="/freeBoard">목록</a> 
+						<a class="btn btn-primary" href="../freeBoard">목록</a> 
 						<button class="btn btn-primary" type="submit">등록</button>
 
 					</p>
