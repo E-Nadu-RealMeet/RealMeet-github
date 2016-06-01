@@ -72,8 +72,9 @@
 			check++;
 			reg1.css("background-color","#9ececc");
 			$(this).css("background-color", "#65a9d7");
-			selectBox1.fadeOut();
-			selectBox2.fadeIn();
+			selectBox1.fadeOut(10)
+			selectBox1.fadeOut(10,"linear", selectBox2.fadeIn(1100));
+			
 		})
 		var regSave =  $('.regButton-save');
 		var regBack =  $('.regButton-back');
@@ -82,7 +83,10 @@
 		var descText = selectBox5.children('#desc-text');
 		descText.on('keyup', function(event) {
 		    var currentString = descText.val();
+		    selectBox8.children("textarea").html(currentString);
+		    var descInput = selectBox8.children("#description");
 		    currentString = replaceHtml( currentString );
+		    descInput.val(currentString);
 		    selectBox5.children('#description').val(currentString);
 		});
 		
@@ -98,9 +102,8 @@
 				inputEight.val(regResult[check]);
 				inputEight=$(inputEight).next().next();
 				check++;
-				
-				par.fadeOut();
-				par.next().fadeIn();
+				par.fadeOut(10);
+				par.next().fadeIn(1100, "swing", par.fadeOut(10));
 			}
 		})
 		var regInput6 = $('#regInput6');
