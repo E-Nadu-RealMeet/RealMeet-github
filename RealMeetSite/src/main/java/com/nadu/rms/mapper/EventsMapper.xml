@@ -9,7 +9,7 @@
 	SELECT * FROM EVENTS
 	</select>
 	
-	<select id="selectEventsDetailByESIDX" parameterType = "String" resultType="hashmap">
+	<select id="selectEventsDetailByESIDX" parameterType = "String" resultType="com.nadu.rms.vo.Event_Eventlist">
 		SELECT * FROM VIEW_JOIN_ES_EL WHERE ESIDX = #{esidx, jdbcType=VARCHAR}
 	</select>
 	

@@ -10,7 +10,7 @@ public class Event_Eventlist {
 	private String category;
 	private String elidx;
 	private String addr;
-	private String date;
+	private String eldate;
 	
 	public String getEsidx() {
 		return esidx;
@@ -66,10 +66,10 @@ public class Event_Eventlist {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getDate() {
-		return date;
+	public String getEldate() {
+		return eldate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setEldate(String eldate) {
+		this.eldate = eldate;
 	}
 }

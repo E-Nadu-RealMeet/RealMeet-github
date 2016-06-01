@@ -38,7 +38,6 @@
 			</div>
 
 			<div class="blog-post">
-
 				<div class="bs-example bs-example-tabs" role="tabpanel"
 					data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -50,18 +49,19 @@
 							id="review-tab" data-toggle="tab" aria-controls="reivew">Reviews</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
+						<c:if test="${detail.size() != 0 }">
 						<div role="tabpanel" class="tab-pane fade in active" id="detail"
 							aria-labelledby="detail-tab" aria-expanded="true">
 							<!-- 이벤트 제목란 -->
-							<h2 class="blog-post-title">${detail.get("EVENTNAME") }</h2>
+							<h2 class="blog-post-title">${detail.get(0).getEventname() }</h2>
 							<!-- 이벤트 날짜란 -->
-							<p class="blog-post-meta">${detail.get("DATE") }
-								by <a href="#">${detail.get("HOLDER") }</a>
+							<p class="blog-post-meta">${detail.get(0).getEldate() }
+								by <a href="#">${detail.get(0).getHolder() }</a>
 							</p>
 							<hr>
 							<!-- 이벤트 상세내용 -->
 							<blockquote>
-								<p>${detail.get("DESCRIPTION") }</p>
+								<p>${detail.get(0).getDescription() }</p>
 							</blockquote>
 							<hr>
 						</div>
@@ -90,6 +90,7 @@
 								</c:if>
 							</div>
 						</div>
+						</c:if>
 					</div>
 				</div>
 				<hr>
@@ -101,6 +102,10 @@
 					aria-labelledby="myModalLabel" aria-hidden="true">
 
 					<div class="modal-dialog modal-lg">
+						
+
+						
+						<input type="hidden" id="id" value="${sessionScope.mid }"> 
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
@@ -111,24 +116,42 @@
 							</div>
 							<div class="modal-body" style="overflow: auto">
 								<div class="col-md-12" style="text-align: left"></div>
-
+								<c:if test="${detail.size() != 0 }">
+									<c:forEach var="i" begin="0" end="${detail.size()-1 }">
+										<div><input type="radio" id="chk${i}" name="chkDate" value="${i}">${detail.get(i).getAddr()} / ${detail.get(i).getEldate()} / ${i} </div>
+									</c:forEach>
+								</c:if>
 							</div>
 							<div class="modal-footer">
-								<button type="button" id="apply1" class="btn btn-primary">참여 하기</button>
-								<button type="button" id="close" class="btn btn-default"
-									data-dismiss="modal">닫기</button>
-								
+								<button type="submit" id="applyEvent" class="btn btn-primary" onclick="return applyProcess()">참여 하기</button>
+								<button type="button" id="cancleEvent" class="btn btn-warning">참여 취소 하기</button>
+								<button type="button" id="close" class="btn btn-default" data-dismiss="modal">닫기</button>
+							</div>
+						</div>
+						
+					
+
+						
+					</div>
+				</div>
+				
+				<button type="button" class="btn btn-primary btn-lg"
+					data-toggle="modal" data-target="#cancle">참여 취소 하기</button>
+					
+				<div class="modal fade" id="cancle" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">					
+							<div class="modal-body" style="overflow: auto">
+								<div class="col-md-12" style="text-align: left">정말 취소 하시겠습니까</div>
+							</div> 
+							<div class="modal-footer">
+								<button type="button" id="cancleEvent2" class="btn btn-warning">네</button>
+								<button type="button" id="close" class="btn btn-default" data-dismiss="modal">아니요</button>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
-
-
-
-
-
 
 
 			</div>
@@ -155,7 +178,7 @@
 			<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/core/js/eventDetail.js" type="text/javascript"></script>
+			<script src="${pageContext.request.contextPath}/resources/core/js/eventApply.js" type="text/javascript"></script>
 			
 		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		    <script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>
