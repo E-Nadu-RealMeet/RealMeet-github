@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/login.css" />
-<script src="${pageContext.request.contextPath}/resources/core/js/login.js" type="text/javascript"></script>
+
 <style>
 #accordion {
     list-style: none;
@@ -52,7 +49,7 @@
 
 </head>
 <body>
-<!-- Header -->  
+<!-- Header -->
 			<div id="header">
 
 				<div class="top">	
@@ -60,20 +57,13 @@
 					<!-- Logo -->
 						<div id="logo">
 							<span class="image avatar48"><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/core/images/avatar.jpg" alt="" /></a></span>
-							<h1 id="title">${mid}</h1>
-							<p>환영합니다.</p>
+							<h1 id="title">index</h1>
+							<p>${name}</p>
 						</div>
 
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<c:if test="${empty mid}">
-								<li><a href="${pageContext.request.contextPath}/login" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home"> 로그인</span ></a></li>
-								
-								</c:if>
-								<c:if test="${!empty mid}">
-								<li><a href="${pageContext.request.contextPath}/logout" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home"> 로그아웃</span ></a></li>
-								</c:if>
 								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
@@ -108,20 +98,7 @@
 
 			</div>
 			
-<!-- 			<div class="modal"></div> -->
-<!-- <div class="modal-content"> -->
-<!--      <form action="login" method ="post"> -->
-<!--      <ul > -->
-<!--            <li> -->
-<!--                <label> 아이디&nbsp;&nbsp; <input type = "text" size ="20" name="mid" value= ""></label > -->
-<!--            </li> -->
-<!--            <li> -->
-<!--                <label> 비밀번호 <input type = "text" size="20" name="pwd" value= ""></label > -->
-<!--            </li> -->
-<!--      </ul > -->
-<!--            <input type= "submit" value ="로그인" /> -->
-<!--      </form > -->
-<!--    </div> -->
+			
 <script>
 $("#accordion > li > div").click(function(){
 	 
