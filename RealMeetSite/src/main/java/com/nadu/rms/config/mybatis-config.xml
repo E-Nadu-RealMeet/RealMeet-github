@@ -16,6 +16,7 @@
 		<typeAlias type="com.nadu.rms.vo.QNA" alias="QNA"/>
 		<typeAlias type="com.nadu.rms.vo.FreeBoard" alias="FreeBoard"/>
 		<typeAlias type="com.nadu.rms.vo.Review" alias="Review"/>
+		<typeAlias type="com.nadu.rms.vo.Guestlist" alias="Guestlist"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -40,6 +41,7 @@
 		<mapper resource="com/nadu/rms/mapper/customerMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/ReviewsMapper.xml"/>
 		<mapper class="com.nadu.rms.mapper.CategoryMapper" />
+		<mapper resource="com/nadu/rms/mapper/GuestlistMapper.xml"/>
 	</mappers>
 
 </configuration>

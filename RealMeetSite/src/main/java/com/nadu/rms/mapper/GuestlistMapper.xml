@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.nadu.rms.mapper.GuestlistMapper">
+	
+<!-- 	<select id="insertGuestlist" parameterType="Guestlist" resultType="String" statementType="CALLABLE" >
+		{
+			call GUESTAPPLY(#{elidx, jdbcType=VARCHAR},#{guest, jdbcType=VARCHAR),#{result});
+		}
+	</select>
+	 -->
+	
+</mapper>

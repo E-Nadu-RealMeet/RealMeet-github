@@ -3,7 +3,7 @@ package com.nadu.rms.vo;
 public class Guestlist {
 	private String gidx;
 	private String esidx;
-	private String guests;
+	private String guest;
 	
 	public String getGidx() {
 		return gidx;
@@ -17,11 +17,11 @@ public class Guestlist {
 	public void setEsidx(String esidx) {
 		this.esidx = esidx;
 	}
-	public String getGuests() {
-		return guests;
+	public String getGuest() {
+		return guest;
 	}
-	public void setGuests(String guests) {
-		this.guests = guests;
+	public void setGuest(String guest) {
+		this.guest = guest;
 	}
 	
 	
