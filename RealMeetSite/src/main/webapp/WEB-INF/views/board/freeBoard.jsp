@@ -26,37 +26,42 @@
 	<div id="header">
 		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
 	</div>
+	
 	<!-- Main -->
 	<div id="main">
+		<section id="top" class="one dark cover">
+				<header>
+					<h2>자유 게시판</h2>
+				</header>
+		</section>
 	<section>
 	<div class="container">
 		<div id="real_cnt" style="max-width: 1000px; margin: 0px auto;">
-			<div id="page_title">
-				<span><font color="333333" style="font-size:xx-large; ">FREE BOARD</font></span>
-			</div>
 			<br>
 			<br>
 			<br>
 
-			<table  class="table table-striped">
+			<table  class="table table-striped table-bordered">
 				<colgroup>
 					<col width="50" />
 					<col width="100" />
-					<col/>
+					<col width=""/>
 					<col width="100" />
 					<col width="160" />
 				</colgroup>
-				<tR>
-					<Th>NO</th>
-					<Th>CATEGORY</th>
-					<Th style="text-align: center;">SUBJECT</th>
-					<Th>WRITER</th>
-					<Th>DATE</th>
+				<thead>
+				<tr class="success">
+					<th style="text-align: center;">NO</th>
+					<th style="text-align: center;">CATEGORY</th>
+					<th style="text-align: center;">SUBJECT</th>
+					<th style="text-align: center;">WRITER</th>
+					<th style="text-align: center;">DATE</th>
 				</tr>
+				</thead>
 				<c:forEach var="aa" items="${list}">
 				<tr>
 					<td>${aa.getNidx()}</td>
-					<td class='c1' colspan='2'><b>질문</b></td>
+					<td class='c1'><b>질문</b></td>
 					<td class='subject'><a href="${pageContext.request.contextPath}/freeDetail/${aa.getNidx()}"><b>${aa.getTitle()}</b></a></td>
 					<td>${aa.getWriter()}</td>
 					<td>${aa.getRegdate()}</td>
