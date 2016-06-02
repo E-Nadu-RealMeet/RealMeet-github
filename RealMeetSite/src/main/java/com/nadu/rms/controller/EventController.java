@@ -118,7 +118,7 @@ public class EventController {
 	// 이벤트 등록
 	@RequestMapping(value = "reg", method = RequestMethod.GET)
 	public String eventReg(Model model) {
-		List<String> categories = eventsDAO.getCategories();
+		List<String> categories = eventRegService.getCategories();
 		model.addAttribute("categories", categories);
 		return "event/eventReg";
 	}
@@ -128,7 +128,7 @@ public class EventController {
 	public String eventReg(Event_Eventlist e) {
 
 		int iv = eventRegService.eventReg(e);
-
+		
 		if(iv>0){
 			return "redirect:../event/"+e.getEsidx();
 		}else{

@@ -39,6 +39,7 @@
 		<mapper resource="com/nadu/rms/mapper/FreeBoardMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/customerMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/ReviewsMapper.xml"/>
+		<mapper class="com.nadu.rms.mapper.CategoryMapper" />
 	</mappers>
 
 </configuration>
