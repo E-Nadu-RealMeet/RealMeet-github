@@ -160,22 +160,18 @@ function formCheck() {
 	</div>
 
 	<div id="main">
-		<div class="join-top">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-				<li><a href="#">로그인</a></li>
-			</ul>
+		<div class="join-top" style="margin-bottom: 2em;">
+			<jsp:include page="../modules/commons/topMenu.jsp"></jsp:include>
 		</div>
 		<div></div>
-		<div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; position:">
+		<div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; text-align:center; ">
 
-			<form class="form-horizontal" role="form" method="post" action="join"
+			<form class="form-horizontal" role="form" method="post" action="join" style="margin: 0 auto; text-align:center;"
 				onsubmit="return formCheck()">
 				<!-- action="javascript:alert( 'success!' );" -->
 
 				<div class="form-group" id="divId" >
-					<label for="inputId" class="col-lg-2 control-label"
-						style="font-size: 20px; ">아이디</label>
+					<label for="inputId" class="col-lg-2 control-label"	style="font-size: 20px; ">아이디</label>
 					<div class="col-lg-10" style="float: left;">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
 							id="id" data-rule-required="true" name="id"

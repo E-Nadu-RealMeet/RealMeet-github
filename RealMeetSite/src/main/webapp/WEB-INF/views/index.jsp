@@ -29,12 +29,8 @@
 	</div>
 	<!-- Main -->
 			<div id="main">
-			
 				<div class="join-top">
-					<ul style="margin:0">
-						<li><a href="#">로그인</a></li>
-						<li><a href="${pageContext.request.contextPath}/users/join">회원가입</a></li>
-					</ul>
+					<jsp:include page="modules/commons/topMenu.jsp"></jsp:include>
 				</div>
 
 						
