@@ -85,56 +85,16 @@ function formCheck() {
 		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
 	</div>
 
-	<%-- <div class="top">
-
-					<!-- Logo -->
-						<div id="logo">
-							<span class="image avatar48"><img src="${pageContext.request.contextPath}/resources/core/images/avatar.jpg" alt="" /></span>
-							<h1 id="title">index</h1>
-							<p>${name}</p>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							
-							<ul>
-								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Intro</span></a></li>
-								<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Portfolio</span></a></li>
-								<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
-								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
-
-				</div>
-
-				<div class="bottom">
-
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-
-				</div>
-
-			</div>
- --%>
 
 	<div id="main">
-		<div class="join-top">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-				<li><a href="${pageContext.request.contextPath}/">로그아웃</a></li>
-			</ul>
+		<div class="join-top" style="margin-bottom: 2em;">
+			<jsp:include page="../modules/commons/topMenu.jsp"></jsp:include>
 		</div>
 		<div></div>
 		<div class="container"
-			style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
+			style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; text-align:center;">
 
-			<form class="form-horizontal" role="form" method="post" action="edit"
+			<form class="form-horizontal" role="form" method="post" action="edit" style="margin: 0 auto; text-align:center;"
 				onsubmit="return formCheck()">
 
 				<div class="form-group" id="divId">

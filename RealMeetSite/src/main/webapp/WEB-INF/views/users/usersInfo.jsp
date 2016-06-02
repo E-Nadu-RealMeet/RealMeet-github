@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ page session="false"%>
 <!DOCTYPE HTML>
 <html>
@@ -28,16 +27,13 @@
 		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
 	</div>
 
-	<div id="main">
-		<div class="join-top">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-				<li><a href="${pageContext.request.contextPath}/">로그아웃</a></li>
-			</ul>
+	<div id="main" style="background-color: #f5fafa;">
+		<div class="join-top" style="margin-bottom: 2em;">
+			<jsp:include page="../modules/commons/topMenu.jsp"></jsp:include>
 		</div>
-		<div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
+		<div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; ">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-9" style="width:95%; margin: 0 auto;">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row">
@@ -113,21 +109,14 @@
 	</div>
 
 	<!-- Scripts -->
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>
 
 </body>
 </html>
