@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -57,13 +58,19 @@
 					<!-- Logo -->
 						<div id="logo">
 							<span class="image avatar48"><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/core/images/avatar.jpg" alt="" /></a></span>
-							<h1 id="title">index</h1>
-							<p>${name}</p>
+							<h1 id="title">${mid}</h1>
+							<p>환영합니다</p>
 						</div>
 
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
+							<c:if test="${empty mid}">
+								<li><a href="${pageContext.request.contextPath}/login" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">로그인</span></a></li>
+								</c:if>
+								<c:if test="${!empty mid}">
+								<li><a href="${pageContext.request.contextPath}/logout" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">로그아웃</span></a></li>
+								</c:if>
 								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
@@ -99,6 +106,15 @@
 			</div>
 			
 			
+<!-- 	<div class="modal" tabindex="-1" role="dialog" id="callmodal"> -->
+<!--       <div class="modal-dialog modal-sm"> -->
+<!--       <div class="modal-content"> -->
+<%--        <jsp:include page="../modules/login.jsp"></jsp:include> --%>
+<!--       </div> -->
+<!--       </div> -->
+<!--       </div> -->
+			
+			
 <script>
 $("#accordion > li > div").click(function(){
 	 
@@ -108,6 +124,10 @@ $("#accordion > li > div").click(function(){
     $(this).next().slideToggle(300);
 });
 
+
+   
+        $("#loginmodal").modal();
+ 
 
 </script>
 </body>
