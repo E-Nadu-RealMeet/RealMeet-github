@@ -10,16 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.nadu.rms.dao.BannerDao;
+import com.nadu.rms.dao.BannerDAO;
 import com.nadu.rms.vo.Events;
 
 @Controller
 public class BannerController {
 	
-	BannerDao bannerDao;
+	BannerDAO bannerDao;
 	
 	@Autowired
-	public void setBannerDao(BannerDao bannerDao){
+	public void setBannerDao(BannerDAO bannerDao){
 		this.bannerDao = bannerDao;
 	}
 

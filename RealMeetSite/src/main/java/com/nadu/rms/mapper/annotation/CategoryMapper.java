@@ -1,4 +1,4 @@
-package com.nadu.rms.mapper;
+package com.nadu.rms.mapper.annotation;
 
 import java.util.List;
 

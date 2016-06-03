@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.nadu.rms.dao.CategoryDAO;
 import com.nadu.rms.dao.EventlistDao;
 import com.nadu.rms.dao.EventsDao;
-import com.nadu.rms.mapper.CategoryMapper;
 import com.nadu.rms.vo.Event_Eventlist;
 
 public class EventRegService {

@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.nadu.rms.config.MyBatisUtil;
-import com.nadu.rms.mapper.CategoryMapper;
+import com.nadu.rms.mapper.annotation.CategoryMapper;
 
 public class GuestlistDao{
 	

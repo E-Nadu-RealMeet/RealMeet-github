@@ -118,8 +118,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
     
     @Bean
-    public BannerDao bannerDao(){
-    	return new BannerDao();
+    public BannerDAO bannerDao(){
+    	return new BannerDAO();
     }
     @Bean(autowire = Autowire.BY_NAME)
     public CommonsMultipartResolver multipartResolver(){
@@ -167,8 +167,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     	return new BoardDao();
     }
     @Bean
-    public CustomersDao customersDao(){
-    	return new CustomersDao();
+    public CustomerDAO customersDao(){
+    	return new CustomerDAO();
     }
     @Bean
     public ReviewsDao reviewsDao(){

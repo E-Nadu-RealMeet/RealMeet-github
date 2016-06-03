@@ -38,9 +38,9 @@
 		<mapper resource="com/nadu/rms/mapper/BannerMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/UsersMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/FreeBoardMapper.xml"/>
-		<mapper resource="com/nadu/rms/mapper/customerMapper.xml"/>
+		<mapper resource="com/nadu/rms/mapper/CustomerMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/ReviewsMapper.xml"/>
-		<mapper class="com.nadu.rms.mapper.CategoryMapper" />
+		<mapper resource="com/nadu/rms/mapper/CategoryMapper.xml" />
 		<mapper resource="com/nadu/rms/mapper/GuestlistMapper.xml"/>
 	</mappers>
 
