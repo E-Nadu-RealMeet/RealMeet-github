@@ -43,29 +43,7 @@ public class BoardDao {
 		}
 	}
 
-	/*public Map<Object, Object> selectFreeDetail(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
-		try{
-			String statement = "com.nadu.rms.mapper.FreeBoardMapper.selectFreeDetail";
-			System.out.println(statement);
-			
-			return (Map<Object, Object>)sqlSession.selectMap(statement, "nidx");
-			//return sqlSession.selectList(statement);
-			
-		}finally {
-			sqlSession.close();
-		}
-	}
 	
-	public int insertQNAs(QNA q){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.customerMapper.insertQNAs";
-			return sqlSession.insert(statement, q);
-		}finally{
-			sqlSession.commit(); //commit�� ���ϸ� ������ �Է��� �ȵ˴ϴ�.
-	}*/
 	
 	public FreeBoard selectFreeDetail(int nidx){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

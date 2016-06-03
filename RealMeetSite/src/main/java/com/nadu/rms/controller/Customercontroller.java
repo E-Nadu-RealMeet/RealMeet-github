@@ -3,7 +3,6 @@ package com.nadu.rms.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,20 +11,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.nadu.rms.dao.CustomersDao;
-import com.nadu.rms.vo.Notices;
-import com.nadu.rms.vo.Events;
+import com.nadu.rms.dao.CustomerDAO;
 import com.nadu.rms.vo.FAQ;
+import com.nadu.rms.vo.Notices;
 import com.nadu.rms.vo.QNA;
 
 @Controller
 @RequestMapping("/customer/*")
 public class Customercontroller {
 	
-	CustomersDao customersDao;
+	CustomerDAO customersDao;
 
 	@Autowired
-	public void setCustomersDao(CustomersDao customersDao) {
+	public void setCustomersDao(CustomerDAO customersDao) {
 		this.customersDao = customersDao;
 	}
 	

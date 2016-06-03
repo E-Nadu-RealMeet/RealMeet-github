@@ -1,4 +1,4 @@
-package com.nadu.rms.dao;
+package com.nadu.rms.trash;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -109,7 +109,7 @@ private SqlSessionFactory getSqlSessionFactory(){
 			String statement = "com.nadu.rms.mapper.customerMapper.insertQNAs";
 			return sqlSession.insert(statement, q);
 		}finally{
-			sqlSession.commit(); //commitÀ» ¾ÈÇÏ¸é µ¥ÀÌÅÍ ÀÔ·ÂÀÌ ¾ÈµË´Ï´Ù.
+			sqlSession.commit(); //commitï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ÈµË´Ï´ï¿½.
 			sqlSession.close();
 		}
 	}

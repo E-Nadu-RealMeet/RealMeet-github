@@ -6,8 +6,8 @@
 	
 <mapper namespace="com.nadu.rms.mapper.BannerMapper">
 
-	<select id="selectBanners" resultType="com.nadu.rms.vo.Events">
+	<!-- <select id="selectBanners" resultType="com.nadu.rms.vo.Events">
 	SELECT * FROM EVENTS
-	</select>
+	</select> -->
 	
 </mapper>
