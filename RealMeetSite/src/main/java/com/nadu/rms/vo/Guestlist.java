@@ -2,20 +2,28 @@ package com.nadu.rms.vo;
 
 public class Guestlist {
 	private String gidx;
-	private String esidx;
+	private String elidx;
 	private String guest;
+	private String result;
 	
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public String getGidx() {
 		return gidx;
 	}
 	public void setGidx(String gidx) {
 		this.gidx = gidx;
 	}
-	public String getEsidx() {
-		return esidx;
+	public String getElidx() {
+		return elidx;
 	}
-	public void setEsidx(String esidx) {
-		this.esidx = esidx;
+	public void setElidx(String elidx) {
+		this.elidx = elidx;
 	}
 	public String getGuest() {
 		return guest;

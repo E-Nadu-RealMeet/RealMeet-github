@@ -11,11 +11,22 @@ import org.springframework.context.annotation.Bean;
 
 import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
+import com.nadu.rms.dao.GuestlistDao;
 import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Eventlist;
 import com.nadu.rms.vo.Events;
+import com.nadu.rms.vo.Guestlist;
 
 public class EventsService {
+
+	GuestlistDao gl;
+	
+	@Autowired
+	public void setGl(GuestlistDao gl) {
+		this.gl = gl;
+	}
+
+
 
 
 	public String listLoad(HttpServletRequest req, EventsDao eventsDAO){
@@ -31,8 +42,12 @@ public class EventsService {
 		 * 필터 적용시 들어가야 할 부분.
 		 */
 		
-
-
+		/*Guestlist Vgl = new Guestlist();
+		Vgl.setElidx("1");
+		Vgl.setGuest("gyu");
+		gl.callApplyProcedure(Vgl);
+		System.out.println("return value = "+Vgl.getResult());
+		*/
 
 		/*
 		 *  page값을 사용, dao 접근, 데이터 가져오기
