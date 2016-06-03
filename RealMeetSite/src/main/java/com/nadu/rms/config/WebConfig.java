@@ -116,7 +116,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public EventsDao eventsDao(){
     	return new EventsDao();
     }
-    
     @Bean
     public BannerDAO bannerDao(){
     	return new BannerDAO();
