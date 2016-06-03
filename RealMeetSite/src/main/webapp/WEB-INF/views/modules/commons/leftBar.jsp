@@ -74,14 +74,8 @@
 								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
 								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/customer/customer" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">고객센터</span></a></li>
 							</ul>
-							<ul id="accordion">
-    						<li><div><a href="${pageContext.request.contextPath}/customer/customer"><span class="icon fa-user">고객센터</span></a></div>
-       							 <ul>
-									<li><a href="${pageContext.request.contextPath}/customer/Notices" ><span class="icon fa-user">공지사항</span></a></li>
-									<li><a href="${pageContext.request.contextPath}/customer/FAQs" ><span class="icon fa-user">FAQ</span></a></li>
-									<li><a href="${pageContext.request.contextPath}/customer/QNA" ><span class="icon fa-user">내 문의내역</span></a></li>
-									</ul>
    							 </li>
 								
 							</ul>	
