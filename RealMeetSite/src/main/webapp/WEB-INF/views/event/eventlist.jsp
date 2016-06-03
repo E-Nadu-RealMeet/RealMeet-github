@@ -17,7 +17,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/core/js/eventList.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/resources/core/js/eventList.js?ver=1" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventListDetail/bootstrap.min.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />

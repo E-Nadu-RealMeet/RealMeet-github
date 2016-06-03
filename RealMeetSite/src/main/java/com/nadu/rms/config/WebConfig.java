@@ -190,4 +190,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public CategoryDAO categoryDAO(){
     	return new CategoryDAO();
     }
+    @Bean
+    public GuestlistDao guestlistDao(){
+    	return new GuestlistDao();
+    }
 }

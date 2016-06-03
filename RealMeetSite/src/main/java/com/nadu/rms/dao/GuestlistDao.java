@@ -1,23 +1,28 @@
 package com.nadu.rms.dao;
 
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.nadu.rms.config.MyBatisUtil;
-import com.nadu.rms.mapper.CategoryMapper;
+import com.nadu.rms.vo.Guestlist;
+
 
 public class GuestlistDao{
 	
-	/*
-	 * public List<String> select(){
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		CategoryMapper mapper = session.getMapper(CategoryMapper.class);
-		List<String> categories = mapper.selectCategory();
-		session.close();
+	
+	 public String callApplyProcedure(Guestlist gl){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+
 		
-		return categories;
+		try{
+			String statement = "com.nadu.rms.mapper.GuestlistMapper.callApplyProcedure";
+			System.out.println(statement);
+			return sqlSession.selectOne(statement,gl);
+
+		}finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		
 	}
-	 * 
-	 */
 }
