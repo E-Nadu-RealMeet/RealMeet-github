@@ -54,7 +54,7 @@ public class EventsService {
 		 */
 
 		// events 총 갯수 = 보여줄 리스트의 최대값
-		int cnt = eventsDAO.getCntEvents();
+		int cnt = eventsDAO.selectCntEvents();
 		
 		// 시작번호
 		int startNum = (page-1)*5+1;

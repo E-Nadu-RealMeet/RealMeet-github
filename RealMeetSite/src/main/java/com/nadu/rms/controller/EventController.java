@@ -58,9 +58,7 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
-
-
-		return "event/eventlist";
+		return "event/eventList";
 	}
 
 
@@ -112,7 +110,7 @@ public class EventController {
 		model.addAttribute("reviews", reviews);
 
 		//뷰 리턴(detail)
-		return "event/eventdetail";
+		return "event/eventDetail";
 	}
 
 	// 이벤트 등록

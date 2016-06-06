@@ -25,7 +25,7 @@
 	</selectKey>
 	</insert>
 	
-	<select id="getCntFromEvents" resultType="Integer">
+	<select id="selectCntEvents" resultType="Integer">
 		SELECT COUNT(ESIDX) FROM EVENTS
 	</select>
 

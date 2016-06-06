@@ -86,16 +86,17 @@ public class EventsDao {
 		}
 	}
 	
-	public int getCntEvents(){
+	public int selectCntEvents(){
 		
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
-			String statement = "com.nadu.rms.mapper.EventsMapper.getCntFromEvents";
+			String statement = "com.nadu.rms.mapper.EventsMapper.selectCntEvents";
 			return sqlSession.selectOne(statement);
 		}finally{
 			sqlSession.close();
 		}
 	}
+	/*
 	public List<String> getCategories(){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
@@ -106,5 +107,5 @@ public class EventsDao {
 			sqlSession.close();
 		}
 		
-	}
+	}*/
 }
