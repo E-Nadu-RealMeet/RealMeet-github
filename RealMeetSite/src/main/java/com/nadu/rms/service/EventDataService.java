@@ -17,9 +17,15 @@ import com.nadu.rms.vo.Eventlist;
 import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Guestlist;
 
-public class EventsService {
+public class EventDataService {
 
 	GuestlistDao gl;
+	EventsDao eventsDAO;
+	
+	@Autowired
+	public void setEventsDao(EventsDao eventsDao) {
+		this.eventsDAO = eventsDao;
+	}
 	
 	@Autowired
 	public void setGl(GuestlistDao gl) {
@@ -29,7 +35,7 @@ public class EventsService {
 
 
 
-	public String listLoad(HttpServletRequest req, EventsDao eventsDAO){
+	public String listLoad(HttpServletRequest req){
 
 		// Json 형태로 변환시켜줄 Gson 객체 생성
 		Gson gson = new Gson();
