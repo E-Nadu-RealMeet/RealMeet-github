@@ -47,9 +47,7 @@
 							
     						<li><a href="${pageContext.request.contextPath}/customer/customer"><span class="icon fa-user">고객센터</span></a></li>
        							 
-									<li><a href="${pageContext.request.contextPath}/customer/Notices" ><span class="icon fa-user">공지사항</span></a></li>
-									<li><a href="${pageContext.request.contextPath}/customer/FAQs" ><span class="icon fa-user">FAQ</span></a></li>
-									<li><a href="${pageContext.request.contextPath}/customer/QNA" ><span class="icon fa-user">내 문의내역</span></a></li>
+									
 									
    							 
 								
@@ -99,14 +97,14 @@
 										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
-											<h3>공지사항</h3>
+											<h2 >공지사항</h2>
 										</header></button>
 									</article>
 									<article class="item">
 										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="200px" height="100px"/>
 										<header>
-											<h3>내 문의내역</h3>
+											<h2>내 문의내역</h2>
 										</header></button>
 									</article>
 								</div>
@@ -115,7 +113,7 @@
 										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="200px" height="100px"/>
 										<header>
-											<h3>FAQ</h3>
+											<h2>FAQ</h2>
 										</header></button>
 									</article>
 									<article class="item">
@@ -123,7 +121,7 @@
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="200px" height="100px"/>
 									
 										<header>
-											<h3>문의하기</h3>
+											<h2>문의하기</h2>
 										</header>
 										</button>
 									</article>
@@ -163,9 +161,8 @@
 	<div class="modal fade" role="dialog" id="NoticesModal">
       <div class="modal-dialog">
       <div class="modal-content"> 
-       <span class="close">×</span>
 							<header>
-								<h2>공지사항</h2>
+								<h2 align="center">공지사항</h2>
 							</header>
 							
 
@@ -187,11 +184,15 @@
 				</c:forEach>
 
 			</table>
-
-			<form method="post" action="Notices">
-				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
-			<a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+			<table>
+			<tr>
+			<td><form method="post" action="Notices">
+				<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />
+				<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>
+				</form></td>
+			<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>
+			</tr>
+			</table>
       </div>
       </div>
       </div>
@@ -201,9 +202,8 @@
 	<div class="modal fade" role="dialog" id="QNAModal">
       <div class="modal-dialog">
       <div class="modal-content"> 
-       <span class="close">×</span>
 							<header>
-								<h2>내 문의내역</h2>
+								<h2 align="center">내 문의내역</h2>
 							</header>
 
 
@@ -227,10 +227,15 @@
 			</table>
 			
 
-				<form method="post" action="QNA">
-				<div class="4u" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
-				<a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+				<table>
+			<tr>
+			<td><form method="post" action="QNA">
+				<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />
+				<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>
+				</form></td>
+			<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>
+			</tr>
+			</table>
       </div>
       </div>
       </div>
@@ -241,9 +246,8 @@
 	<div class="modal fade" role="dialog" id="FAQModal">
       <div class="modal-dialog">
       <div class="modal-content"> 
-       <span class="close">×</span>
 							<header>
-								<h2>FAQ</h2>
+								<h2 align="center">FAQ</h2>
 							</header>
 							
   
@@ -265,10 +269,15 @@
 				</c:forEach>
 
 			</table>
-				<form method="post" action="FAQs">
-				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
-				<a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+				<table>
+			<tr>
+			<td><form method="post" action="FAQ">
+				<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />
+				<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>
+				</form></td>
+			<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>
+			</tr>
+			</table>
       </div>
       </div>
       </div>
@@ -276,24 +285,28 @@
       <div class="modal fade" role="dialog" id="callModal">
       <div class="modal-dialog">
       <div class="modal-content"> 
-       <span class="close">×</span>
 							<header>
-								<h2>문의하기</h2>
+								<h2 align="center">문의하기</h2>
 							</header>
 
 <!-- 문의하기 기본 뷰 -->
 							<form method="post" action="insertQNA">
 								<div class="row">
-									<div class="11u" style="margin-left: 2%"><input type="text" name="title" placeholder="제목" /></div>
-									<div class="11u$" style="margin-left: 2%">
+									<div class="11u" style="margin-left: 1%"><input type="text" name="title" placeholder="제목" /></div>
+									<div class="11u$" style="margin-left: 1%">
 										<textarea name="content" placeholder="내용"></textarea>
 									</div>
-									<div class="11u$" style="margin-left: 2%">
-										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="문의" />
+									<div class="12u$" style="">
+									<table>
+									<tr>
+										<td><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: 50%" type="submit" value="문의" /></td>
+										<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="뒤로" /></a></td>
+										</tr>
+										</table>
 									</div>
 								</div>
 							</form>
-				<a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+				
       </div>
       </div>
       </div>

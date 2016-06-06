@@ -42,7 +42,7 @@ public class Customercontroller {
 	@RequestMapping(value="#NoticesModal", method=RequestMethod.GET)
 	public String Notices(Model model){
 		model.addAttribute("Notices", customersDao.selectNotices());
-		return "NoticesModal";	
+		return "#NoticesModal";	
 	}
 	@RequestMapping(value="Notices", method=RequestMethod.POST)
 	public String searchNotices(Model model, Notices n){

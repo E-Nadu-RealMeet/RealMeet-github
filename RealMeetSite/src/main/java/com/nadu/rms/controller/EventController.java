@@ -1,7 +1,6 @@
 package com.nadu.rms.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,48 +15,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-import com.nadu.rms.dao.EventsDao;
-import com.nadu.rms.dao.ReviewsDao;
+import com.nadu.rms.service.EventDataService;
+import com.nadu.rms.service.EventDetailService;
 import com.nadu.rms.service.EventRegService;
-import com.nadu.rms.service.EventsService;
 import com.nadu.rms.vo.Event_Eventlist;
-import com.nadu.rms.vo.Event_User;
-import com.nadu.rms.vo.Eventlist;
-import com.nadu.rms.vo.Events;
-import com.nadu.rms.vo.Review;
+
 
 @Controller
 @RequestMapping("event/*")
 public class EventController {
 
-	EventsDao eventsDAO;
-	ReviewsDao reviewsDAO;
-	EventsService eventsService;
-	EventRegService eventRegService;
 
+	EventDataService eventDataService;
+	EventRegService eventRegService;
+	EventDetailService eventDetailService;
+	
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
 	@Autowired
-	public void setEventsDao(EventsDao eventsDao) {
-		this.eventsDAO = eventsDao;
-	}
-	@Autowired
-	public void setReviewsDAO(ReviewsDao reviewsDAO) {
-		this.reviewsDAO = reviewsDAO;
-	}
-	@Autowired
-	public void setEventsService(EventsService eventsService) {
-		this.eventsService = eventsService;
+	public void setEventsService(EventDataService eventDataService) {
+		this.eventDataService = eventDataService;
 	}
 	@Autowired
 	public void setEventRegService(EventRegService eventRegService) {
 		this.eventRegService = eventRegService;
 	}
+	@Autowired
+	public void setEventDetailService(EventDetailService eventDetailService) {
+		this.eventDetailService = eventDetailService;
+	}
 
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+
 		return "event/eventList";
 	}
 
@@ -67,30 +58,25 @@ public class EventController {
 	public String eventApplyProc(@PathVariable String esidx, Model model) {
 
 		String returnValue = "";
-		
 		//뷰 리턴(detail)
 		return returnValue;
 	}
 	
-	// 이벤트 참여하기
+	// 이벤트 취소하기
 	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
 	public String eventCancleProc(@PathVariable String esidx, Model model) {
 
 		String returnValue = "";
-		
 		//뷰 리턴(detail)
 		return returnValue;
 	}
-
-
-
 
 	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
 
 
-		String returnValue = eventsService.listLoad(req, eventsDAO);
+		String returnValue = eventDataService.listLoad(req);
 		// 얻은 값 반환.
 
 		log.info("gson : " + returnValue);
@@ -101,13 +87,8 @@ public class EventController {
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx, Model model) {
 
-		/* 해당 인덱스 번호  디테일 가져옴. */
-		List<Event_Eventlist> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
-		log.info("size : "+detail.size());
-		model.addAttribute("detail",detail);	// detail로 뷰에 넘김
-		/* 디테일에 해당하는 리뷰 가져오기.*/
-		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
-		model.addAttribute("reviews", reviews);
+		/* eventDetailService로 필요한 데이터 가져옴 */
+		eventDetailService.eventDetailLoad(esidx, model);
 
 		//뷰 리턴(detail)
 		return "event/eventDetail";
