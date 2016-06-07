@@ -3,9 +3,9 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.ReviewsMapper">
-
+<mapper namespace="com.nadu.rms.mapper.annotation.ReviewsMapper">
+<!-- 
 	<select id="selectReviewsByEsidx" parameterType="String" resultType="com.nadu.rms.vo.Review">
 		SELECT * FROM REVIEWS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}
-	</select>
+	</select> -->
 </mapper>
