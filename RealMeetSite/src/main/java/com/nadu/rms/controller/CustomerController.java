@@ -4,14 +4,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nadu.rms.dao.CustomerDAO;
+import com.nadu.rms.service.CustomerService;
 import com.nadu.rms.vo.FAQ;
 import com.nadu.rms.vo.Notices;
 import com.nadu.rms.vo.QNA;
@@ -20,8 +24,12 @@ import com.nadu.rms.vo.QNA;
 @RequestMapping("/customer/*")
 public class CustomerController {
 	
+	CustomerService customerService;
+	
 	CustomerDAO customersDao;
 
+	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	
 	@Autowired
 	public void setCustomersDao(CustomerDAO customersDao) {
 		this.customersDao = customersDao;
@@ -39,17 +47,19 @@ public class CustomerController {
 		return "customer/customer";	
 	}
 	
-	@RequestMapping(value="#NoticesModal", method=RequestMethod.GET)
-	public String Notices(Model model){
-		model.addAttribute("Notices", customersDao.selectNotices());
-		return "#NoticesModal";	
+	@RequestMapping(value="Notices", method=RequestMethod.GET)
+	@ResponseBody
+	public String Notices(HttpServletRequest req, Model model){
+		String returnValue = customerService.NoticesListLoad(req);
+		log.info("gson : " + returnValue);
+		return returnValue;
 	}
 	@RequestMapping(value="Notices", method=RequestMethod.POST)
 	public String searchNotices(Model model, Notices n){
 		String title = n.getTitle();
 		model.addAttribute("Notices", customersDao.selectNotices(title));
 		System.out.println(title);
-		return "customer/Notices";	
+		return "#NoticesModal";	
 	}
 	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET)
 	public String NoticesDetail(HttpServletRequest request, Model model, @PathVariable String nidx){

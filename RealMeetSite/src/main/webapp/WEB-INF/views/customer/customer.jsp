@@ -15,10 +15,9 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		
 		  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<%-- 		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script> --%>
+		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js"></script>
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>
-<%-- 		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js"></script> --%>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
 		
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -129,6 +128,7 @@
 
   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
+				
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -147,7 +147,7 @@
 			</table>
 			<table>
 			<tr>
-			<td><form method="post" action="Notices">
+			<td><form method="post" action="NoticesModal">
 				<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />
 				<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>
 				</form></td>
@@ -158,7 +158,76 @@
       </div>
       </div>
 	
-	
+	<div class="modal fade" role="dialog" id="NoticesDetailModal">
+      <div class="modal-dialog">
+      <div class="modal-content"> 
+							<div class="modal"></div>
+  <div class="modal-content">
+  							<span class="close">×</span>
+							<header>
+								<h2>공지사항</h2>
+							</header>
+				
+
+
+			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+				
+				
+				<tr>
+					<th>제목</th>
+					<th>${NoticesDetail.title}</th>
+				</tr>
+
+
+				
+					<tr>
+					<td>${NoticesDetail.content}</td>
+					</tr>
+			
+
+			</table>
+
+			<a href="../Notices"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+			</div>
+      </div>
+      </div>
+      </div>
+      
+     <div class="modal fade" role="dialog" id="FAQsDetailModal">
+      <div class="modal-dialog">
+      <div class="modal-content"> 
+							<div class="modal"></div>
+  <div class="modal-content">
+  							<span class="close">×</span>
+							<header>
+								<h2>공지사항</h2>
+							</header>
+				
+
+
+			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+				
+				
+				<tr>
+					<th>제목</th>
+					<th>${FAQsDetail.title}</th>
+				</tr>
+
+
+				
+					<tr>
+					<td>${FAQsDetail.content}</td>
+					</tr>
+			
+
+			</table>
+
+			<a href="../Notices"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+			</div>
+      </div>
+      </div>
+      </div> 
+      
 	
 	<div class="modal fade" role="dialog" id="QNAModal">
       <div class="modal-dialog">
