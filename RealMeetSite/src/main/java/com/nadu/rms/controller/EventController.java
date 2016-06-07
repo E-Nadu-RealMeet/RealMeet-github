@@ -61,10 +61,11 @@ public class EventController {
 
 	// 이벤트 참여하기
 	@RequestMapping(value = "apply/{elidx}", produces="text/plain;charset=UTF-8")
+	@ResponseBody
 	public String eventApply(@PathVariable String elidx, HttpServletRequest req ,Model model) {
 
 		String returnString = "";
-		int ret = eventApplyService.applyEvent(req.getParameter("mid"), elidx);
+		int ret = eventApplyService.applyEvent((String)req.getSession().getAttribute("mid"), elidx);
 		if(ret == 0){
 			/* 성공 */
 			returnString = "Success";
@@ -83,6 +84,7 @@ public class EventController {
 	
 	// 이벤트 취소하기
 	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
+	@ResponseBody
 	public String eventCancleProc(@PathVariable String esidx, Model model) {
 
 		String returnValue = "";

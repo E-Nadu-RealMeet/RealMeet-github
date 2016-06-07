@@ -92,12 +92,11 @@
 						</div>
 						</c:if>
 					</div>
-				</div>
+				</div><%-- 
 				<c:if test="${detail.size() != 0}">
 					<c:forEach var="i" begin="0" end="${detail.size()-1 }">
-						<div data-toggle="modal" data-target="#apply">
-							<input type="radio" id="chk${i}" name="chkDate" value="${i}">${detail.get(i).getAddr()}
-							/ ${detail.get(i).getEldate()} /
+						<div data-toggle="modal" data-target="#apply${}">
+							<input type="radio" id="chk${i}" name="chkDate" value="${i}">${detail.get(i).getAddr()}	/ ${detail.get(i).getEldate()} /
 							<c:if test="${glist.size() != 0}">
 							<c:forEach var="gl" begin="0" end="${glist.size()-1 }">
 								<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">참여함</c:if>
@@ -105,30 +104,33 @@
 							</c:if>
 							
 						</div>
-						<div class="modal fade" id="apply" tabindex="-1" role="dialog"
-							aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal fade" id="apply">
 							<div class="modal-dialog modal-lg">
-								<input type="hidden" id="id" value="${sessionScope.mid }">
 								<div class="modal-content">
 									<div class="modal-body" style="overflow: auto">
-										
-										<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
-											<div class="col-md-12" style="text-align: left">정말 취소 하시겠습니까</div>
+										<div class="col-md-12" style="text-align: left">
+											정말 참여하시겠습니까
+										</div>
+										<c:if test="${glist.size() != 0}">
+											<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
+												<div class="col-md-12" style="text-align: left">정말 취소 하시겠습니까</div>
+											</c:if>
 										</c:if>
-										<c:if test="${detail.get(i).getElidx() != glist.get(gl).getElidx()}">
+										<c:if test="${glist.size() == 0 || detail.get(i).getElidx() != glist.get(gl).getElidx() }">
 											<div class="col-md-12" style="text-align: left">정말 참여 하시겠습니까</div>
 										</c:if>
 										
-										
 									</div>
 									<div class="modal-footer">
-										<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
-										<button type="submit" id="applyEvent" class="btn btn-primary"
-											onclick="return applyProcess(${detail.get(i).getElidx()})">네</button>
+										<c:if test="${glist.size() != 0}">
+											<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
+											<button type="submit" id="applyEvent" class="btn btn-primary"
+												onclick="return applyProcess()">네</button>
+											</c:if>
 										</c:if>
-										<c:if test="${detail.get(i).getElidx() != glist.get(gl).getElidx()}">
+										<c:if test="${glist.size()==0 || detail.get(i).getElidx() != glist.get(gl).getElidx()}">
 										<button type="submit" id="applyEvent" class="btn btn-primary"
-											onclick="return cancleProcess(${detail.get(i).getElidx()})">네</button>
+											onclick="return cancleProcess('${detail.get(i).getElidx()}')">네</button>
 										</c:if>
 										<button type="button" id="close" class="btn btn-default"
 											data-dismiss="modal">닫기</button>
@@ -137,7 +139,7 @@
 							</div>
 						</div>
 					</c:forEach>
-				</c:if>
+				</c:if> --%>
 				<hr>
 
 <%-- 
