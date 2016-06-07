@@ -25,7 +25,7 @@ public class UsersController {
 		this.usersDao = usersDao;
 	}
 	
-	//회원정보수정 
+	//회원정보수정
 	@RequestMapping(value="edit", method = RequestMethod.GET)
 	public String usersedit(Model model, HttpServletRequest req){
 
@@ -94,6 +94,7 @@ public class UsersController {
 		return "users/usersInfo";		
 	}
 	
+	//회원탈퇴
 	@RequestMapping(value="check", method = RequestMethod.GET)
 	public String usersCheck(Model model, HttpServletRequest req){
 		
@@ -103,6 +104,7 @@ public class UsersController {
 		return "users/usersCheck";
 	}
 	
+	//회원탈퇴 proc
 	@RequestMapping(value="check", method = RequestMethod.POST)
 	public String usersCheck(String id, HttpServletRequest req){
 		
@@ -120,6 +122,7 @@ public class UsersController {
 		}
 	}
 	
+	//아이디중복체크
 	@RequestMapping(value="idcheck")
 	public void checkid(String id, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception { 
 		PrintWriter out = res.getWriter();
@@ -136,6 +139,7 @@ public class UsersController {
 		}
 	}
 	
+	//회원탈퇴 비번체크
 	@RequestMapping(value="pwdcheck")
 	public void checkpwd(String id, String pwd, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception { 
 		PrintWriter out = res.getWriter();
@@ -152,6 +156,8 @@ public class UsersController {
 			out.write("NO");
 		}
 	}
+	
+	//회원정보, 내가만든이벤트리스트, 참여한 리스트 목록
 	@RequestMapping(value="home")
 	public String home(HttpServletRequest request){ 
 		String mid = (String) request.getSession().getAttribute("mid");
