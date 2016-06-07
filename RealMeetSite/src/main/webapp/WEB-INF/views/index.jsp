@@ -17,7 +17,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/index.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		
 		 <script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/core/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript"

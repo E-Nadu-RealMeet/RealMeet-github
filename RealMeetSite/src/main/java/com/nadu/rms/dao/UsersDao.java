@@ -1,18 +1,14 @@
 package com.nadu.rms.dao;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.nadu.rms.config.MyBatisUtil;
+import com.nadu.rms.mapper.annotation.UsersMapper;
 import com.nadu.rms.vo.Users;
 
 public class UsersDao {
 	
-	private SqlSessionFactory getSqlSessionFactory(){
+	/*private SqlSessionFactory getSqlSessionFactory(){
 
 		String resource="com/nadu/rms/config/mybatis-config.xml";
 		InputStream inputStream;
@@ -24,10 +20,23 @@ public class UsersDao {
 		}
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
+	*/
+	
 	
 	public int insertUsers(Users u){
 		
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+		
+		try {
+			int af = mapper.insertUsers(u);
+			return af;
+		} finally {
+			session.commit();
+			session.close();
+		}
+
+		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			String statement = "com.nadu.rms.mapper.UsersMapper.insertUsers";
@@ -35,24 +44,50 @@ public class UsersDao {
 		} finally{
 			sqlSession.commit();
 			sqlSession.close();
-		}
+		}*/
 	}
 	public Users selectUsers(String id) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+		
+		try {
+			Users users = mapper.selectUsers(id);
+			return users;
+		} finally {
+			session.commit();
+			session.close();
+		}
+		
+		
+		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		try{
 			String statement = "com.nadu.rms.mapper.UsersMapper.selectUsers";
 			System.out.println(statement);
 			return sqlSession.selectOne(statement, id);
-			/*return sqlSession.selectList(statement, id);*/
+			return sqlSession.selectList(statement, id);
 			
 		}finally {
 			sqlSession.close();
-		}
+		}*/
 	}
 
 	public int updateUsers(Users u) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+
+		try {
+			int af = mapper.updateUsers(u);	
+			return af;
+		} finally {
+			session.commit();
+			session.close();
+		}
+		
+		
+		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			String statement = "com.nadu.rms.mapper.UsersMapper.updateUsers";
@@ -60,11 +95,23 @@ public class UsersDao {
 		} finally{
 			sqlSession.commit();
 			sqlSession.close();
-		}
+		}*/
 	}
 
 	public int delUsers(String id) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+
+		try {
+			int af = mapper.delUsers(id);
+			return af;
+		} finally {
+			session.commit();
+			session.close();
+		}
+		
+		
+		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			String statement = "com.nadu.rms.mapper.UsersMapper.delUsers";
@@ -72,6 +119,6 @@ public class UsersDao {
 		} finally{
 			sqlSession.commit();
 			sqlSession.close();
-		}
+		}*/
 	}
 }

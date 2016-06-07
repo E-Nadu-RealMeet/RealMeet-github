@@ -2,6 +2,8 @@ package com.nadu.rms.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,17 +15,12 @@ import com.nadu.rms.vo.Users;
 
 @Controller
 public class LoginController {
-
+	
+	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home() {
 		return "modules/login";
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, String mid) {
-		request.getSession().setAttribute("mid", mid);
-		mid = "";
-		return "index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -32,22 +29,32 @@ public class LoginController {
 		UsersDao dao = new UsersDao();
 		Users m = dao.selectUsers(mid);
 
-		if (m == null) {
-			return "redirect:../src/WEB-INF/login";
-		} else if (!m.getId().equals(mid)) {
-			return "redirect:../src/WEB-INF/login";
+		if (m == null || !m.getId().equals(mid)) {
+			model.addAttribute("error","loginError");
+			return "redirect:/login";
 		} else {
 			request.getSession().setAttribute("mid", mid);
 			request.getSession().setAttribute("pwd", pwd);
 			String savePage = (String) request.getSession().getAttribute("savePage");
-			if (savePage != null) {
+			
+			if (savePage != null && savePage.length()!=0) {
+				log.info("savePage: "+savePage);
 				request.getSession().setAttribute("savePage", "");
+				
 				return "redirect:" + savePage;
 			} else {
-				return "index";
+				log.info("savePage: 없음");
+				return "redirect:" + "/";
 			}
 		}
 
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, String mid) {
+		request.getSession().setAttribute("mid", mid);
+		mid = "";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/midCheck", method = RequestMethod.POST)

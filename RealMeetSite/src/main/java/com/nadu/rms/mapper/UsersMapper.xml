@@ -4,16 +4,17 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.UsersMapper">
+<!-- <mapper namespace="com.nadu.rms.mapper.UsersMapper"> -->
+<mapper namespace="com.nadu.rms.mapper.annotation.UsersMapper">
 
-	<insert id="insertUsers" parameterType="com.nadu.rms.vo.Users">
+<!--	<insert id="insertUsers" parameterType="com.nadu.rms.vo.Users">
 	INSERT INTO USERS(ID, PWD, NICKNAME, PHONE, INTEREST)
 	VALUES(#{id, jdbcType=NVARCHAR}, #{pwd, jdbcType=VARCHAR}, #{nickname,
 	jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{interest,
 	jdbcType=VARCHAR})
 	</insert>
 
-	<select id="selectUsers" resultType="com.nadu.rms.vo.Users">
+ 	<select id="selectUsers" resultType="com.nadu.rms.vo.Users">
 		SELECT * FROM USERS WHERE ID = #{id}
 	</select>
 	
@@ -22,7 +23,7 @@
 	</update>
 	
 	<delete id="delUsers" parameterType="com.nadu.rms.vo.Users">
-		DELETE USERS WHERE ID = #{ID}
-	</delete>
+		DELETE USERS WHERE ID = #{ID} 
+	</delete>-->
 
 </mapper>

@@ -18,7 +18,7 @@ import com.nadu.rms.vo.QNA;
 
 @Controller
 @RequestMapping("/customer/*")
-public class Customercontroller {
+public class CustomerController {
 	
 	CustomerDAO customersDao;
 
