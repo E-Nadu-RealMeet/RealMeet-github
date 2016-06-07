@@ -14,25 +14,7 @@
 	</if>
 	</select>
 	
-<<<<<<< HEAD
-<!-- 	<select id="selectNotices" resultType="com.nadu.rms.vo.Notices"> -->
-<!-- 	<if test="title == null"> -->
-<!-- 	SELECT * FROM NOTICES -->
-<!-- 	</if> -->
-<!-- 	<if test="title != null"> -->
-<!-- 	SELECT * FROM NOTICES WHERE TITLE LIKE '%'||#{title}||'%' -->
-<!-- 	</if> -->
-<!-- 	</select> -->
-=======
-	<!-- <select id="selectNotices" resultType="com.nadu.rms.vo.Notices">
-	<if test="title == null">
-	SELECT * FROM NOTICES
-	</if>
-	<if test="title != null">
-	SELECT * FROM NOTICES WHERE TITLE LIKE '%'||#{title}||'%'
-	</if>
-	</select> -->
->>>>>>> 436f709c558705d1db1e20ce09cd2f2c179dd7c2
+
 	
 	<select id="selectQNAs" resultType="com.nadu.rms.vo.QNA">
 	<if test="title == null">

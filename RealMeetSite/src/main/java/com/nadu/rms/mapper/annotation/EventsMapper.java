@@ -20,6 +20,10 @@ public interface EventsMapper {
 	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_USERS) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC")
 	public List<Event_User> selectEventsNUser(Map<String, Integer> paramMap);
 	
+	@Select("UPDATE EVENTS SET EVENTNAME = #{eventname, jdbcType=VARCHAR}, HOLDER = #{holder, jdbcType=VARCHAR}, DESCRIPTION = #{description, jdbcType=VARCHAR}, IMGSRC = #{imgsrc, jdbcType=VARCHAR}, ABSTRACT = #{abstract, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public List<Event_Eventlist> updateEventsDetailByESIDX(@Param("esidx")String esidx);
+	
+	
 	public int insertEvents(Event_Eventlist e);
 	
 	@Select("SELECT COUNT(ESIDX) FROM EVENTS")

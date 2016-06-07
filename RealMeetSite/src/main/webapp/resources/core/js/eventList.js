@@ -88,6 +88,7 @@ function getEventList(page){
 					+ '</div>'
 					+ '<div class="modal-footer">'
 					+ '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>'
+					+ '<a href = "eventEdit"><button type="button" class="btn btn-primary">수정</button>'
 					+ '<a href = '+contextPath +'/event/'+ list[i].esidx +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
 					+ '</div>'
 					+ '</div>'

@@ -40,12 +40,12 @@ public class EventsDao {
 			String statement = "com.nadu.rms.mapper.EventsMapper.insertEvents";
 			return session.insert(statement, e);
 		}finally{
-			session.commit(); //commit을 안하면 데이터 입력이 안됩니다.
+			session.commit(); //commit�쓣 �븞�븯硫� �뜲�씠�꽣 �엯�젰�씠 �븞�맗�땲�떎.
 			session.close();
 		}
 	}
 	
-	//이벤트와 유저 정보 획득Map<Object, Object>
+	//�씠踰ㅽ듃�� �쑀�� �젙蹂� �쉷�뱷Map<Object, Object>
 	public List<Event_User> selectEventsNUser(int startNum, int endNum){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
@@ -60,7 +60,7 @@ public class EventsDao {
 		return events;
 	}
 	
-	// Events와 EventList 테이블 조인 결과 획득 
+	// Events�� EventList �뀒�씠釉� 議곗씤 寃곌낵 �쉷�뱷 
 	public List<Event_Eventlist> selectEventsDetailByESIDX(String esidx){
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -68,6 +68,16 @@ public class EventsDao {
 		List<Event_Eventlist> events = mapper.selectEventsDetailByESIDX(esidx);
 		session.close();
 		return events;
+	}
+	
+	public List<Event_Eventlist> updateEventsDetailByESIDX(String esidx){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> events = mapper.selectEventsDetailByESIDX(esidx);
+		session.close();
+		return null;
+				
 	}
 	
 	public int selectCntEvents(){
