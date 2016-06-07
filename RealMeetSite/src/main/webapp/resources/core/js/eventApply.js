@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-	
+	/*
 	
 	$('#applyEvent').click(function(){
 		
@@ -16,17 +16,15 @@ $(document).ready(function(){
 
 	});
 
-
-
 	// 취소 기능
 	$('.btn.btn-warning').click(function () {
-		 /* body... */ 
+		  body...  
 
 		 // 취소 프로세스
 
 		 alert("취소 눌림2");
 	});
-
+*/
 });
 
 function cancleProcess( ) {
@@ -59,10 +57,10 @@ function applyProcess(){
 	
 	
 }
-
-/*contextPath 가져오는 함수 by 지원 */
+/*
+contextPath 가져오는 함수 by 지원 
 function getContextPath(){
     var offset=location.href.indexOf(location.host)+location.host.length;
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
     return ctxPath;
-}
+}*/
