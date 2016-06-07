@@ -4,10 +4,6 @@ section#top {
 	background-image: url("../images/reg-top.jpg");
 }
 
-section#top #topName {
-    width: 60%;
-}
-
 .selectBox {
 	border: solid 1px;
 	width: 100%;
