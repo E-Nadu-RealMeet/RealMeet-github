@@ -48,7 +48,6 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="Notices", method=RequestMethod.GET)
-	@ResponseBody
 	public String Notices(HttpServletRequest req, Model model){
 		String returnValue = customerService.NoticesListLoad(req);
 		log.info("gson : " + returnValue);

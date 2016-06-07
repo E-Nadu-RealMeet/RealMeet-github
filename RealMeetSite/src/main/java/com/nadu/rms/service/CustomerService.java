@@ -19,8 +19,18 @@ public class CustomerService {
 	public String NoticesListLoad(HttpServletRequest req){
 		Gson gson = new Gson();
 		List<Notices> Notices = customerDAO.selectNotices();
-		
+		JsonClassForNoticesListLoad set = new JsonClassForNoticesListLoad();
 		return gson.toJson(Notices);
 		
 	}
+}
+
+class JsonClassForNoticesListLoad{
+	List<Notices> Notices;
+
+	public void setDatas(List<Notices> datas) {
+		this.Notices = datas;
+	}
+	
+	
 }

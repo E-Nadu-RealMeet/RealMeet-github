@@ -12,7 +12,7 @@ function getNoticesList(){
 		dataType : 'json',
 		url : 'Notices',
 		success : function(returnData) {
-			var list = returnData.datas;
+			var list = returnData.Notices;
 		
 			var html = "";
 			html = html+'<div class="modal fade" role="dialog" id="NoticesModal">'
