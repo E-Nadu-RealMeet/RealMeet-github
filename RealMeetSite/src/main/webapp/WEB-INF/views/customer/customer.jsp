@@ -44,7 +44,7 @@
 
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
-						<div class="container">
+						<div class="container" id="container">
 
 
 
@@ -54,7 +54,7 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
+										<button id="NoticesModal" type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2 >공지사항</h2>
@@ -116,82 +116,8 @@
 	<!-- Modal content-->
 	
 	
-	
-	
-	<div class="modal fade" role="dialog" id="NoticesModal">
-      <div class="modal-dialog">
-      <div class="modal-content"> 
-							<header>
-								<h2 align="center">공지사항</h2>
-							</header>
-							
-
-  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
-
-				
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성일</th>
-				</tr>
-
-
-				<c:forEach var="Notices" items="${Notices}">
-					<tr>
-						<td>${Notices.nidx}</td>
-						<td><a href="NoticesDetail/${Notices.nidx}">${Notices.title}</a></td>
-						<td>${Notices.regdate}</td>
-					</tr>
-				</c:forEach>
-
-			</table>
-			<table>
-			<tr>
-			<td><form method="post" action="NoticesModal">
-				<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />
-				<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>
-				</form></td>
-			<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>
-			</tr>
-			</table>
-      </div>
-      </div>
-      </div>
-	
-	<div class="modal fade" role="dialog" id="NoticesDetailModal">
-      <div class="modal-dialog">
-      <div class="modal-content"> 
-							<div class="modal"></div>
-  <div class="modal-content">
-  							<span class="close">×</span>
-							<header>
-								<h2>공지사항</h2>
-							</header>
-				
-
-
-			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
-				
-				
-				<tr>
-					<th>제목</th>
-					<th>${NoticesDetail.title}</th>
-				</tr>
-
-
-				
-					<tr>
-					<td>${NoticesDetail.content}</td>
-					</tr>
-			
-
-			</table>
-
-			<a href="../Notices"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
-			</div>
-      </div>
-      </div>
-      </div>
+      
+      
       
      <div class="modal fade" role="dialog" id="FAQsDetailModal">
       <div class="modal-dialog">

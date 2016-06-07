@@ -27,7 +27,12 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	CustomerDAO customersDao;
+	
+	
 
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
@@ -47,23 +52,27 @@ public class CustomerController {
 		return "customer/customer";	
 	}
 	
-	@RequestMapping(value="Notices", method=RequestMethod.GET)
+	@RequestMapping(value="NoticesModal", produces="text/plain;charset=UTF-8")
+	@ResponseBody
 	public String Notices(HttpServletRequest req, Model model){
 		String returnValue = customerService.NoticesListLoad(req);
 		log.info("gson : " + returnValue);
 		return returnValue;
 	}
-	@RequestMapping(value="Notices", method=RequestMethod.POST)
+	@RequestMapping(value="NoticesModal", method=RequestMethod.POST)
 	public String searchNotices(Model model, Notices n){
 		String title = n.getTitle();
 		model.addAttribute("Notices", customersDao.selectNotices(title));
 		System.out.println(title);
 		return "#NoticesModal";	
 	}
-	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET)
-	public String NoticesDetail(HttpServletRequest request, Model model, @PathVariable String nidx){
-		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
-		return "customer/NoticesDetail";
+	@RequestMapping(value="NoticesDetail/{nidx}", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String NoticesDetail(HttpServletRequest req, Model model, @PathVariable String nidx){
+		
+		String returnValue = customerService.NoticesDetailLoad(req, nidx);
+//		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
+		return returnValue;
 	}
 	@RequestMapping(value="FAQs", method=RequestMethod.GET)
 	public String FAQs(Model model){
