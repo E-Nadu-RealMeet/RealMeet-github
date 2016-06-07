@@ -4,7 +4,6 @@
 <!DOCTYPE HTML>
 <html>
 <body>
-
 		<!-- Intro -->
 		<section id="top" class="one dark cover">
 				<header id="topName">
