@@ -33,11 +33,9 @@
 	<div id="main">
 
 		<!-- Intro -->
-		<section id="top" class="one dark cover">
-				<header>
-					<h2>이벤트 등록해요</h2>
-				</header>
-		</section>
+		<jsp:include page="../modules/commons/intro.jsp">
+			<jsp:param value="이벤트 등록해요" name="introValue"/>
+		</jsp:include>
 
 		<!-- Portfolio -->
 		<section id="portfolio" class="two">

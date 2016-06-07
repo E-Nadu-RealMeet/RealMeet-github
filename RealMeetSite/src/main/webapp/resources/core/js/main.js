@@ -117,3 +117,31 @@
 	});
 
 })(jQuery);
+
+/*contextPath 가져오는 함수 by 지원 */
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
+
+function loginChk(){
+	$.ajax({
+		url:getContextPath()+'/midCheck',
+		type:'POST',
+		dataType: 'text',
+		success: function(data){
+			if(data==="true"){
+			}else{
+				alert("로그인이 필요합니다.")
+			}
+		},
+		error: function(data){
+			alert('에러 발생')
+		}
+	})
+}
+
+$('#reg-link').click(function(){
+	loginChk()
+})
