@@ -44,8 +44,7 @@
     text-decoration: underline;
 }
 </style>
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/jquery-1.11.3.min.js"></script>
 
 </head>
 <body>
