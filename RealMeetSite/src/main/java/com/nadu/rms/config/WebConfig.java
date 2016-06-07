@@ -197,4 +197,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public EventDetailService eventDetailService(){
     	return new EventDetailService();
     }
+    @Bean
+    public EventApplyService eventApplyService(){
+    	return new EventApplyService();
+    }
 }

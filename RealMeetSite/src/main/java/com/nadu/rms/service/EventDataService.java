@@ -19,7 +19,7 @@ import com.nadu.rms.vo.Guestlist;
 
 public class EventDataService {
 
-	GuestlistDao gl;
+
 	EventsDao eventsDAO;
 	
 	@Autowired
@@ -27,13 +27,6 @@ public class EventDataService {
 		this.eventsDAO = eventsDao;
 	}
 	
-	@Autowired
-	public void setGl(GuestlistDao gl) {
-		this.gl = gl;
-	}
-
-
-
 
 	public String listLoad(HttpServletRequest req){
 
@@ -47,13 +40,7 @@ public class EventDataService {
 		/*
 		 * 필터 적용시 들어가야 할 부분.
 		 */
-		
-		/*Guestlist Vgl = new Guestlist();
-		Vgl.setElidx("1");
-		Vgl.setGuest("gyu");
-		gl.callApplyProcedure(Vgl);
-		System.out.println("return value = "+Vgl.getResult());
-		*/
+
 
 		/*
 		 *  page값을 사용, dao 접근, 데이터 가져오기

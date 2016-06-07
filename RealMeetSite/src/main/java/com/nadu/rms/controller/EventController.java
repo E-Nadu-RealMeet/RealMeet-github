@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
 import com.nadu.rms.service.EventRegService;
@@ -29,9 +30,15 @@ public class EventController {
 	EventDataService eventDataService;
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
+	EventApplyService eventApplyService;
 	
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
+	
+	@Autowired
+	public void setEventApplyService(EventApplyService eventApplyService) {
+		this.eventApplyService = eventApplyService;
+	}
 	@Autowired
 	public void setEventsService(EventDataService eventDataService) {
 		this.eventDataService = eventDataService;
@@ -48,18 +55,30 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
-
 		return "event/eventList";
 	}
 
 
 	// 이벤트 참여하기
 	@RequestMapping(value = "apply/{elidx}", produces="text/plain;charset=UTF-8")
-	public String eventApplyProc(@PathVariable String esidx, Model model) {
+	public String eventApply(@PathVariable String elidx, HttpServletRequest req ,Model model) {
 
-		String returnValue = "";
-		//뷰 리턴(detail)
-		return returnValue;
+		String returnString = "";
+		int ret = eventApplyService.applyEvent(req.getParameter("mid"), elidx);
+		if(ret == 0){
+			/* 성공 */
+			returnString = "Success";
+		}
+		else if(ret == 1){
+			/* 자리가 없음 */
+			returnString = "No empty seats";
+		}
+		else if(ret == 2){
+			/* 이미 참여한 경우*/
+			returnString = "Already applied for this event";
+		}
+
+		return returnString;
 	}
 	
 	// 이벤트 취소하기
@@ -85,10 +104,11 @@ public class EventController {
 
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
-	public String eventDetailViewLoad(@PathVariable String esidx, Model model) {
+	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
 
 		/* eventDetailService로 필요한 데이터 가져옴 */
-		eventDetailService.eventDetailLoad(esidx, model);
+		//req.getSession().setAttribute("mid", "gyu");
+		eventDetailService.eventDetailLoad(req, esidx, model);
 
 		//뷰 리턴(detail)
 		return "event/eventDetail";

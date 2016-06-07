@@ -1,6 +1,7 @@
 @import url("font-awesome.min.css");
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600");
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 /*
 	Prologue by HTML5 UP
 	html5up.net | @n33co
@@ -60,17 +61,24 @@
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 	}
+
+
 	section#top #topName {
-	background-color: white;
-    opacity: 0.5;
-    /* width: 60%; */
-    margin: 0 auto;
-    border: 6px solid gray;
-    border-radius: 20px;
+		background-color: white;
+	    /* opacity: 0.5; */
+	    background-color: rgba( 255, 255, 255, 0.4 );
+	    /* width: 60%; */
+	    margin: 0 auto;
+	    border: 6px solid gray;
+	    border-radius: 20px;
+	    display: inline-flex;
 	}
 	
 	section#top #topNameH2{
+		opacity: 1;
 		color: black;
+		font-family: 'Jeju Hallasan', serif;
+		font-weight: 500;
 	}
 /* Containers */
 	.mainContainer{
