@@ -18,6 +18,7 @@
 <%-- 		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script> --%>
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
 		
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -76,6 +77,7 @@
 		<!-- Main -->
 			<div id="main">
 		<section id="top" class="one dark cover">
+<%-- 		<img src="${pageContext.request.contextPath}/resources/core/images/thumb_cs_call.jpg" width=""> --%>
 				<header>
 					<h2>고객센터</h2>
 				</header>
@@ -94,14 +96,14 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
+										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2 >공지사항</h2>
 										</header></button>
 									</article>
 									<article class="item">
-										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
+										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2>내 문의내역</h2>
@@ -110,14 +112,14 @@
 								</div>
 								<div class="5u" style="margin-top: 7%" >
 									<article class="item">
-										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQModal">
+										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2>FAQ</h2>
 										</header></button>
 									</article>
 									<article class="item">
-										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#callModal">
+										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#callModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="200px" height="100px"/>
 									
 										<header>
