@@ -14,6 +14,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/index.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		
@@ -33,33 +34,19 @@
 					<jsp:include page="modules/commons/topMenu.jsp"></jsp:include>
 				</div>
 
-						
 				<!-- Intro -->
-					<section id="top" class="one dark cover">
-					
-						<div class="mainContainer">
-							<jsp:include page="modules/commons/slideBanner.jsp"></jsp:include>
-							<!-- <header>
-								<h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
-								site template designed by <a href="http://html5up.net">HTML5 UP</a>.</h2>
-								<p>Ligula scelerisque justo sem accumsan diam quis<br />
-								vitae natoque dictum sollicitudin elementum.</p>
-							</header>
-
-							<footer>
-								<a href="#portfolio" class="button scrolly">Magna Aliquam</a>
-							</footer>
- -->
-
-							<header>
-								<h2 class="alt">Homepage MainView</h2>
-								<p> Homepage Describe</p>
-							</header>
-						</div>
-					</section>
+				<jsp:include page="modules/commons/intro.jsp">
+					<jsp:param value="RMS에 오신것을 환영합니다." name="introValue"/>
+				</jsp:include>		
 
 				<!-- Portfolio -->					
 					<section id="portfolio" class="two">
+						<div class="mainContainer">
+							<jsp:include page="modules/commons/slideBanner.jsp"></jsp:include>
+
+							<header>
+							</header>
+						</div>
 						<div class="container">
 
 							<header>

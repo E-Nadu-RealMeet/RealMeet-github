@@ -3,20 +3,21 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.EventsMapper">
+<!-- <mapper namespace="com.nadu.rms.mapper.EventsMapper"> -->
+<mapper namespace="com.nadu.rms.mapper.annotation.EventsMapper">
 
-	<select id="selectEvents" resultType="com.nadu.rms.vo.Event_Eventlist">
+	<!-- <select id="selectEvents" resultType="com.nadu.rms.vo.Event_Eventlist">
 	SELECT * FROM EVENTS
 	</select>
 	
 	<select id="selectEventsDetailByESIDX" parameterType = "String" resultType="com.nadu.rms.vo.Event_Eventlist">
 		SELECT * FROM VIEW_JOIN_ES_EL WHERE ESIDX = #{esidx, jdbcType=VARCHAR}
 	</select>
-	
+	 -->
 	<!-- Events details -->
-	<select id="selectEventsNUser" parameterType="hashMap" resultType="com.nadu.rms.vo.Event_User">
+<!-- 	<select id="selectEventsNUser" parameterType="hashMap" resultType="com.nadu.rms.vo.Event_User">
 		SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_USERS) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC
-	</select>
+	</select> -->
 	
 	<insert id="insertEvents" parameterType="com.nadu.rms.vo.Events"> 
 	INSERT INTO EVENTS(ESIDX, CATEGORY,  EVENTNAME, HOLDER, DESCRIPTION, ABSTRACT, IMGSRC) VALUES(TO_CHAR(EVENTS_SEQ.NEXTVAL),#{category, jdbcType=VARCHAR},#{eventname, jdbcType=VARCHAR},#{holder, jdbcType=NVARCHAR},#{description, jdbcType=VARCHAR},#{abs, jdbcType=VARCHAR},#{imgsrc, jdbcType=VARCHAR})
@@ -25,11 +26,11 @@
 	</selectKey>
 	</insert>
 	
-	<select id="getCntFromEvents" resultType="Integer">
+<!-- 	<select id="selectCntEvents" resultType="Integer">
 		SELECT COUNT(ESIDX) FROM EVENTS
 	</select>
 
 	<select id="getCategories" resultType="String">
 		SELECT CNAME FROM CATEGORIES
-	</select>
+	</select> -->
 </mapper>

@@ -174,8 +174,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     	return new ReviewsDao();
     }
     @Bean
-    public EventsService eventsService(){
-    	return new EventsService();
+    public EventDataService eventsService(){
+    	return new EventDataService();
     }
     @Bean
     public EventRegService eventRegService(){
@@ -192,5 +192,9 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public GuestlistDao guestlistDao(){
     	return new GuestlistDao();
+    }
+    @Bean
+    public EventDetailService eventDetailService(){
+    	return new EventDetailService();
     }
 }

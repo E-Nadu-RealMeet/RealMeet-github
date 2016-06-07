@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nadu.rms.dao.EventsDao;
+import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Events;
 
 
@@ -34,7 +35,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         String name = "Psyken";
-        List<Events> list = eventsDao.selectEvents();
+        List<Event_Eventlist> list = eventsDao.selectEvents();
 
 		model.addAttribute("list", list);    
         model.addAttribute("name", name );
