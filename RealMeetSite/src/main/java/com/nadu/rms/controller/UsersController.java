@@ -152,4 +152,13 @@ public class UsersController {
 			out.write("NO");
 		}
 	}
+	@RequestMapping(value="home")
+	public String home(HttpServletRequest request){ 
+		String mid = (String) request.getSession().getAttribute("mid");
+		if(mid == null){
+			return "red";
+		}else{
+			return "usersHome";
+		}
+	}
 }

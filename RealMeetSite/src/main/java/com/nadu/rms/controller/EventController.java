@@ -96,7 +96,17 @@ public class EventController {
 
 	// 이벤트 등록
 	@RequestMapping(value = "reg", method = RequestMethod.GET)
-	public String eventReg(Model model) {
+	public String eventReg(Model model, HttpServletRequest request) {
+		String mid = (String)request.getSession().getAttribute("mid");
+		if(mid == null || mid == ""){
+			model.addAttribute("error","notLoginError");
+			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
+			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
+			log.info("현재 페이지"+savePage);
+			request.getSession().setAttribute("savePage", savePage);
+			return "redirect:../login";
+		}
+		
 		List<String> categories = eventRegService.getCategories();
 		model.addAttribute("categories", categories);
 		return "event/eventReg";
