@@ -107,7 +107,7 @@ public class EventController {
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
 
 		/* eventDetailService로 필요한 데이터 가져옴 */
-		req.getSession().setAttribute("mid", "gyu");
+		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.eventDetailLoad(req, esidx, model);
 
 		//뷰 리턴(detail)
