@@ -13,7 +13,6 @@
 <title>Prologue by HTML5 UP</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/board.css" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/freeBoard/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
@@ -25,31 +24,18 @@
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <script type="text/javascript">
 var map;
+var markers = [];
 $(document).ready(function(){
   map = new GMaps({
     div: '#map',
     lat: 37.553152,
     lng: 126.936894,
     click: function(e) {
-    	var addr = rev_Geocode(e.latLng.lat(), e.latLng.lng());
-    	
-      }
-  });
-  
-  
-  
-  map.addMarker({
-	  lat: e.latLng.lat(),
-	  lng: e.latLng.lng(),
-	  title: addr,
-  	  infoWindow: {
-  		  content: addr
-  	  },
-  	  click: function(e) {
-  		  alert(addr);
-  		  }
-  	  });
-  
+				var addr = rev_Geocode(e.latLng.lat(), e.latLng.lng());
+    			addMarker(e);
+      		}
+  		});
+
   $('#addr').keyup(function(){
 	  GMaps.geocode({
 		  address: $('#addr').val().trim(),
@@ -82,6 +68,33 @@ $(document).ready(function(){
 	  }
 	});
   });
+  
+function addMarker(e){
+	var marker = map.addMarker({
+		lat: e.latLng.lat(),
+  		lng: e.latLng.lng(),
+  		
+	  		/* infoWindow: {
+				content: addr
+	 	 	} */
+	  	});
+	markers.push(marker);
+}
+  
+function setMapOnAll(map) {
+	  for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(map);
+	  }
+	}
+	
+function clearMarkers() {
+	  setMapOnAll(null);
+	}
+	
+function deleteMarkers() {
+	  clearMarkers();
+	  markers = [];
+	}
 
 function rev_Geocode(arg1, arg2){
 	var lat = arg1; // 위도
@@ -98,7 +111,7 @@ function rev_Geocode(arg1, arg2){
 				for (i=0; i<myJSONResult.results.length; i++){
 					tag+=myJSONResult.results[i].formatted_address
 				}
-				alert(myJSONResult.results[0].formatted_address)
+				/* alert(myJSONResult.results[0].formatted_address) */
 				addr.val(myJSONResult.results[0].formatted_address);
 			}else if(myJSONResult.status == 'ZERO_RESULTS') {
                 alert("지오코딩이 성공했지만 반환된 결과가 없음을 나타냅니다.\n\n이는 지오코딩이 존재하지 않는 address 또는 원격 지역의 latlng을 전달받는 경우 발생할 수 있습니다.")
@@ -125,14 +138,17 @@ function rev_Geocode(arg1, arg2){
 	
 	<!-- Main -->
 	<div id="main">
-		<!-- Intro -->
-		<jsp:include page="../modules/commons/intro.jsp">
-			<jsp:param value="자유게시판" name="introValue"/>
-		</jsp:include>
+		<section id="top" class="one dark cover">
+				<header>
+					<h2>자유 게시판</h2>
+				</header>
+		</section>
 	<section>
 	<div class="container">
 		<div id="real_cnt" style="max-width: 1000px; margin: 0px auto;">
-		
+		 <div id="floating-panel">
+    	  <input onclick="deleteMarkers();" type=button value="Delete Markers">
+ 		 </div>
 		<div id="map" style="width:100%;height:400px;"></div>
 			<br>
 			<br>
