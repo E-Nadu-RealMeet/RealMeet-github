@@ -87,7 +87,6 @@
 				<div class="selectBox" id="selectBox5" style="display:none;">
 					<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
 						<h3>생성할 이벤트의 자세한 설명 부탁드립니다.</h3>
-
 						<br>
 					</div>
 					<textarea name="description" id="desc-text" style="width: 100%; height: 10em;"></textarea>
