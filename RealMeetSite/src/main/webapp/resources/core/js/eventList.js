@@ -1,4 +1,5 @@
 var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.		 
+var isDone = false;
 
 $(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
 	getEventList(page);
@@ -10,8 +11,11 @@ $(window).scroll(function(){
 	//alert("얼럿");
 	if($(window).scrollTop() >= $(document).height() - $(window).height()){
 		//alert("휠다운");
-		getEventList(page);
-		page++;   
+		if(isDone == false){
+			getEventList(page);
+			page++;
+		}
+		
 	}
 });
 
@@ -84,6 +88,7 @@ function getEventList(page){
 					+ '</div>'
 					+ '<div class="modal-footer">'
 					+ '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>'
+					+ '<a href = "eventEdit"><button type="button" class="btn btn-primary">수정</button>'
 					+ '<a href = '+contextPath +'/event/'+ list[i].esidx +'><button type="button" class="btn btn-primary">상세 페이지 이동</button></a>'
 					+ '</div>'
 					+ '</div>'
@@ -95,6 +100,7 @@ function getEventList(page){
 				html = "";
 			}
 			else{
+				isDone = true;
 				page--;
 			}
 		}

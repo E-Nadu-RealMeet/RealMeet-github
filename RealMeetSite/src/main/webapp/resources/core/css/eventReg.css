@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+section#top {
+	background-image: url("../images/reg-top.jpg");
+}
+
 .selectBox {
 	border: solid 1px;
 	width: 100%;

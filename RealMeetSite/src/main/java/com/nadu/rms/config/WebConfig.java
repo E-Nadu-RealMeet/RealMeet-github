@@ -116,10 +116,9 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public EventsDao eventsDao(){
     	return new EventsDao();
     }
-    
     @Bean
-    public BannerDao bannerDao(){
-    	return new BannerDao();
+    public BannerDAO bannerDao(){
+    	return new BannerDAO();
     }
     @Bean(autowire = Autowire.BY_NAME)
     public CommonsMultipartResolver multipartResolver(){
@@ -167,16 +166,16 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     	return new BoardDao();
     }
     @Bean
-    public CustomersDao customersDao(){
-    	return new CustomersDao();
+    public CustomerDAO customersDao(){
+    	return new CustomerDAO();
     }
     @Bean
     public ReviewsDao reviewsDao(){
     	return new ReviewsDao();
     }
     @Bean
-    public EventsService eventsService(){
-    	return new EventsService();
+    public EventDataService eventsService(){
+    	return new EventDataService();
     }
     @Bean
     public EventRegService eventRegService(){
@@ -189,5 +188,17 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public CategoryDAO categoryDAO(){
     	return new CategoryDAO();
+    }
+    @Bean
+    public GuestlistDao guestlistDao(){
+    	return new GuestlistDao();
+    }
+    @Bean
+    public EventDetailService eventDetailService(){
+    	return new EventDetailService();
+    }
+    @Bean
+    public EventApplyService eventApplyService(){
+    	return new EventApplyService();
     }
 }

@@ -13,6 +13,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nadu.rms.config.MyBatisUtil;
+import com.nadu.rms.mapper.annotation.EventsMapper;
 import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Events;
@@ -21,81 +23,71 @@ public class EventsDao {
 
 	private static final Logger log = LoggerFactory.getLogger(EventsDao.class);
 	
-	private SqlSessionFactory getSqlSessionFactory(){
+
+	public List<Event_Eventlist> selectEvents(){
 		
-		String resource="com/nadu/rms/config/mybatis-config.xml";
-		InputStream inputStream;
-
-		try{
-			inputStream = Resources.getResourceAsStream(resource);
-		}catch(IOException e){
-			throw new IllegalArgumentException(e);
-		}
-		return new SqlSessionFactoryBuilder().build(inputStream);
-
-	}
-
-	public List<Events> selectEvents(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
-		try{
-			String statement = "com.nadu.rms.mapper.EventsMapper.selectEvents";
-			return sqlSession.selectList(statement);
-
-		}finally {
-			sqlSession.close();
-		}
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> events = mapper.selectEvents();
+		session.close();
+		return events;
 	}
 	
 	
 	public int insertEvents(Event_Eventlist e){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		try{
 			String statement = "com.nadu.rms.mapper.EventsMapper.insertEvents";
-			return sqlSession.insert(statement, e);
+			return session.insert(statement, e);
 		}finally{
-			sqlSession.commit(); //commit을 안하면 데이터 입력이 안됩니다.
-			sqlSession.close();
+			session.commit(); //commit�쓣 �븞�븯硫� �뜲�씠�꽣 �엯�젰�씠 �븞�맗�땲�떎.
+			session.close();
 		}
 	}
 	
-	//이벤트와 유저 정보 획득Map<Object, Object>
+	//�씠踰ㅽ듃�� �쑀�� �젙蹂� �쉷�뱷Map<Object, Object>
 	public List<Event_User> selectEventsNUser(int startNum, int endNum){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		
 		Map<String,Integer> paramMap = new HashMap<String,Integer>();
 		paramMap.put("startNum", startNum);
 		paramMap.put("endNum", endNum);
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.EventsMapper.selectEventsNUser";
-			return sqlSession.selectList(statement, paramMap);
-		}finally{
-			sqlSession.close();
-		}
-	}
-	
-	// Events와 EventList 테이블 조인 결과 획득 
-	public List<Event_Eventlist> selectEventsDetailByESIDX(String esidx){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.EventsMapper.selectEventsDetailByESIDX";
-			//System.out.println(statement);
-			return sqlSession.selectList(statement, esidx);
-
-		}finally {
-			sqlSession.close();
-		}
-	}
-	
-	public int getCntEvents(){
 		
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.EventsMapper.getCntFromEvents";
-			return sqlSession.selectOne(statement);
-		}finally{
-			sqlSession.close();
-		}
+		List<Event_User> events = mapper.selectEventsNUser(paramMap);
+		session.close();
+		
+		return events;
 	}
+	
+	// Events�� EventList �뀒�씠釉� 議곗씤 寃곌낵 �쉷�뱷 
+	public List<Event_Eventlist> selectEventsDetailByESIDX(String esidx){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> events = mapper.selectEventsDetailByESIDX(esidx);
+		session.close();
+		return events;
+	}
+	
+	public List<Event_Eventlist> updateEventsDetailByESIDX(String esidx){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> events = mapper.selectEventsDetailByESIDX(esidx);
+		session.close();
+		return null;
+				
+	}
+	
+	public int selectCntEvents(){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int cnt = mapper.selectCntEvents();
+		session.close();
+		return cnt;
+	}
+	/*
 	public List<String> getCategories(){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
@@ -106,5 +98,5 @@ public class EventsDao {
 			sqlSession.close();
 		}
 		
-	}
+	}*/
 }

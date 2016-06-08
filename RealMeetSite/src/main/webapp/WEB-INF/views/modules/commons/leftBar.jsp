@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <style>
 #accordion {
     list-style: none;
@@ -45,8 +44,7 @@
     text-decoration: underline;
 }
 </style>
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/jquery-1.11.3.min.js"></script>
 
 </head>
 <body>
@@ -65,27 +63,18 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
+							<li><a href="${pageContext.request.contextPath}/" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">홈페이지로</span></a></li>
 							<c:if test="${empty mid}">
-								<li><a href="${pageContext.request.contextPath}/login" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">로그인</span></a></li>
-								</c:if>
-								<c:if test="${!empty mid}">
-								<li><a href="${pageContext.request.contextPath}/logout" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">로그아웃</span></a></li>
-								</c:if>
-								<li><a href="${pageContext.request.contextPath}/event/list" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">이벤트 리스트</span></a></li>
-								<li><a href="${pageContext.request.contextPath}/event/reg" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
-								<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-free">게시판</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/login" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-unlock">로그인</span></a></li>
+							</c:if>
+							<c:if test="${!empty mid}">
+								<li><a href="${pageContext.request.contextPath}/logout" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-lock">로그아웃</span></a></li>
+							</c:if>
+							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">이벤트 리스트</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">게시판</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/customer/customer" id="" class="skel-layers-ignoreHref"><span class="icon fa-users">고객센터</span></a></li>
 							</ul>
-							<ul id="accordion">
-    						<li><div><a href="${pageContext.request.contextPath}/customer/customer"><span class="icon fa-user">고객센터</span></a></div>
-       							 <ul>
-									<li><a href="${pageContext.request.contextPath}/customer/Notices" ><span class="icon fa-user">공지사항</span></a></li>
-									<li><a href="${pageContext.request.contextPath}/customer/FAQs" ><span class="icon fa-user">FAQ</span></a></li>
-									<li><a href="${pageContext.request.contextPath}/customer/QNA" ><span class="icon fa-user">내 문의내역</span></a></li>
-									</ul>
-   							 </li>
-								
-							</ul>	
-							
 						</nav>
 
 				</div>

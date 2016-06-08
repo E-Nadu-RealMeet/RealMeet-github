@@ -13,6 +13,7 @@
 <title>Prologue by HTML5 UP</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/board.css" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/freeBoard/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
@@ -124,11 +125,10 @@ function rev_Geocode(arg1, arg2){
 	
 	<!-- Main -->
 	<div id="main">
-		<section id="top" class="one dark cover">
-				<header>
-					<h2>자유 게시판</h2>
-				</header>
-		</section>
+		<!-- Intro -->
+		<jsp:include page="../modules/commons/intro.jsp">
+			<jsp:param value="자유게시판" name="introValue"/>
+		</jsp:include>
 	<section>
 	<div class="container">
 		<div id="real_cnt" style="max-width: 1000px; margin: 0px auto;">

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.nadu.rms.mapper.annotation.CustomerMapper">
+	
+	<select id="selectFAQs" resultType="com.nadu.rms.vo.FAQ">
+	<if test="title == null">
+	SELECT * FROM FAQ 
+	</if>
+	<if test="title != null">
+	SELECT * FROM FAQ WHERE TITLE LIKE '%'||#{title}||'%'
+	</if>
+	</select>
+	
+
+	
+	<select id="selectQNAs" resultType="com.nadu.rms.vo.QNA">
+	<if test="title == null">
+	SELECT * FROM QNA
+	</if>
+	<if test="title != null">
+	SELECT * FROM QNA WHERE TITLE LIKE '%'||#{title}||'%'
+	</if>
+	</select>
+	
+<!-- 	<select id="selectNoticeByNidx" resultType="com.nadu.rms.vo.Notices"> -->
+<!-- 	SELECT TITLE, CONTENT FROM NOTICES WHERE NIDX = #{nidx} -->
+<!-- 	</select> -->
+	<select id="selectFAQByFidx" resultType="com.nadu.rms.vo.FAQ">
+	SELECT TITLE, CONTENT FROM FAQ WHERE FIDX = #{fidx}
+	</select>
+	<select id="selectQNAByQidx" resultType="com.nadu.rms.vo.QNA">
+	SELECT TITLE, CONTENT , ANSWER FROM QNA WHERE QIDX = #{qidx}
+	</select>
+	
+	<insert id="insertQNA" parameterType="com.nadu.rms.vo.QNA">
+	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'N/A')
+	</insert>
+<!-- 	<select id="insertQNA" resultType="com.nadu.rms.vo.QNA"> -->
+<!-- 	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'N/A') -->
+<!-- 	</select> -->
+</mapper>

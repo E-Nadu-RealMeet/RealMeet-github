@@ -14,7 +14,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" /> 
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" /> 
-		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
+<%-- 		<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script> --%>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
