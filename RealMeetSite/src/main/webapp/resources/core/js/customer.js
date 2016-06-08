@@ -8,58 +8,15 @@
 //})
 //});
 
-$(function(){
-	$.ajax({
-		var html = "";
-		html = html + '<div class="row">'
-		+'<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">'
-		+'<article class="item" >'
-			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">'
-			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>'
-			+'<header>'
-			+'	<h2 >공지사항</h2>'
-			+'</header></button>'
-		+'</article>'
-		+'<article class="item">'
-			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">'
-			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="200px" height="100px"/>'
-			+'<header>'
-				+'<h2>내 문의내역</h2>'
-			+'</header></button>'
-		+'</article>'
-	+'</div>'
-	+'<div class="5u" style="margin-top: 7%" >'
-		+'<article class="item">'
-			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQModal">'
-			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="200px" height="100px"/>'
-			+'<header>'
-				+'<h2>FAQ</h2>'
-			+'</header></button>'
-		+'</article>'
-		+'<article class="item">'
-			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#callModal">'
-			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="200px" height="100px"/>'
-		
-		+'<header>'
-			+'	<h2>문의하기</h2>'
-			+'</header>'
-			+'</button>'
-		+'</article>'
-	+'</div>'
-+'</div>'
-	})
-	$("#container").append(html); 
-});
-
 
 $(document).ready(function(){
 
 
-$('#NoticesModal').click(function(){
+$('[data-target="#NoticesModal"]').on("click",function(){
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : 'Notices/Modal',
+		url : 'NoticesModal',
 		success : function(returnData) {
 			var list = returnData.notices;
 			var contextPath = getContextPath();
@@ -102,8 +59,8 @@ $('#NoticesModal').click(function(){
 		     +' </div>'
 		    + ' </div>'
 		    + ' </div>';
-			$(html).appendTo('container').modal();
-	html = "";
+			$("#container").append(html); 
+			html = "";
 				}
 			error : function(){
 			alert("error");	

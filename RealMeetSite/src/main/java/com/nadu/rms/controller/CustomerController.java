@@ -52,9 +52,11 @@ public class CustomerController {
 		return "customer/customer";	
 	}
 	
-	@RequestMapping(value="Notices/Modal", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="NoticesModal", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String Notices(HttpServletRequest req, Model model){
+//		List<Notices> Notices = customersDao.selectNotices();
+//		model.addAttribute("Notices", customersDao.selectNotices());
 		String returnValue = customerService.NoticesListLoad(req);
 		log.info("gson : " + returnValue);
 		return returnValue;

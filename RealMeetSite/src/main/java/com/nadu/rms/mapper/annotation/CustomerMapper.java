@@ -10,7 +10,7 @@ public interface CustomerMapper {
 	public List<FAQ> selectFAQs();
 	
 
-	@Select("SELECT * FROM NOTICES WHERE TITLE LIKE #{title}")
+	@Select("SELECT * FROM NOTICES")
 	public List<Notices> selectNotices();
 	
 	@Select("SELECT TITLE, CONTENT FROM NOTICES WHERE NIDX = #{nidx}")
