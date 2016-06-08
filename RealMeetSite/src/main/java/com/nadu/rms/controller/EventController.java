@@ -145,6 +145,7 @@ public class EventController {
 		String introValue = "모임을 만들어봐요.";
         model.addAttribute("introValue", introValue );
 		model.addAttribute("categories", categories);
+		model.addAttribute("page","eventReg");
 		return "event/eventReg";
 	}
 
@@ -164,6 +165,5 @@ public class EventController {
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String eventEdit(Event_Eventlist e) {
 		return "event/eventEdit";
-		
 	}
 }

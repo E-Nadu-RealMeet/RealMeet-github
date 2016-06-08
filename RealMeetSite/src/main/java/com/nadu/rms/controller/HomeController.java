@@ -41,9 +41,22 @@ public class HomeController {
         List<Event_Eventlist> list = eventsDao.selectEvents();
 
 		model.addAttribute("list", list);    
-        
+		model.addAttribute("page","index");
          
         return "index";
+    }
+    @RequestMapping(value = "/caro", method = RequestMethod.GET)
+    public String caro(Model model) {
+       
+    	String introValue = "DadleMoyeo에 오신 것을 환영합니다.";
+        model.addAttribute("introValue", introValue );
+       
+        List<Event_Eventlist> list = eventsDao.selectEvents();
+
+		model.addAttribute("list", list);    
+        
+         
+        return "modules/commons/carousel";
     }
 }
 
