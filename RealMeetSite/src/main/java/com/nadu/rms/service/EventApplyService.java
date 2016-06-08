@@ -1,6 +1,5 @@
 package com.nadu.rms.service;
 
-import org.eclipse.jetty.util.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nadu.rms.dao.GuestlistDao;
