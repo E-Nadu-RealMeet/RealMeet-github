@@ -47,11 +47,12 @@ public class LoginController {
 				return "redirect:" + "/";
 			}
 		}
-
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, String mid) {
+		String referrer = request.getHeader("Referer");
+		log.info("이전 페이지 : "+referrer);
 		request.getSession().setAttribute("mid", mid);
 		mid = "";
 		return "redirect:/";
