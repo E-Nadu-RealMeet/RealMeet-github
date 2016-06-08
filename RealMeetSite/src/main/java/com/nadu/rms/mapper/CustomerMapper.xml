@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.annotation.CustomerMapper">
+<mapper namespace="com.nadu.rms.mapper.CustomerMapper">
 	
 	<select id="selectFAQs" resultType="com.nadu.rms.vo.FAQ">
 	<if test="title == null">
@@ -14,7 +14,14 @@
 	</if>
 	</select>
 	
-
+	<select id="selectNotices" resultType="com.nadu.rms.vo.Notices">
+	<if test="title == null">
+	SELECT * FROM NOTICES
+	</if>
+	<if test="title != null">
+	SELECT * FROM NOTICES WHERE TITLE LIKE '%'||#{title}||'%'
+	</if>
+	</select>
 	
 	<select id="selectQNAs" resultType="com.nadu.rms.vo.QNA">
 	<if test="title == null">
@@ -25,14 +32,14 @@
 	</if>
 	</select>
 	
-<!-- 	<select id="selectNoticeByNidx" resultType="com.nadu.rms.vo.Notices"> -->
-<!-- 	SELECT TITLE, CONTENT FROM NOTICES WHERE NIDX = #{nidx} -->
-<!-- 	</select> -->
+	<select id="selectNoticeByNidx" resultType="com.nadu.rms.vo.Notices">
+	SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}
+	</select>
 	<select id="selectFAQByFidx" resultType="com.nadu.rms.vo.FAQ">
-	SELECT TITLE, CONTENT FROM FAQ WHERE FIDX = #{fidx}
+	SELECT * FROM FAQ WHERE FIDX = #{fidx, jdbcType=VARCHAR}
 	</select>
 	<select id="selectQNAByQidx" resultType="com.nadu.rms.vo.QNA">
-	SELECT TITLE, CONTENT , ANSWER FROM QNA WHERE QIDX = #{qidx}
+	SELECT * FROM QNA WHERE QIDX = #{qidx, jdbcType=VARCHAR}
 	</select>
 	
 	<insert id="insertQNA" parameterType="com.nadu.rms.vo.QNA">

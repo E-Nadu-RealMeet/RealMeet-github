@@ -7,16 +7,11 @@ import org.apache.ibatis.annotations.Select;
 import com.nadu.rms.vo.*;
 
 public interface CustomerMapper {
-	public List<FAQ> selectFAQs();
-	
-
-	@Select("SELECT * FROM NOTICES WHERE TITLE LIKE #{title}")
-	public List<Notices> selectNotices();
-	
-	@Select("SELECT TITLE, CONTENT FROM NOTICES WHERE NIDX = #{nidx}")
+	public List<FAQ> selectFAQs(String title);
+	public List<Notices> selectNotices(String title);
 	public Notices selectNoticeByNidx();
 	public FAQ selectFAQByFidx();
 	public QNA selectQNAByQidx();
-	public List<QNA> selectQNAs();
+	public List<QNA> selectQNAs(String title);
 	public QNA insertQNA();
 }
