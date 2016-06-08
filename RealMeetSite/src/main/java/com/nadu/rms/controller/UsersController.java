@@ -66,13 +66,16 @@ public class UsersController {
 	
 	//회원가입 proc
 	@RequestMapping(value="join", method = RequestMethod.POST)
-	public String usersJoin(Users u, Model model){
-
+	public String usersJoin(Users u, String interest, Model model, HttpServletRequest request){
+		
+		u.setInterest(interest);
 		int af = usersDao.insertUsers(u);
 		model.addAttribute("id", u.getId());
 		
+		
 		if(af>0){
 			System.out.println("회원추가 성공");
+			request.getSession().setAttribute("mid", u.getId());
 			return "redirect:../users/info";
 		}else{
 			System.out.println("회원추가 실패");
@@ -106,7 +109,7 @@ public class UsersController {
 	
 	//회원탈퇴 proc
 	@RequestMapping(value="check", method = RequestMethod.POST)
-	public String usersCheck(String id, HttpServletRequest req){
+	public String usersCheck(String id){
 		
 		System.out.println(id);
 		
@@ -124,7 +127,7 @@ public class UsersController {
 	
 	//아이디중복체크
 	@RequestMapping(value="idcheck")
-	public void checkid(String id, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception { 
+	public void checkid(String id, HttpServletResponse res, Model model) throws Exception { 
 		PrintWriter out = res.getWriter();
 		System.out.println(id);
 		Users users = null;
@@ -141,7 +144,7 @@ public class UsersController {
 	
 	//회원탈퇴 비번체크
 	@RequestMapping(value="pwdcheck")
-	public void checkpwd(String id, String pwd, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception { 
+	public void checkpwd(String id, String pwd, HttpServletResponse res, Model model) throws Exception { 
 		PrintWriter out = res.getWriter();
 		System.out.println("pwdcheck="+id);
 		System.out.println("pwdcheck="+pwd);
@@ -162,9 +165,9 @@ public class UsersController {
 	public String home(HttpServletRequest request){ 
 		String mid = (String) request.getSession().getAttribute("mid");
 		if(mid == null){
-			return "red";
+			return "users/usersHome";
 		}else{
-			return "usersHome";
+			return "users/usersHome";
 		}
 	}
 }
