@@ -36,7 +36,6 @@ public class EventRegService {
 		iv = eventlistDAO.insertEventlist(e);
 		return iv;
 	}
-	
 	public List<String> getCategories(){
 		List<String> categories = categoryDAO.select();
 		return categories;
