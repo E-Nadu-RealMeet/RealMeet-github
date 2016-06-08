@@ -45,7 +45,7 @@
 						<div role="tabpanel" class="tab-pane fade" id="review"
 							aria-labelledby="review-tab" aria-expanded="false">
 							<div class="row">
-								<c:if test="${reviews != null}">
+								<c:if test="${reviews.size() != 0}">
 									<c:forEach begin="0" end="${reviews.size()-1 }" var="i">
 										<!-- "col-sm-6" = 가용범위 1/2 크기 div -->
 										<div class="col-sm-6">

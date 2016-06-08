@@ -95,7 +95,6 @@ public class EventController {
 	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
-
 		
 		String returnValue = eventDataService.listLoad(req);
 		// 얻은 값 반환.
@@ -113,7 +112,7 @@ public class EventController {
 		String returnValue = eventDetailService.dataLoad(req, model);
 		// 얻은 값 반환.
 
-		log.info("gson : " + returnValue);
+		log.info("DATAgson : " + returnValue);
 		return returnValue;
 	}
 
