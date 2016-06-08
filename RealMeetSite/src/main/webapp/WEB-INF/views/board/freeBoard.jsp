@@ -31,10 +31,13 @@ $(document).ready(function(){
     lat: 37.553152,
     lng: 126.936894,
     click: function(e) {
-				var addr = rev_Geocode(e.latLng.lat(), e.latLng.lng());
-    			addMarker(e);
-      		}
-  		});
+    	var addr;
+
+		addMarker(e);
+    	addAddr(e);
+    	
+    	}
+  });
 
   $('#addr').keyup(function(){
 	  GMaps.geocode({
@@ -68,6 +71,10 @@ $(document).ready(function(){
 	  }
 	});
   });
+
+function addAddr(e){
+	rev_Geocode(e.latLng.lat(), e.latLng.lng());
+}
   
 function addMarker(e){
 	var marker = map.addMarker({
@@ -105,14 +112,14 @@ function rev_Geocode(arg1, arg2){
 		type: 'POST',
 		success: function(myJSONResult){
 			if(myJSONResult.status == 'OK'){
-				var addr = $('#addr');
+				
 				var tag = "";
 				var i;
 				for (i=0; i<myJSONResult.results.length; i++){
 					tag+=myJSONResult.results[i].formatted_address
 				}
+				alert(myJSONResult.results[0].formatted_address)
 				/* alert(myJSONResult.results[0].formatted_address) */
-				addr.val(myJSONResult.results[0].formatted_address);
 			}else if(myJSONResult.status == 'ZERO_RESULTS') {
                 alert("지오코딩이 성공했지만 반환된 결과가 없음을 나타냅니다.\n\n이는 지오코딩이 존재하지 않는 address 또는 원격 지역의 latlng을 전달받는 경우 발생할 수 있습니다.")
             } else if(myJSONResult.status == 'OVER_QUERY_LIMIT') {
