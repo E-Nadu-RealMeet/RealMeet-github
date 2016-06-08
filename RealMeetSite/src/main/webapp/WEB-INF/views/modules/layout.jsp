@@ -25,22 +25,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
 
-<!-- 부트스트랩 -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<!-- holder.js link -->
-<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
-
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
-<script	src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
-
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js link -->
 </head>
 <body>
 	<!-- Header -->
