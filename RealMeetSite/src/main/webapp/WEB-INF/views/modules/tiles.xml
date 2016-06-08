@@ -37,7 +37,7 @@
     <put-attribute name="content" value="/WEB-INF/views/event/{1}.jsp"/>
     <!-- 추가사항 -->
   </definition>
-<<<<<<< HEAD
+  
   <definition name="users/*" template="/WEB-INF/views/modules/layout.jsp">
   	<!-- 공통사항 -->
   	<put-attribute name="header" value="/WEB-INF/views/modules/commons/leftBar.jsp" />
@@ -48,7 +48,5 @@
     <put-attribute name="content" value="/WEB-INF/views/users/{1}.jsp"/>
   </definition>
   
-=======
   <definition name="modules/commons/carousel" template="/WEB-INF/views/modules/commons/carousel.jsp"></definition>
->>>>>>> 98a4c9356edfb6ccd0212b135a0167304252c4f6
 </tiles-definitions>
