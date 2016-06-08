@@ -14,16 +14,16 @@ public class EventApplyService {
 		this.guestlistDao = guestlistDao;
 	}
 
-	public int applyEvent(String mid, String elidx){
+	public String applyEvent(String mid, String elidx){
 		
 		Guestlist Vgl = new Guestlist();
 		Vgl.setElidx(elidx);
 		Vgl.setGuest(mid);
-		String result = "";
-		int ret = guestlistDao.callApplyProcedure(Vgl);
+
+		guestlistDao.callApplyProcedure(Vgl);
 		
-		System.out.println("result : " + result);
-		return ret;
+		
+		return Vgl.getResult();
 		
 	}
 }
