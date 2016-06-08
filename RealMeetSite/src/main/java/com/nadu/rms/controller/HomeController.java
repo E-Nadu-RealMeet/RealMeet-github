@@ -34,14 +34,14 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        String name = "Psyken";
+        String introValue = "DadleMoyeo에 오신 것을 환영합니다.";
+        model.addAttribute("introValue", introValue );
         List<Event_Eventlist> list = eventsDao.selectEvents();
 
 		model.addAttribute("list", list);    
-        model.addAttribute("name", name );
+        
          
         return "index";
     }
-   
 }
 

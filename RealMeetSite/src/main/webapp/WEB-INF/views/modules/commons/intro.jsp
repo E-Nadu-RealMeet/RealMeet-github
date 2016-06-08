@@ -7,7 +7,7 @@
 		<!-- Intro -->
 		<section id="top" class="one dark cover">
 				<header id="topName">
-					<h2  id="topNameH2">${param.introValue}</h2>
+					<h2  id="topNameH2">${introValue}</h2>
 				</header>
 		</section>
 </body>

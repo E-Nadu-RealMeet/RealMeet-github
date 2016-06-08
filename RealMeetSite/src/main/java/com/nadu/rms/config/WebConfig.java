@@ -23,9 +23,20 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.nadu.rms.controller.*;
-import com.nadu.rms.dao.*;
-import com.nadu.rms.service.*;
+import com.nadu.rms.controller.UploadController;
+import com.nadu.rms.dao.BannerDAO;
+import com.nadu.rms.dao.BoardDao;
+import com.nadu.rms.dao.CategoryDAO;
+import com.nadu.rms.dao.CustomerDAO;
+import com.nadu.rms.dao.EventlistDao;
+import com.nadu.rms.dao.EventsDao;
+import com.nadu.rms.dao.GuestlistDao;
+import com.nadu.rms.dao.ReviewsDao;
+import com.nadu.rms.dao.UsersDao;
+import com.nadu.rms.service.EventApplyService;
+import com.nadu.rms.service.EventDataService;
+import com.nadu.rms.service.EventDetailService;
+import com.nadu.rms.service.EventRegService;
 
 @Configuration
 @EnableWebMvc
@@ -70,7 +81,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     /**
      * JSP를 뷰로 사용하는 뷰 리졸버 등록
      */
-    @Bean
+    /*@Bean
     public ViewResolver viewResolver() {
  
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -79,7 +90,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         viewResolver.setSuffix(".jsp");
         
         return viewResolver;
-    }
+    }*/
  
     @Override
     public void addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry registry) {
@@ -90,7 +101,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
  
  
         // 404 오류가 발생했을때 보여줄 뷰를 등록
-        // registry.addViewController("/page-not-found").setViewName("errors/404");
+        registry.addViewController("/page-not-found").setViewName("error");
     }
  
     /**
@@ -112,14 +123,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         return messageSource;
     }
     
-    @Bean
-    public EventsDao eventsDao(){
-    	return new EventsDao();
-    }
-    @Bean
-    public BannerDAO bannerDao(){
-    	return new BannerDAO();
-    }
     @Bean(autowire = Autowire.BY_NAME)
     public CommonsMultipartResolver multipartResolver(){
     	CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
@@ -156,49 +159,5 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public String uploadRepository(){
     	return context.getRealPath("")+"resources\\core\\images\\upload\\";
-    }
-    @Bean
-    public UsersDao usersDao(){
-    	return new UsersDao();
-    }
-    @Bean
-    public BoardDao boardDao(){
-    	return new BoardDao();
-    }
-    @Bean
-    public CustomerDAO customersDao(){
-    	return new CustomerDAO();
-    }
-    @Bean
-    public ReviewsDao reviewsDao(){
-    	return new ReviewsDao();
-    }
-    @Bean
-    public EventDataService eventsService(){
-    	return new EventDataService();
-    }
-    @Bean
-    public EventRegService eventRegService(){
-    	return new EventRegService();
-    }
-    @Bean
-    public EventlistDao eventlistDao(){
-    	return new EventlistDao();
-    }
-    @Bean
-    public CategoryDAO categoryDAO(){
-    	return new CategoryDAO();
-    }
-    @Bean
-    public GuestlistDao guestlistDao(){
-    	return new GuestlistDao();
-    }
-    @Bean
-    public EventDetailService eventDetailService(){
-    	return new EventDetailService();
-    }
-    @Bean
-    public EventApplyService eventApplyService(){
-    	return new EventApplyService();
     }
 }
