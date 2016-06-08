@@ -146,4 +146,10 @@ public class EventController {
 			return "redirect:reg";
 		}
 	}
+	
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String eventEdit(Event_Eventlist e) {
+		return "event/eventEdit";
+		
+	}
 }

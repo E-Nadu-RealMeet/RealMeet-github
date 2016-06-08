@@ -201,4 +201,9 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public EventApplyService eventApplyService(){
     	return new EventApplyService();
     }
+    
+    @Bean
+    public CustomerService customerService(){
+    	return new CustomerService();
+    }
 }
