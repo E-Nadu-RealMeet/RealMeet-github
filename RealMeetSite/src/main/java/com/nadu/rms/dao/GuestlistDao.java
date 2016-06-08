@@ -2,6 +2,7 @@ package com.nadu.rms.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -40,4 +41,14 @@ public class GuestlistDao{
 		session.close();
 		return glist;
 	}
+	
+	public List<Map<Object,Object>> selectCntGuestlist(){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		GuestlistMapper mapper = session.getMapper(GuestlistMapper.class);
+		List<Map<Object,Object>> cntlist = mapper.selectCountGuestlist();
+		session.close();
+		return cntlist;
+	}
+	
+	
 }

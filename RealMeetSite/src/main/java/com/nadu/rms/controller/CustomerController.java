@@ -52,7 +52,7 @@ public class CustomerController {
 		return "customer/customer";	
 	}
 	
-	@RequestMapping(value="NoticesModal", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="Notices/Modal", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String Notices(HttpServletRequest req, Model model){
 		String returnValue = customerService.NoticesListLoad(req);

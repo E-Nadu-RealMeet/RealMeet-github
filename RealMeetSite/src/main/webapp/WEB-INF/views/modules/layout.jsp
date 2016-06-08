@@ -24,6 +24,17 @@
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"	type="text/javascript"></script>
+<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
+
 </head>
 <body>
 	<!-- Header -->

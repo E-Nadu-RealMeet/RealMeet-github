@@ -1,26 +1,70 @@
-$(document).ready(function(){
-$("#NoticesModal").click(function(){
-	getNoticesList();
-})
+//$(document).ready(function(){
+//$("#NoticesModal").click(function(){
+//	getNoticesList();
+//})
 
-$("#NoticesDetail").click(function(){
-	getNoticesDetailList();
-})
+//$("#NoticesDetail").click(function(){
+//	getNoticesDetailList();
+//})
+//});
+
+$(function(){
+	$.ajax({
+		var html = "";
+		html = html + '<div class="row">'
+		+'<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">'
+		+'<article class="item" >'
+			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">'
+			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>'
+			+'<header>'
+			+'	<h2 >공지사항</h2>'
+			+'</header></button>'
+		+'</article>'
+		+'<article class="item">'
+			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">'
+			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="200px" height="100px"/>'
+			+'<header>'
+				+'<h2>내 문의내역</h2>'
+			+'</header></button>'
+		+'</article>'
+	+'</div>'
+	+'<div class="5u" style="margin-top: 7%" >'
+		+'<article class="item">'
+			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQModal">'
+			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="200px" height="100px"/>'
+			+'<header>'
+				+'<h2>FAQ</h2>'
+			+'</header></button>'
+		+'</article>'
+		+'<article class="item">'
+			+'<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#callModal">'
+			+'<img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="200px" height="100px"/>'
+		
+		+'<header>'
+			+'	<h2>문의하기</h2>'
+			+'</header>'
+			+'</button>'
+		+'</article>'
+	+'</div>'
++'</div>'
+	})
+	$("#container").append(html); 
 });
 
 
+$(document).ready(function(){
 
 
-function getNoticesList(){
+$('#NoticesModal').click(function(){
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : 'NoticesDetail',
+		url : 'Notices/Modal',
 		success : function(returnData) {
 			var list = returnData.notices;
 			var contextPath = getContextPath();
 			var html = "";
-			html = html+'<div class="modal fade" tabindex="-1"  role="dialog" id="NoticesModal" >'
+			html = html+'<div class="modal" tabindex="-1"  role="dialog" id="NoticesModal">'
 		    +  '<div class="modal-dialog">'
 		     + '<div class="modal-content">' 
 				+					'<header>'
@@ -43,7 +87,7 @@ function getNoticesList(){
 							+	'<td><a id="NoticesDetail" href="NoticeDetail/${'+ list[i].nidx +'}">'+list[i].title+'</a></td>'
 							+	'<td>'+list[i].regdate+'</td>'
 						+	'</tr>'
-					);
+				}
 
 			html = html	+	'</table>'
 				+	'<table>'
@@ -58,12 +102,16 @@ function getNoticesList(){
 		     +' </div>'
 		    + ' </div>'
 		    + ' </div>';
-	$("#container").append(html); 
+			$(html).appendTo('container').modal();
 	html = "";
-		)
+				}
+			error : function(){
+			alert("error");	
+			
+			}
 		
 	});
-		};
+		}
 	
 		
 function getNoticesDetailList(){
@@ -71,8 +119,8 @@ function getNoticesDetailList(){
 				type : 'GET',
 				dataType : 'json',
 				url : 'NoticesDetail',
-				success : function(returnData) {
-					var detail = returnData.noticesdetail;
+				success : function(returnValue) {
+					var detail = returnValue.noticesdetail;
 					var contextPath = getContextPath();
 					var html = "";
 					html = html+'<div class="modal fade" role="dialog" id="NoticesDetailModal">'
@@ -117,7 +165,7 @@ function getNoticesDetailList(){
 				
 			});
 				};		
-		
+});		
 	function getContextPath(){
 	    var offset=location.href.indexOf(location.host)+location.host.length;
 	    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
