@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
+import com.nadu.rms.service.EventEditService;
 import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.vo.Event_Eventlist;
 
@@ -31,7 +32,12 @@ public class EventController {
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
+	EventEditService eventEditService;
 	
+	public void setEventEditService(EventEditService eventEditService) {
+		this.eventEditService = eventEditService;
+	}
+
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
 	
@@ -148,7 +154,8 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String eventEdit(Event_Eventlist e) {
+	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
+		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
 		return "event/eventEdit";
 		
 	}

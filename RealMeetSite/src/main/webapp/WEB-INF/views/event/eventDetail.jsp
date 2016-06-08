@@ -64,12 +64,14 @@
 								<p>${detail.get(0).getDescription() }</p>
 							</blockquote>
 							<hr>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailEditModal">수정</button>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="pictures"
 							aria-labelledby="pictures-tab" aria-expanded="false">
 							<p>
 							<div class="row" >사진 넣을공간</div>
 							</p>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#picturesEditModal">수정</button>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="review"
 							aria-labelledby="review-tab" aria-expanded="false">
@@ -89,10 +91,38 @@
 								</c:forEach>
 								</c:if>
 							</div>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewEditModal">수정</button>
 						</div>
 						</c:if>
 					</div>
-				</div><%-- 
+				</div>
+				
+				
+				
+<div class="modal fade" role="dialog" id="detailEditModal">
+      <div class="modal-dialog">
+      <div class="modal-content"> 
+							<header>
+								<h2 align="center">Detail 수정</h2>
+							</header>
+				
+
+			<input type="text" name="detail" placeholder="제목"/>
+			
+			<table>
+			<tr>
+			<button style="float: right;" type="button" class="btn btn-primary btn-lg" data-dismiss="modal">수정</button>
+			<button style="float: right;" type="button" class="btn btn-default btn-lg" data-dismiss="modal">취소</button>
+			</tr>
+			</table>
+      </div>
+      </div>
+      </div>				
+				
+				
+				
+				
+				<%-- 
 				<c:if test="${detail.size() != 0}">
 					<c:forEach var="i" begin="0" end="${detail.size()-1 }">
 						<div data-toggle="modal" data-target="#apply${}">

@@ -103,7 +103,7 @@ public class CustomerController {
 	public String QNA(Model model){
 		List<QNA> QNA = customersDao.selectQNAs(); 
 		model.addAttribute("QNA", QNA);
-		return "customer/QNA";	
+		return "#QNAsModal";	
 	}
 	
 	@RequestMapping(value = "insertQNA", method = RequestMethod.POST)

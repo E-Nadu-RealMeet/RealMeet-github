@@ -9,16 +9,18 @@ $("#NoticesDetail").click(function(){
 });
 
 
+
+
 function getNoticesList(){
 	$.ajax({
 		type : 'GET',
 		dataType : 'json',
-		url : 'Notices',
+		url : 'NoticesDetail',
 		success : function(returnData) {
 			var list = returnData.notices;
 			var contextPath = getContextPath();
 			var html = "";
-			html = html+'<div class="modal fade" role="dialog" id="NoticesModal" >'
+			html = html+'<div class="modal fade" tabindex="-1"  role="dialog" id="NoticesModal" >'
 		    +  '<div class="modal-dialog">'
 		     + '<div class="modal-content">' 
 				+					'<header>'
