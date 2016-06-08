@@ -146,15 +146,15 @@ public class EventController {
 		String introValue = "모임을 만들어봐요.";
         model.addAttribute("introValue", introValue );
 		model.addAttribute("categories", categories);
-		model.addAttribute("page","eventReg");
+		model.addAttribute("page","event/eventReg");
 		return "event/eventReg";
 	}
 
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
-	public String eventReg(Event_Eventlist e) {
+	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
 
-		int iv = eventRegService.eventReg(e);
+		int iv = eventRegService.eventReg(e, request);
 		
 		if(iv>0){
 			return "redirect:../event/"+e.getEsidx();

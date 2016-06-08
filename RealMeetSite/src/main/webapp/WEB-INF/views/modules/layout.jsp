@@ -22,7 +22,7 @@
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
 <script src="${pageContext.request.contextPath}/resources/core/js/gmap/gmaps.js"></script>
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/${page }.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
