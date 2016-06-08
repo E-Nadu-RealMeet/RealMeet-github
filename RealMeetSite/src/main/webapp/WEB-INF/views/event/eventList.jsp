@@ -37,17 +37,16 @@
 
 		<!-- Main -->
 			<div id="main">
-
+				<!-- Intro -->
+				<jsp:include page="../modules/commons/intro.jsp">
+					<jsp:param value="이벤트 리스트" name="introValue"/>
+				</jsp:include>
+				
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
 						<div class="container" id="container">
 
-							<header>
-								<h2>이벤트 리스트</h2>
-							</header>
-							
 							<div style= "max-width: 1000px; padding: 10px; margin: 10px auto;">
-								
 								<div>
 									<div class="dropdown">
 										<button class="btn btn-default dropdwon-toggle" type="button" id="dr1" data-toggle="dropdown" aria-expanded="true">

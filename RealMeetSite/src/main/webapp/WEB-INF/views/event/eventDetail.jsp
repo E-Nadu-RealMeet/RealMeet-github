@@ -92,117 +92,38 @@
 						</div>
 						</c:if>
 					</div>
-				</div><%-- 
-				<c:if test="${detail.size() != 0}">
-					<c:forEach var="i" begin="0" end="${detail.size()-1 }">
-						<div data-toggle="modal" data-target="#apply${}">
-							<input type="radio" id="chk${i}" name="chkDate" value="${i}">${detail.get(i).getAddr()}	/ ${detail.get(i).getEldate()} /
-							<c:if test="${glist.size() != 0}">
-							<c:forEach var="gl" begin="0" end="${glist.size()-1 }">
-								<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">참여함</c:if>
-							</c:forEach>
-							</c:if>
-							
-						</div>
-						<div class="modal fade" id="apply">
-							<div class="modal-dialog modal-lg">
-								<div class="modal-content">
-									<div class="modal-body" style="overflow: auto">
-										<div class="col-md-12" style="text-align: left">
-											정말 참여하시겠습니까
-										</div>
-										<c:if test="${glist.size() != 0}">
-											<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
-												<div class="col-md-12" style="text-align: left">정말 취소 하시겠습니까</div>
-											</c:if>
-										</c:if>
-										<c:if test="${glist.size() == 0 || detail.get(i).getElidx() != glist.get(gl).getElidx() }">
-											<div class="col-md-12" style="text-align: left">정말 참여 하시겠습니까</div>
-										</c:if>
-										
-									</div>
-									<div class="modal-footer">
-										<c:if test="${glist.size() != 0}">
-											<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
-											<button type="submit" id="applyEvent" class="btn btn-primary"
-												onclick="return applyProcess()">네</button>
-											</c:if>
-										</c:if>
-										<c:if test="${glist.size()==0 || detail.get(i).getElidx() != glist.get(gl).getElidx()}">
-										<button type="submit" id="applyEvent" class="btn btn-primary"
-											onclick="return cancleProcess('${detail.get(i).getElidx()}')">네</button>
-										</c:if>
-										<button type="button" id="close" class="btn btn-default"
-											data-dismiss="modal">닫기</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:if> --%>
+				</div> 
+				<div id = "lists">
+					
+				</div>
+				<input type="button" onclick="tmp()" value="button"/>
 				<hr>
 
-<%-- 
-				<button type="button" class="btn btn-primary btn-lg"
-					data-toggle="modal" data-target="#apply">참여 하기</button>
-				<div class="modal fade" id="apply" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-
-					<div class="modal-dialog modal-lg">
-						
-
-						
-						<input type="hidden" id="id" value="${sessionScope.mid }"> 
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">참여 하기</h4>
-							</div>
-							<div class="modal-body" style="overflow: auto">
-								<div class="col-md-12" style="text-align: left"></div>
-								<c:if test="${detail.size() != 0 }">
-									<c:forEach var="i" begin="0" end="${detail.size()-1 }">
-										<div><input type="radio" id="chk${i}" name="chkDate" value="${i}">${detail.get(i).getAddr()} / ${detail.get(i).getEldate()} / ${i} </div>
-									</c:forEach>
-								</c:if>
-							</div>
-							<div class="modal-footer">
-								<button type="submit" id="applyEvent" class="btn btn-primary" onclick="return applyProcess()">참여 하기</button>
-								<button type="button" id="cancleEvent" class="btn btn-warning">참여 취소 하기</button>
-								<button type="button" id="close" class="btn btn-default" data-dismiss="modal">닫기</button>
-							</div>
-						</div>
-						
-					
-
-						
-					</div>
-				</div>
-				
-				<button type="button" class="btn btn-primary btn-lg"
-					data-toggle="modal" data-target="#cancle">참여 취소 하기</button>
-					
-				<div class="modal fade" id="cancle" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">					
-							<div class="modal-body" style="overflow: auto">
-								<div class="col-md-12" style="text-align: left">정말 취소 하시겠습니까</div>
-							</div> 
-							<div class="modal-footer">
-								<button type="button" id="cancleEvent2" class="btn btn-warning">네</button>
-								<button type="button" id="close" class="btn btn-default" data-dismiss="modal">아니요</button>
-							</div>
-						</div>
-					</div>
-				</div>
- --%>
 
 			</div>
 			<!-- /.blog-post -->
+			<div class="eventlist" style='display:none;'>
+				<div class="target" data-toggle="modal" data-target="#apply">
+					<input type="radio" class="chk" id="chk${i}" name="chkDate">주소 / 날짜 / 참여여부
+				</div>
+				<div class="modal fade" id="apply">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-body" style="overflow: auto">
+								<div class="col-md-12" style="text-align: left">정말 참여하시겠습니까</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" id="submitEvent" class="btn btn-primary"
+									onclick="return applyProcess()">네</button>
+								<button type="button" id="close" class="btn btn-default"
+									data-dismiss="modal">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
 		</div>
 	</div>
 

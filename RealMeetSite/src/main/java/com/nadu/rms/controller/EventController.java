@@ -91,13 +91,26 @@ public class EventController {
 		//뷰 리턴(detail)
 		return returnValue;
 	}
-
+	// list 페이지 ajax 대응
 	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
 
-
+		
 		String returnValue = eventDataService.listLoad(req);
+		// 얻은 값 반환.
+
+		log.info("gson : " + returnValue);
+		return returnValue;
+	}
+	// detail 페이지  ajax 대응
+	@RequestMapping(value = "detail/dataload", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventDetailDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
+
+		String esidx = req.getParameter("esidx");
+		
+		String returnValue = eventDetailService.dataLoad(req, model);
 		// 얻은 값 반환.
 
 		log.info("gson : " + returnValue);
@@ -110,7 +123,7 @@ public class EventController {
 
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
-		eventDetailService.eventDetailLoad(req, esidx, model);
+		eventDetailService.detailLoad(req, esidx, model);
 
 		//뷰 리턴(detail)
 		return "event/eventDetail";
