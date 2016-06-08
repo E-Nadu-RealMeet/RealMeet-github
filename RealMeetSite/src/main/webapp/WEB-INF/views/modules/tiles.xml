@@ -47,6 +47,7 @@
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/users/{1}.jsp"/>
   </definition>
-  
+  <definition name="modules/*" template="/WEB-INF/views/modules/{1}.jsp">
+  </definition>
   <definition name="modules/commons/carousel" template="/WEB-INF/views/modules/commons/carousel.jsp"></definition>
 </tiles-definitions>

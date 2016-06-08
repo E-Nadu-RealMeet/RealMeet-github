@@ -68,7 +68,7 @@
 	section#top #topName {
 		background-color: white;
 	    /* opacity: 0.5; */
-	    background-color: rgba( 0, 0, 0, 0.4 );
+	    background-color: rgba( 0, 0, 0, 0.8 );
 	    /* width: 60%; */
 	    margin: 0 auto;
 	    border: 6px solid rgba( 0, 0, 0, 0.4 );
@@ -116,6 +116,7 @@
     	max-width: 1000px;
     	background-color: white;
     	border: 0.5px solid #cccccc;
+    	margin-top: 15px;
 	}
 
 	@media screen and (min-width: 961px) and (max-width: 1880px) {
@@ -2018,6 +2019,7 @@
 		background: #222629 url("images/overlay.png");
 		box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.1);
 		text-align: right;
+		font-size: 1.2em;
 	}
 
 		#header .top {
@@ -2163,6 +2165,7 @@
 			box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.05), inset 0 0.1em 0.1em 0 rgba(0, 0, 0, 0.025);
 			text-align: center;
 			/* background-image: url("images/overlay.png"); */
+			font-size: 1.3em;
 		}
 
 			#main > section.dark {
@@ -2601,4 +2604,14 @@
 	display:inline;
 	margin-right:20px;
 }
-	
+
+.carousel-caption {
+    background-color: rgba( 0, 0, 0, 0.65 );
+    border-radius: 17px;
+    border: 2px solid rgba( 0, 0, 0, 0.8 );
+}	
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    min-height: 500px;
+    max-height: 500px;
+    margin: 0 auto;
+}

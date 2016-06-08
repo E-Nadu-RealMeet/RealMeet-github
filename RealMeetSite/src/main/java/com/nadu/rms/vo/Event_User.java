@@ -13,7 +13,14 @@ public class Event_User {
 	private String id;
 	//private String pwd;
 	private String nickname;
+	private int good;
 	
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	public String getEsidx() {
 		return esidx;
 	}
