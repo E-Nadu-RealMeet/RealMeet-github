@@ -143,6 +143,8 @@ public class EventController {
 		}
 		
 		List<String> categories = eventRegService.getCategories();
+		String introValue = "모임을 만들어봐요.";
+        model.addAttribute("introValue", introValue );
 		model.addAttribute("categories", categories);
 		return "event/eventReg";
 	}
@@ -158,5 +160,11 @@ public class EventController {
 		}else{
 			return "redirect:reg";
 		}
+	}
+	
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String eventEdit(Event_Eventlist e) {
+		return "event/eventEdit";
+		
 	}
 }
