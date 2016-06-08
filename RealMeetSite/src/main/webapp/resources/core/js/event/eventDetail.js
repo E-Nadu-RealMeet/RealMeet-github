@@ -17,21 +17,32 @@ function cancleProcess(elidx) {
 
 function applyProcess(elidx){
 	
-	var ret = loginChk();
+	var ret = loginChka();
+
 	if(ret == true){
 		//로그인 되어있을때
+		$.ajax({
+			type : 'GET',  
+			dataType : 'text',
+			url : 'apply/'+elidx,
+			success : function(res) {
+				alert(res);
+				init(elidx);
+			}
+		});
 		
 		return true;
 	}
 	else{
 		//로그인 안되어있을때.
-		alert('로그인이 필요합니다.');
 		return false;
 	}
 	
 }
 
 function init(elidx){
+	
+	$('#lists').html('');
 	
 	$.ajax({
 		type : 'POST',  
@@ -85,22 +96,25 @@ function createApplyElement(data){
 }
 
 
-function loginChk(){
+function loginChka(){
+	var ret = true;
 	$.ajax({
 		url:getContextPath()+'/midCheck',
 		type:'POST',
 		dataType: 'text',
 		success: function(data){
 			if(data==="true"){
-				return true;
+				ret = true;
 			}else{
-				return false;
+				ret = false;
 			}
 		},
 		error: function(data){
 			alert('에러 발생')
 		}
 	})
+	
+	return ret;
 }
 
 function getContextPath(){

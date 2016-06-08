@@ -55,6 +55,7 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+		model.addAttribute("page","event/eventList");
 		return "event/eventList";
 	}
 
@@ -64,8 +65,11 @@ public class EventController {
 	@ResponseBody
 	public String eventApply(@PathVariable String elidx, HttpServletRequest req ,Model model) {
 
+		log.info("enter");
 		String returnString = "";
-		int ret = eventApplyService.applyEvent((String)req.getSession().getAttribute("mid"), elidx);
+		log.info(req.getSession().getAttribute("mid").toString());
+		log.info(elidx);
+		int ret = eventApplyService.applyEvent(req.getSession().getAttribute("mid").toString(), elidx);
 		if(ret == 0){
 			/* 성공 */
 			returnString = "Success";
@@ -123,7 +127,8 @@ public class EventController {
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.detailLoad(req, esidx, model);
-
+		model.addAttribute("page","event/eventDetail");
+		
 		//뷰 리턴(detail)
 		return "event/eventDetail";
 	}
