@@ -1,5 +1,6 @@
 package com.nadu.rms.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
-
+import com.google.gson.Gson;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.GuestlistDao;
 import com.nadu.rms.dao.ReviewsDao;
@@ -51,39 +52,99 @@ public class EventDetailService {
 	// 이벤트 리스트 데이터 반환
 	public String dataLoad(HttpServletRequest req, Model model){
 		
-		JsonClass js = new JsonClass();
+		// Json 형태로 변환시켜줄 Gson 객체 생성
+		Gson gson = new Gson();
+		
+		List<JsonClass> ret = new ArrayList<JsonClass>();
 		
 		//파라메터 가져오기
 		String esidx = req.getParameter("esidx");
 		String mid = (String)req.getSession().getAttribute("mid");
 		
-		
 		// DAO 활용 데이터 가져오기
 		List<Event_Eventlist> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
 		List<Guestlist> glist = geustlistDAO.searchGuestlistById(mid);
 		List<Map<Object, Object>> cntlist = geustlistDAO.selectCntGuestlist();
-		
-		System.out.println(cntlist.size());
-		
-		for (Map<Object, Object> map : cntlist) {
-			System.out.println("ELIDX : "+map.get("ELIDX"));
-			System.out.println("CNT : "+map.get("CNT"));
-		}
+
 		// JSON으로 넘길 데이터 다시 생성
 		for (Event_Eventlist e : detail) {
 			
-			String elidx = e.getElidx();
-
+			JsonClass tmpObject = new JsonClass();
 			
-			for (Guestlist guestlist : glist) {
-				
+			tmpObject.setElidx(e.getElidx());
+			tmpObject.setAddr(e.getAddr());
+			tmpObject.setDate(e.getEldate());
+			tmpObject.setAttended(false);
+			
+			tmpObject.setMaxguest(e.getMaxgnum());
+			// 참여자 숫자 
+			for (Map<Object, Object> c : cntlist) {
+				System.out.println("ㅁ"+e.getElidx());
+				System.out.println("ㅌ"+c.get("ELIDX"));
+				if(((String)c.get("ELIDX")).equals(e.getElidx())){
+					tmpObject.setCntguest(Integer.parseInt(c.get("CNT").toString()));
+					System.out.println(tmpObject.getCntguest());
+					break;
+				}
 			}
+
+			// 참여 했는지 체크
+			for (Guestlist g : glist) {
+				if(g.getGuest().equals(mid)){
+					tmpObject.setAttended(true);
+					break;
+				}
+			}
+			
+			ret.add(tmpObject);
 		}
 
-		return "";
+		return gson.toJson(ret);
 	}
 	
 	class JsonClass{
 		String elidx;
+		boolean attended;
+		String addr;
+		String date;
+		int maxguest;
+		int cntguest;
+		
+		public String getElidx() {
+			return elidx;
+		}
+		public void setElidx(String elidx) {
+			this.elidx = elidx;
+		}
+		public boolean isAttended() {
+			return attended;
+		}
+		public void setAttended(boolean attended) {
+			this.attended = attended;
+		}
+		public String getAddr() {
+			return addr;
+		}
+		public void setAddr(String addr) {
+			this.addr = addr;
+		}
+		public String getDate() {
+			return date;
+		}
+		public void setDate(String date) {
+			this.date = date;
+		}
+		public int getMaxguest() {
+			return maxguest;
+		}
+		public void setMaxguest(int maxguest) {
+			this.maxguest = maxguest;
+		}
+		public int getCntguest() {
+			return cntguest;
+		}
+		public void setCntguest(int cntguest) {
+			this.cntguest = cntguest;
+		}
 	}
 }

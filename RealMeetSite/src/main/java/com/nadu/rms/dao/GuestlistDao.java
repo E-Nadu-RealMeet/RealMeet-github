@@ -14,8 +14,12 @@ import com.nadu.rms.vo.Guestlist;
 public class GuestlistDao{
 		
 	 public int callApplyProcedure(Guestlist gl){
+		/*SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		GuestlistMapper mapper = session.getMapper(GuestlistMapper.class);
+		int ret = mapper.callApplyProcedure(mid,elidx,result);
+		session.close();
+		return ret;*/
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-
 		try{
 			String statement = "com.nadu.rms.mapper.GuestlistMapper.callApplyProcedure";
 			return sqlSession.selectOne(statement,gl);

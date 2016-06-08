@@ -1,5 +1,6 @@
 package com.nadu.rms.service;
 
+import org.eclipse.jetty.util.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nadu.rms.dao.GuestlistDao;
@@ -17,10 +18,13 @@ public class EventApplyService {
 	public int applyEvent(String mid, String elidx){
 		
 		Guestlist Vgl = new Guestlist();
-		Vgl.setElidx(mid);
-		Vgl.setGuest(elidx);
-		int result = guestlistDao.callApplyProcedure(Vgl);
-		return result;
+		Vgl.setElidx(elidx);
+		Vgl.setGuest(mid);
+		String result = "";
+		int ret = guestlistDao.callApplyProcedure(Vgl);
+		
+		System.out.println("result : " + result);
+		return ret;
 		
 	}
 }

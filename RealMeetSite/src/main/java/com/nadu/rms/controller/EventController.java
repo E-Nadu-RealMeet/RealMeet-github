@@ -61,6 +61,7 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+		model.addAttribute("page","event/eventList");
 		return "event/eventList";
 	}
 
@@ -70,8 +71,11 @@ public class EventController {
 	@ResponseBody
 	public String eventApply(@PathVariable String elidx, HttpServletRequest req ,Model model) {
 
+		log.info("enter");
 		String returnString = "";
-		int ret = eventApplyService.applyEvent((String)req.getSession().getAttribute("mid"), elidx);
+		log.info(req.getSession().getAttribute("mid").toString());
+		log.info(elidx);
+		int ret = eventApplyService.applyEvent(req.getSession().getAttribute("mid").toString(), elidx);
 		if(ret == 0){
 			/* 성공 */
 			returnString = "Success";
@@ -101,7 +105,6 @@ public class EventController {
 	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
-
 		
 		String returnValue = eventDataService.listLoad(req);
 		// 얻은 값 반환.
@@ -119,7 +122,7 @@ public class EventController {
 		String returnValue = eventDetailService.dataLoad(req, model);
 		// 얻은 값 반환.
 
-		log.info("gson : " + returnValue);
+		log.info("DATAgson : " + returnValue);
 		return returnValue;
 	}
 
@@ -130,7 +133,8 @@ public class EventController {
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.detailLoad(req, esidx, model);
-
+		model.addAttribute("page","event/eventDetail");
+		
 		//뷰 리턴(detail)
 		return "event/eventDetail";
 	}
@@ -152,15 +156,15 @@ public class EventController {
 		String introValue = "모임을 만들어봐요.";
         model.addAttribute("introValue", introValue );
 		model.addAttribute("categories", categories);
-		model.addAttribute("page","eventReg");
+		model.addAttribute("page","event/eventReg");
 		return "event/eventReg";
 	}
 
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
-	public String eventReg(Event_Eventlist e) {
+	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
 
-		int iv = eventRegService.eventReg(e);
+		int iv = eventRegService.eventReg(e, request);
 		
 		if(iv>0){
 			return "redirect:../event/"+e.getEsidx();

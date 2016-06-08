@@ -5,7 +5,14 @@ public class Eventlist {
 	private String esidx;
 	private String addr;
 	private String date;
+	private int maxgnum;
 	
+	public int getMaxgnum() {
+		return maxgnum;
+	}
+	public void setMaxgnum(int maxgnum) {
+		this.maxgnum = maxgnum;
+	}
 	public String getElidx() {
 		return elidx;
 	}

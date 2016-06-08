@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Event_User;
@@ -22,7 +23,6 @@ public interface EventsMapper {
 	
 	@Select("UPDATE EVENTS SET EVENTNAME = #{eventname, jdbcType=VARCHAR}, HOLDER = #{holder, jdbcType=VARCHAR}, DESCRIPTION = #{description, jdbcType=VARCHAR}, IMGSRC = #{imgsrc, jdbcType=VARCHAR}, ABSTRACT = #{abstract, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public List<Event_Eventlist> updateEventsDetailByESIDX(@Param("esidx")String esidx);
-	
 	
 	public int insertEvents(Event_Eventlist e);
 	
