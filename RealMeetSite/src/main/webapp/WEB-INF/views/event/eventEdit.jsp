@@ -53,7 +53,7 @@
 					<br>
 					<input type="hidden" name="date" id="date2" >
 					<input type="hidden" id="description" class="regEdit" disabled="disabled">
-					<button type="submit" id="selectEnd" class='editButton'>이벤트 생성</button>
+					<button type="submit" id="selectEnd" class='editButton'>이벤트 수정</button>
 					<button type="button" class="editButton-back">뒤로가기</button>
 				</form>
 			

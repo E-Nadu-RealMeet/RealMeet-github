@@ -75,9 +75,9 @@ dependencies {
 		'org.springframework.data:spring-data-jpa:1.2.0.RELEASE',
 		'org.springframework:spring-tx:3.2.2.RELEASE',
 		'org.hibernate:hibernate-entitymanager:4.1.7.Final',
-		'org.apache.tiles:tiles-core:3.0.1',
-		'org.apache.tiles:tiles-template:3.0.1',
-		'org.apache.tiles:tiles-jsp:3.0.1',
+		'org.apache.tiles:tiles-core:2.2.2',
+		'org.apache.tiles:tiles-template:2.2.2',
+		'org.apache.tiles:tiles-jsp:2.2.2',
 		'org.mybatis:mybatis-spring:1.3.0',
 		'org.mybatis:mybatis:3.4.0',
 		'javax.jms:jms:1.1',
@@ -107,6 +107,12 @@ dependencies {
 		configurations.testCompile
 
 }
+// logback(slf4j)를 사용하기 때문에 모든 의존성에서 commons-logging는 제외
+[configurations.runtime, configurations.default]*.exclude(module: 'commons-logging')
+
+// JAVA 컴파일시 인코딩 설정
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
 
 task integrationTest(type: Test) {
 	testClassesDir = sourceSets.integration.output.classesDir
