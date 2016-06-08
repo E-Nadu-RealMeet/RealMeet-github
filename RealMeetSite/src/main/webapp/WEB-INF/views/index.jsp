@@ -3,7 +3,6 @@
 <%@ page session="false"%>
 <section id="portfolio" class="two">
 	<div class="mainContainer">
-		<jsp:include page="modules/commons/slideBanner.jsp"></jsp:include>
 
 		<header> </header>
 	</div>

@@ -152,6 +152,7 @@ public class EventController {
 		String introValue = "모임을 만들어봐요.";
         model.addAttribute("introValue", introValue );
 		model.addAttribute("categories", categories);
+		model.addAttribute("page","eventReg");
 		return "event/eventReg";
 	}
 
@@ -172,6 +173,5 @@ public class EventController {
 	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
 		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
 		return "event/eventEdit";
-		
 	}
 }
