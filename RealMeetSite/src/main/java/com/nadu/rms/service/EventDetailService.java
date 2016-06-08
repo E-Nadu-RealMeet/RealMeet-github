@@ -42,14 +42,6 @@ public class EventDetailService {
 		
 		List<Event_Eventlist> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
 		
-		String mid = (String) req.getSession().getAttribute("mid");
-		//세션 아이디에 따른 glist 호출.
-		if(mid != null || mid != ""){
-			List<Guestlist> glist = geustlistDAO.searchGuestlistById(mid);
-			model.addAttribute("glist",glist);
-		}
-		
-		
 		model.addAttribute("detail",detail);	// detail로 뷰에 넘김
 		/* 디테일에 해당하는 리뷰 가져오기.*/
 		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
@@ -77,7 +69,7 @@ public class EventDetailService {
 			System.out.println("ELIDX : "+map.get("ELIDX"));
 			System.out.println("CNT : "+map.get("CNT"));
 		}
-/*		// JSON으로 넘길 데이터 다시 생성
+		// JSON으로 넘길 데이터 다시 생성
 		for (Event_Eventlist e : detail) {
 			
 			String elidx = e.getElidx();
@@ -87,11 +79,11 @@ public class EventDetailService {
 				
 			}
 		}
-		*/
+
 		return "";
 	}
 	
 	class JsonClass{
-		
+		String elidx;
 	}
 }
