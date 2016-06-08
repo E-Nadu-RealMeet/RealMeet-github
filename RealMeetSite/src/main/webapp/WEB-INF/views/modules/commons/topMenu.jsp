@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -185,13 +185,26 @@
 }
 </style>
 
+
 </head>
 <body style="padding: 0px; margin: 0px; font-family: Arial, sans-serif">
 	<div class="join-top">
 		<ul style="margin: 0 auto;">
 			<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-			<li><a href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" type="button">로그인</a></li>
-			<li><a href="${pageContext.request.contextPath}/users/join">회원가입</a></li>
+
+			<c:if test="${empty mid}">
+				<li><a href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" type="button">로그인</a></li>
+			</c:if>
+			<c:if test="${!empty mid}">
+				<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+			</c:if>
+			<c:if test="${empty mid}">
+				<li><a href="${pageContext.request.contextPath}/users/join">회원가입</a></li>
+			</c:if>
+			<c:if test="${!empty mid}">
+				<li><a href="${pageContext.request.contextPath}/users/info?id=${mid}">회원정보보기</a></li>
+			</c:if>
+			
 		</ul>
 	</div>
 	<div id="loginModal" class="modal fade">

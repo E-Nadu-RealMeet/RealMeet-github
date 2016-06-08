@@ -75,6 +75,11 @@ function formCheck() {
 	var password_check = document.getElementById('passwordCheck');
 	var member_phoneNumber = document.getElementById('phoneNumber');
 	
+	var interest = new Array();
+	$("input[name=interest]:checked").each(function(){
+		
+		interest.push($(this).val());
+	})
 
 	if (member_id.value == '' || member_id.value == null) {
 		alert('ID를 입력하세요');
@@ -123,11 +128,27 @@ function formCheck() {
 		focus.member_phoneNumber;
 		return false;
 	}
+	
+	if(interest.length < 1){
+		alert('최소 한개이상의 흥미 카테고리를 선택하여야 합니다.');
+		return false;
+	}
 
 	if (count == 0) {
 		alert("아이디 중복확인을 눌러주세요");
 		return false;
 	}
+
+	
+	//흥미 카테고리데이터 보내기
+	$.ajax({
+		url:'join',
+		type:'GET',
+		data: interest,
+		success:function(data){
+		}
+	});
+	
 	return true;
 }	
 
@@ -150,7 +171,16 @@ function formCheck() {
 }); */
 	
 </script>
+<style type="text/css">
 
+.col-lg-10 ul{
+	list-style-type: none;
+}
+.col-lg-10 li{
+	float: left;
+	padding: 0px 10px 10px 10px;
+}
+</style>
 </head>
 <body>
 
@@ -224,21 +254,38 @@ function formCheck() {
 							style="width: 80%; margin-top: 1%; border: solid 2px rgba(0, 0, 0, 0.15); border-radius: 0.35em;">
 					</div>
 				</div>
-		<!--	<div class="form-group" id="divInterest">
+			<div class="form-group" id="divInterest">
 					<label for="inputInterest" class="col-lg-2 control-label" style="font-size: 20px;">흥미 카테고리</label>
 					<div class="col-lg-10" style="font-size: 15px; padding: 6px 12px;">
-						<input type="checkbox" id="sport" name="interest" value="식사" > 식사<br>
-						<input type="checkbox" id="game" name="interest" value="운동"> 운동<br>
-						<input type="checkbox" id="talk" name="interest" value="일상대화"> 일상대화<br>
-						<input type="checkbox" id="cul" name="interest" value="문화생활"> 문화생활<br>
-						<input type="checkbox" id="meet" name="interest" value="만남"> 만남<br>
-						<input type="checkbox" id="vol" name="interest" value="자원봉사"> 자원봉사<br>
-						<input type="checkbox" id="study" name="interest" value="스터디"> 스터디<br>
+						<ul>
+							<li>
+								<input type="checkbox" id="sport" name="interest" value="식사" > 식사<br>
+							</li>
+							<li>
+								<input type="checkbox" id="game" name="interest" value="운동"> 운동<br>
+							</li>
+							<li>
+								<input type="checkbox" id="talk" name="interest" value="일상대화"> 일상대화<br>
+							</li>
+							<li>
+								<input type="checkbox" id="cul" name="interest" value="문화생활"> 문화생활<br>
+							</li>
+							<li>
+								<input type="checkbox" id="meet" name="interest" value="만남"> 만남<br>	
+							</li>
+							<li>
+								<input type="checkbox" id="vol" name="interest" value="자원봉사"> 자원봉사<br>
+							</li>
+							<li>
+								<input type="checkbox" id="study" name="interest" value="스터디"> 스터디<br>
+							</li>
+						</ul>
+
 					</div>
-				</div> -->
+				</div>
 
 				<input type="hidden" name="rating" id="rating" value="10" />
-				<input type="hidden" name="interest" id="interest" value="sports" />
+				<!-- <input type="hidden" name="interest" id="interest" value="sports" /> -->
 				<div class="form-group" style="margin-top: 10px">
 					<div class="col-lg-offset-2 col-lg-10">
 

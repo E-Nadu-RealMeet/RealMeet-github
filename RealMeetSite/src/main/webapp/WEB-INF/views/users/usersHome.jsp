@@ -2,11 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
 <title>내 정보</title>
@@ -31,13 +27,27 @@
 	</div>
 
 	<div id="main">
-		<div></div>
-		<div class="container">
-			<c:out value="하하하"></c:out>
+		<div style="margin-bottom: 20px; text-align: center;"> 
+			<c:out value="상단바"></c:out>
+		</div>
+		<div class="container" style="margin-bottom: 10px; text-align: center;">
+			<c:out value="회원정보"></c:out>
+			<hr style="border: solid 1px #ddd; margin: 0 0 1em 0;">
+		</div>
+		<div style="margin: 0 auto;">
+			<div class="event_make" style="float: left; width:47%; text-align: center; border: 0.5px solid #cccccc; margin:1%; padding: 0 0.5em 0 0.5em;">
+				<c:out value="내가 만든 이벤트 리스트"></c:out>
+				<hr style="border: solid 1px #ddd; margin: 0 auto;">
+			</div>
+			<div class="event_join" style="float: right; width:47%; text-align: center; border: 0.5px solid #cccccc; margin:1%; padding: 0 0.5em 0 0.5em;">
+				<c:out value="내가 참여한 이벤트 리스트"></c:out>
+				<hr style="border: solid 1px #ddd; margin: 0 auto;">
+			</div>
 		</div>
 	</div>
+
 	<!-- Footer -->
-	<c:import url="../modules/commons/footer.jsp"></c:import>
+	<%-- <c:import url="../modules/commons/footer.jsp"></c:import> --%>
 
 	<!-- Scripts -->
 	<script
