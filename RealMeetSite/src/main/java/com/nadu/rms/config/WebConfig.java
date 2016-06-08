@@ -13,30 +13,14 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import com.nadu.rms.controller.UploadController;
-import com.nadu.rms.dao.BannerDAO;
-import com.nadu.rms.dao.BoardDao;
-import com.nadu.rms.dao.CategoryDAO;
-import com.nadu.rms.dao.CustomerDAO;
-import com.nadu.rms.dao.EventlistDao;
-import com.nadu.rms.dao.EventsDao;
-import com.nadu.rms.dao.GuestlistDao;
-import com.nadu.rms.dao.ReviewsDao;
-import com.nadu.rms.dao.UsersDao;
-import com.nadu.rms.service.EventApplyService;
-import com.nadu.rms.service.EventDataService;
-import com.nadu.rms.service.EventDetailService;
-import com.nadu.rms.service.EventRegService;
 
 @Configuration
 @EnableWebMvc
