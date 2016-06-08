@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var url = $(location).attr('href');
 	var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
 	init(esidx);
-	//init();
+
 })
 
 
@@ -16,10 +16,10 @@ function cancleProcess(elidx) {
 }
 
 function applyProcess(elidx){
+/*	
+	var ret = loginChka();*/
 	
-	var ret = loginChka();
 
-	if(ret == true){
 		//로그인 되어있을때
 		$.ajax({
 			type : 'GET',  
@@ -31,18 +31,12 @@ function applyProcess(elidx){
 			}
 		});
 		
-		return true;
-	}
-	else{
-		//로그인 안되어있을때.
-		return false;
-	}
+	
 	
 }
 
 function init(elidx){
 	
-	$('#lists').html('');
 	
 	$.ajax({
 		type : 'POST',  
@@ -97,16 +91,15 @@ function createApplyElement(data){
 
 
 function loginChka(){
-	var ret = true;
+
 	$.ajax({
 		url:getContextPath()+'/midCheck',
 		type:'POST',
 		dataType: 'text',
 		success: function(data){
-			if(data==="true"){
-				ret = true;
+			if(data ==="true"){
 			}else{
-				ret = false;
+				alert("로그인이 필요합니다.");
 			}
 		},
 		error: function(data){
@@ -114,7 +107,6 @@ function loginChka(){
 		}
 	})
 	
-	return ret;
 }
 
 function getContextPath(){
