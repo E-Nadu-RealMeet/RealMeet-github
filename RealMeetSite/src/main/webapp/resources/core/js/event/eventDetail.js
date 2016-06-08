@@ -15,32 +15,34 @@ function cancleProcess(elidx) {
 	 alert("enterCancle");
 }
 
-function applyProcess(){
+function applyProcess(elidx){
 	
-	$(doucment)
-	/*var ret = loginChk();*/
-	alert(elidx);
-	/*if( ret == true ){
+	var ret = loginChka();
+
+	if(ret == true){
+		//로그인 되어있을때
 		$.ajax({
-			url:getContextPath()+'/apply/'+elidx,
-			type:'POST',
-			dataType: 'text',
-			success: function(data){
-				alert(data);
-			},
-			error: function(data){
-				alert('에러 발생')
+			type : 'GET',  
+			dataType : 'text',
+			url : 'apply/'+elidx,
+			success : function(res) {
+				alert(res);
+				init(elidx);
 			}
-		})
+		});
+		
+		return true;
 	}
 	else{
-		alert("로그인이 필요합니다.");
-	}*/
-	return true;
+		//로그인 안되어있을때.
+		return false;
+	}
 	
 }
 
 function init(elidx){
+	
+	$('#lists').html('');
 	
 	$.ajax({
 		type : 'POST',  
@@ -48,20 +50,15 @@ function init(elidx){
 		data : {"esidx" : elidx},
 		url : 'detail/dataload',
 		success : function(returnData) {
-
-			alert(returnData);
+			var data = returnData;
+			for(var i=0;i<data.length;i++){
+				var newDiv = createApplyElement(data[i]);
+				$('#lists').append(newDiv);
+			}
 		}
 
 	});
-/*
-	var data = Object();
-	data.ELIDX = 1;
-	data.ATTENDED = false;
-	data.ADDR = 'addr';
-	data.DATE = 'date';
-	alert("enterTmp");
-	var newDiv = createApplyElement(data);
-	$('#lists').append(newDiv);*/
+
 }
 
 function createApplyElement(data){
@@ -69,19 +66,18 @@ function createApplyElement(data){
 	
 	var newDiv = $('.eventlist').clone();
 	newDiv.attr('class','');
-	var tmpStr = '<input class="chk" id=chk"'+data.ELIDX+'" name="chkDate" type="radio">';
+	var tmpStr = '<input class="chk" id=chk"'+data.elidx+'" name="chkDate" type="radio">';
 	newDiv.attr('style',"");
-	newDiv.find('.target').attr('data-target','#apply'+data.ELIDX);
-	if(data.ATTENDED) {
-		tmpStr += " " + data.ADDR + ' / ' + data.DATE + ' / ' + '이미 참석함';
+	newDiv.find('.target').attr('data-target','#apply'+data.elidx);
+	if(data.attended) {
+		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '이미 참석함';
 	}
 	else{
-		tmpStr += " " + data.ADDR + ' / ' + data.DATE + ' / ' + '참여 가능';
+		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '참여 가능';
 	}
 	newDiv.find('.target').html(tmpStr);
-	alert(newDiv.find('.modal.fade').attr('id'));
-	newDiv.find('.modal.fade').attr('id','apply'+data.ELIDX);
-	if(data.ATTENDED){
+	newDiv.find('.modal.fade').attr('id','apply'+data.elidx);
+	if(data.attended){
 		tmpStr = '정말 취소 하시겠습니까?';
 	}
 	else{
@@ -89,34 +85,36 @@ function createApplyElement(data){
 	}
 	newDiv.find('.modal-body').children('div').html(tmpStr);
 	
-	if(data.ATTENDED){
-		var clickEvent = 'cancleProcess(data.ELIDX)';
+	if(data.attended){
+		var clickEvent = 'cancleProcess('+data.elidx+')';
 	}
 	else{
-		var clickEvent = 'applyProcess(data.ELIDX)';
+		var clickEvent = 'applyProcess('+data.elidx+')';
 	}
 	newDiv.find('.btn.btn-primary').attr('onclick',clickEvent);
-	alert(newDiv.find('.btn.btn-primary').attr('onclick'));
 	return newDiv;
 }
 
 
-function loginChk(){
+function loginChka(){
+	var ret = true;
 	$.ajax({
 		url:getContextPath()+'/midCheck',
 		type:'POST',
 		dataType: 'text',
 		success: function(data){
 			if(data==="true"){
-				return true;
+				ret = true;
 			}else{
-				return false;
+				ret = false;
 			}
 		},
 		error: function(data){
 			alert('에러 발생')
 		}
 	})
+	
+	return ret;
 }
 
 function getContextPath(){

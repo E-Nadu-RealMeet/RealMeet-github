@@ -19,4 +19,8 @@ public interface GuestlistMapper {
 	
 	@Select("SELECT ELIDX, COUNT(*) CNT FROM GUESTLIST GROUP BY ELIDX")
 	public List<Map<Object,Object>> selectCountGuestlist();
+	
+	/*@Select("{ call GUESTAPPLY( #{elidx, mode=IN, jdbcType=VARCHAR}, #{guest, mode=IN, jdbcType=VARCHAR},  #{result, mode=OUT, jdbcType=VARCHAR} )	}")
+	public int callApplyProcedure(@Param("guest")String guest, @Param("elidx")String elidx, @Param("result")String result);
+*/
 }
