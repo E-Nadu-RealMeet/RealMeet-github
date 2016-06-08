@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/eventReg.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/${page}.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -24,6 +24,11 @@
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js link -->
 </head>
 <body>
 	<!-- Header -->
@@ -37,6 +42,9 @@
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
 
 		<!-- Content -->
+		<c:if test="${page=='index'}">
+			<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
+		</c:if>
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 
 		</div>
