@@ -1,4 +1,4 @@
-package com.nadu.rms.controller;
+package com.nadu.rms.trash;
 
 import java.util.List;
 
@@ -42,4 +42,3 @@ List<Events> list = bannerDao.selectEvents();
    		return "modules/commons/test";
    	}
 }
-
