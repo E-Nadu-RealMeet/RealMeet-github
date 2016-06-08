@@ -38,9 +38,7 @@
 		<!-- Main -->
 			<div id="main">
 				<!-- Intro -->
-				<jsp:include page="../modules/commons/intro.jsp">
-					<jsp:param value="이벤트 리스트" name="introValue"/>
-				</jsp:include>
+
 				
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
