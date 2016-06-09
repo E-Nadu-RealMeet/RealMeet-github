@@ -9,7 +9,7 @@
 	
 	function inputCheck(arg){
 		if(arg.length===0){
-			alert('글자가 없습니다.')
+			alert('입력된 게 없어요.')
 			return false;
 		}else{
 			//alert(arg)
@@ -200,7 +200,6 @@
 		})
 		regFirst.click(function(){
 			check=0;
-			var inputEight = selectBox8.find('#category');
 			var par = $(this).parents('.selectBox');
 			var input = par.children('.regInput');
 			selectBoxCate.fadeIn();

@@ -46,7 +46,7 @@
 							<h3>
 								<a id="detailLink" href="${pageContext.request.contextPath}/event/${e.getEsidx()}"><c:out value="${e.getEventname()}" /></a>
 							</h3>
-							<p><label for="detailLink"><c:out value="${e.getAbs()}"/></label></p>
+							<p><c:out value="${e.getAbs()}"/></p>
 						</div>
 					</div>
 				</c:forEach>

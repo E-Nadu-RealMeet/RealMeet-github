@@ -76,7 +76,7 @@ public class EventDetailService {
 			tmpObject.setDate(e.getEldate());
 			tmpObject.setAttended(false);
 			
-			tmpObject.setMaxguest(Integer.parseInt(e.getMaxgnum()));
+			tmpObject.setMaxguest(e.getMaxgnum());
 			// 참여자 숫자 
 			for (Map<Object, Object> c : cntlist) {
 				System.out.println("ㅁ"+e.getElidx());

@@ -20,7 +20,7 @@ import com.nadu.rms.vo.QNA;
 @RequestMapping("/customer/*")
 public class Customercontroller {
 	
-	CustomerDAO customersDao;
+	/*CustomerDAO customersDao;
 
 	@Autowired
 	public void setCustomersDao(CustomerDAO customersDao) {
@@ -41,7 +41,7 @@ public class Customercontroller {
 	
 	@RequestMapping(value="#NoticesModal", method=RequestMethod.GET)
 	public String Notices(Model model){
-		model.addAttribute("Notices", customersDao.selectNotices());
+		//model.addAttribute("Notices", customersDao.selectNotices());
 		return "#NoticesModal";	
 	}
 	@RequestMapping(value="Notices", method=RequestMethod.POST)
@@ -113,6 +113,6 @@ public class Customercontroller {
 		model.addAttribute("QNADetail", customersDao.selectQNAByQidx(qidx));
 		return "customer/QNADetail";
 	}
-	
+	*/
 	
 }

@@ -157,8 +157,8 @@ public class EventController {
 	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
 
 		int iv = eventRegService.eventReg(e, request);
-		
-		if(iv>0){
+		log.info("eventReg 실행 결과 : "+iv);
+		if(iv>1){
 			return "redirect:../event/"+e.getEsidx();
 		}else{
 			return "redirect:reg";
