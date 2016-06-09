@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+
+section#top {
+	background-image: url("../images/board-top.jpg");
+}

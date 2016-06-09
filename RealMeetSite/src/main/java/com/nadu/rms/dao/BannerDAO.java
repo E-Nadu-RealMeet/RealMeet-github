@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.mapper.annotation.BannerMapper;
+import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Events;
 
 public class BannerDAO {
@@ -23,7 +24,7 @@ public class BannerDAO {
 	 * }
 	 */
 
-	public List<Events> selectEvents() {
+	public List<Event_User> selectEvents() {
 		/*
 		 * SqlSession sqlSession = getSqlSessionFactory().openSession();
 		 * 
@@ -36,7 +37,7 @@ public class BannerDAO {
 		 */
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BannerMapper mapper = session.getMapper(BannerMapper.class);
-		List<Events> list = mapper.selectBanners();
+		List<Event_User> list = mapper.selectBanners();
 		session.close();
 		return list;
 	}

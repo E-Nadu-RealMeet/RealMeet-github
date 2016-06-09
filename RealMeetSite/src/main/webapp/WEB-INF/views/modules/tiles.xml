@@ -20,6 +20,7 @@
     <put-attribute name="topMenu" value="/WEB-INF/views/modules/commons/topMenu.jsp" />
     <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
+    <put-attribute name="page" value="{1}"></put-attribute>
     <!-- 공통사항 -->
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
@@ -34,15 +35,15 @@
     <put-attribute name="topMenu" value="/WEB-INF/views/modules/commons/topMenu.jsp" />
     <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
+    <put-attribute name="page" value="{1}/{2}"></put-attribute>
     <!-- 공통사항 -->
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    <put-attribute name="gmap" value="/WEB-INF/views/modules/commons/gmap.jsp"></put-attribute>
     <put-attribute name="css" value="/{1}/{2}.css"/>
     <put-attribute name="js" value="/{1}/{2}.js"/>
     <!-- 추가사항 -->
   </definition>
-
-
 
   <definition name="modules/commons/carousel" template="/WEB-INF/views/modules/commons/carousel.jsp"></definition>
 

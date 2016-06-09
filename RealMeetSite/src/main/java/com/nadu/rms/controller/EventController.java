@@ -61,6 +61,8 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+		String introValue = "모임 목록입니다.";
+        model.addAttribute("introValue", introValue );
 		model.addAttribute("page","event/eventList");
 		return "event/eventList";
 	}
@@ -129,7 +131,8 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
-
+		String introValue = "모임의 자세한 정보입니다.";
+        model.addAttribute("introValue", introValue );
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.detailLoad(req, esidx, model);

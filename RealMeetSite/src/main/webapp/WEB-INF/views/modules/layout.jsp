@@ -53,9 +53,12 @@
 		<tiles:insertAttribute name="topMenu"></tiles:insertAttribute>
 		<!-- Intro -->
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
-
+		
 		<!-- Content -->
 		<section id="portfolio" class="two">
+			<c:if test="${page=='event/eventList'}">
+				<tiles:insertAttribute name="gmap"></tiles:insertAttribute>
+			</c:if>
 			<c:if test="${page=='index'}">
 				<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
 			</c:if>

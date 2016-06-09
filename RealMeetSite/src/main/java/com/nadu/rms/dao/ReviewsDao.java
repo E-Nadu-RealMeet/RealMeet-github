@@ -27,7 +27,7 @@ public class ReviewsDao {
 	public int selectReviewsCount(String esidx){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		ReviewsMapper mapper = session.getMapper(ReviewsMapper.class);
-		int iv = 0;
+		int iv = mapper.selectReviewsCount(esidx);
 		return 0;
 	}
 }

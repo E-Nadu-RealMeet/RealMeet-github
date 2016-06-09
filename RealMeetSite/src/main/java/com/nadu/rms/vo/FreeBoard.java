@@ -8,7 +8,6 @@ public class FreeBoard {
 	private String content;
 	private String regdate;
 	
-	
 	public String getNidx() {
 		return nidx;
 	}
@@ -39,8 +38,4 @@ public class FreeBoard {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
-	
-	
-
 }
