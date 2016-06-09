@@ -6,6 +6,7 @@
 		<div>
 			<h3>무엇을 함께할 만남을 만드실껀가요?</h3>
 		</div>
+		<hr>
 		<c:forEach items="${categories}" var="c" varStatus="status">
 			<button type="button" class='regButton'>${c}</button>
 		</c:forEach>
@@ -15,6 +16,7 @@
 		<div>
 			<h3>이벤트의 이름은 무엇으로 하실껀가요?</h3>
 		</div>
+		<hr>
 		<br> <input type="text" class="regInput"> <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
@@ -23,8 +25,8 @@
 	<div class="selectBox" id="selectBox-abs" style="display: none;">
 		<div>
 			<h3>생성할 이벤트의 간단한 설명 부탁드립니다.</h3>
-
 		</div>
+		<hr>
 		<br> <input type="text" name="abs" class="regInput"> <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
@@ -34,6 +36,7 @@
 		<div>
 			<h3>설명을 위한 사진을 넣어주세요.</h3>
 		</div>
+		<hr>
 		<br>
 		<div id="fileUpload" class="dragAndDropDiv">이벤트와 관련된 사진을 끌어다 넣어주세요.</div>
 		<br>
@@ -92,21 +95,22 @@
 				<h2>입력한 내용이 아래와 같나요??</h2>
 				<br>
 			</div>
-			<h3>카테고리 :</h3>
+			<img src="">
+			<h3>카테고리</h3>
 			<input type="text" name="category" id="category" class="regInput" readonly>
-			<h3>이벤트명 :</h3>
+			<h3>이벤트명</h3>
 			<input type="text" name="eventname" class="regInput" readonly>
-			<h3>간단한 설명 :</h3>
+			<h3>간단한 설명</h3>
 			<input type="text" name="abs" class="regInput" readonly>
-			<h3>업로드한 파일 :</h3>
+			<h3>업로드한 파일</h3>
 			<input type="text" name="imgsrc" id="imgsrc" class="regInput" readonly />
-			<h3>자세한 설명 :</h3>
-			<textarea id="description" class="regInput" disabled="disabled"></textarea>
-			<h3>이벤트 개최 날짜 :</h3>
+			<h3>자세한 설명</h3>
+			<textarea id="description" name="description" class="regInput" readonly></textarea>
+			<h3>이벤트 개최 날짜</h3>
 			<input type="datetime-local" class=regInput readonly />
-			<h3>이벤트 개최 장소 :</h3>
+			<h3>이벤트 개최 장소</h3>
 			<input type="text" name="addr" id="addr" class="regInput" readonly>
-			<h3>이벤트 최대 인원 :</h3>
+			<h3>이벤트 최대 인원</h3>
 			<input type="text" name="maxgnum" id="addr" class="regInput" readonly> <input type="hidden" name="eldate" id="date2" readonly> <input type="hidden" id="description" class="regInput" disabled="disabled">
 			<button type="submit" id="selectEnd" class='regButton'>이벤트 생성</button>
 			<button type="button" class="regButton-back">뒤로가기</button>

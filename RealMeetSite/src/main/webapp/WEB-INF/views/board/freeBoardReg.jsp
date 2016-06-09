@@ -23,22 +23,11 @@
 </head>
 <body>
 
-	<!-- Header -->
-	<div id="header">
-
-
-		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
-
-
-	</div>
-
 	<!-- Main -->
-	<div id="main">
-		<div class="top-wrapper clear">
 			<div class="container">
 				<br> <br>
 				<h2 align="center">공지사항</h2>
-				<form action="${pageContext.request.contextPath}/freeReg" method="post">
+				<form action="${pageContext.request.contextPath}/board/freeReg" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">
 							<dt class="article-detail-title">제목</dt>
@@ -59,26 +48,13 @@
 
 
 					<p class="article-comment margin-small" align="center">
-						<a class="btn btn-primary" href="freeBoard">목록</a> 
+						<a class="btn btn-primary" href="board/freeBoard">목록</a> 
 						<button class="btn btn-primary" type="submit">등록</button>
 
 					</p>
 				</form>
 			</div>
 
-		</div>
-	</div>
-
-	<!-- Footer -->
-	<div id="footer">
-
-		<!-- Copyright -->
-		<ul class="copyright">
-			<li>&copy; Untitled. All rights reserved.</li>
-			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-		</ul>
-
-	</div>
 
 	<!-- Scripts -->
 	<script

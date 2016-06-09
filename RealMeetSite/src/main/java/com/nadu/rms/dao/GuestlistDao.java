@@ -29,10 +29,11 @@ public class GuestlistDao{
 		}*/
 	}
 	 
-	public int deleteGuestlist(String mid){
+	public int deleteGuestlist(String mid, String elidx){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		GuestlistMapper mapper = session.getMapper(GuestlistMapper.class);
-		int ret = mapper.deleteGuestlist(mid);
+		int ret = mapper.deleteGuestlist(mid, elidx);
+		session.commit();
 		session.close();
 		return ret;
 	}

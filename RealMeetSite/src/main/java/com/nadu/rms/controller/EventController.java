@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
+import com.nadu.rms.service.EventEditService;
 import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.vo.Event_Eventlist;
 
@@ -31,7 +32,12 @@ public class EventController {
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
+	EventEditService eventEditService;
 	
+	public void setEventEditService(EventEditService eventEditService) {
+		this.eventEditService = eventEditService;
+	}
+
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
 	
@@ -87,9 +93,11 @@ public class EventController {
 	// 이벤트 취소하기
 	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String eventCancleProc(@PathVariable String esidx, Model model) {
+	public String eventCancleProc(@PathVariable String elidx, HttpServletRequest req,Model model) {
 
-		String returnValue = "";
+		//취소 작업
+		String mid = (String)req.getSession().getAttribute("mid");
+		String returnValue = eventApplyService.cancleEvent(mid, elidx);
 		//뷰 리턴(detail)
 		return returnValue;
 	}
@@ -157,8 +165,8 @@ public class EventController {
 	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
 
 		int iv = eventRegService.eventReg(e, request);
-		
-		if(iv>0){
+		log.info("eventReg 실행 결과 : "+iv);
+		if(iv>1){
 			return "redirect:../event/"+e.getEsidx();
 		}else{
 			return "redirect:reg";
@@ -166,7 +174,9 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String eventEdit(Event_Eventlist e) {
+	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
+		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
 		return "event/eventEdit";
 	}
+	
 }

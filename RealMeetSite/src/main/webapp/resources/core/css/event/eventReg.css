@@ -20,6 +20,8 @@ input.regInput{
 	float: left;
 	margin: 0;
 	height: 2.2em;
+	margin-bottom: 2em;
+    margin-top: 2em;
 }
 input#selectEnd2 {
 	float: right;

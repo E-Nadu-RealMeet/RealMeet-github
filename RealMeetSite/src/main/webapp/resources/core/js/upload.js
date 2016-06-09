@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
     var objDragAndDrop = $(".dragAndDropDiv");
-     
+    var countImg=0;
     $(document).on("dragenter",".dragAndDropDiv",function(e){
         e.stopPropagation();
         e.preventDefault();
@@ -45,22 +45,24 @@ $(document).ready(function(){
        {
             var fd = new FormData();
             fd.append('file', files[i]);
-      		
-            var status = new createStatusbar(obj); //Using this we can set progress.
+      		alert(countImg+"번째 사진 업로드")
+            var status = new createStatusbar(obj, countImg); //Using this we can set progress.
             status.setFileNameSize(files[i].name,files[i].size);
-            sendFileToServer(fd,status);
+            sendFileToServer(fd,status,countImg);
+            countImg=countImg+1;
        }
     }
 	
     
     //statusbar를 생성하는 메서드
     var rowCount=0;
-    function createStatusbar(obj){
+    function createStatusbar(obj, countImg){
              
         rowCount++;
         var row="odd";
         if(rowCount %2 ==0) row ="even"; //handleFileUpload에서 파일 갯수만큼 rowCount++하므로 파일 갯수가 짝수라면 even 홀수라면 odd
         this.statusbar = $("<div class='statusbar "+row+"'></div>");
+        this.img =  $("<img id='addimg"+countImg+"' style='width:4em; height:4em;'></img>").appendTo(this.statusbar)
         this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);//statusbar 안에 <div를 넣는다>
         this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
         this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
@@ -118,7 +120,7 @@ $(document).ready(function(){
         return ctxPath;
     }
     
-    function sendFileToServer(formData,status)
+    function sendFileToServer(formData,status,countImg)
     {
         var uploadURL = getContextPath()+"/filepost"; //Upload URL
         var extraData ={}; //Extra Data.
@@ -147,7 +149,8 @@ $(document).ready(function(){
             data: formData,
             success: function(data){
                 status.setProgress(100);
-                if($('#imgsrc').val()==='사진을 넣지 않습니다.'){
+                $('#addimg'+countImg).attr("src", getContextPath()+'/resources/core/images/upload/'+data);
+                if($('#imgsrc').val()==='사진을 넣지 않습니다'){
                 	$('#imgsrc').val(data);
           		}else{
           			$('#imgsrc').val($('#imgsrc').val()+":"+data);

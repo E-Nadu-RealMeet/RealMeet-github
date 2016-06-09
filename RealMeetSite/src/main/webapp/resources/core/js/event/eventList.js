@@ -60,7 +60,7 @@ function getEventList(page){
 					+ '</div>'
 					+ '</div>'
 					+ '</div>'
-					+ '<div class="modal fade" id="detail'+ ((page-1)*10+i) +'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+					+ '<div class="modal fade" id="detail'+ ((page-1)*10+i) +'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
 					+ ''
 					+ '<div class="modal-dialog modal-lg">'
 					+ '<div class="modal-content">'

@@ -21,6 +21,8 @@ public class EventEditService {
 	
 	public List<Event_Eventlist> eventEdit(HttpServletRequest req,String esidx, Model model){
 		
+		List<Event_Eventlist> edit = eventsDAO.updateEventsDetailByESIDX(esidx);
+		
 		
 		return null;
 		
