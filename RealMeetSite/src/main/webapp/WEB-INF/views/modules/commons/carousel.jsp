@@ -35,17 +35,20 @@
 						<c:set var="numone" value=""></c:set>
 					</c:when>
 				</c:choose>
-				<div class="item${numone}">
+				<div class="item${numone}" style="cursor:pointer;">
 					<img alt="${status.count}위" src="${pageContext.request.contextPath}/resources/core/images/upload/${e.getImgsrc()}"
-						data-src="holder.js/1200x500/text:slide">
-					<div class="carousel-caption">
+						data-src="holder.js/1200x500/text:slide" onclick="location.href='${pageContext.request.contextPath}/event/${e.getEsidx()}'">
+					<div class="carousel-caption" onclick="location.href='${pageContext.request.contextPath}/event/${e.getEsidx()}'">
 						<h3>
 							<a id="detailLink" href="${pageContext.request.contextPath}/event/${e.getEsidx()}"><c:out value="${e.getEventname()}" /></a>
 						</h3>
 						<p>
 							<c:out value="${e.getAbs()}" />
 						</p>
-						<span class="icon fa-heart-o">${e.getGood()}</span><span class="icon fa-commenting-o"></span>
+						<span class="icon fa-heart-o">${e.getGood()}</span>
+						&nbsp
+						<span class="icon fa-commenting-o"></span>
+						<br>
 					</div>
 				</div>
 			</c:forEach>

@@ -20,6 +20,15 @@
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
 <script src="${pageContext.request.contextPath}/resources/core/js/gmap/gmaps.js"></script>
 
+<!-- Scripts -->
+<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
+
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -55,14 +64,5 @@
 
 	<!-- Footer -->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-
-	<!-- Scripts -->
-	<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
 </body>
 </html>
