@@ -81,13 +81,8 @@ public class EventDetailService {
 			tmpObject.setDate(e.getEldate());
 			tmpObject.setAttended(false);
 			
-<<<<<<< .merge_file_a21592
 			tmpObject.setMaxguest(e.getMaxgnum());
-			// 참여자 숫자 
-=======
-			tmpObject.setMaxguest(Integer.parseInt(e.getMaxgnum()));
 			// 참여자 숫자 가져오기
->>>>>>> .merge_file_a21604
 			for (Map<Object, Object> c : cntlist) {
 				//각 elidx마다 카운트된 숫자들중
 				//지금 보고있는 elidx의 참여자 카운트 수를 가져옴
