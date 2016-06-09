@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE HTML>
 <!--
 	Prologue by HTML5 UP
@@ -28,7 +28,8 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js link -->
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
+<!-- holder.js link -->
 </head>
 <body>
 	<!-- Header -->
@@ -42,23 +43,24 @@
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
 
 		<!-- Content -->
-		<c:if test="${page=='index'}">
-			<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
-		</c:if>
-		<tiles:insertAttribute name="content"></tiles:insertAttribute>
+		<section id="portfolio" class="two">
+			<c:if test="${page=='index'}">
+				<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
+			</c:if>
+			<tiles:insertAttribute name="content"></tiles:insertAttribute>
+		</section>
+	</div>
 
-		</div>
+	<!-- Footer -->
+	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 
-		<!-- Footer -->
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-
-		<!-- Scripts -->
-		<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
+	<!-- Scripts -->
+	<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
 </body>
 </html>

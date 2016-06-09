@@ -8,8 +8,14 @@ public class Events {
 	private String imgsrc;
 	private String abs; //간단한 설명
 	private String category;
+	private int good;
 	
-	
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	public String getImgsrc() {
 		return imgsrc;
 	}

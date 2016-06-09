@@ -7,8 +7,17 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<<<<<<< HEAD
 <script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
 				<!-- Portfolio -->
+=======
+
+		
+		
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	
+>>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
 					<section id="portfolio" class="two">
 						<div class="container" id="container">
 
@@ -20,36 +29,43 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
+<<<<<<< HEAD
 										<a href="NoticesModal"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2 >공지사항</h2>
+=======
+										<a href="Notices"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg">
+										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
+										<header>
+											<h2 style="color: #81918E;">공지사항</h2>
+>>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
 										</header></button></a>
 									</article>
 									<article class="item">
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
+										<a href="QNA"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" >
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="200px" height="100px"/>
 										<header>
-											<h2>내 문의내역</h2>
-										</header></button>
+											<h2 style="color: #81918E;">내 문의내역</h2>
+										</header></button></a> 
 									</article>
 								</div>
 								<div class="5u" style="margin-top: 7%" >
 									<article class="item">
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQModal">
+										<a href="FAQs"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="200px" height="100px"/>
 										<header>
-											<h2>FAQ</h2>
-										</header></button>
+											<h2 style="color: #81918E;">FAQ</h2>
+										</header></button></a>
 									</article>
 									<article class="item">
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#callModal">
+										<a href="Call"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="200px" height="100px"/>
 									
 										<header>
-											<h2>문의하기</h2>
+											<h2 style="color: #81918E;">문의하기</h2>
 										</header>
-										</button>
+										</button></a>
 									</article>
 								</div>
 							</div>
@@ -57,13 +73,14 @@
 							
 							<a href="information" >
 										<header>
-											<h3>이용안내</h3>
+											<h2 style="color: #81918E;">이용안내</h3>
 										</header></a>
 						</div>
 												
 						
 					</section>
 
+<<<<<<< HEAD
     <div class="modal" id="NoticesModal">
   <div class="modal-content">
 							
@@ -99,3 +116,6 @@
 		
 </div>
 </div>
+=======
+				
+>>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc

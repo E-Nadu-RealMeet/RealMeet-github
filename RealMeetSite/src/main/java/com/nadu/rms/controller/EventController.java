@@ -71,20 +71,18 @@ public class EventController {
 	@ResponseBody
 	public String eventApply(@PathVariable String elidx, HttpServletRequest req ,Model model) {
 
-		log.info("enter");
 		String returnString = "";
-		log.info(req.getSession().getAttribute("mid").toString());
-		log.info(elidx);
-		int ret = eventApplyService.applyEvent(req.getSession().getAttribute("mid").toString(), elidx);
-		if(ret == 0){
+
+		String ret = eventApplyService.applyEvent(req.getSession().getAttribute("mid").toString(), elidx);
+		if(ret.equals("0")){
 			/* 성공 */
 			returnString = "Success";
 		}
-		else if(ret == 1){
+		else if(ret.equals("1")){
 			/* 자리가 없음 */
 			returnString = "No empty seats";
 		}
-		else if(ret == 2){
+		else if(ret.equals("2")){
 			/* 이미 참여한 경우*/
 			returnString = "Already applied for this event";
 		}

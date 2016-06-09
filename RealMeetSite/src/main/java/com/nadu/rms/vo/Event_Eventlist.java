@@ -12,7 +12,14 @@ public class Event_Eventlist {
 	private String addr;
 	private String eldate;
 	private String maxgnum;
+	private int good;
 	
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	public String getMaxgnum() {
 		return maxgnum;
 	}
