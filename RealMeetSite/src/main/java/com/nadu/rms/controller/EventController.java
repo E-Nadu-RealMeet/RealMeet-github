@@ -178,4 +178,5 @@ public class EventController {
 		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
 		return "event/eventEdit";
 	}
+	
 }

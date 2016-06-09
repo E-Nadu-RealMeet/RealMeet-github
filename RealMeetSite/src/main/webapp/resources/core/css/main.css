@@ -1891,7 +1891,9 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 }
 
 #main>section#top {
-	max-height: 230px;
+	max-height: 280px;
+	position: relative;
+	margin-top: 44px;
 }
 
 #main>section#portfolio {
