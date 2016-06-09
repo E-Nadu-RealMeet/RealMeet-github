@@ -7,8 +7,11 @@ import org.apache.ibatis.annotations.Select;
 import com.nadu.rms.vo.*;
 
 public interface CustomerMapper {
+
+
 	public List<FAQ> selectFAQs(String title);
 	public List<Notices> selectNotices(String title);
+
 	public Notices selectNoticeByNidx();
 	public FAQ selectFAQByFidx();
 	public QNA selectQNAByQidx();

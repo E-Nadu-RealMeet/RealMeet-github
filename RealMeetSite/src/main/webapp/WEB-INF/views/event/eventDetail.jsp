@@ -1,6 +1,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
+<style>
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle; 
+}
+
+</style>
 <div class="container">
 	<%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventDetail.js" type="text/javascript"></script> --%>
 
@@ -27,13 +48,16 @@
 						</blockquote>
 						<hr>
 						<div id="lists"></div>
-						<input type="button" onclick="tmp()" value="button" />
+
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailEditModal">수정</button>
+<!-- 						<input type="button" onclick="tmp()" value="button" /> -->
 						<hr>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="pictures" aria-labelledby="pictures-tab" aria-expanded="false">
 						<p>
 						<div class="row">사진 넣을공간</div>
 
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#picturesEditModal">수정</button>
 
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="review" aria-labelledby="review-tab" aria-expanded="false">
@@ -48,6 +72,108 @@
 											</div>
 											<div class="panel-body">${reviews.get(i).getContent() }</div>
 										</div>
+										</div>
+									</c:forEach>
+								</c:if>
+							</div>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewEditModal">수정</button>
+						</div>
+						</c:if>
+					</div>
+				</div>
+				
+				
+				
+<div class="modal fade" role="dialog" id="detailEditModal">
+      <div class="modal-dialog">
+   
+      						
+      
+      <div class="modal-content"> 
+							<header>
+								<h2 align="center">Detail 수정</h2>
+							</header>
+			
+			
+			
+			<table>
+			<tr>
+			<th><form action="" method="post">
+			제목 : <input type="text" name="detail" value="${detail.get(0).getEventname() }"/>
+			날짜 : <input type="text" name="detail" value="${detail.get(0).getEldate() }"/>
+			상세내용 : <input type="text" name="detail" value="${detail.get(0).getDescription() }"/>
+			<button style="float: right;" type="submit"  class="btn btn-primary btn-lg">수정</button>
+			</form></th>
+			<th><button style="float: right;" type="button" class="btn btn-default btn-lg" data-dismiss="modal">취소</button></th>
+			</tr>
+			</table>
+      </div>
+      </div>
+      </div>				
+				
+				
+				
+				
+				<%-- 
+				<c:if test="${detail.size() != 0}">
+					<c:forEach var="i" begin="0" end="${detail.size()-1 }">
+						<div data-toggle="modal" data-target="#apply${}">
+							<input type="radio" id="chk${i}" name="chkDate" value="${i}">${detail.get(i).getAddr()}	/ ${detail.get(i).getEldate()} /
+							<c:if test="${glist.size() != 0}">
+							<c:forEach var="gl" begin="0" end="${glist.size()-1 }">
+								<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">참여함</c:if>
+							</c:forEach>
+							</c:if>
+							
+						</div>
+						<div class="modal fade" id="apply">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-body" style="overflow: auto">
+										<div class="col-md-12" style="text-align: left">
+											정말 참여하시겠습니까
+										</div>
+										<c:if test="${glist.size() != 0}">
+											<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
+												<div class="col-md-12" style="text-align: left">정말 취소 하시겠습니까</div>
+											</c:if>
+										</c:if>
+										<c:if test="${glist.size() == 0 || detail.get(i).getElidx() != glist.get(gl).getElidx() }">
+											<div class="col-md-12" style="text-align: left">정말 참여 하시겠습니까</div>
+										</c:if>
+										
+									</div>
+									<div class="modal-footer">
+										<c:if test="${glist.size() != 0}">
+											<c:if test="${detail.get(i).getElidx() == glist.get(gl).getElidx()}">
+											<button type="submit" id="applyEvent" class="btn btn-primary"
+												onclick="return applyProcess()">네</button>
+											</c:if>
+										</c:if>
+										<c:if test="${glist.size()==0 || detail.get(i).getElidx() != glist.get(gl).getElidx()}">
+										<button type="submit" id="applyEvent" class="btn btn-primary"
+											onclick="return cancleProcess('${detail.get(i).getElidx()}')">네</button>
+										</c:if>
+										<button type="button" id="close" class="btn btn-default"
+											data-dismiss="modal">닫기</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if> --%>
+				<hr>
+
+<%-- 
+				<button type="button" class="btn btn-primary btn-lg"
+					data-toggle="modal" data-target="#apply">참여 하기</button>
+				<div class="modal fade" id="apply" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+
+					</c:if>
+				</div>
+			</div>
+			
 									</div>
 								</c:forEach>
 							</c:if>
@@ -59,20 +185,21 @@
 
 
 
+
 	</div>
 	<!-- 안보이는 부분 -->
 	<div class="eventlist" style='display: none;'>
 		<div class="target" data-toggle="modal" data-target="#apply">
-			<input type="radio" class="chk" id="chk${i}" name="chkDate">주소 / 날짜 / 참여여부
+			<div class="chk" id="chk${i}" name="chkDate">주소 / 날짜 / 참여여부</div>
 		</div>
-		<div class="modal fade" id="apply">
-			<div class="modal-dialog modal-lg">
+		<div class="modal modal-center fade" id="apply">
+			<div class="modal-dialog modal-sm modal-center">
 				<div class="modal-content">
 					<div class="modal-body" style="overflow: auto">
 						<div class="col-md-12" style="text-align: left">정말 참여하시겠습니까</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" id="submitEvent" class="btn btn-primary" onclick="return applyProcess()">네</button>
+						<button type="submit" id="submitEvent" class="btn btn-primary" onclick="return applyProcess()" data-dismiss="modal">네</button>
 						<button type="button" id="close" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
@@ -81,4 +208,10 @@
 	</div>
 
 
+
+	</div>
+</section>
+--%>
+
 </div>
+

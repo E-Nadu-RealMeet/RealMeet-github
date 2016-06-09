@@ -26,4 +26,16 @@ public class EventApplyService {
 		return Vgl.getResult();
 		
 	}
+	public String cancleEvent(String mid, String elidx){
+		
+		int af = guestlistDao.deleteGuestlist(mid, elidx);
+
+		if(af > 0){
+			return "true";
+		}
+		else{
+			return "false";
+		}
+
+	}
 }
