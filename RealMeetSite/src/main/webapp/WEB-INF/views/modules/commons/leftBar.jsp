@@ -251,6 +251,9 @@
 							<c:if test="${!empty mid}">
 								<li><a href="${pageContext.request.contextPath}/logout" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-lock">로그아웃</span></a></li>
 							</c:if>
+							<c:if test="${!empty mid}">
+								<li><a href="${pageContext.request.contextPath}/users/info?id=${mid}" id="top-link" class="skel-layers-ignoreHref"><span class="fa fa-user-plus">회원정보보기</span></a></li>
+							</c:if>
 							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">이벤트 리스트</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">게시판</span></a></li>

@@ -135,11 +135,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 	<meta name="description" content="Bootstrap Bootstrap user profile show page example snippet for Bootstrap." /> -->
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<%--   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css"> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--%>
+
 <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersInfo.css" /> -->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -147,7 +148,7 @@
 </head>
 <div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; ">
 			<div class="row">
-				<div class="col-md-9" style="width:95%; margin: 0 auto;">
+				<div class="col-md-9" style="width:100%; margin: 0 auto;">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row">
@@ -164,18 +165,17 @@
 								</div>
 								<div class="col-md-8">
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-12" style="padding: 15px 10px 15px 10px;">
 											<h1 class="only-bottom-margin">${users.getId() }</h1>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-6" style="text-align: left;">
 											<span class="text-muted">별명:</span> ${users.getNickname() }<br>
 											<span class="text-muted">연락처:</span> ${users.getPhone() }<br>
 											<span class="text-muted">등급:</span> ${users.getRating() }<br>
-											<span class="text-muted">관심 카테고리:</span>
-											${users.getInterest() }<br> <br> <small
-												class="text-muted">Created: 01.01.2015</small>
+											<span class="text-muted">관심 카테고리:</span> ${users.getInterest() }<br> <br> 
+											<small class="text-muted">Created: 01.01.2015</small>
 										</div>
 									</div>
 								</div>

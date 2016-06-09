@@ -8,6 +8,13 @@
 <title></title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/${page }.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 </head>
 <body>
@@ -20,10 +27,10 @@
 		<tiles:insertAttribute name="topMenu"></tiles:insertAttribute>
 		<!-- Intro -->
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
-
+		<section id="portfolio" class="two">
 		<!-- Content -->
-		<tiles:insertAttribute name="users_content"></tiles:insertAttribute>
-
+			<tiles:insertAttribute name="users_content"></tiles:insertAttribute>
+		</section>
 		</div>
 
 		<!-- Footer -->
