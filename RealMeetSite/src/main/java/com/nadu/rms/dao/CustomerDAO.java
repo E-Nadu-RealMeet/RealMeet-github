@@ -19,7 +19,7 @@ public class CustomerDAO {
         session.close();
         return list;
     }
-	     public List<FAQ> selectFAQs() {
+	public List<FAQ> selectFAQs() {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          List<FAQ> list = mapper.selectFAQs();
@@ -27,7 +27,7 @@ public class CustomerDAO {
 		          return list;
 		      }
 		  
-		      public List<Notices> selectNotices() {
+	public List<Notices> selectNotices() {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          List<Notices> list = mapper.selectNotices();
@@ -40,7 +40,7 @@ public class CustomerDAO {
 	public Notices selectNoticeByNidx(String nidx) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          Notices notices = mapper.selectNoticeByNidx();
+		          Notices notices = mapper.selectNoticeByNidx(nidx);
 		          session.close();
 		          return notices;
 
@@ -68,10 +68,10 @@ public class CustomerDAO {
 
 	public int insertQNAs(QNA q) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		try {
-			String statement = "com.nadu.rms.mapper.CustomerMapper.insertQNA";
-			return session.insert(statement, q);
+			int statement = mapper.insertQNA(q);
+			return statement;
 		} finally {
 			session.commit(); // commit�� ���ϸ� ������ �Է��� �ȵ˴ϴ�.
 			session.close();

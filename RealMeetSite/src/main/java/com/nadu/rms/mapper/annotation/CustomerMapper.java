@@ -2,24 +2,26 @@ package com.nadu.rms.mapper.annotation;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.nadu.rms.vo.*;
 
 public interface CustomerMapper {
-
-
-<<<<<<< HEAD
+	@Select("SELECT * FROM FAQ")
 	public List<FAQ> selectFAQs();
+	
+	@Select("SELECT * FROM NOTICES")
 	public List<Notices> selectNotices();
-=======
-	public List<FAQ> selectFAQs(String title);
-	public List<Notices> selectNotices(String title);
->>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
-
-	public Notices selectNoticeByNidx();
+	
+	@Select("SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}")
+	public Notices selectNoticeByNidx(String nidx);
+	
 	public FAQ selectFAQByFidx();
 	public QNA selectQNAByQidx();
+	
+	@Select("SELECT * FROM QNA")
 	public List<QNA> selectQNAs();
-	public QNA insertQNA();
+	
+	public int insertQNA(QNA q);
 }

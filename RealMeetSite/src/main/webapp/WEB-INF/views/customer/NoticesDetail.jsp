@@ -6,10 +6,6 @@
 
 
 
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
-
 
 							<header>
 								<h2>공지사항</h2>
@@ -38,7 +34,6 @@
 			</table>
 
 			<a href="../Notices"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
-			</div>
-					</section>
+
 
 				
