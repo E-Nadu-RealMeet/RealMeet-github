@@ -48,11 +48,9 @@
 						</blockquote>
 						<hr>
 						<div id="lists"></div>
-<<<<<<< HEAD
+
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailEditModal">수정</button>
 <!-- 						<input type="button" onclick="tmp()" value="button" /> -->
-=======
->>>>>>> 0b63bdbbcee5ab6e81b550a5c8e1629582ebf680
 						<hr>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="pictures" aria-labelledby="pictures-tab" aria-expanded="false">
