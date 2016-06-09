@@ -2,11 +2,23 @@
 //$("#NoticesModal").click(function(){
 //	getNoticesList();
 //})
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+//
+>>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 //$("#NoticesDetail").click(function(){
 //	getNoticesDetailList();
 //})
 //});
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 
 
 $(document).ready(function(){
@@ -21,7 +33,11 @@ $('[data-target="#NoticesModal"]').on("click",function(){
 			var list = returnData.notices;
 			var contextPath = getContextPath();
 			var html = "";
+<<<<<<< HEAD
 			html = html+'<div class="modal"  role="dialog" id="NoticesModal">'
+=======
+			html = html+'<div class="modal" tabindex="-1"  role="dialog" id="NoticesModal">'
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 		    +  '<div class="modal-dialog">'
 		     + '<div class="modal-content">' 
 				+					'<header>'
@@ -68,6 +84,7 @@ $('[data-target="#NoticesModal"]').on("click",function(){
 			}
 		
 	});
+<<<<<<< HEAD
 	
 	
 	$('[data-target="#FAQsModal"]').on("click",function(){
@@ -185,6 +202,8 @@ $('[data-target="#NoticesModal"]').on("click",function(){
 			});
 	
 	
+=======
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 		}
 	
 		
@@ -240,6 +259,7 @@ function getNoticesDetailList(){
 			});
 				};		
 });		
+<<<<<<< HEAD
 	
 	
 	function getFAQDetailList(){
@@ -349,12 +369,18 @@ function getQNADetailList(){
 });		
 	
 	
+=======
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 	function getContextPath(){
 	    var offset=location.href.indexOf(location.host)+location.host.length;
 	    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
 	    return ctxPath;
 	}
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 //
 //
 //function getNoticesList(){
@@ -469,4 +495,8 @@ function getQNADetailList(){
 //	    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
 //	    return ctxPath;
 //	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223

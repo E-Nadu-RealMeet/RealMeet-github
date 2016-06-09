@@ -7,8 +7,22 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<<<<<<< HEAD
 <script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
 				<!-- Portfolio -->
+=======
+
+<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
+				<!-- Portfolio -->
+
+
+		
+		
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	
+
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 					<section id="portfolio" class="two">
 						<div class="container" id="container">
 
@@ -23,7 +37,12 @@
 										<a href="Notices"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
+<<<<<<< HEAD
 											<h2 >공지사항</h2>
+=======
+											<h2 style="color: #81918E;">공지사항</h2>
+
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
 										</header></button></a>
 									</article>
 									<article class="item">
@@ -64,6 +83,7 @@
 						
 					</section>
 
+<<<<<<< HEAD
     <div class="modal" id="NoticesModal">
   <div class="modal-content">
 							
@@ -99,3 +119,7 @@
 		
 </div>
 </div>
+=======
+
+   
+>>>>>>> 65d863406b2feffa510d552543d1d65f01dbf223
