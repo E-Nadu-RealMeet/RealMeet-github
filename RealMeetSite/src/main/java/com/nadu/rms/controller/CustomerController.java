@@ -51,18 +51,10 @@ public class CustomerController {
 	
 	@RequestMapping(value="Notices", method=RequestMethod.GET)
 	public String Notices(HttpServletRequest req, Model model){
-<<<<<<< HEAD
-//		List<Notices> Notices = customersDao.selectNotices();
-//		model.addAttribute("Notices", customersDao.selectNotices());
-		String returnValue = customerService.NoticesListLoad(req);
-		log.info("gson : " + returnValue);
-		return returnValue;
-=======
 		String title = null;
 		List<Notices> Notices = customersDao.selectNotices(title);
 		model.addAttribute("Notices", Notices);
 		return "customer/Notices";
->>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
 	}
 	@RequestMapping(value="Notices/{title}", method=RequestMethod.GET)
 	public String searchNotices(Model model, Notices n, @PathVariable String title){
@@ -109,7 +101,7 @@ public class CustomerController {
 		String title = null;
 		List<QNA> QNA = customersDao.selectQNAs(title); 
 		model.addAttribute("QNA", QNA);
-		return "#QNAsModal";	
+		return "customer/QNA";	
 	}
 	
 	@RequestMapping(value = "insertQNA", method = RequestMethod.POST)

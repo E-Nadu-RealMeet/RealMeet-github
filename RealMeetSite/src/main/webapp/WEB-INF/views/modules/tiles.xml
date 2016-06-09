@@ -38,10 +38,8 @@
     <!-- 추가사항 -->
   </definition>
   
-<<<<<<< HEAD
 
-=======
->>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
+
   <definition name="customer/*" template="/WEB-INF/views/modules/layout.jsp">
   	<!-- 공통사항 -->
     <put-attribute name="header" value="/WEB-INF/views/modules/commons/leftBar.jsp" />
@@ -53,11 +51,7 @@
     <put-attribute name="content" value="/WEB-INF/views/customer/{1}.jsp"/>
     <!-- 추가사항 -->
   </definition>
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
   <definition name="users/*" template="/WEB-INF/views/modules/layout.jsp">
   	<!-- 공통사항 -->
   	<put-attribute name="header" value="/WEB-INF/views/modules/commons/leftBar.jsp" />

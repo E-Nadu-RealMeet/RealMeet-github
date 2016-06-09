@@ -4,51 +4,6 @@
 <div class="container">
 	<%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventDetail.js" type="text/javascript"></script> --%>
 
-<<<<<<< HEAD
-		<div class="blog-post">
-			<div class="bs-example bs-example-tabs" role="tabpanel"
-				data-example-id="togglable-tabs">
-				<ul id="myTab" class="nav nav-tabs" role="tablist">
-					<li role="presentation"><a href="#detail" id="detail-tab" role="tab" data-toggle="tab" aria-controls="detail">Detail</a></li>
-					<li role="presentation"><a href="#pictures" role="tab"
-						id="pictures-tab" data-toggle="tab" aria-controls="pictures">Pictures</a></li>
-					<li role="presentation"><a href="#review" role="tab"
-						id="review-tab" data-toggle="tab" aria-controls="reivew">Reviews</a></li>
-				</ul>
-				<div id="myTabContent" class="tab-content">
-					<c:if test="${detail.size() != 0 }">
-						<div role="tabpanel" class="tab-pane fade in active" id="detail"
-							aria-labelledby="detail-tab" aria-expanded="true">
-							<!-- 이벤트 제목란 -->
-							<h2 class="blog-post-title">${detail.get(0).getEventname() }</h2>
-							<!-- 이벤트 날짜란 -->
-							<p class="blog-post-meta">${detail.get(0).getEldate() }
-								by <a href="#">${detail.get(0).getHolder() }</a>
-							</p>
-							<hr>
-							<!-- 이벤트 상세내용 -->
-							<blockquote>
-								<p>${detail.get(0).getDescription() }</p>
-							</blockquote>
-							<hr>
-
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailEditModal">수정</button>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="pictures"
-							aria-labelledby="pictures-tab" aria-expanded="false">
-							<p>
-							<div class="row" >사진 넣을공간</div>
-							</p>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#picturesEditModal">수정</button>
-
-							<div id="lists"></div>
-							<input type="button" onclick="tmp()" value="button" />
-							<hr>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="pictures"
-							aria-labelledby="pictures-tab" aria-expanded="false">
-							<p><div class="row">사진 넣을공간</div>
-=======
 	<div class="blog-post">
 		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 			<ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -72,14 +27,15 @@
 						</blockquote>
 						<hr>
 						<div id="lists"></div>
-						<input type="button" onclick="tmp()" value="button" />
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailEditModal">수정</button>
+<!-- 						<input type="button" onclick="tmp()" value="button" /> -->
 						<hr>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="pictures" aria-labelledby="pictures-tab" aria-expanded="false">
 						<p>
 						<div class="row">사진 넣을공간</div>
->>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
 
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#picturesEditModal">수정</button>
 
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="review" aria-labelledby="review-tab" aria-expanded="false">
@@ -94,7 +50,7 @@
 											</div>
 											<div class="panel-body">${reviews.get(i).getContent() }</div>
 										</div>
-<<<<<<< HEAD
+										</div>
 									</c:forEach>
 								</c:if>
 							</div>
@@ -108,18 +64,25 @@
 				
 <div class="modal fade" role="dialog" id="detailEditModal">
       <div class="modal-dialog">
+   
+      						
+      
       <div class="modal-content"> 
 							<header>
 								<h2 align="center">Detail 수정</h2>
 							</header>
-				
-
-			<input type="text" name="detail" placeholder="제목"/>
+			
+			
 			
 			<table>
 			<tr>
-			<button style="float: right;" type="button" class="btn btn-primary btn-lg" data-dismiss="modal">수정</button>
-			<button style="float: right;" type="button" class="btn btn-default btn-lg" data-dismiss="modal">취소</button>
+			<th><form action="" method="post">
+			제목 : <input type="text" name="detail" value="${detail.get(0).getEventname() }"/>
+			날짜 : <input type="text" name="detail" value="${detail.get(0).getEldate() }"/>
+			상세내용 : <input type="text" name="detail" value="${detail.get(0).getDescription() }"/>
+			<button style="float: right;" type="submit"  class="btn btn-primary btn-lg">수정</button>
+			</form></th>
+			<th><button style="float: right;" type="button" class="btn btn-default btn-lg" data-dismiss="modal">취소</button></th>
 			</tr>
 			</table>
       </div>
@@ -184,13 +147,11 @@
 					data-toggle="modal" data-target="#apply">참여 하기</button>
 				<div class="modal fade" id="apply" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
-=======
+
 					</c:if>
 				</div>
 			</div>
 			
->>>>>>> 973c1e6ae7fd2e0ab06d2560c9347e8876ccedeb
-=======
 									</div>
 								</c:forEach>
 							</c:if>
@@ -200,7 +161,7 @@
 			</div>
 		</div>
 
->>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
+
 
 
 	</div>
@@ -225,10 +186,10 @@
 	</div>
 
 
-<<<<<<< HEAD
+
 	</div>
 </section>
 --%>
-=======
+
 </div>
->>>>>>> 9399241d16ccac8782f1bde227d2b2f2bcb128dc
+
