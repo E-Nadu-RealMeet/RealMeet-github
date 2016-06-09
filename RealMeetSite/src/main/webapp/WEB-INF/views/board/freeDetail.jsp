@@ -33,10 +33,7 @@
 	</div>
 
 	<!-- Main -->
-	<div id="main"">
-		<div class="top-wrapper clear">
 			<div class="container">
-				<br> <br>
 				<h2 align="center">자유 게시판</h2>
 
 				<div class="panel panel-default">
@@ -77,9 +74,9 @@
 
 
 			<p class="article-comment margin-small" align="center">
-				<a class="btn btn-primary" href="${pageContext.request.contextPath}/freeBoard">목록</a> 
-				<a class="btn btn-primary" href="${pageContext.request.contextPath}/freeUpdate/${aa.getNidx()}">수정</a> 
-				<a class="btn btn-primary" href="${pageContext.request.contextPath}/freeDel/${aa.getNidx()}">삭제</a>
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeBoard">목록</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getNidx()}">수정</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getNidx()}">삭제</a>
 			</p>
 			<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
 				<br>
@@ -92,19 +89,9 @@
 					<dd class="article-detail-data">이전 글이 없습니다.</dd>
 				</dl>
 			</div>
-		</div>
-
-	</div>
 
 
-	<!-- Footer -->
-	<div id="footer">
-		<!-- Copyright -->
-		<ul class="copyright">
-			<li>&copy; Untitled. All rights reserved.</li>
-			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-		</ul>
-	</div>
+
 
 	<!-- Scripts -->
 	<script

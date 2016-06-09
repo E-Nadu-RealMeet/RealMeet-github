@@ -112,7 +112,6 @@ function rev_Geocode(arg1, arg2){
 		type: 'POST',
 		success: function(myJSONResult){
 			if(myJSONResult.status == 'OK'){
-				
 				var tag = "";
 				var i;
 				for (i=0; i<myJSONResult.results.length; i++){
@@ -138,7 +137,7 @@ function rev_Geocode(arg1, arg2){
 
 <body>
 
-	<!-- Header -->
+<%-- 	<!-- Header -->
 	<div id="header">
 		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
 	</div>
@@ -150,7 +149,7 @@ function rev_Geocode(arg1, arg2){
 					<h2>자유 게시판</h2>
 				</header>
 		</section>
-	<section>
+	<section> --%>
 	<div class="container">
 		<div id="real_cnt" style="max-width: 1000px; margin: 0px auto;">
 		 <div id="floating-panel">
@@ -182,7 +181,7 @@ function rev_Geocode(arg1, arg2){
 				<tr>
 					<td>${aa.getNidx()}</td>
 					<td class='c1'><b>질문</b></td>
-					<td class='subject'><a href="${pageContext.request.contextPath}/freeDetail/${aa.getNidx()}"><b>${aa.getTitle()}</b></a></td>
+					<td class='subject'><a href="${pageContext.request.contextPath}/board/freeDetail/${aa.getNidx()}"><b>${aa.getTitle()}</b></a></td>
 					<td>${aa.getWriter()}</td>
 					<td>${aa.getRegdate()}</td>
 				</tr>
@@ -192,7 +191,7 @@ function rev_Geocode(arg1, arg2){
 					<tr>
 						<td>${i.qno}</td>
 						<td class='c1'>${i.kind }</td>
-						<td class='subject'><c:choose>
+						<%-- <td class='subject'><c:choose>
 								<c:when test="${i.writer.equals(user_id)}">
 									<a href="qnahit.do?cmd=qnahit&job=${i.qno}">${i.writer}님의
 										${i.kind} 입니다</a>
@@ -203,7 +202,7 @@ function rev_Geocode(arg1, arg2){
 										src="/img/icon_sec.gif" />
 									</span>
 								</c:otherwise>
-							</c:choose></td>
+							</c:choose></td> --%>
 						<td>${i.writer}</td>
 						<td>${i.regdate}</td>
 						<td></td>
@@ -212,7 +211,7 @@ function rev_Geocode(arg1, arg2){
 
 			</table>
 			<div class="board_list_button ">
-				<a href="${pageContext.request.contextPath}/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
+				<a href="${pageContext.request.contextPath}/board/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
 			</div>
 			<div class="paging_noline">
 				<span><a href="javascript:alert('처음페이지입니다.');"><img
@@ -226,37 +225,29 @@ function rev_Geocode(arg1, arg2){
 					<%-- <span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span> --%>
 					<span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span>
 			</div>
-			<form name="searchbbs" action="" method="post">
+			<form name="searchbbs" action="freeBoard" method="get">
 			
 				<div class="searchbbs" style="width: 500px; margin-left: 30%">
 				<div class="col-sm-3">
 					<select name='key' style="height: 50px; font-size:medium;">
-						<option value='subject' >제목</option>
-						<option value='mem_name'>작성자</option>
-						<option value='memo'>메모</option>
+						<option ${key=="search_sub"?"selected":""} value='search_sub' >제목</option>
+						<option ${key=="search_name"?"selected":""} value='search_name'>작성자</option>
+						<option ${key=="search_con"?"selected":""} value='search_con'>내용</option>
 					</select> 
 					</div>
-					<div class="col-sm-8"><input type='text' name='keyword' value='' style='height: 18px;'></div>
-					<input type='image' src="${pageContext.request.contextPath}/resources/core/images/btn_find.gif">
+					<div class="col-sm-8">
+					<label class="hidden" for="query"></label>
+					<input type="text" name="query" value="${query}" style="height: 18px;">
+					</div>
+					<input type="image" src="${pageContext.request.contextPath}/resources/core/images/btn_find.gif" value="submit">
 				</div>
 				
 			</form>
 		</div>
 		</div>
-		</section>
-	</div>
 
-	<!-- Footer -->
-	<div id="footer">
 
-		<!-- Copyright -->
-		<ul class="copyright">
-			<li>&copy; Untitled. All rights reserved.</li>
-			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-		</ul>
-
-	</div>
-
+	
 	<!-- Scripts -->
 	<%-- <script
 		src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
