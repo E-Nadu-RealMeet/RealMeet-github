@@ -60,7 +60,7 @@ function getEventList(page){
 					+ '</div>'
 					+ '</div>'
 					+ '</div>'
-					+ '<div class="modal fade" id="detail'+ ((page-1)*10+i) +'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+					+ '<div class="modal fade" id="detail'+ ((page-1)*10+i) +'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
 					+ ''
 					+ '<div class="modal-dialog modal-lg">'
 					+ '<div class="modal-content">'
@@ -114,3 +114,17 @@ function getContextPath(){
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
     return ctxPath;
 }
+
+//제일 먼저 실행
+;(function($) {
+	$.ajax({
+		type : 'GET',  
+		dataType : 'json',
+		data : {"page" : page},
+		url : '',
+
+		success : function(returnData) {
+
+		}
+	});
+})(jQuery);

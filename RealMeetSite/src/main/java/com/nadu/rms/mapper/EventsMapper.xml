@@ -20,7 +20,7 @@
 	</select> -->
 	
 	<insert id="insertEvents" parameterType="com.nadu.rms.vo.Events"> 
-	INSERT INTO EVENTS(ESIDX, CATEGORY,  EVENTNAME, HOLDER, DESCRIPTION, ABSTRACT, IMGSRC) VALUES(TO_CHAR(EVENTS_SEQ.NEXTVAL),#{category, jdbcType=VARCHAR},#{eventname, jdbcType=VARCHAR},#{holder, jdbcType=NVARCHAR},#{description, jdbcType=VARCHAR},#{abs, jdbcType=VARCHAR},#{imgsrc, jdbcType=VARCHAR})
+	INSERT INTO EVENTS(ESIDX, CATEGORY,  EVENTNAME, HOLDER, DESCRIPTION, ABS, IMGSRC) VALUES(TO_CHAR(EVENTS_SEQ.NEXTVAL),#{category, jdbcType=VARCHAR},#{eventname, jdbcType=VARCHAR},#{holder, jdbcType=NVARCHAR},#{description, jdbcType=VARCHAR},#{abs, jdbcType=VARCHAR},#{imgsrc, jdbcType=VARCHAR})
 	<selectKey keyProperty="esidx" resultType="String" order="AFTER">
 		SELECT TO_CHAR(EVENTS_SEQ.CURRVAL) FROM dual
 	</selectKey>

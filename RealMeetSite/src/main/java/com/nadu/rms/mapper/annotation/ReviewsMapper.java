@@ -12,4 +12,6 @@ public interface ReviewsMapper {
 	@Select("SELECT * FROM REVIEWS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public List<Review> selectReviewsByEsidx(@Param("esidx")String esidx); 
 	
+	@Select("SELECT COUNT(*) FROM REVIEWS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public int selectReviewsCount(String esidx);
 }

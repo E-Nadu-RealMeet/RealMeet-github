@@ -9,6 +9,20 @@ public class Event_User {
 	private String imgsrc;
 	private String abs; //간단한 설명
 	private String category;
+	private int reviewCnt;
+	
+	public String getAbs() {
+		return abs;
+	}
+	public void setAbs(String abs) {
+		this.abs = abs;
+	}
+	public int getReviewCnt() {
+		return reviewCnt;
+	}
+	public void setReviewCnt(int reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
 	// user
 	private String id;
 	//private String pwd;

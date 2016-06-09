@@ -22,7 +22,7 @@
 									</div>
 								</div>
 							</form>
-				<a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="µÚ·Î" /></a>
+		
 			
 		</div>
   

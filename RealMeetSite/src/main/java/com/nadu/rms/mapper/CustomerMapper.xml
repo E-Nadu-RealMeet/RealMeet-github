@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.CustomerMapper">
+<mapper namespace="com.nadu.rms.mapper.annotation.CustomerMapper">
 	
 	<select id="selectFAQs" resultType="com.nadu.rms.vo.FAQ">
 	<if test="title == null">

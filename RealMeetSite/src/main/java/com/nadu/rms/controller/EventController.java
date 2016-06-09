@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
+import com.nadu.rms.service.EventEditService;
 import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.vo.Event_Eventlist;
 
@@ -31,7 +32,12 @@ public class EventController {
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
+	EventEditService eventEditService;
 	
+	public void setEventEditService(EventEditService eventEditService) {
+		this.eventEditService = eventEditService;
+	}
+
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
 	
@@ -55,6 +61,8 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+		String introValue = "모임 목록입니다.";
+        model.addAttribute("introValue", introValue );
 		model.addAttribute("page","event/eventList");
 		return "event/eventList";
 	}
@@ -87,9 +95,11 @@ public class EventController {
 	// 이벤트 취소하기
 	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String eventCancleProc(@PathVariable String esidx, Model model) {
+	public String eventCancleProc(@PathVariable String elidx, HttpServletRequest req,Model model) {
 
-		String returnValue = "";
+		//취소 작업
+		String mid = (String)req.getSession().getAttribute("mid");
+		String returnValue = eventApplyService.cancleEvent(mid, elidx);
 		//뷰 리턴(detail)
 		return returnValue;
 	}
@@ -121,7 +131,8 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
-
+		String introValue = "모임의 자세한 정보입니다.";
+        model.addAttribute("introValue", introValue );
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.detailLoad(req, esidx, model);
@@ -157,16 +168,25 @@ public class EventController {
 	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
 
 		int iv = eventRegService.eventReg(e, request);
-		
-		if(iv>0){
+		log.info("eventReg 실행 결과 : "+iv);
+		if(iv>1){
 			return "redirect:../event/"+e.getEsidx();
 		}else{
 			return "redirect:reg";
 		}
 	}
 	
+	//모든 이벤트 목록 조회 (ajax)
+	@RequestMapping(value="dataloadformap", produces="text/plain;charset=UTF-8")
+	public String eventListDataloadForMap(){
+		
+		return null;
+	}
+	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String eventEdit(Event_Eventlist e) {
+	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
+		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
 		return "event/eventEdit";
 	}
+	
 }

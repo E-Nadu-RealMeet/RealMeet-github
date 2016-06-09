@@ -15,6 +15,7 @@ import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.vo.FreeBoard;
 
 @Controller
+@RequestMapping("board/*")
 public class FreeBoardController {
 	
 	BoardDao boardDao;
@@ -27,9 +28,12 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeBoard", method = RequestMethod.GET)
 	public String freeBoard(Model model, HttpServletRequest req){
 		
+		String introValue="자유 게시판";
+		model.addAttribute("introValue", introValue );
 		List<FreeBoard> list = boardDao.selectFreeBoards();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("page", "board/freeBoard");
 		return "board/freeBoard";
 	}
 	@RequestMapping(value="/freeDetail", method = RequestMethod.GET)
@@ -87,8 +91,9 @@ public class FreeBoardController {
 		return "redirect:../freeBoard";
 	}
 	
-	
-	
-	
+	@RequestMapping(value="/gmap", method = RequestMethod.GET)
+	public String gmap(){
+		return "board/gmap";
+	}
 
 }

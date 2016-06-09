@@ -5,9 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nadu.rms.config.MyBatisUtil;
+import com.nadu.rms.controller.EventController;
 import com.nadu.rms.dao.CategoryDAO;
 import com.nadu.rms.dao.EventlistDao;
 import com.nadu.rms.dao.EventsDao;
@@ -19,6 +22,7 @@ public class EventRegService {
 	EventsDao eventsDAO;
 	EventlistDao eventlistDAO;
 	CategoryDAO categoryDAO;
+	static final Logger log = LoggerFactory.getLogger(EventRegService.class);
 	@Autowired
 	public void setEventsDao(EventsDao eventsDao) {
 		this.eventsDAO = eventsDao;
@@ -40,12 +44,15 @@ public class EventRegService {
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
 		try{
 			iv = mapper.insertEvents(e);
+			log.info("mapper.insertEvents(e) 실행 결과"+iv);
 			
 			EventlistMapper mapper2 = session.getMapper(EventlistMapper.class);
 			iv+= mapper2.insertEventlist(e);
-			
+			log.info("mapper2.insertEventlist(e) 실행 결과"+iv);
 			session.commit();
 		}catch(Exception ext){
+			log.debug(ext.getMessage());
+			ext.printStackTrace();
 			session.rollback();
 		}finally{
 			session.close();

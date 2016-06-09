@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.nadu.rms.dao.BannerDAO;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Events;
 
 
@@ -21,13 +23,9 @@ import com.nadu.rms.vo.Events;
 @Controller
 public class HomeController {
 	
-	EventsDao eventsDao;
-	static final Logger log = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
-	public void setEventsDao(EventsDao eventsDao) {
-		this.eventsDao = eventsDao;
-	}
-
+	BannerDAO bannerDAO;
+	static final Logger log = LoggerFactory.getLogger(HomeController.class);
 
 	/**
      * Simply selects the home view to render by returning its name.
@@ -38,25 +36,15 @@ public class HomeController {
     	String introValue = "DadleMoyeo에 오신 것을 환영합니다.";
         model.addAttribute("introValue", introValue );
        
-        List<Event_Eventlist> list = eventsDao.selectEvents();
-
+        List<Event_User> list = bannerDAO.selectEvents();
+        //리스트의 모든 imgsrc를 :로 스플릿해서 첫번째 사진만 다시 setting
+        for (Event_User ee : list) {
+			ee.setImgsrc(ee.getImgsrc().split(":")[0]);
+		}
 		model.addAttribute("list", list);    
 		model.addAttribute("page","index");
          
         return "index";
-    }
-    @RequestMapping(value = "/caro", method = RequestMethod.GET)
-    public String caro(Model model) {
-       
-    	String introValue = "DadleMoyeo에 오신 것을 환영합니다.";
-        model.addAttribute("introValue", introValue );
-       
-        List<Event_Eventlist> list = eventsDao.selectEvents();
-
-		model.addAttribute("list", list);    
-        
-         
-        return "modules/commons/carousel";
     }
 }
 
