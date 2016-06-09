@@ -13,8 +13,8 @@ import com.nadu.rms.vo.Guestlist;
 
 public interface GuestlistMapper {
 
-	@Delete("DELETE FROM GUESTLIST WHERE GUEST = #{mid, jdbcType=VARCHAR}")
-	public int deleteGuestlist(@Param("mid")String mid);
+	@Delete("DELETE FROM GUESTLIST WHERE GUEST = #{mid, jdbcType=VARCHAR} AND ELIDX = #{elidx, jdbcType=VARCHAR}")
+	public int deleteGuestlist(@Param("mid")String mid, @Param("elidx")String elidx);
 	
 	@Select("SELECT * FROM GUESTLIST WHERE GUEST = #{mid, jdbcType=VARCHAR} ORDER BY TO_NUMBER(ELIDX) DESC")
 	public List<Guestlist> searchGuestlistById(@Param("mid")String mid);

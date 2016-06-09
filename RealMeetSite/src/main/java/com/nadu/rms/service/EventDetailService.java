@@ -61,26 +61,31 @@ public class EventDetailService {
 		String esidx = req.getParameter("esidx");
 		String mid = (String)req.getSession().getAttribute("mid");
 		
+		System.out.println("esidx"+esidx);
+		System.out.println("mid"+mid);
 		// DAO 활용 데이터 가져오기
 		List<Event_Eventlist> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
 		List<Guestlist> glist = geustlistDAO.searchGuestlistById(mid);
 		List<Map<Object, Object>> cntlist = geustlistDAO.selectCntGuestlist();
 
-		// JSON으로 넘길 데이터 다시 생성
+		// JSON으로 넘길 데이터 형태로 가공
+		// esidx로 검색한 event,eventlist 전체 순회
 		for (Event_Eventlist e : detail) {
 			
+			// 가공할 형태의 이너클래스 생성
 			JsonClass tmpObject = new JsonClass();
 			
+			// 데이터 삽입
 			tmpObject.setElidx(e.getElidx());
 			tmpObject.setAddr(e.getAddr());
 			tmpObject.setDate(e.getEldate());
 			tmpObject.setAttended(false);
 			
 			tmpObject.setMaxguest(Integer.parseInt(e.getMaxgnum()));
-			// 참여자 숫자 
+			// 참여자 숫자 가져오기
 			for (Map<Object, Object> c : cntlist) {
-				System.out.println("ㅁ"+e.getElidx());
-				System.out.println("ㅌ"+c.get("ELIDX"));
+				//각 elidx마다 카운트된 숫자들중
+				//지금 보고있는 elidx의 참여자 카운트 수를 가져옴
 				if(((String)c.get("ELIDX")).equals(e.getElidx())){
 					tmpObject.setCntguest(Integer.parseInt(c.get("CNT").toString()));
 					System.out.println(tmpObject.getCntguest());
@@ -88,9 +93,12 @@ public class EventDetailService {
 				}
 			}
 
-			// 참여 했는지 체크
+			// 현재 로그인한 유저가 참여 했는지 체크
 			for (Guestlist g : glist) {
-				if(g.getGuest().equals(mid)){
+				System.out.println(g.getGuest());
+				System.out.println(g.getGidx());
+				System.out.println("e:"+e.getElidx()+"g:"+g.getElidx());
+				if(g.getElidx().equals(e.getElidx())){
 					tmpObject.setAttended(true);
 					break;
 				}
@@ -99,6 +107,7 @@ public class EventDetailService {
 			ret.add(tmpObject);
 		}
 
+		// Json형태로 반환
 		return gson.toJson(ret);
 	}
 	

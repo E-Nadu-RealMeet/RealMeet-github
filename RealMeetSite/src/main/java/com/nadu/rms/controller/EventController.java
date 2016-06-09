@@ -93,9 +93,11 @@ public class EventController {
 	// 이벤트 취소하기
 	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String eventCancleProc(@PathVariable String esidx, Model model) {
+	public String eventCancleProc(@PathVariable String elidx, HttpServletRequest req,Model model) {
 
-		String returnValue = "";
+		//취소 작업
+		String mid = (String)req.getSession().getAttribute("mid");
+		String returnValue = eventApplyService.cancleEvent(mid, elidx);
 		//뷰 리턴(detail)
 		return returnValue;
 	}

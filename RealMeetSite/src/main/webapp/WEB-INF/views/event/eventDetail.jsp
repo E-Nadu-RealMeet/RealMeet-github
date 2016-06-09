@@ -1,6 +1,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
+<style>
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle; 
+}
+
+</style>
 <div class="container">
 	<%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventDetail.js" type="text/javascript"></script> --%>
 
@@ -27,8 +48,11 @@
 						</blockquote>
 						<hr>
 						<div id="lists"></div>
+<<<<<<< HEAD
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailEditModal">수정</button>
 <!-- 						<input type="button" onclick="tmp()" value="button" /> -->
+=======
+>>>>>>> 0b63bdbbcee5ab6e81b550a5c8e1629582ebf680
 						<hr>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="pictures" aria-labelledby="pictures-tab" aria-expanded="false">
@@ -168,16 +192,16 @@
 	<!-- 안보이는 부분 -->
 	<div class="eventlist" style='display: none;'>
 		<div class="target" data-toggle="modal" data-target="#apply">
-			<input type="radio" class="chk" id="chk${i}" name="chkDate">주소 / 날짜 / 참여여부
+			<div class="chk" id="chk${i}" name="chkDate">주소 / 날짜 / 참여여부</div>
 		</div>
-		<div class="modal fade" id="apply">
-			<div class="modal-dialog modal-lg">
+		<div class="modal modal-center fade" id="apply">
+			<div class="modal-dialog modal-sm modal-center">
 				<div class="modal-content">
 					<div class="modal-body" style="overflow: auto">
 						<div class="col-md-12" style="text-align: left">정말 참여하시겠습니까</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" id="submitEvent" class="btn btn-primary" onclick="return applyProcess()">네</button>
+						<button type="submit" id="submitEvent" class="btn btn-primary" onclick="return applyProcess()" data-dismiss="modal">네</button>
 						<button type="button" id="close" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
