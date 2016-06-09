@@ -53,7 +53,6 @@ public class EventsDao {
 		
 		return events;
 	}
-	
 	// Events�� EventList �뀒�씠釉� 議곗씤 寃곌낵 �쉷�뱷 
 	public List<Event_Eventlist> selectEventsDetailByESIDX(String esidx){
 		

@@ -176,6 +176,13 @@ public class EventController {
 		}
 	}
 	
+	//모든 이벤트 목록 조회 (ajax)
+	@RequestMapping(value="dataloadformap", produces="text/plain;charset=UTF-8")
+	public String eventListDataloadForMap(){
+		
+		return null;
+	}
+	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
 		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
