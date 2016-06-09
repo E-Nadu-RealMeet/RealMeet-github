@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import com.nadu.rms.vo.Users;
 public class UsersController {
 	
 	UsersDao usersDao;
+	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
 	public void setUserDao(UsersDao usersDao) {
@@ -35,6 +38,7 @@ public class UsersController {
 		users = usersDao.selectUsers(id);
 		model.addAttribute("users", users);
 		model.addAttribute("id", id);
+		model.addAttribute("page","users/usersEdit");
 		
 		return "users/usersEdit";
 	}
@@ -59,8 +63,9 @@ public class UsersController {
 
 	//회원가입
 	@RequestMapping(value="join", method = RequestMethod.GET)
-	public String usersJoin(){
+	public String usersJoin(Model model){
 		
+		model.addAttribute("page","users/usersJoin");
 		return "users/usersJoin";		
 	}
 	
@@ -85,14 +90,22 @@ public class UsersController {
 	
 	//회원정보
 	@RequestMapping(value="info", method = RequestMethod.GET)
-	public String usersInfo(Model model, HttpServletRequest req){
+	public String usersInfo(Model model, HttpServletRequest request){
 		
-		String id = req.getParameter("id");
+		String mid = (String)request.getSession().getAttribute("mid");
+		if(mid == null || mid == ""){
+			model.addAttribute("error","notLoginError");
+			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
+			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
+			log.info("현재 페이지"+savePage);
+			request.getSession().setAttribute("savePage", savePage);
+			return "redirect:../login";
+		}
 
 		Users users = null;
-		users = usersDao.selectUsers(id);
+		users = usersDao.selectUsers(mid);
 		model.addAttribute("users", users);
-		model.addAttribute("id", id);
+		model.addAttribute("id", mid);
 		
 		return "users/usersInfo";		
 	}
@@ -109,15 +122,16 @@ public class UsersController {
 	
 	//회원탈퇴 proc
 	@RequestMapping(value="check", method = RequestMethod.POST)
-	public String usersCheck(String id){
+	public String usersCheck(String id, HttpServletRequest request, String mid){
 		
 		System.out.println(id);
-		
+		request.getSession().setAttribute("mid", mid);
 		System.out.println("회원정보삭제시작");
 		int af = usersDao.delUsers(id);
 		
 		if(af>0){
 			System.out.println("회원삭제 성공");
+			mid = "";
 			return "redirect:../";
 		}else{
 			System.out.println("회원정보수정 실패");
@@ -162,11 +176,20 @@ public class UsersController {
 	
 	//회원정보, 내가만든이벤트리스트, 참여한 리스트 목록
 	@RequestMapping(value="home")
-	public String home(HttpServletRequest request){ 
+	public String home(HttpServletRequest request, Model model){ 
 		String mid = (String) request.getSession().getAttribute("mid");
-		if(mid == null){
-			return "users/usersHome";
+		Users users = null;
+		if(mid == null || mid == ""){
+			model.addAttribute("error","notLoginError");
+			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
+			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
+			log.info("현재 페이지"+savePage);
+			request.getSession().setAttribute("savePage", savePage);
+			return "redirect:../login";
 		}else{
+			users = usersDao.selectUsers(mid);
+			model.addAttribute("users", users);
+			model.addAttribute("id", mid);
 			return "users/usersHome";
 		}
 	}

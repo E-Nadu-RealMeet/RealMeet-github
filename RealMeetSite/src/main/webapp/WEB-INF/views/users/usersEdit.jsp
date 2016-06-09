@@ -220,80 +220,22 @@ function formCheck() {
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
 <title>회원정보수정</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<%-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css"> --%>
 
 
 <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersEdit.css" />-->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-<script type="text/javascript">
-
-function formCheck() {
-	var member_nickname = document.getElementById('nickname');
-	var password = document.getElementById('password');
-	var password_check = document.getElementById('passwordCheck');
-	var member_phoneNumber = document.getElementById('phoneNumber');
-	
-	if (password.value == '' || password.value == null) {
-		alert('비밀번호를 입력하세요');
-		focus.password;
-		return false;
-	}
-
-	if (password_check.value == '' || password_check.value == null) {
-		alert('비밀번호확인란을 입력하세요');
-		focus.password_check;
-		return false;
-	}
-	
-	if (password.value != password_check.value) {
-		alert("비밀번호와 비밀번호 확인란이 다릅니다.");
-		focus.passowrd;
-		return false;
-	}
-	
-	if (member_nickname.value == '' || member_nickname.value == null) {
-		alert('별명을 입력하세요');
-		focus.member_nickname;
-		return false;
-	}
-	
-	if (member_phoneNumber.value == '' || member_phoneNumber.value == null) {
-		alert('휴대폰번호를 입력하세요');
-		focus.member_phoneNumber;
-		return false;
-	}
-
-	if (member_phoneNumber.value.length <= 9 || member_phoneNumber.value.length >= 12) {
-		alert("휴대폰번호를 제대로 입력해주세요");
-		focus.member_phoneNumber;
-		return false;
-	}
-
-	if (isNaN(member_phoneNumber.value)) {
-		alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
-		focus.member_phoneNumber;
-		return false;
-	}
-	return true;
-}
-
-</script>
+<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 
 </head>
 <div class="container"
@@ -332,15 +274,7 @@ function formCheck() {
 							maxlength="30" style="width: 80%; margin-top: 1%;">
 					</div>
 				</div>
-				<!-- <div class="form-group" id="divName">
-					<label for="inputName" class="col-lg-2 control-label">이름</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control onlyHangul" id="name"
-							data-rule-required="true" placeholder="한글만 입력 가능합니다."
-							maxlength="15">
-					</div>
-				</div> -->
-
+				
 				<div class="form-group" id="divNickname">
 					<label for="inputNickname" class="col-lg-2 control-label"
 						style="font-size: 20px;">별명</label>
@@ -350,15 +284,6 @@ function formCheck() {
 							style="width: 80%; margin-top: 1%;" value=${users.getNickname() }>
 					</div>
 				</div>
-
-				<!-- <div class="form-group" id="divEmail">
-					<label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-					<div class="col-lg-10">
-						<input type="email" class="form-control" id="email"
-							data-rule-required="true" placeholder="이메일" maxlength="40">
-					</div>
-				</div> -->
-
 
 				<div class="form-group" id="divPhoneNumber">
 					<label for="inputPhoneNumber" class="col-lg-2 control-label"
@@ -382,7 +307,6 @@ function formCheck() {
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<!-- <button type="submit" name="submit" id="submit"	class="btn btn-default">회원정보 수정</button> -->
 						<button type="submit" name="submit" id="submit"	class="btn btn-default pull-right" style="margin-right: 20%; color: #333 !important;">회원정보 수정</button>
 					</div>
 				</div>
