@@ -42,6 +42,8 @@
     <!-- 추가사항 -->
   </definition>
 
+
+
   <definition name="modules/commons/carousel" template="/WEB-INF/views/modules/commons/carousel.jsp"></definition>
 
 </tiles-definitions>
