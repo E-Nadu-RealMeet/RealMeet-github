@@ -183,26 +183,32 @@
 	display: inline;
 	margin-right: 20px;
 }
+.topButton{
+	font-size: 1.1em;
+}
+.topButton:HOVER{
+	color:white;
+}
 </style>
 
 
 </head>
 <body style="padding: 0px; margin: 0px; font-family: Arial, sans-serif">
 	<div class="join-top">
-		<ul style="margin: 0 auto;position: fixed;background-color: #f5fafa;width: 100%;text-align: right;right: 0;">
-			<li><a href="${pageContext.request.contextPath}/">홈</a></li>
+		<ul style="margin: 0 auto;position: fixed;background-color: rgba(0, 0, 0, 0.2);width: 100%;text-align: right;right: 0;z-index: 11;top: 0;font-size: 1.2em;">
+			<li><a class="topButton" href="${pageContext.request.contextPath}/">홈</a></li>
 
 			<c:if test="${empty mid}">
-				<li><a href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" type="button">로그인</a></li>
+				<li><a class="topButton" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" type="button">로그인</a></li>
 			</c:if>
 			<c:if test="${!empty mid}">
-				<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+				<li><a class="topButton" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 			</c:if>
 			<c:if test="${empty mid}">
-				<li><a href="${pageContext.request.contextPath}/users/join">회원가입</a></li>
+				<li><a class="topButton" href="${pageContext.request.contextPath}/users/join">회원가입</a></li>
 			</c:if>
 			<c:if test="${!empty mid}">
-				<li><a href="${pageContext.request.contextPath}/users/info?id=${mid}">회원정보보기</a></li>
+				<li><a class="topButton" href="${pageContext.request.contextPath}/users/info?id=${mid}">회원정보보기</a></li>
 			</c:if>
 			
 		</ul>
