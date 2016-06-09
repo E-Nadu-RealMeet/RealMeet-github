@@ -3,10 +3,10 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.EventlistMapper">
+<mapper namespace="com.nadu.rms.mapper.annotation.EventlistMapper">
 
 	<insert id="insertEventlist" parameterType="com.nadu.rms.vo.Event_Eventlist">
-	INSERT INTO EVENTLIST(ELIDX, ESIDX, ADDR, ELDATE) VALUES(TO_CHAR(EL_SEQ.NEXTVAL), TO_CHAR(#{esidx, jdbcType=VARCHAR}), #{addr, jdbcType=VARCHAR}, TO_DATE(#{date}, 'yyyy/mm/dd hh24:mi'))
+	INSERT INTO EVENTLIST(ELIDX, ESIDX, ADDR, ELDATE, MAXGNUM) VALUES(TO_CHAR(EL_SEQ.NEXTVAL), TO_CHAR(#{esidx, jdbcType=VARCHAR}), #{addr, jdbcType=VARCHAR}, TO_DATE(#{eldate, jdbcType=VARCHAR}, 'yyyy/mm/dd hh24:mi'), TO_NUMBER(#{maxgnum, jdbcType=VARCHAR}))
 	<selectKey keyProperty="elidx" resultType="String" order="AFTER"><!-- 나중에 실행 -->
 		SELECT TO_CHAR(EL_SEQ.CURRVAL) FROM dual
 	</selectKey>

@@ -14,13 +14,28 @@ public class EventApplyService {
 		this.guestlistDao = guestlistDao;
 	}
 
-	public int applyEvent(String mid, String elidx){
+	public String applyEvent(String mid, String elidx){
 		
 		Guestlist Vgl = new Guestlist();
-		Vgl.setElidx(mid);
-		Vgl.setGuest(elidx);
-		int result = guestlistDao.callApplyProcedure(Vgl);
-		return result;
+		Vgl.setElidx(elidx);
+		Vgl.setGuest(mid);
+
+		guestlistDao.callApplyProcedure(Vgl);
 		
+		
+		return Vgl.getResult();
+		
+	}
+	public String cancleEvent(String mid, String elidx){
+		
+		int af = guestlistDao.deleteGuestlist(mid, elidx);
+
+		if(af > 0){
+			return "true";
+		}
+		else{
+			return "false";
+		}
+
 	}
 }

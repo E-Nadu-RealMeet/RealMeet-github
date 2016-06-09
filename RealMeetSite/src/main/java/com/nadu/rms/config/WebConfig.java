@@ -13,12 +13,15 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 import com.nadu.rms.controller.UploadController;
 
@@ -65,7 +68,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     /**
      * JSP를 뷰로 사용하는 뷰 리졸버 등록
      */
-    /*@Bean
+    @Bean
     public ViewResolver viewResolver() {
  
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -74,7 +77,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         viewResolver.setSuffix(".jsp");
         
         return viewResolver;
-    }*/
+    }
  
     @Override
     public void addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry registry) {
@@ -118,7 +121,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean(autowire = Autowire.BY_NAME)
     public FileSystemResource uploadDirResource(){
     	String uploadPath = uploadRepository()+"temp\\";
-    	System.out.println("uploadPath : "+uploadPath);
     	FileSystemResource uploadDirResource = new FileSystemResource(uploadPath);
     	return uploadDirResource;
     }
@@ -126,7 +128,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public UploadController uploadController(){
     	String uploadPath = uploadRepository();
-    	System.out.println("uploadPath : "+uploadPath);
     	UploadController uploadController = new UploadController();
     	/*uploadController.setMethodNameResolver(new MethodNameResolver() {
 			

@@ -182,20 +182,20 @@
 <style>
 #accordion {
     list-style: none;
-    padding: 0 0 0 0;
+/*     padding: 0 0 0 0; */
 /*     width: 170px; */
 }
 #accordion div {
     display: block;
 /*     background-color: #FF9927; */
-    font-weight: bold;
-    margin: 1px;
-    cursor: pointer;
-    padding: 5 5 5 7px;
-    list-style: circle;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+/*     font-weight: bold; */
+/*     margin: 1px; */
+/*     cursor: pointer; */
+/*     padding: 5 5 5 7px; */
+/*     list-style: circle; */
+/*     -moz-border-radius: 10px; */
+/*     -webkit-border-radius: 10px; */
+/*     border-radius: 10px; */
 }
 #accordion ul {
     list-style: none;
@@ -207,8 +207,9 @@
 #accordion ul li {
     font-weight: normal;
     cursor: auto;
+    font-size: 16px;
 /*     background-color: #fff; */
-    padding: 0 0 0 7px;
+/*     padding: 0 0 0 7px; */
 }
 #accordion a {
     text-decoration: none;
@@ -229,7 +230,14 @@
 					<!-- Logo -->
 						<div id="logo">
 							<span class="image avatar48"><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/core/images/avatar.jpg" alt="" /></a></span>
-							<h1 id="title">${mid}</h1>
+							<h1 id="title">
+							<c:if test="${not empty mid}">
+								<c:out value="${mid}님"/>
+							</c:if>
+							<c:if test="${empty mid}">
+								<c:out value="안녕하세요"/>
+							</c:if>
+							</h1>
 							<p>환영합니다</p>
 						</div>
 
@@ -245,8 +253,23 @@
 							</c:if>
 							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">이벤트 리스트</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">이벤트 만들기</span></a></li>
+
 							<li><a href="${pageContext.request.contextPath}/board/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">게시판</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/customer/customer" id="" class="skel-layers-ignoreHref"><span class="icon fa-users">고객센터</span></a></li>
+
+							
+							</ul>
+							<ul id="accordion">
+							<li><div><a href="#" id="" class="skel-layers-ignoreHref"><span class="icon fa-users">고객센터</span></a></div>
+							<ul>
+          						  <li><a href="${pageContext.request.contextPath}/customer/Notices" id="" class="skel-layers-ignoreHref">공지사항</a></li>
+           						 <li><a href="${pageContext.request.contextPath}/customer/FAQs" id="" class="skel-layers-ignoreHref">FAQ</a></li>
+            					<li><a href="${pageContext.request.contextPath}/customer/QNA" id="" class="skel-layers-ignoreHref">내 문의내역</a></li>
+            					<li><a href="${pageContext.request.contextPath}/customer/Call" id="" class="skel-layers-ignoreHref">문의하기</a></li>
+            					<li><a href="${pageContext.request.contextPath}/customer/information" id="" class="skel-layers-ignoreHref">이용안내</a></li>
+       						 </ul>
+       						 </li>
+
 							</ul>
 						</nav>
 

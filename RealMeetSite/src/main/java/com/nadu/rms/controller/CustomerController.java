@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nadu.rms.dao.CustomerDAO;
-import com.nadu.rms.service.CustomerService;
 import com.nadu.rms.vo.FAQ;
 import com.nadu.rms.vo.Notices;
 import com.nadu.rms.vo.QNA;
@@ -24,15 +23,13 @@ import com.nadu.rms.vo.QNA;
 @RequestMapping("/customer/*")
 public class CustomerController {
 	
-	CustomerService customerService;
+	
 	
 	CustomerDAO customersDao;
 	
 	
 
-	public void setCustomerService(CustomerService customerService) {
-		this.customerService = customerService;
-	}
+	
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
@@ -52,37 +49,37 @@ public class CustomerController {
 		return "customer/customer";	
 	}
 	
-	@RequestMapping(value="NoticesModal", produces="text/plain;charset=UTF-8")
-	@ResponseBody
+	@RequestMapping(value="Notices", method=RequestMethod.GET)
 	public String Notices(HttpServletRequest req, Model model){
-		String returnValue = customerService.NoticesListLoad(req);
-		log.info("gson : " + returnValue);
-		return returnValue;
+		String title = null;
+		List<Notices> Notices = customersDao.selectNotices(title);
+		model.addAttribute("Notices", Notices);
+		return "customer/Notices";
 	}
-	@RequestMapping(value="NoticesModal", method=RequestMethod.POST)
-	public String searchNotices(Model model, Notices n){
-		String title = n.getTitle();
+	@RequestMapping(value="Notices/{title}", method=RequestMethod.GET)
+	public String searchNotices(Model model, Notices n, @PathVariable String title){
+		//title = n.getTitle();
 		model.addAttribute("Notices", customersDao.selectNotices(title));
 		System.out.println(title);
-		return "#NoticesModal";	
+		return "customer/Notices";	
 	}
-	@RequestMapping(value="NoticesDetail/{nidx}", produces="text/plain;charset=UTF-8")
-	@ResponseBody
+	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET)
 	public String NoticesDetail(HttpServletRequest req, Model model, @PathVariable String nidx){
 		
-		String returnValue = customerService.NoticesDetailLoad(req, nidx);
-//		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
-		return returnValue;
+	//	String returnValue = customerService.NoticesDetailLoad(req, nidx);
+		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
+		return "customer/NoticesDetail";
 	}
 	@RequestMapping(value="FAQs", method=RequestMethod.GET)
 	public String FAQs(Model model){
-		List<FAQ> FAQs = customersDao.selectFAQs();
+		String title = null;
+		List<FAQ> FAQs = customersDao.selectFAQs(title);
 		model.addAttribute("FAQs", FAQs);
 		return "customer/FAQs";	
 	}
-	@RequestMapping(value="FAQs", method=RequestMethod.POST)
-	public String searchFAQs(Model model, FAQ f){
-		String title = f.getTitle();
+	@RequestMapping(value="FAQs/{title}", method=RequestMethod.GET)
+	public String searchFAQs(Model model, FAQ f,@PathVariable String title){
+	//	String title = f.getTitle();
 		model.addAttribute("FAQs", customersDao.selectFAQs(title));
 		System.out.println(title);
 		return "customer/FAQs";	
@@ -101,7 +98,8 @@ public class CustomerController {
 	}
 	@RequestMapping(value="QNA", method=RequestMethod.GET)
 	public String QNA(Model model){
-		List<QNA> QNA = customersDao.selectQNAs(); 
+		String title = null;
+		List<QNA> QNA = customersDao.selectQNAs(title); 
 		model.addAttribute("QNA", QNA);
 		return "customer/QNA";	
 	}
@@ -119,15 +117,16 @@ public class CustomerController {
 		}
 	}
 	
-	@RequestMapping(value="QNA", method=RequestMethod.POST)
-	public String searchQNAs(Model model, QNA q){
-		String title = q.getTitle();
+	@RequestMapping(value="QNA/{title}", method=RequestMethod.GET)
+	public String searchQNAs(Model model, QNA q, @PathVariable String title){
+	//	String title = q.getTitle();
 		model.addAttribute("QNA", customersDao.selectQNAs(title));
 		System.out.println(title);
 		return "customer/QNA";	
 	}
 	@RequestMapping(value="QNADetail/{qidx}", method=RequestMethod.GET)
 	public String QNADetail(HttpServletRequest request, Model model, @PathVariable String qidx){
+		
 		model.addAttribute("QNADetail", customersDao.selectQNAByQidx(qidx));
 		return "customer/QNADetail";
 	}

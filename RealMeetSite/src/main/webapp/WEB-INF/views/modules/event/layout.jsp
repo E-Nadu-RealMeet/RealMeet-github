@@ -23,6 +23,7 @@
 <script src="${pageContext.request.contextPath}/resources/core/js/gmap/gmaps.js"></script>
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/eventReg.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
 </head>
 <body>

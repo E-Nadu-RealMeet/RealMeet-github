@@ -189,7 +189,7 @@
 </head>
 <body style="padding: 0px; margin: 0px; font-family: Arial, sans-serif">
 	<div class="join-top">
-		<ul style="margin: 0 auto;">
+		<ul style="margin: 0 auto;position: fixed;background-color: #f5fafa;width: 100%;text-align: right;right: 0;">
 			<li><a href="${pageContext.request.contextPath}/">홈</a></li>
 
 			<c:if test="${empty mid}">

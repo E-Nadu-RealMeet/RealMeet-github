@@ -14,8 +14,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/freeBoard/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/freeBoard/bootstrap.min.css" />
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
 <script src="${pageContext.request.contextPath}/resources/core/js/free/gmaps.js"></script>

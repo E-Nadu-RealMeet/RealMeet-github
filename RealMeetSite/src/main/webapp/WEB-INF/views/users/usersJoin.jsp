@@ -333,8 +333,6 @@ function formCheck() {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
 <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/bootstrap.min.css"> -->
 <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/users/usersJoin.css" /> -->
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->

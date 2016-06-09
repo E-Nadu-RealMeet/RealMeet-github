@@ -6,10 +6,10 @@
 	
 <mapper namespace="com.nadu.rms.mapper.annotation.GuestlistMapper">
 	
- 	<select id="callApplyProcedure" parameterType="Guestlist" statementType="CALLABLE" >
+	<!-- <select id="callApplyProcedure" parameterType="Guestlist" statementType="CALLABLE" >
 		{
 			call GUESTAPPLY( #{elidx, mode=IN, jdbcType=VARCHAR}, #{guest, mode=IN, jdbcType=VARCHAR},  #{result, mode=OUT, jdbcType=VARCHAR} ) 
 		}
 	</select>
-	
+ -->
 </mapper>

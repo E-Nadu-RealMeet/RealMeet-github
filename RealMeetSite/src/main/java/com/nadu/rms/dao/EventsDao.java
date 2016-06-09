@@ -1,15 +1,10 @@
 package com.nadu.rms.dao;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +12,6 @@ import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.mapper.annotation.EventsMapper;
 import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Event_User;
-import com.nadu.rms.vo.Events;
 
 public class EventsDao {
 
@@ -36,13 +30,13 @@ public class EventsDao {
 	
 	public int insertEvents(Event_Eventlist e){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.EventsMapper.insertEvents";
-			return session.insert(statement, e);
-		}finally{
-			session.commit(); //commit�쓣 �븞�븯硫� �뜲�씠�꽣 �엯�젰�씠 �븞�맗�땲�떎.
-			session.close();
-		}
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		
+		int iv = mapper.insertEvents(e);
+		session.commit();
+		session.close();
+		
+		return iv;
 	}
 	
 	//�씠踰ㅽ듃�� �쑀�� �젙蹂� �쉷�뱷Map<Object, Object>

@@ -11,7 +11,21 @@ public class Event_Eventlist {
 	private String elidx;
 	private String addr;
 	private String eldate;
+	private int maxgnum;
+	private int good;
 	
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getMaxgnum() {
+		return maxgnum;
+	}
+	public void setMaxgnum(String maxgnum) {
+		this.maxgnum = Integer.parseInt(maxgnum);
+	}
 	public String getEsidx() {
 		return esidx;
 	}

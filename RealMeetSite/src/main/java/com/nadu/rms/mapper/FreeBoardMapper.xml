@@ -7,7 +7,7 @@
 <mapper namespace="com.nadu.rms.mapper.FreeBoardMapper">
 
 	<select id="selectFreeBoard" resultType="com.nadu.rms.vo.FreeBoard">
-	<!-- SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC -->
+	SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC
 	</select>
 	
 	<select id="selectFreeDetail" parameterType="Integer" resultType="com.nadu.rms.vo.FreeBoard">

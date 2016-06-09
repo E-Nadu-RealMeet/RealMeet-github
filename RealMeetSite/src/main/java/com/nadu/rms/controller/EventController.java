@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
+import com.nadu.rms.service.EventEditService;
 import com.nadu.rms.service.EventRegService;
 import com.nadu.rms.vo.Event_Eventlist;
 
@@ -31,7 +32,12 @@ public class EventController {
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
+	EventEditService eventEditService;
 	
+	public void setEventEditService(EventEditService eventEditService) {
+		this.eventEditService = eventEditService;
+	}
+
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
 	
@@ -55,6 +61,7 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+		model.addAttribute("page","event/eventList");
 		return "event/eventList";
 	}
 
@@ -65,16 +72,17 @@ public class EventController {
 	public String eventApply(@PathVariable String elidx, HttpServletRequest req ,Model model) {
 
 		String returnString = "";
-		int ret = eventApplyService.applyEvent((String)req.getSession().getAttribute("mid"), elidx);
-		if(ret == 0){
+
+		String ret = eventApplyService.applyEvent(req.getSession().getAttribute("mid").toString(), elidx);
+		if(ret.equals("0")){
 			/* 성공 */
 			returnString = "Success";
 		}
-		else if(ret == 1){
+		else if(ret.equals("1")){
 			/* 자리가 없음 */
 			returnString = "No empty seats";
 		}
-		else if(ret == 2){
+		else if(ret.equals("2")){
 			/* 이미 참여한 경우*/
 			returnString = "Already applied for this event";
 		}
@@ -85,9 +93,11 @@ public class EventController {
 	// 이벤트 취소하기
 	@RequestMapping(value = "cancle/{elidx}", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String eventCancleProc(@PathVariable String esidx, Model model) {
+	public String eventCancleProc(@PathVariable String elidx, HttpServletRequest req,Model model) {
 
-		String returnValue = "";
+		//취소 작업
+		String mid = (String)req.getSession().getAttribute("mid");
+		String returnValue = eventApplyService.cancleEvent(mid, elidx);
 		//뷰 리턴(detail)
 		return returnValue;
 	}
@@ -95,7 +105,6 @@ public class EventController {
 	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
-
 		
 		String returnValue = eventDataService.listLoad(req);
 		// 얻은 값 반환.
@@ -113,7 +122,7 @@ public class EventController {
 		String returnValue = eventDetailService.dataLoad(req, model);
 		// 얻은 값 반환.
 
-		log.info("gson : " + returnValue);
+		log.info("DATAgson : " + returnValue);
 		return returnValue;
 	}
 
@@ -124,7 +133,8 @@ public class EventController {
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.detailLoad(req, esidx, model);
-
+		model.addAttribute("page","event/eventDetail");
+		
 		//뷰 리턴(detail)
 		return "event/eventDetail";
 	}
@@ -146,17 +156,17 @@ public class EventController {
 		String introValue = "모임을 만들어봐요.";
         model.addAttribute("introValue", introValue );
 		model.addAttribute("categories", categories);
-		model.addAttribute("page","eventReg");
+		model.addAttribute("page","event/eventReg");
 		return "event/eventReg";
 	}
 
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
-	public String eventReg(Event_Eventlist e) {
+	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
 
-		int iv = eventRegService.eventReg(e);
-		
-		if(iv>0){
+		int iv = eventRegService.eventReg(e, request);
+		log.info("eventReg 실행 결과 : "+iv);
+		if(iv>1){
 			return "redirect:../event/"+e.getEsidx();
 		}else{
 			return "redirect:reg";
@@ -164,7 +174,8 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String eventEdit(Event_Eventlist e) {
+	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
+		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
 		return "event/eventEdit";
 	}
 }

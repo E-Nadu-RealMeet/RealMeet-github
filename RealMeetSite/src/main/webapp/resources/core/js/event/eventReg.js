@@ -9,7 +9,7 @@
 	
 	function inputCheck(arg){
 		if(arg.length===0){
-			alert('글자가 없습니다.')
+			alert('입력된 게 없어요.')
 			return false;
 		}else{
 			//alert(arg)
@@ -17,28 +17,7 @@
 		}
 	}
 	
-	function fclick() {
-		$('#description').val($('#regInput3').html());
-		if ($('#category').val().length === 0) {
-			alert("카테고리를 눌러주십시오");
-			$('#selectBox1').focus();
-			return false;
-		} else if ($('#regInput1').val().length === 0) {
-			alert("이벤트의 이름이 비어있네요.");
-			$('#selectBox1').focus();
-			return false;
-		} else if ($('#regInput2').val().length === 0) {
-			alert("간단한 설명이 비어있네요.");
-			$('#selectBox1').focus();
-			return false;
-		} else if ($('#detail').val().length === 0) {
-			alert("값을 입력해주십시오");
-			$('#regInput3').focus();
-			return false;
-		} else {
-			return true;
-		}
-	}
+	
 /*	function userKeyPress(){
     	//입력받은 key가 엔터일 경우 (key값이 13일 경우)
     	if(window.event.keyCode == 13){
@@ -51,14 +30,14 @@
     }
 */	$(document).ready(function() {
 		var container = $('.container');
-		var selectBox1 = container.children('#selectBox1');
-		var selectBox2 = container.children('#selectBox2');
-		var selectBox5 = container.children('#selectBox5');
-		var selectBox6 = container.children('#selectBox6');
-		var selectBox8 = container.children('#selectBox8');
-		var inputEight = selectBox8.find('#category');
-		var reg1 = selectBox1.children('.regButton');
-		var regSave6 = selectBox6.children('.regButton-save');
+		var selectBoxCate = container.children('#selectBox-cate');
+		var selectBoxName = container.children('#selectBox-name');
+		var selectBoxDesc = container.children('#selectBox-desc');
+		var selectBoxDate = container.children('#selectBox-date');
+		var selectBoxCheck = container.children('#selectBox-check');
+		var inputEight = selectBoxCheck.find('#category');
+		var reg1 = selectBoxCate.children('.regButton');
+		var regSave6 = selectBoxDate.children('.regButton-save');
 		//결과값을 순서대로 넣을 배열 선언.
 		var regResult = [];
 		var check = 0;
@@ -72,25 +51,25 @@
 			check++;
 			reg1.css("background-color","#9ececc");
 			$(this).css("background-color", "#65a9d7");
-			selectBox1.fadeOut(10)
-			selectBox1.fadeOut(10,"linear", selectBox2.fadeIn(1100));
+			selectBoxCate.fadeOut(10)
+			selectBoxCate.fadeOut(10,"linear", selectBoxName.fadeIn(1100));
 			
 		})
 		var regSave =  $('.regButton-save');
 		var regBack =  $('.regButton-back');
 		var regFirst = $('.regButton-first');
 		//5번 박스의 저장 버튼 클릭시 textArea 줄바꿈 변환
-		var descText = selectBox5.children('#desc-text');
+		var descText = selectBoxDesc.children('#desc-text');
 		descText.on('keyup', function(event) {
 		    var currentString = descText.val();
-		    selectBox8.children("textarea").html(currentString);
-		    var descInput = selectBox8.children("#description");
+		    selectBoxCheck.children("textarea").html(currentString);
+		    var descInput = selectBoxCheck.children("#description");
 		    currentString = replaceHtml( currentString );
 		    descInput.val(currentString);
-		    selectBox5.children('#description').val(currentString);
+		    selectBoxDesc.children('#description').val(currentString);
 		});
 		
-		var regSave5 = selectBox5.children('.regButton-save');
+		var regSave5 = selectBoxDesc.children('.regButton-save');
 		regSave.click(function(){
 			var par = $(this).parent();
 			var input = par.children('.regInput');
@@ -106,9 +85,9 @@
 				par.next().fadeIn(1100, "swing", par.fadeOut(10));
 			}
 		})
-		var regInput6 = $('#regInput6');
-		regInput6.blur(function(){
-			var value = regInput6.val();
+		var regInputDate = $('#regInput-date');
+		regInputDate.blur(function(){
+			var value = regInputDate.val();
 			value=value.replace('T',' ');
 			$('#date2').val(value.replace('T',' '));
 		})
@@ -221,15 +200,14 @@
 		})
 		regFirst.click(function(){
 			check=0;
-			var inputEight = selectBox8.find('#category');
 			var par = $(this).parents('.selectBox');
 			var input = par.children('.regInput');
-			selectBox1.fadeIn();
+			selectBoxCate.fadeIn();
 			par.hide();
 		})
 		/*$('#selectBox1').show();
-		$('#selectBox2').hide();
-		$('#selectBox3').hide();
+		$('#selectBox-name').hide();
+		$('#selectBox-abs').hide();
 		$('#selectBox4').hide();
-		$('#selectBox5').hide();*/
+		$('#selectBoxDesc').hide();*/
 	});
