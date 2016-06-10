@@ -8,7 +8,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 
-<%-- <script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script> --%>
+<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
 				<!-- Portfolio -->
 
 					<section id="portfolio" class="two">
@@ -67,40 +67,40 @@
 						</section>
 					
 
-<div class="modal fade" id="NoticesModal" role="dialog">
- <div class="modal-dialog">
-<div class="modal-content">
-<header>
-								<h2>공지사항</h2>
-							</header>
+<!-- <div class="modal fade" id="NoticesModal" role="dialog"> -->
+<!--  <div class="modal-dialog"> -->
+<!-- <div class="modal-content"> -->
+<!-- <header> -->
+<!-- 								<h2>공지사항</h2> -->
+<!-- 							</header> -->
 							
 
-  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+<!--   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;"> -->
 
-				<tr>
-					<th style="text-align: center;">번호</th>
-					<th style="text-align: center;">제목</th>
-					<th style="text-align: center;">작성일</th>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<th style="text-align: center;">번호</th> -->
+<!-- 					<th style="text-align: center;">제목</th> -->
+<!-- 					<th style="text-align: center;">작성일</th> -->
+<!-- 				</tr> -->
 
 
-				<c:forEach var="Notices" items="${Notices}">
-					<tr>
-						<td>${Notices.nidx}</td>
-						<td><a href="NoticesDetail/${Notices.nidx}" data-toggle="modal" data-target="#NoticesDetailModal">${Notices.title}</a></td>
-						<td>${Notices.regdate}</td>
-					</tr>
-				</c:forEach>
+<%-- 				<c:forEach var="Notices" items="${Notices}"> --%>
+<!-- 					<tr> -->
+<%-- 						<td>${Notices.nidx}</td> --%>
+<%-- 						<td><a href="NoticesDetail/${Notices.nidx}" data-toggle="modal" data-target="#NoticesDetailModal">${Notices.title}</a></td> --%>
+<%-- 						<td>${Notices.regdate}</td> --%>
+<!-- 					</tr> -->
+<%-- 				</c:forEach> --%>
 
-			</table>
+<!-- 			</table> -->
 
-			<form method="get" action="Notices/${title}">
-				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
-				<button data-dismiss="modal">닫기</button>
-</div>   
-</div>
-</div>
+<%-- 			<form method="get" action="Notices/${title}"> --%>
+<!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
+<!-- 				</form> -->
+<!-- 				<button data-dismiss="modal">닫기</button> -->
+<!-- </div>    -->
+<!-- </div> -->
+<!-- </div> -->
 
 <!-- <div id="FAQModal" class="modal fade" role="dialog"> -->
 <!--  <div class="modal-dialog"> -->
@@ -172,63 +172,63 @@
 <!-- </div> -->
 <!-- </div> -->
 
-<div id="callModal" class="modal fade" role="dialog">
- <div class="modal-dialog">
-<div class="modal-content">
-<header>
-								<h2>문의하기</h2>
-							</header>
+<!-- <div id="callModal" class="modal fade" role="dialog"> -->
+<!--  <div class="modal-dialog"> -->
+<!-- <div class="modal-content"> -->
+<!-- <header> -->
+<!-- 								<h2>문의하기</h2> -->
+<!-- 							</header> -->
 
-<!-- 문의하기 기본 뷰 -->
-							<form method="post" action="insertQNA">
-								<div class="row">
-									<div class="11u" style="margin-left: 2%"><input type="text" name="title" placeholder="제목" /></div>
-									<div class="11u$" style="margin-left: 2%">
-										<textarea name="content" placeholder="내용"></textarea>
-									</div>
-									<div class="11u$" style="margin-left: 2%">
-										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="문의" />
-									</div>
-								</div>
-							</form>
+<!-- <!-- 문의하기 기본 뷰 --> -->
+<!-- 							<form method="post" action="insertQNA"> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="11u" style="margin-left: 2%"><input type="text" name="title" placeholder="제목" /></div> -->
+<!-- 									<div class="11u$" style="margin-left: 2%"> -->
+<!-- 										<textarea name="content" placeholder="내용"></textarea> -->
+<!-- 									</div> -->
+<!-- 									<div class="11u$" style="margin-left: 2%"> -->
+<!-- 										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="문의" /> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</form> -->
 		
-</div>
-</div>
-</div>
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
 
-<div id="NoticesDetailModal" class="modal fade" role="dialog">
- <div class="modal-dialog">
-<div class="modal-content">
+<!-- <div id="NoticesDetailModal" class="modal fade" role="dialog"> -->
+<!--  <div class="modal-dialog"> -->
+<!-- <div class="modal-content"> -->
 
-<header>
-								<h2>공지사항</h2>
-							</header>
+<!-- <header> -->
+<!-- 								<h2>공지사항</h2> -->
+<!-- 							</header> -->
 				
 
 
-			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+<!-- 			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;"> -->
 				
 				
-				<tr>
-					<th>제목</th>
-					<th>${NoticesDetail.title}</th>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<th>제목</th> -->
+<%-- 					<th>${NoticesDetail.title}</th> --%>
+<!-- 				</tr> -->
 				
-				<tr>
-					<th>작성일</th>
-					<th>${NoticesDetail.regdate}</th>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<th>작성일</th> -->
+<%-- 					<th>${NoticesDetail.regdate}</th> --%>
+<!-- 				</tr> -->
 				
-					<tr>
-					<td>${NoticesDetail.content}</td>
-					</tr>
+<!-- 					<tr> -->
+<%-- 					<td>${NoticesDetail.content}</td> --%>
+<!-- 					</tr> -->
 			
 
-			</table>
+<!-- 			</table> -->
 
-			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a>
-			</div>
-</div>
-</div>
-</div>
+<!-- 			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a> -->
+<!-- 			</div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
 
