@@ -178,9 +178,12 @@ public class EventController {
 	
 	//모든 이벤트 목록 조회 (ajax)
 	@RequestMapping(value="dataloadformap", produces="text/plain;charset=UTF-8")
+	@ResponseBody
 	public String eventListDataloadForMap(){
+		String datas = eventDataService.DataloadForMap();
+		log.info(datas);
 		
-		return null;
+		return datas;
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
