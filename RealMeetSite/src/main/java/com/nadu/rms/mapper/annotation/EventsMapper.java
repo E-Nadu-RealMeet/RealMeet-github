@@ -18,8 +18,8 @@ public interface EventsMapper {
 	@Select("SELECT * FROM VIEW_JOIN_ES_EL WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public List<Event_Eventlist> selectEventsDetailByESIDX(@Param("esidx")String esidx);
 	
-	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_USERS) RT ) ORDER BY ESIDX DESC")
-	public List<Event_User> selectEventsNUsers();
+	@Select("SELECT * FROM VIEW_JOIN_ES_ALL")
+	public List<Event_Eventlist> selectEventRelateAll();
 	
 	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_USERS) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC")
 	public List<Event_User> selectEventsNUser(Map<String, Integer> paramMap);

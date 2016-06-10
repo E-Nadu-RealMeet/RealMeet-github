@@ -15,6 +15,7 @@ import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.GuestlistDao;
 import com.nadu.rms.mapper.annotation.EventsMapper;
+import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Eventlist;
 import com.nadu.rms.vo.Events;
@@ -75,8 +76,11 @@ public class EventDataService {
 		Gson gson = new Gson();
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		List<Event_User> datas = mapper.selectEventsNUsers();
-		return null;
+		List<Event_Eventlist> list = mapper.selectEventRelateAll();
+		
+		//vo만 쓸꺼면 class 선언 안해도 되네요
+		String datas = gson.toJson(list);
+		return datas;
 	}
 	
 	class JsonClassForListLoad {

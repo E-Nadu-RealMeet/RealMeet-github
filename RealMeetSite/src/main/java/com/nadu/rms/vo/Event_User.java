@@ -10,7 +10,14 @@ public class Event_User {
 	private String abs; //간단한 설명
 	private String category;
 	private int reviewCnt;
+	private String addr;
 	
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 	public String getAbs() {
 		return abs;
 	}

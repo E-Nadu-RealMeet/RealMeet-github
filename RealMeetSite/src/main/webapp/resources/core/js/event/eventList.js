@@ -115,16 +115,3 @@ function getContextPath(){
     return ctxPath;
 }
 
-//제일 먼저 실행
-;(function($) {
-	$.ajax({
-		type : 'GET',  
-		dataType : 'json',
-		data : {"page" : page},
-		url : '',
-
-		success : function(returnData) {
-
-		}
-	});
-})(jQuery);
