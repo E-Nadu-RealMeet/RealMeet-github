@@ -19,11 +19,9 @@ public class CustomerDAO {
         session.close();
         return list;
     }
-<<<<<<< HEAD
-	     public List<FAQ> selectFAQs() {
-=======
+
 	public List<FAQ> selectFAQs() {
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          List<FAQ> list = mapper.selectFAQs();
@@ -31,11 +29,9 @@ public class CustomerDAO {
 		          return list;
 		      }
 		  
-<<<<<<< HEAD
-		      public List<Notices> selectNotices() {
-=======
+
 	public List<Notices> selectNotices() {
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          List<Notices> list = mapper.selectNotices();
@@ -48,11 +44,9 @@ public class CustomerDAO {
 	public Notices selectNoticeByNidx(String nidx) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-<<<<<<< HEAD
-		          Notices notices = mapper.selectNoticeByNidx();
-=======
+
 		          Notices notices = mapper.selectNoticeByNidx(nidx);
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 		          session.close();
 		          return notices;
 
@@ -91,29 +85,30 @@ public class CustomerDAO {
 		
 	}
 
-	public List<FAQ> selectFAQs(String title) {
+	public List<FAQ> selectFAQsByTitle(String title) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<FAQ> list = mapper.selectFAQs();
+		          List<FAQ> list = mapper.selectFAQsByTitle(title);
 		          session.close();
 		          return list;
 
+		         
 
 	}
 
-	public List<Notices> selectNotices(String title) {
+	public List<Notices> selectNoticesByTitle(String title) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<Notices> list = mapper.selectNotices();
+		          List<Notices> list = mapper.selectNoticesByTitle(title);
 		          session.close();
 		          return list;
 
 	}
 
-	public List<QNA> selectQNAs(String title) {
+	public List<QNA> selectQNAsByTitle(String title) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<QNA> list = mapper.selectQNAs();
+		          List<QNA> list = mapper.selectQNAsByTitle(title);
 		          session.close();
 		          return list;
 

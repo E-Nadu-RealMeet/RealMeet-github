@@ -261,10 +261,7 @@
 							<li><a href="${pageContext.request.contextPath}/customer/customer" id="" class="skel-layers-ignoreHref"><span class="icon fa-users">고객센터</span></a></li>
 
 							
-<<<<<<< HEAD
-=======
 
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
 							</ul>
 							
 						</nav>

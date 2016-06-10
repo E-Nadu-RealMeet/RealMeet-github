@@ -48,51 +48,40 @@ public class CustomerController {
 	
 	@RequestMapping("customer")
 	public String customer(Model model){
-//		List<Notices> Notices = customersDao.selectNotices();
-//		model.addAttribute("Notices", Notices);
-//		List<FAQ> FAQs = customersDao.selectFAQs();
-//		model.addAttribute("FAQs", FAQs);
-//		List<QNA> QNA = customersDao.selectQNAs(); 
-//		model.addAttribute("QNA", QNA);
+		List<Notices> Notices = customersDao.selectNotices();
+		model.addAttribute("Notices", Notices);
+		List<FAQ> FAQs = customersDao.selectFAQs();
+		model.addAttribute("FAQs", FAQs);
+		List<QNA> QNA = customersDao.selectQNAs(); 
+		model.addAttribute("QNA", QNA);
 		return "customer/customer";	
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
-	
-	public String Notices(HttpServletRequest req, Model model){
-		List<Notices> Notices = customersDao.selectNotices();
-		model.addAttribute("Notices", Notices);
-=======
-	@RequestMapping(value="NoticesModal", produces="text/plain;charset=UTF-8")
-	@ResponseBody
-	public String Notices(HttpServletRequest req, Model model){
-	//	List<Notices> Notices = customersDao.selectNotices();
-	//	model.addAttribute("Notices", Notices);
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
-		String returnValue = customerService.NoticesListLoad(req);
-		log.info("gson : " + returnValue);
-		return returnValue;
-	}
-	@RequestMapping(value="NoticesModal", method=RequestMethod.POST)
+//	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
+//	@ResponseBody
+//	public String Notices(HttpServletRequest req, Model model){
+//	//	List<Notices> Notices = customersDao.selectNotices();
+//	//	model.addAttribute("Notices", Notices);
+//
+//		String returnValue = customerService.NoticesListLoad(req);
+//		log.info("gson : " + returnValue);
+//		return returnValue;
+//	}
+	@RequestMapping(value="Notices", method=RequestMethod.GET)
+//	@ResponseBody
 	public String searchNotices(Model model, Notices n){
 		String title = n.getTitle();
-		model.addAttribute("Notices", customersDao.selectNotices(title));
+		model.addAttribute("Notices", customersDao.selectNoticesByTitle(title));
 		System.out.println(title);
-		return "#NoticesModal";	
+		return "customer/NoticesModal";	
 	}
-	@RequestMapping(value="NoticesDetail/{nidx}", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public String NoticesDetail(HttpServletRequest req, Model model, @PathVariable String nidx){
 		
-<<<<<<< HEAD
-		String returnValue = customerService.NoticesDetailLoad(req, nidx);
-//		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
-		return returnValue;
-=======
 	//	String returnValue = customerService.NoticesDetailLoad(req, nidx);
 		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
-		return null;
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+		return "customer/NoticesDetail";
+
 	}
 	@RequestMapping(value="FAQsModal", method=RequestMethod.GET)
 	@ResponseBody
@@ -104,7 +93,7 @@ public class CustomerController {
 	@RequestMapping(value="FAQs", method=RequestMethod.POST)
 	public String searchFAQs(Model model, FAQ f){
 		String title = f.getTitle();
-		model.addAttribute("FAQs", customersDao.selectFAQs(title));
+		model.addAttribute("FAQs", customersDao.selectFAQsByTitle(title));
 		System.out.println(title);
 		return "customer/FAQs";	
 	}
@@ -120,21 +109,14 @@ public class CustomerController {
 		
 		return "customer/Call";	
 	}
-<<<<<<< HEAD
-	@RequestMapping(value="QNA", method=RequestMethod.GET)
-	public String QNA(Model model){
-		List<QNA> QNA = customersDao.selectQNAs(); 
-		model.addAttribute("QNA", QNA);
-		return "#QNAsModal";	
-	}
-=======
+
 //	@RequestMapping(value="QNA", method=RequestMethod.GET)
 //	public String QNA(Model model){
 //		List<QNA> QNA = customersDao.selectQNAs(); 
 //		model.addAttribute("QNA", QNA);
 //		return "#QNAsModal";	
 //	}
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 	
 	@RequestMapping(value = "insertQNA", method = RequestMethod.POST)
 	public String insertQNAs(Model model, QNA q) {
@@ -149,15 +131,12 @@ public class CustomerController {
 			return "redirect:../customer/customer";
 		}
 	}
-	
-<<<<<<< HEAD
-	@RequestMapping(value="QNA", method=RequestMethod.POST)
-=======
+
 	@RequestMapping(value="QNAModal", method=RequestMethod.POST)
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 	public String searchQNAs(Model model, QNA q){
 		String title = q.getTitle();
-		model.addAttribute("QNA", customersDao.selectQNAs(title));
+		model.addAttribute("QNA", customersDao.selectQNAsByTitle(title));
 		System.out.println(title);
 		return "customer/QNA";	
 	}

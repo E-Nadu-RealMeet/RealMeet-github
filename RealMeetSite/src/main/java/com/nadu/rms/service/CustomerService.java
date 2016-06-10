@@ -3,21 +3,21 @@ package com.nadu.rms.service;
 import java.util.List;
 
  import javax.servlet.http.HttpServletRequest;
-import org.springframework.ui.Model;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.gson.Gson;
 import com.nadu.rms.dao.CustomerDAO;
-<<<<<<< HEAD
-import com.nadu.rms.vo.Notices;
-=======
 import com.nadu.rms.vo.FAQ;
 import com.nadu.rms.vo.Notices;
 import com.nadu.rms.vo.QNA;
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 
  public class CustomerService {
  
      CustomerDAO customerDAO;
  
+     @Autowired
      public void setCustomerDAO(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
      }
@@ -39,7 +39,7 @@ import com.nadu.rms.vo.QNA;
           return gson.toJson(set);
           
       }
-  }
+  
   
   class JsonClassForNoticesListLoad{
       List<Notices> notices;
@@ -57,8 +57,7 @@ import com.nadu.rms.vo.QNA;
       public void setNotices(Notices noticesdetail) {
           this.notices = noticesdetail;
       }
-<<<<<<< HEAD
-=======
+
 }
   
   class JsonClassForFAQListLoad{
@@ -95,5 +94,7 @@ import com.nadu.rms.vo.QNA;
       public void setNotices(QNA qnaDetail) {
           this.qna = qnaDetail;
       }
->>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
+
 }
+  
+ }
