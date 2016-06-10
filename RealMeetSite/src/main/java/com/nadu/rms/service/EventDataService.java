@@ -75,7 +75,7 @@ public class EventDataService {
 		Gson gson = new Gson();
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		List<Event_User> datas = mapper.selectEventsNUser();
+		List<Event_User> datas = mapper.selectEventsNUsers();
 		return null;
 	}
 	

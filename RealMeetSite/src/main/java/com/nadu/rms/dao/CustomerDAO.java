@@ -19,7 +19,11 @@ public class CustomerDAO {
         session.close();
         return list;
     }
+<<<<<<< HEAD
 	     public List<FAQ> selectFAQs() {
+=======
+	public List<FAQ> selectFAQs() {
+>>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          List<FAQ> list = mapper.selectFAQs();
@@ -27,7 +31,11 @@ public class CustomerDAO {
 		          return list;
 		      }
 		  
+<<<<<<< HEAD
 		      public List<Notices> selectNotices() {
+=======
+	public List<Notices> selectNotices() {
+>>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          List<Notices> list = mapper.selectNotices();
@@ -40,7 +48,11 @@ public class CustomerDAO {
 	public Notices selectNoticeByNidx(String nidx) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+<<<<<<< HEAD
 		          Notices notices = mapper.selectNoticeByNidx();
+=======
+		          Notices notices = mapper.selectNoticeByNidx(nidx);
+>>>>>>> f44d77afc15da165c87b1f27b6cad6a49f0bb179
 		          session.close();
 		          return notices;
 
@@ -68,10 +80,10 @@ public class CustomerDAO {
 
 	public int insertQNAs(QNA q) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		try {
-			String statement = "com.nadu.rms.mapper.CustomerMapper.insertQNA";
-			return session.insert(statement, q);
+			int statement = mapper.insertQNA(q);
+			return statement;
 		} finally {
 			session.commit(); // commit�� ���ϸ� ������ �Է��� �ȵ˴ϴ�.
 			session.close();
