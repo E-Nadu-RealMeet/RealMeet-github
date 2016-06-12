@@ -29,8 +29,11 @@ public interface CustomerMapper {
 	@Select("SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}")
 	public Notices selectNoticeByNidx(String nidx);
 	
-	public FAQ selectFAQByFidx();
-	public QNA selectQNAByQidx();
+	@Select("SELECT * FROM FAQ WHERE FIDX = #{fidx, jdbcType=VARCHAR}")
+	public FAQ selectFAQByFidx(String fidx);
+	
+	@Select("SELECT * FROM QNA WHERE QIDX = #{qidx, jdbcType=VARCHAR}")
+	public QNA selectQNAByQidx(String qidx);
 	
 	
 	

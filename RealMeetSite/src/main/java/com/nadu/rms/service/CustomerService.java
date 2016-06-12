@@ -36,7 +36,8 @@ import com.nadu.rms.vo.QNA;
           Notices noticesdetail = customerDAO.selectNoticeByNidx(nidx);
           JsonClassForNoticesDetailLoad set = new JsonClassForNoticesDetailLoad();
           set.setNotices(noticesdetail);
-          return gson.toJson(set);
+          String noticesDetail = gson.toJson(set);
+          return noticesDetail;
           
       }
   

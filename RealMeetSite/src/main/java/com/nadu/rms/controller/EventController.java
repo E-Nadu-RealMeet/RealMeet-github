@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
@@ -26,14 +27,14 @@ import com.nadu.rms.vo.Event_Eventlist;
 @Controller
 @RequestMapping("event/*")
 public class EventController {
-
-
+	
 	EventDataService eventDataService;
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
 	EventEditService eventEditService;
 	
+	@Autowired
 	public void setEventEditService(EventEditService eventEditService) {
 		this.eventEditService = eventEditService;
 	}
@@ -186,10 +187,43 @@ public class EventController {
 		return datas;
 	}
 	
-	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
-		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
-		return "event/eventEdit";
+	@RequestMapping(value = "editName", method = RequestMethod.POST)
+	public String eventNameEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String eventName) {
+		esidx = e.getEsidx();
+		e.setEventname(e.getEventname());
+		int up = eventEditService.eventNameEdit(req,esidx, eventName);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}
+	
+	@RequestMapping(value = "editDate", method = RequestMethod.POST)
+	public String eventDateEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String elDate) {
+		esidx = e.getEsidx();
+		e.setEldate(e.getEldate());
+		int up = eventEditService.eventDateEdit(req,esidx, elDate);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}
+	
+	@RequestMapping(value = "editDesc", method = RequestMethod.POST)
+	public String eventDescEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String description) {
+		esidx = e.getEsidx();
+		e.setDescription(e.getDescription());
+		int up = eventEditService.eventDescEdit(req,esidx, description);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
 	}
 	
 }

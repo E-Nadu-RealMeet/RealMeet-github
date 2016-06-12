@@ -8,8 +8,7 @@
 
 
 				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
+					
 
 							<header>
 								<h2>공지사항</h2>
@@ -38,10 +37,6 @@
 			<form method="get" action="Notices/${title}">
 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
 				</form>
-			
-		
-</div>
 
-					</section>
 
 				

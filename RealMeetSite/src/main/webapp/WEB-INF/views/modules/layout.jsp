@@ -38,18 +38,24 @@
 <!-- holder.js link -->
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" />
 <!-- tiles를 이용한 부분 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css<tiles:getAsString name="css"/>" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js<tiles:getAsString name="js"/>"></script>
+
 </head>
 <body>
+	
 	<!-- Header -->
 	<div id="header">
+	
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
+		
 	</div>
 	<!-- Main -->
 	<div id="main">
+	
 		<tiles:insertAttribute name="topMenu"></tiles:insertAttribute>
 		<!-- Intro -->
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
@@ -62,11 +68,12 @@
 			<c:if test="${page=='index'}">
 				<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
 			</c:if>
+			
 			<tiles:insertAttribute name="content"></tiles:insertAttribute>
 		</section>
 	</div>
-
 	<!-- Footer -->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+	
 </body>
 </html>

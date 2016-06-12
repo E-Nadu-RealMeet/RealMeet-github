@@ -12,183 +12,19 @@
 $(document).ready(function(){
 
 
-	$('[data-target="#NoticesModal"]').on("click",function(){
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			url : 'NoticesModal',
-			success : function(returnData) {
-				var list = returnData.notices;
-				var contextPath = getContextPath();
-				var html = "";
-
-				html = html+'<div class="modal"  role="dialog" id="NoticesModal">'
-
-				+  '<div class="modal-dialog">'
-				+ '<div class="modal-content">' 
-				+               '<header>'
-				+                  '<h2 align="center">공지사항</h2>'
-				+               '</header>'
-
-
-				+ ' <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">'
-
-
-				+   '<tr>'
-				+   '<th>번호</th>'
-				+   '<th>제목</th>'
-				+   '<th>작성일</th>'
-				+   '</tr>';
-
-				for (var i = 0; i < list.size(); i++) {
-					html = html+'<tr>'
-					+   '<td>'+list[i].nidx+'</td>'
-					+   '<td><a id="NoticesDetail" href="NoticeDetail/${'+ list[i].nidx +'}">'+list[i].title+'</a></td>'
-					+   '<td>'+list[i].regdate+'</td>'
-					+   '</tr>'
-				}
-
-				html = html   +   '</table>'
-				+   '<table>'
-				+   '<tr>'
-				+   '<td><form method="post" action="NoticesModal">'
-				+      '<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />'
-				+   '<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>'
-				+   '</form></td>'
-				+   '<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>'
-				+   '</tr>'
-				+   '</table>'
-				+' </div>'
-				+ ' </div>'
-				+ ' </div>';
-				$("#container").append(html); 
-				html = "";
-			},
-			error : function(){
-				alert("error");   
-
-			}
-
-		});
-	})
-
-
-	$('[data-target="#FAQsModal"]').on("click",function(){
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			url : 'FAQsModal',
-			success : function(returnData) {
-				var list = returnData.notices;
-				var contextPath = getContextPath();
-				var html = "";
-				html = html+'<div class="modal"  role="dialog" id="NoticesModal">'
-				+  '<div class="modal-dialog">'
-				+ '<div class="modal-content">' 
-				+               '<header>'
-				+                  '<h2 align="center">공지사항</h2>'
-				+               '</header>'
-
-
-				+ ' <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">'
-
-
-				+   '<tr>'
-				+   '<th>번호</th>'
-				+   '<th>제목</th>'
-				+   '<th>작성일</th>'
-				+   '</tr>';
-
-				for (var i = 0; i < list.size(); i++) {
-					html = html+'<tr>'
-					+   '<td>'+list[i].fidx+'</td>'
-					+   '<td><a id="NoticesDetail" href="NoticeDetail/${'+ list[i].nidx +'}">'+list[i].title+'</a></td>'
-					+   '<td>'+list[i].regdate+'</td>'
-					+   '</tr>'
-				}
-
-				html = html   +   '</table>'
-				+   '<table>'
-				+   '<tr>'
-				+   '<td><form method="post" action="NoticesModal">'
-				+      '<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />'
-				+   '<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>'
-				+   '</form></td>'
-				+   '<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>'
-				+   '</tr>'
-				+   '</table>'
-				+' </div>'
-				+ ' </div>'
-				+ ' </div>';
-				$("#container").append(html); 
-				html = "";
-			},
-			error : function(){
-				alert("error");   
-
-			}
-
-		});
-	})
-	$('[data-target="#QNAModal"]').on("click",function(){
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			url : 'QNAModal',
-			success : function(returnData) {
-				var list = returnData.notices;
-				var contextPath = getContextPath();
-				var html = "";
-				html = html+'<div class="modal"  role="dialog" id="NoticesModal">'
-				+  '<div class="modal-dialog">'
-				+ '<div class="modal-content">' 
-				+               '<header>'
-				+                  '<h2 align="center">공지사항</h2>'
-				+               '</header>'
-
-
-				+ ' <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">'
-
-
-				+   '<tr>'
-				+   '<th>번호</th>'
-				+   '<th>제목</th>'
-				+   '<th>작성일</th>'
-				+   '</tr>';
-
-				for (var i = 0; i < list.size(); i++) {
-					html = html+'<tr>'
-					+   '<td>'+list[i].qidx+'</td>'
-					+   '<td><a id="NoticesDetail" href="NoticeDetail/${'+ list[i].nidx +'}">'+list[i].title+'</a></td>'
-					+   '<td>'+list[i].regdate+'</td>'
-					+   '</tr>'
-				}
-
-				html = html   +   '</table>'
-				+   '<table>'
-				+   '<tr>'
-				+   '<td><form method="post" action="NoticesModal">'
-				+      '<div class="6u" align="center"><input style="margin-left: 50%; padding: 0.5em 1.0em 0.5em 1.0em;" type="text" name="title" placeholder="제목" />'
-				+   '<input style="margin-left:50%; padding: 0.25em 1.0em 0.25em 1.0em;" type="submit" value="검색" /></div>'
-				+   '</form></td>'
-				+   '<td><a href="${pageContext.request.contextPath}/customer/customer"><input style="padding: 0.25em 1.0em 0.25em 1.0em; margin-left: -100%" type="submit" value="뒤로" /></a></td>'
-				+   '</tr>'
-				+   '</table>'
-				+' </div>'
-				+ ' </div>'
-				+ ' </div>';
-				$("#container").append(html); 
-				html = "";
-			},
-			error : function(){
-				alert("error");   
-
-			}
-
-		});
-
-
-
+	$('[data-target="#NoticesDetailModal"]').on("click",function(){
+		
+		getNoticesDetailList();	
+	});
+	
+	$('[data-target="#FAQsDetailModal"]').on("click",function(){
+		
+		getFAQsDetailList();	
+	});
+	
+	$('[data-target="#QNAsDetailModal"]').on("click",function(){
+		
+		getQNAsDetailList();	
 	});
 
 
@@ -196,7 +32,7 @@ $(document).ready(function(){
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'NoticesDetail',
+			url : 'NoticesDetail/{nidx}',
 			success : function(returnValue) {
 				var detail = returnValue.noticesdetail;
 				var contextPath = getContextPath();
@@ -240,7 +76,9 @@ $(document).ready(function(){
 				$("#container").append(html); 
 				html = "";
 			}
-
+			error : function(returnValue) {
+				alert("error");
+			}
 		});
 	};      
 

@@ -56,7 +56,7 @@ public class CustomerDAO {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		          
-		          FAQ faq = mapper.selectFAQByFidx();
+		          FAQ faq = mapper.selectFAQByFidx(fidx);
 		          session.close();
 		          return faq;
 
@@ -65,7 +65,7 @@ public class CustomerDAO {
 	public QNA selectQNAByQidx(String qidx) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          QNA qna = mapper.selectQNAByQidx();
+		          QNA qna = mapper.selectQNAByQidx(qidx);
 		          return qna;
 		      
 

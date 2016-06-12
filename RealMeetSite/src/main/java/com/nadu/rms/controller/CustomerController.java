@@ -42,7 +42,8 @@ public class CustomerController {
 	
 	@RequestMapping("information")
 	public String information(Model model){
-		
+		String introValue = "고객센터";
+        model.addAttribute("introValue", introValue );
 		return "customer/information";	
 	}
 	
@@ -54,6 +55,8 @@ public class CustomerController {
 		model.addAttribute("FAQs", FAQs);
 		List<QNA> QNA = customersDao.selectQNAs(); 
 		model.addAttribute("QNA", QNA);
+		String introValue = "고객센터";
+        model.addAttribute("introValue", introValue );
 		return "customer/customer";	
 	}
 	
@@ -73,7 +76,7 @@ public class CustomerController {
 		String title = n.getTitle();
 		model.addAttribute("Notices", customersDao.selectNoticesByTitle(title));
 		System.out.println(title);
-		return "customer/NoticesModal";	
+		return "Notices";	
 	}
 	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public String NoticesDetail(HttpServletRequest req, Model model, @PathVariable String nidx){

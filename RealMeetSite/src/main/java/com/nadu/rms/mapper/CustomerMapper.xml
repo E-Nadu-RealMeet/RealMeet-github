@@ -35,12 +35,12 @@
 <!-- 	<select id="selectNoticeByNidx" resultType="com.nadu.rms.vo.Notices"> -->
 <!-- 	SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR} -->
 <!-- 	</select> -->
-	<select id="selectFAQByFidx" resultType="com.nadu.rms.vo.FAQ">
-	SELECT * FROM FAQ WHERE FIDX = #{fidx, jdbcType=VARCHAR}
-	</select>
-	<select id="selectQNAByQidx" resultType="com.nadu.rms.vo.QNA">
-	SELECT * FROM QNA WHERE QIDX = #{qidx, jdbcType=VARCHAR}
-	</select>
+<!-- 	<select id="selectFAQByFidx" resultType="com.nadu.rms.vo.FAQ"> -->
+<!-- 	SELECT * FROM FAQ WHERE FIDX = #{fidx, jdbcType=VARCHAR} -->
+<!-- 	</select> -->
+<!-- 	<select id="selectQNAByQidx" resultType="com.nadu.rms.vo.QNA"> -->
+<!-- 	SELECT * FROM QNA WHERE QIDX = #{qidx, jdbcType=VARCHAR} -->
+<!-- 	</select> -->
 	
 	<insert id="insertQNA" parameterType="com.nadu.rms.vo.QNA">
 	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'N/A')

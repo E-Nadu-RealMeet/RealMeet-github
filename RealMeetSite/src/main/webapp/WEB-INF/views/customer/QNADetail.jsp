@@ -5,8 +5,7 @@
 
 
 				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
+					
 
 							<header>
 								<h2>내 문의내역</h2>
@@ -41,7 +40,4 @@
 
 			</table>
 
-			<a href="../QNA"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
-			</div>
-		
-					</section>
+			<a data-dismiss="modal"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>

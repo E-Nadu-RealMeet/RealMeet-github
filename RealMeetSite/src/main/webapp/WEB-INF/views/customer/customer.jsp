@@ -7,7 +7,9 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<%-- <script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script> --%>
+<script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
+
+
 				<!-- Portfolio -->
 
 
@@ -94,11 +96,14 @@
 
 			</table>
 
-			<form method="get" action="Notices/${title}">
-				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" />
-				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div>
-				</form>
+<%-- 			<form method="get" action="Notices/${title}"> --%>
+<!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /> -->
+<!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div> -->
+<!-- 				</form> -->
 				<button data-dismiss="modal">닫기</button>
+
+
+
 </div>   
 </div>
 </div>
@@ -130,11 +135,12 @@
 
 			</table>
 
-			<form method="get" action="FAQs/${title}">
-				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
+<%-- 			<form method="get" action="FAQs/${title}"> --%>
+<!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
+<!-- 				</form> -->
 				<button data-dismiss="modal">닫기</button>
 </div>   
+
 </div>
 </div>
 
@@ -158,16 +164,16 @@
 				<c:forEach var="QNA" items="${QNA}">
 					<tr>
 						<td>${QNA.qidx}</td>
-						<td><a href="NoticesDetail/${QNA.qidx}" data-toggle="modal" data-target="#QNADetailModal" style="color: #81918E;">${QNA.title}</a></td>
+						<td><a href="QNADetail/${QNA.qidx}" data-toggle="modal" data-target="#QNADetailModal" style="color: #81918E;">${QNA.title}</a></td>
 						<td>${QNA.regdate}</td>
 					</tr>
 				</c:forEach>
 
 			</table>
 
-			<form method="get" action="FAQs/${title}">
-				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div>
-				</form>
+<%-- 			<form method="get" action="FAQs/${title}"> --%>
+<!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
+<!-- 				</form> -->
 				<button data-dismiss="modal">닫기</button>
 </div>   
 </div>
@@ -229,12 +235,15 @@
 
 			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a>
 			</div>
+
+<%-- <jsp:include page="NoticesDetail.jsp"></jsp:include> --%>
 </div>
+
 </div>
 </div>
 
 
-<div id="FAQDetailModal" class="modal fade" role="dialog">
+<div id="FAQsDetailModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
 
@@ -270,3 +279,41 @@
 </div>
 </div>
 
+
+<div id="QNADetailModal" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+<div class="modal-content">
+
+<header>
+								<h2>내 문의내역</h2>
+							</header>
+				
+
+
+			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+				
+				
+				<tr>
+					<th>제목</th>
+					<th>${QNAsDetail.title}</th>
+				</tr>
+				
+				<tr>
+					<th>작성일</th>
+					<th>${QNAsDetail.regdate}</th>
+				</tr>
+				
+					<tr>
+					<td>${QNAsDetail.content}</td>
+					</tr>
+			
+
+			</table>
+
+			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a>
+			</div>
+
+
+</div>
+</div>
+</div>
