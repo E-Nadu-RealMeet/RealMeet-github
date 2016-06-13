@@ -102,7 +102,7 @@
 <!-- 				</form> -->
 				<button data-dismiss="modal">닫기</button>
 
-
+<%-- <jsp:include page="Notices.jsp"></jsp:include> --%>
 
 </div>   
 </div>

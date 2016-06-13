@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
+
+<script src="${pageContext.request.contextPath}/resources/core/js/eventEdit.js" type="text/javascript"></script>
+
 <style>
 .modal.modal-center {
   text-align: center;
@@ -55,7 +58,7 @@
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventContentUpdate">수정</button>
 							<hr>
 							<div id="lists"></div>
-							
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventAddrUpdate">수정</button>
 							<hr>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="pictures"
@@ -113,6 +116,16 @@
 			</div>
 		</div>
 
+
+<div class="modal fade" id="EventAddrUpdate" role="dialog">
+ <div class="modal-dialog">
+<div class="modal-content">
+<h2>주소 수정</h2>
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+</div>
+</div>
+</div>
 
 
 <div class="modal fade" id="EventNameUpdate" role="dialog">

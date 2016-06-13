@@ -84,33 +84,33 @@ public class CustomerDAO {
 		}
 		
 	}
-
-	public List<FAQ> selectFAQsByTitle(String title) {
-		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<FAQ> list = mapper.selectFAQsByTitle(title);
-		          session.close();
-		          return list;
-
-		         
-
-	}
-
-	public List<Notices> selectNoticesByTitle(String title) {
-		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<Notices> list = mapper.selectNoticesByTitle(title);
-		          session.close();
-		          return list;
-
-	}
-
-	public List<QNA> selectQNAsByTitle(String title) {
-		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<QNA> list = mapper.selectQNAsByTitle(title);
-		          session.close();
-		          return list;
-
-	}
+//
+//	public List<FAQ> selectFAQsByTitle(String title) {
+//		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+//		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+//		          List<FAQ> list = mapper.selectFAQsByTitle(title);
+//		          session.close();
+//		          return list;
+//
+//		         
+//
+//	}
+//
+//	public List<Notices> selectNoticesByTitle(String title) {
+//		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+//		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+//		          List<Notices> list = mapper.selectNoticesByTitle(title);
+//		          session.close();
+//		          return list;
+//
+//	}
+//
+//	public List<QNA> selectQNAsByTitle(String title) {
+//		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+//		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+//		          List<QNA> list = mapper.selectQNAsByTitle(title);
+//		          session.close();
+//		          return list;
+//
+//	}
 }

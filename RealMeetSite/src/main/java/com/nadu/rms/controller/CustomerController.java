@@ -60,24 +60,21 @@ public class CustomerController {
 		return "customer/customer";	
 	}
 	
-//	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
-//	@ResponseBody
-//	public String Notices(HttpServletRequest req, Model model){
-//	//	List<Notices> Notices = customersDao.selectNotices();
-//	//	model.addAttribute("Notices", Notices);
-//
-//		String returnValue = customerService.NoticesListLoad(req);
-//		log.info("gson : " + returnValue);
-//		return returnValue;
-//	}
-	@RequestMapping(value="Notices", method=RequestMethod.GET)
-//	@ResponseBody
-	public String searchNotices(Model model, Notices n){
-		String title = n.getTitle();
-		model.addAttribute("Notices", customersDao.selectNoticesByTitle(title));
-		System.out.println(title);
-		return "Notices";	
+	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
+	public String Notices(Notices n, Model model){
+	//	List<Notices> Notices = customersDao.selectNotices();
+	//	model.addAttribute("Notices", Notices);
+		model.addAttribute("Notices", customersDao.selectNotices());
+		return "customer/Notices";
 	}
+//	@RequestMapping(value="Notices", method=RequestMethod.GET)
+////	@ResponseBody
+//	public String searchNotices(Model model, Notices n){
+//		String title = n.getTitle();
+//		model.addAttribute("Notices", customersDao.selectNoticesByTitle(title));
+//		System.out.println(title);
+//		return "Notices";	
+//	}
 	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public String NoticesDetail(HttpServletRequest req, Model model, @PathVariable String nidx){
 		
@@ -93,13 +90,13 @@ public class CustomerController {
 		model.addAttribute("FAQs", FAQs);
 		return "customer/FAQs";	
 	}
-	@RequestMapping(value="FAQs", method=RequestMethod.POST)
-	public String searchFAQs(Model model, FAQ f){
-		String title = f.getTitle();
-		model.addAttribute("FAQs", customersDao.selectFAQsByTitle(title));
-		System.out.println(title);
-		return "customer/FAQs";	
-	}
+//	@RequestMapping(value="FAQs", method=RequestMethod.POST)
+//	public String searchFAQs(Model model, FAQ f){
+//		String title = f.getTitle();
+//		model.addAttribute("FAQs", customersDao.selectFAQsByTitle(title));
+//		System.out.println(title);
+//		return "customer/FAQs";	
+//	}
 	@RequestMapping(value="FAQsDetail/{fidx}", method=RequestMethod.GET)
 	public String FAQsDetail(HttpServletRequest request, Model model, @PathVariable String fidx){
 		model.addAttribute("FAQsDetail", customersDao.selectFAQByFidx(fidx));
@@ -135,14 +132,14 @@ public class CustomerController {
 		}
 	}
 
-	@RequestMapping(value="QNAModal", method=RequestMethod.POST)
-
-	public String searchQNAs(Model model, QNA q){
-		String title = q.getTitle();
-		model.addAttribute("QNA", customersDao.selectQNAsByTitle(title));
-		System.out.println(title);
-		return "customer/QNA";	
-	}
+//	@RequestMapping(value="QNAModal", method=RequestMethod.POST)
+//
+//	public String searchQNAs(Model model, QNA q){
+//		String title = q.getTitle();
+//		model.addAttribute("QNA", customersDao.selectQNAsByTitle(title));
+//		System.out.println(title);
+//		return "customer/QNA";	
+//	}
 	@RequestMapping(value="QNADetail/{qidx}", method=RequestMethod.GET)
 	public String QNADetail(HttpServletRequest request, Model model, @PathVariable String qidx){
 		model.addAttribute("QNADetail", customersDao.selectQNAByQidx(qidx));
