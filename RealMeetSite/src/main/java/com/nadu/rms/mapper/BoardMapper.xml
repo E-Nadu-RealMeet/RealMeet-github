@@ -4,26 +4,34 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.nadu.rms.mapper.FreeBoardMapper">
+<mapper namespace="com.nadu.rms.mapper.annotation.BoardMapper">
 
-	<select id="selectFreeBoard" resultType="com.nadu.rms.vo.FreeBoard">
+	<select id="selectBoards" parameterType="String" resultType="com.nadu.rms.vo.Board">
+	<choose>
+	<when test="param2 == null">
 	SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC
+	</when>
+	<when test="param2 != null">
+	SELECT * FROM (SELECT * FROM NOTICES WHERE ${param1} LIKE '%${param2}%' ORDER BY REGDATE DESC)
+	</when>
+	</choose>
 	</select>
+
 	
-	<select id="selectFreeDetail" parameterType="Integer" resultType="com.nadu.rms.vo.FreeBoard">
+	<select id="selectBoardDetail" parameterType="Integer" resultType="com.nadu.rms.vo.Board">
 	SELECT * FROM NOTICES WHERE NIDX = #{nidx}
 	</select>
 	
-	<insert id="insertFreeBoard" parameterType="com.nadu.rms.vo.FreeBoard">
+	<insert id="insertBoard" parameterType="com.nadu.rms.vo.Board">
 	INSERT INTO NOTICES(NIDX, WRITER, TITLE, CONTENT, REGDATE) 
 	VALUES(TO_CHAR(NOTICES_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE)
 	</insert>
 	
-	<update id="updateFreeBoard" parameterType="com.nadu.rms.vo.FreeBoard">
+	<update id="updateBoard" parameterType="com.nadu.rms.vo.Board">
 	UPDATE NOTICES SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE NIDX = #{nidx, jdbcType=VARCHAR}
 	</update>
 	
-	<delete id="delFreeBoard" parameterType="String">
+	<delete id="delBoard" parameterType="String">
 	DELETE FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}
 	</delete>
 	
