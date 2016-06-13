@@ -122,21 +122,23 @@ $(document).ready(
 				 */
 				
 				map.addListener('click', function(e) {
-					alert(e.latlng)
+					var latLng = e.latLng.toString();
+					latLng=latLng.substring(1,latLng.length-2);
 					deleteMarkers();
-					var latlng = results[0].geometry.location;
-					placeMarkerAndPanTo(e.latlng, map);
-					map.setZoom(15);
-					geocodeLatLng(geocoder, map, infowindow, e.latLng);
-					// placeMarkerAndPanTo(e.latLng, map);
+					//placeMarkerAndPanTo(e.latLng, map);
+					geocodeLatLng(geocoder, map, infowindow, latLng);
 				});
-				function placeMarkerAndPanTo(latLng, map) {
+				function placeMarkerAndPanTo(latLng, map, arg) {
 					var marker = new google.maps.Marker({
 						position : latLng,
 						map : map
 					});
 					markers.push(marker);
 					map.panTo(latLng);
+					if(arg != null&& arg.length!=0){
+						infowindow.setContent(arg);
+						infowindow.open(map, marker);
+					}
 				}
 				$('#addr').keyup(function() {
 					GMaps.geocode({
@@ -145,7 +147,7 @@ $(document).ready(
 							if (status == 'OK') {
 								deleteMarkers();
 								var latlng = results[0].geometry.location;
-								placeMarkerAndPanTo(latlng, map);
+								placeMarkerAndPanTo(latlng, map, $('#addr').val().trim());
 								map.setZoom(15);
 							}
 						}
@@ -174,20 +176,21 @@ $(document).ready(
 				  clearMarkers();
 				  markers = [];
 				}
-				
+				//지오코딩 메서드
 				function geocodeLatLng(geocoder, map, infowindow, input) {
 					  var latlngStr = input.split(',', 2);
 					  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
 					  geocoder.geocode({'location': latlng}, function(results, status) {
 					    if (status === google.maps.GeocoderStatus.OK) {
 					      if (results[1]) {
-					        map.setZoom(11);
+					        map.setZoom(15);
+					        /*map.panTo(latlng);
 					        var marker = new google.maps.Marker({
 					          position: latlng,
 					          map: map
-					        });
-					        infowindow.setContent(results[1].formatted_address);
-					        infowindow.open(map, marker);
+					        });*/
+					        placeMarkerAndPanTo(latlng, map, results[1].formatted_address);
+					        $('#addr').val(results[1].formatted_address)
 					      } else {
 					        window.alert('No results found');
 					      }

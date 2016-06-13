@@ -2758,6 +2758,10 @@ function initMap(call) {
 	var centerControlDiv = document.createElement('div');
 	var centerControl = new CenterControl(centerControlDiv, map);
 	var marker;
+	var markers=[];
+	var geocoder = new google.maps.Geocoder;
+	var infowindow = new google.maps.InfoWindow;
+	var infowindows = [];
 	$.ajax({
 		type : 'POST',
 		dataType : 'json',
@@ -2776,7 +2780,7 @@ function initMap(call) {
 						if (status == 'OK') {
 							var latlng = results[0].geometry.location;
 							// map.setCenter(latlng.lat(), latlng.lng());
-							marker = new google.maps.Marker({
+/*							marker = new google.maps.Marker({
 								map : map,
 								draggable : true,
 								position : {
@@ -2784,13 +2788,8 @@ function initMap(call) {
 									lng : latlng.lng()
 								}
 							});
-							if(true){
-								alert(data.length+'&'+i)
-								call(map, marker);
-							}
-							
+*/							placeMarkerAndPanTo({lat : latlng.lat(),lng : latlng.lng()}, map, addr)
 						}
-						
 					}
 				});
 			}
@@ -2804,7 +2803,19 @@ function initMap(call) {
 	});
 	centerControlDiv.index = 1;
 	map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-	return '{"map" : ' + map + ', "marker" : ' + marker + '}';
+	function placeMarkerAndPanTo(latLng, map, arg) {
+		var marker = new google.maps.Marker({
+			position : latLng,
+			map : map
+		});
+		markers.push(marker);
+		//map.panTo(latLng);
+		if(arg != null&& arg.length!=0){
+			infowindow.setContent(arg);
+			infowindow.open(map, marker);
+			infowindows.push(infowindow)
+		}
+	}
 }
 function toggleBounce() {
 	if (marker.getAnimation() !== null) {
