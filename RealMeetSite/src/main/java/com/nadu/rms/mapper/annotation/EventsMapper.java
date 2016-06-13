@@ -29,7 +29,7 @@ public interface EventsMapper {
 	@Update("UPDATE EVENTS SET EVENTNAME = #{eventname, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public int updateEventsNameByESIDX(@Param("esidx")String esidx, @Param("eventname")String eventName);
 	
-	@Update("UPDATE EVENTS SET ELDATE = #{eldate, jdbcType=DATE} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	@Update("UPDATE EVENTLIST SET ELDATE = TO_DATE(#{eldate, jdbcType=VARCHAR}, 'yyyy/mm/dd hh24:mi') WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public int updateEventsDateByESIDX(@Param("esidx")String esidx, @Param("eldate")String elDate);
 	
 	@Update("UPDATE EVENTS SET DESCRIPTION = #{description, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
