@@ -41,6 +41,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" />
 <!-- tiles를 이용한 부분 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css<tiles:getAsString name="css"/>" />
+<c:if test="${page == 'index' }">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/event/eventList.js"></script>
+</c:if>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js<tiles:getAsString name="js"/>"></script>
 
@@ -70,6 +73,9 @@
 			</c:if>
 			
 			<tiles:insertAttribute name="content"></tiles:insertAttribute>
+			<c:if test="${page=='index'}">
+				<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
+			</c:if>
 		</section>
 	</div>
 	<!-- Footer -->

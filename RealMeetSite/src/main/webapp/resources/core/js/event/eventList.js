@@ -20,16 +20,22 @@ $(window).scroll(function(){
 });
 
 function getEventList(page){
-	//alert("함수시작");
+
+	var urls = '';
+	if(location.href.substring(location.href.indexOf(location.host)+location.host.length,location.href.length) == '/RealMeetSite/event/list'){
+		urls = 'list/dataload';
+	}else{
+		urls = 'event/list/dataload';
+	}
+
+
 	// 데이터 로드
 	$.ajax({
 		type : 'GET',  
 		dataType : 'json',
 		data : {"page" : page},
-		url : 'list/dataload',
-
+		url : urls,
 		success : function(returnData) {
-
 			var list = returnData.datas;
 			var startNum = returnData.startNum;
 			var endNum = returnData.endNum;
