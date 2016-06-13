@@ -5,42 +5,42 @@
 	
 <mapper namespace="com.nadu.rms.mapper.annotation.CustomerMapper">
 	
-	<select id="selectFAQs" resultType="com.nadu.rms.vo.FAQ">
-	<if test="title == null">
-	SELECT * FROM FAQ 
-	</if>
-	<if test="title != null">
-	SELECT * FROM FAQ WHERE TITLE LIKE '%'||#{title}||'%'
-	</if>
-	</select>
+<!-- 	<select id="selectFAQs" resultType="com.nadu.rms.vo.FAQ"> -->
+<!-- 	<if test="title == null"> -->
+<!-- 	SELECT * FROM FAQ  -->
+<!-- 	</if> -->
+<!-- 	<if test="title != null"> -->
+<!-- 	SELECT * FROM FAQ WHERE TITLE LIKE '%'||#{title}||'%' -->
+<!-- 	</if> -->
+<!-- 	</select> -->
 	
-	<select id="selectNotices" resultType="com.nadu.rms.vo.Notices">
-	<if test="title == null">
-	SELECT * FROM NOTICES
-	</if>
-	<if test="title != null">
-	SELECT * FROM NOTICES WHERE TITLE LIKE '%'||#{title}||'%'
-	</if>
-	</select>
+<!-- 	<select id="selectNotices" resultType="com.nadu.rms.vo.Notices"> -->
+<!-- 	<if test="title == null"> -->
+<!-- 	SELECT * FROM NOTICES -->
+<!-- 	</if> -->
+<!-- 	<if test="title != null"> -->
+<!-- 	SELECT * FROM NOTICES WHERE TITLE LIKE '%'||#{title}||'%' -->
+<!-- 	</if> -->
+<!-- 	</select> -->
 	
-	<select id="selectQNAs" resultType="com.nadu.rms.vo.QNA">
-	<if test="title == null">
-	SELECT * FROM QNA
-	</if>
-	<if test="title != null">
-	SELECT * FROM QNA WHERE TITLE LIKE '%'||#{title}||'%'
-	</if>
-	</select>
+<!-- 	<select id="selectQNAs" resultType="com.nadu.rms.vo.QNA"> -->
+<!-- 	<if test="title == null"> -->
+<!-- 	SELECT * FROM QNA -->
+<!-- 	</if> -->
+<!-- 	<if test="title != null"> -->
+<!-- 	SELECT * FROM QNA WHERE TITLE LIKE '%'||#{title}||'%' -->
+<!-- 	</if> -->
+<!-- 	</select> -->
 	
-	<select id="selectNoticeByNidx" resultType="com.nadu.rms.vo.Notices">
-	SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}
-	</select>
-	<select id="selectFAQByFidx" resultType="com.nadu.rms.vo.FAQ">
-	SELECT * FROM FAQ WHERE FIDX = #{fidx, jdbcType=VARCHAR}
-	</select>
-	<select id="selectQNAByQidx" resultType="com.nadu.rms.vo.QNA">
-	SELECT * FROM QNA WHERE QIDX = #{qidx, jdbcType=VARCHAR}
-	</select>
+<!-- 	<select id="selectNoticeByNidx" resultType="com.nadu.rms.vo.Notices"> -->
+<!-- 	SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR} -->
+<!-- 	</select> -->
+<!-- 	<select id="selectFAQByFidx" resultType="com.nadu.rms.vo.FAQ"> -->
+<!-- 	SELECT * FROM FAQ WHERE FIDX = #{fidx, jdbcType=VARCHAR} -->
+<!-- 	</select> -->
+<!-- 	<select id="selectQNAByQidx" resultType="com.nadu.rms.vo.QNA"> -->
+<!-- 	SELECT * FROM QNA WHERE QIDX = #{qidx, jdbcType=VARCHAR} -->
+<!-- 	</select> -->
 	
 	<insert id="insertQNA" parameterType="com.nadu.rms.vo.QNA">
 	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'N/A')

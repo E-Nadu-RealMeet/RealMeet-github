@@ -12,86 +12,72 @@ import com.nadu.rms.vo.QNA;
 
 public class CustomerDAO {
 
-	
-//	public List<FAQ> selectFAQs() {
-//		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-//		try{
-//			String statement = "com.nadu.rms.mapper.CustomerMapper.selectFAQs";
-//			System.out.println(statement);
-//			return sqlSession.selectList(statement);
-//
-//		}finally {
-//			sqlSession.close();
-//		}
-//	}
-//
-//	public List<Notices> selectNotices() {
-//		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-//		try{
-//			String statement = "com.nadu.rms.mapper.CustomerMapper.selectNotices";
-//			System.out.println(statement);
-//			return sqlSession.selectList(statement);
-//
-//		}finally {
-//			sqlSession.close();
-//		}
-//	}
-//
-//	public List<QNA> selectQNAs() {
-//		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-//		try{
-//			String statement = "com.nadu.rms.mapper.CustomerMapper.selectQNAs";
-//			System.out.println(statement);
-//			return sqlSession.selectList(statement);
-//
-//		}finally {
-//			sqlSession.close();
-//		}
-//	}
+	public List<QNA> selectQNAs() {
+        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+        List<QNA> list = mapper.selectQNAs();
+        session.close();
+        return list;
+    }
+
+	public List<FAQ> selectFAQs() {
+
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          List<FAQ> list = mapper.selectFAQs();
+		          session.close();
+		          return list;
+		      }
+		  
+
+	public List<Notices> selectNotices() {
+
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          List<Notices> list = mapper.selectNotices();
+		          session.close();
+		          return list;
+		      }
+		  
+
 	
 	public Notices selectNoticeByNidx(String nidx) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.CustomerMapper.selectNoticeByNidx";
-			System.out.println(statement);
-			return sqlSession.selectOne(statement, nidx);
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 
-		}finally {
-			sqlSession.close();
-		}
+		          Notices notices = mapper.selectNoticeByNidx(nidx);
+
+		          session.close();
+		          return notices;
+
 	}
 
 	public FAQ selectFAQByFidx(String fidx) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.CustomerMapper.selectFAQByFidx";
-			System.out.println(statement);
-			return sqlSession.selectOne(statement, fidx);
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          
+		          FAQ faq = mapper.selectFAQByFidx(fidx);
+		          session.close();
+		          return faq;
 
-		}finally {
-			sqlSession.close();
-		}
 	}
 
 	public QNA selectQNAByQidx(String qidx) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.CustomerMapper.selectQNAByQidx";
-			System.out.println(statement);
-			return sqlSession.selectOne(statement, qidx);
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          QNA qna = mapper.selectQNAByQidx(qidx);
+		          return qna;
+		      
 
-		}finally {
-			sqlSession.close();
-		}
 	}
 
 
 	public int insertQNAs(QNA q) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
 		try {
-			String statement = "com.nadu.rms.mapper.CustomerMapper.insertQNA";
-			return session.insert(statement, q);
+			int statement = mapper.insertQNA(q);
+			return statement;
 		} finally {
 			session.commit(); // commit�� ���ϸ� ������ �Է��� �ȵ˴ϴ�.
 			session.close();
@@ -99,39 +85,32 @@ public class CustomerDAO {
 		
 	}
 
-	public List<FAQ> selectFAQs(String title) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.CustomerMapper.selectFAQs";
-			System.out.println(statement);
-			return sqlSession.selectList(statement, title);
+	public List<FAQ> selectFAQsByTitle(String title) {
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          List<FAQ> list = mapper.selectFAQsByTitle(title);
+		          session.close();
+		          return list;
 
-		}finally {
-			sqlSession.close();
-		}
+		         
+
 	}
 
-	public List<Notices> selectNotices(String title) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.CustomerMapper.selectNotices";
-			System.out.println(statement);
-			return sqlSession.selectList(statement, title);
+	public List<Notices> selectNoticesByTitle(String title) {
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          List<Notices> list = mapper.selectNoticesByTitle(title);
+		          session.close();
+		          return list;
 
-		}finally {
-			sqlSession.close();
-		}
 	}
 
-	public List<QNA> selectQNAs(String title) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.CustomerMapper.selectQNAs";
-			System.out.println(statement);
-			return sqlSession.selectList(statement, title);
+	public List<QNA> selectQNAsByTitle(String title) {
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          List<QNA> list = mapper.selectQNAsByTitle(title);
+		          session.close();
+		          return list;
 
-		}finally {
-			sqlSession.close();
-		}
 	}
 }

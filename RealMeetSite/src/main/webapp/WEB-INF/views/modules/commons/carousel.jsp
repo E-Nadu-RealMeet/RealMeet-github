@@ -47,7 +47,7 @@
 						</p>
 						<span class="icon fa-heart-o">${e.getGood()}</span>
 						&nbsp
-						<span class="icon fa-commenting-o"></span>
+						<span class="icon fa-commenting-o">${e.getReviewCnt()}</span>
 						<br>
 					</div>
 				</div>

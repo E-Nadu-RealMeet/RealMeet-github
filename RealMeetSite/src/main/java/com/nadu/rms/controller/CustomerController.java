@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nadu.rms.dao.CustomerDAO;
+import com.nadu.rms.service.CustomerService;
 import com.nadu.rms.vo.FAQ;
 import com.nadu.rms.vo.Notices;
 import com.nadu.rms.vo.QNA;
@@ -23,13 +24,15 @@ import com.nadu.rms.vo.QNA;
 @RequestMapping("/customer/*")
 public class CustomerController {
 	
-	
+	CustomerService customerService;
 	
 	CustomerDAO customersDao;
 	
 	
 
-	
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
@@ -39,48 +42,61 @@ public class CustomerController {
 	
 	@RequestMapping("information")
 	public String information(Model model){
-		
+		String introValue = "고객센터";
+        model.addAttribute("introValue", introValue );
 		return "customer/information";	
 	}
 	
 	@RequestMapping("customer")
 	public String customer(Model model){
-		
+		List<Notices> Notices = customersDao.selectNotices();
+		model.addAttribute("Notices", Notices);
+		List<FAQ> FAQs = customersDao.selectFAQs();
+		model.addAttribute("FAQs", FAQs);
+		List<QNA> QNA = customersDao.selectQNAs(); 
+		model.addAttribute("QNA", QNA);
+		String introValue = "고객센터";
+        model.addAttribute("introValue", introValue );
 		return "customer/customer";	
 	}
 	
+//	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
+//	@ResponseBody
+//	public String Notices(HttpServletRequest req, Model model){
+//	//	List<Notices> Notices = customersDao.selectNotices();
+//	//	model.addAttribute("Notices", Notices);
+//
+//		String returnValue = customerService.NoticesListLoad(req);
+//		log.info("gson : " + returnValue);
+//		return returnValue;
+//	}
 	@RequestMapping(value="Notices", method=RequestMethod.GET)
-	public String Notices(HttpServletRequest req, Model model){
-		String title = null;
-		List<Notices> Notices = customersDao.selectNotices(title);
-		model.addAttribute("Notices", Notices);
-		return "customer/Notices";
-	}
-	@RequestMapping(value="Notices/{title}", method=RequestMethod.GET)
-	public String searchNotices(Model model, Notices n, @PathVariable String title){
-		//title = n.getTitle();
-		model.addAttribute("Notices", customersDao.selectNotices(title));
+//	@ResponseBody
+	public String searchNotices(Model model, Notices n){
+		String title = n.getTitle();
+		model.addAttribute("Notices", customersDao.selectNoticesByTitle(title));
 		System.out.println(title);
-		return "customer/Notices";	
+		return "Notices";	
 	}
-	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET)
+	@RequestMapping(value="NoticesDetail/{nidx}", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public String NoticesDetail(HttpServletRequest req, Model model, @PathVariable String nidx){
 		
 	//	String returnValue = customerService.NoticesDetailLoad(req, nidx);
 		model.addAttribute("NoticesDetail", customersDao.selectNoticeByNidx(nidx));
 		return "customer/NoticesDetail";
+
 	}
-	@RequestMapping(value="FAQs", method=RequestMethod.GET)
+	@RequestMapping(value="FAQsModal", method=RequestMethod.GET)
+	@ResponseBody
 	public String FAQs(Model model){
-		String title = null;
-		List<FAQ> FAQs = customersDao.selectFAQs(title);
+		List<FAQ> FAQs = customersDao.selectFAQs();
 		model.addAttribute("FAQs", FAQs);
 		return "customer/FAQs";	
 	}
-	@RequestMapping(value="FAQs/{title}", method=RequestMethod.GET)
-	public String searchFAQs(Model model, FAQ f,@PathVariable String title){
-	//	String title = f.getTitle();
-		model.addAttribute("FAQs", customersDao.selectFAQs(title));
+	@RequestMapping(value="FAQs", method=RequestMethod.POST)
+	public String searchFAQs(Model model, FAQ f){
+		String title = f.getTitle();
+		model.addAttribute("FAQs", customersDao.selectFAQsByTitle(title));
 		System.out.println(title);
 		return "customer/FAQs";	
 	}
@@ -96,13 +112,14 @@ public class CustomerController {
 		
 		return "customer/Call";	
 	}
-	@RequestMapping(value="QNA", method=RequestMethod.GET)
-	public String QNA(Model model){
-		String title = null;
-		List<QNA> QNA = customersDao.selectQNAs(title); 
-		model.addAttribute("QNA", QNA);
-		return "customer/QNA";	
-	}
+
+//	@RequestMapping(value="QNA", method=RequestMethod.GET)
+//	public String QNA(Model model){
+//		List<QNA> QNA = customersDao.selectQNAs(); 
+//		model.addAttribute("QNA", QNA);
+//		return "#QNAsModal";	
+//	}
+
 	
 	@RequestMapping(value = "insertQNA", method = RequestMethod.POST)
 	public String insertQNAs(Model model, QNA q) {
@@ -111,22 +128,23 @@ public class CustomerController {
 		
 		int iv = customersDao.insertQNAs(q);
 		if(iv>0){
-			return "redirect:../customer/QNA";
+			
+			return "redirect:../customer/customer";
 		}else{
-			return "redirect:../customer";
+			return "redirect:../customer/customer";
 		}
 	}
-	
-	@RequestMapping(value="QNA/{title}", method=RequestMethod.GET)
-	public String searchQNAs(Model model, QNA q, @PathVariable String title){
-	//	String title = q.getTitle();
-		model.addAttribute("QNA", customersDao.selectQNAs(title));
+
+	@RequestMapping(value="QNAModal", method=RequestMethod.POST)
+
+	public String searchQNAs(Model model, QNA q){
+		String title = q.getTitle();
+		model.addAttribute("QNA", customersDao.selectQNAsByTitle(title));
 		System.out.println(title);
 		return "customer/QNA";	
 	}
 	@RequestMapping(value="QNADetail/{qidx}", method=RequestMethod.GET)
 	public String QNADetail(HttpServletRequest request, Model model, @PathVariable String qidx){
-		
 		model.addAttribute("QNADetail", customersDao.selectQNAByQidx(qidx));
 		return "customer/QNADetail";
 	}

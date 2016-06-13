@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
 import com.nadu.rms.service.EventDetailService;
@@ -26,14 +27,14 @@ import com.nadu.rms.vo.Event_Eventlist;
 @Controller
 @RequestMapping("event/*")
 public class EventController {
-
-
+	
 	EventDataService eventDataService;
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
 	EventEditService eventEditService;
 	
+	@Autowired
 	public void setEventEditService(EventEditService eventEditService) {
 		this.eventEditService = eventEditService;
 	}
@@ -61,6 +62,8 @@ public class EventController {
 	// 모든 이벤트 보기
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String eventListViewLoad(HttpServletRequest req, Model model) {
+		String introValue = "모임 목록입니다.";
+        model.addAttribute("introValue", introValue );
 		model.addAttribute("page","event/eventList");
 		return "event/eventList";
 	}
@@ -129,7 +132,8 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
-
+		String introValue = "모임의 자세한 정보입니다.";
+        model.addAttribute("introValue", introValue );
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		eventDetailService.detailLoad(req, esidx, model);
@@ -173,10 +177,53 @@ public class EventController {
 		}
 	}
 	
-	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String eventEdit(HttpServletRequest req, String esidx, Model model) {
-		List<Event_Eventlist> eventEdit = eventEditService.eventEdit(req, esidx, model);
-		return "event/eventEdit";
+	//모든 이벤트 목록 조회 (ajax)
+	@RequestMapping(value="dataloadformap", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventListDataloadForMap(){
+		String datas = eventDataService.DataloadForMap();
+		log.info(datas);
+		
+		return datas;
+	}
+	
+	@RequestMapping(value = "editName", method = RequestMethod.POST)
+	public String eventNameEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String eventName) {
+		esidx = e.getEsidx();
+		e.setEventname(e.getEventname());
+		int up = eventEditService.eventNameEdit(req,esidx, eventName);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}
+	
+	@RequestMapping(value = "editDate", method = RequestMethod.POST)
+	public String eventDateEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String elDate) {
+		esidx = e.getEsidx();
+		e.setEldate(e.getEldate());
+		int up = eventEditService.eventDateEdit(req,esidx, elDate);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}
+	
+	@RequestMapping(value = "editDesc", method = RequestMethod.POST)
+	public String eventDescEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String description) {
+		esidx = e.getEsidx();
+		e.setDescription(e.getDescription());
+		int up = eventEditService.eventDescEdit(req,esidx, description);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
 	}
 	
 }

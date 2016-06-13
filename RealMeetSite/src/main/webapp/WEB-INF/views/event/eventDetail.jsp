@@ -41,18 +41,21 @@
 							aria-labelledby="detail-tab" aria-expanded="true">
 							<!-- 이벤트 제목란 -->
 							<h2 class="blog-post-title">${detail.get(0).getEventname() }</h2>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventNameUpdate">수정</button>
 							<!-- 이벤트 날짜란 -->
 							<p class="blog-post-meta">${detail.get(0).getEldate() }
 								by <a href="#">${detail.get(0).getHolder() }</a>
 							</p>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventDateUpdate">수정</button>
 							<hr>
 							<!-- 이벤트 상세내용 -->
 							<blockquote>
-								<p>${detail.get(0).getDescription() }</p>
+								<p>${detail.get(0).getDescription() }</p>		
 							</blockquote>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventContentUpdate">수정</button>
 							<hr>
 							<div id="lists"></div>
-							<input type="button" onclick="tmp()" value="button" />
+							
 							<hr>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="pictures"
@@ -111,5 +114,61 @@
 		</div>
 
 
-	</div>
+
+<div class="modal fade" id="EventNameUpdate" role="dialog">
+ <div class="modal-dialog">
+<div class="modal-content">
+<header>
+<h2>제목 수정</h2>
+</header>
+
+<form action="editName" method="POST">
+<input type="text" name="eventName" value="${detail.get(0).getEventname() }"/>
+<input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
+<button type="submit" class="btn btn-primary">수정</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+</form>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="EventDateUpdate" role="dialog">
+ <div class="modal-dialog">
+<div class="modal-content">
+<header>
+<h2>날짜 수정</h2>
+</header>
+
+<form action="editDate" method="post">
+<input type="datetime-local" name="elDate" value="${detail.get(0).getEldate() }" />
+<input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
+<button type="submit" class="btn btn-primary">수정</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="EventContentUpdate" role="dialog">
+ <div class="modal-dialog">
+<div class="modal-content">
+<header>
+<h2>요약 수정</h2>
+</header>
+
+
+
+<form action="editDesc" method="post">
+<input type="text" name="description" value="${detail.get(0).getDescription() }" />
+<input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
+<button type="submit" class="btn btn-primary">수정</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+</form>
+</div>
+</div>
+</div>
+
+	
+</div>
 </section>

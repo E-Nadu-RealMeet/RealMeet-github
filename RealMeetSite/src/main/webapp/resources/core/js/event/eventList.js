@@ -114,3 +114,4 @@ function getContextPath(){
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
     return ctxPath;
 }
+

@@ -53,7 +53,6 @@ public class EventsDao {
 		
 		return events;
 	}
-	
 	// Events�� EventList �뀒�씠釉� 議곗씤 寃곌낵 �쉷�뱷 
 	public List<Event_Eventlist> selectEventsDetailByESIDX(String esidx){
 		
@@ -64,13 +63,36 @@ public class EventsDao {
 		return events;
 	}
 	
-	public List<Event_Eventlist> updateEventsDetailByESIDX(String esidx){
+	public int updateEventsNameByESIDX(String esidx, String eventName){
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		List<Event_Eventlist> events = mapper.selectEventsDetailByESIDX(esidx);
+		int events = mapper.updateEventsNameByESIDX(esidx, eventName);
+		session.commit();
 		session.close();
-		return null;
+		return events;
+				
+	}
+	
+	public int updateEventsDateByESIDX(String esidx, String elDate){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int events = mapper.updateEventsDateByESIDX(esidx, elDate);
+		session.commit();
+		session.close();
+		return events;
+				
+	}
+	
+	public int updateEventsDescByESIDX(String esidx, String description){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int events = mapper.updateEventsDateByESIDX(esidx, description);
+		session.commit();
+		session.close();
+		return events;
 				
 	}
 	

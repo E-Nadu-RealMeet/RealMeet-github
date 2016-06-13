@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.nadu.rms.dao.BannerDAO;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Events;
 
 
@@ -35,9 +36,9 @@ public class HomeController {
     	String introValue = "DadleMoyeo에 오신 것을 환영합니다.";
         model.addAttribute("introValue", introValue );
        
-        List<Events> list = bannerDAO.selectEvents();
+        List<Event_User> list = bannerDAO.selectEvents();
         //리스트의 모든 imgsrc를 :로 스플릿해서 첫번째 사진만 다시 setting
-        for (Events ee : list) {
+        for (Event_User ee : list) {
 			ee.setImgsrc(ee.getImgsrc().split(":")[0]);
 		}
 		model.addAttribute("list", list);    

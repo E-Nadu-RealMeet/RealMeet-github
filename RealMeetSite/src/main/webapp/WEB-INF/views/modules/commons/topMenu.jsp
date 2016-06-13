@@ -199,7 +199,7 @@
 			<li><a class="topButton" href="${pageContext.request.contextPath}/">홈</a></li>
 
 			<c:if test="${empty mid}">
-				<li><a class="topButton" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" type="button">로그인</a></li>
+				<li><a class="topButton" href="${pageContext.request.contextPath}/login" type="button">로그인</a></li>
 			</c:if>
 			<c:if test="${!empty mid}">
 				<li><a class="topButton" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>

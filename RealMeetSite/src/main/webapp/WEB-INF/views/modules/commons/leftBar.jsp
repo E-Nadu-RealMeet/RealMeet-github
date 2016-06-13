@@ -261,19 +261,9 @@
 							<li><a href="${pageContext.request.contextPath}/customer/customer" id="" class="skel-layers-ignoreHref"><span class="icon fa-users">고객센터</span></a></li>
 
 							
-							</ul>
-							<ul id="accordion">
-							<li><div><a href="#" id="" class="skel-layers-ignoreHref"><span class="icon fa-users">고객센터</span></a></div>
-							<ul>
-          						  <li><a href="${pageContext.request.contextPath}/customer/Notices" id="" class="skel-layers-ignoreHref">공지사항</a></li>
-           						 <li><a href="${pageContext.request.contextPath}/customer/FAQs" id="" class="skel-layers-ignoreHref">FAQ</a></li>
-            					<li><a href="${pageContext.request.contextPath}/customer/QNA" id="" class="skel-layers-ignoreHref">내 문의내역</a></li>
-            					<li><a href="${pageContext.request.contextPath}/customer/Call" id="" class="skel-layers-ignoreHref">문의하기</a></li>
-            					<li><a href="${pageContext.request.contextPath}/customer/information" id="" class="skel-layers-ignoreHref">이용안내</a></li>
-       						 </ul>
-       						 </li>
 
 							</ul>
+							
 						</nav>
 
 				</div>
