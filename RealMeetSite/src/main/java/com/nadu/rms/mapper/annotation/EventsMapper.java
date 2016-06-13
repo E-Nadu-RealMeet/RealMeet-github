@@ -34,6 +34,9 @@ public interface EventsMapper {
 	
 	@Update("UPDATE EVENTS SET DESCRIPTION = #{description, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public int updateEventsDescByESIDX(@Param("esidx")String esidx, @Param("description")String description);
+
+	@Update("UPDATE EVENTS SET CATEGORY = #{category, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public int updateEventsCategoryByESIDX(@Param("esidx")String esidx, @Param("category")String category);
 	
 	public int insertEvents(Event_Eventlist e);
 	
