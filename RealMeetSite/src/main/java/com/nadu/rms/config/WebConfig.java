@@ -8,6 +8,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.util.StringUtils;
@@ -28,6 +29,7 @@ import com.nadu.rms.controller.UploadController;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.nadu.rms.controller"})
+@EnableAspectJAutoProxy
 public class WebConfig extends WebMvcConfigurerAdapter{
 	/**
      * CSS / JavaScript / Image 등의 정적 리소스를 처리해주는 핸들러를 등록
@@ -39,7 +41,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
- 
     /**
      * 인터셉터 (요청을 가로챔)
      */
@@ -68,7 +69,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     /**
      * JSP를 뷰로 사용하는 뷰 리졸버 등록
      */
-    @Bean
+    /*@Bean
     public ViewResolver viewResolver() {
  
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -77,18 +78,14 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         viewResolver.setSuffix(".jsp");
         
         return viewResolver;
-    }
+    }*/
  
     @Override
     public void addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry registry) {
  
         // 특별히 controller 를 타지 않아도 되는 뷰만 있는 경우 등록
         // ex) 디자인만 입힌 것들.
-        registry.addViewController("/simpleView").setViewName("/simpleView");
- 
- 
-        // 404 오류가 발생했을때 보여줄 뷰를 등록
-        registry.addViewController("/page-not-found").setViewName("error");
+        registry.addViewController("/error").setViewName("/error");
     }
  
     /**

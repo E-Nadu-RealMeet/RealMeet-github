@@ -63,7 +63,7 @@
 
 			<br>
 		</div>
-		<input id="regInput-date" class="regInput" type="datetime-local"> <br>
+		<input id="regInput-date" class="regInput" type="datetime-local" value="2016-11-16T15:25:33"> <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>
@@ -79,12 +79,12 @@
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>
 	</div>
-	<div class="selectBox" id="selectBox-addr" style="display: none">
+	<div class="selectBox" id="selectBox-quantity" style="display: none">
 		<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
 			<h3>이벤트 수용 인원은 몇명까지 가능합니까?</h3>
 			<br>
 		</div>
-		<input type="number" name="quantity" min="2" max="20" class="regInput"> <br>
+		<input type="number" name="quantity" min="2" max="20" class="regInput" > <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>
@@ -95,7 +95,6 @@
 				<h2>입력한 내용이 아래와 같나요??</h2>
 				<br>
 			</div>
-			<img src="">
 			<h3>카테고리</h3>
 			<input type="text" name="category" id="category" class="regInput" readonly>
 			<h3>이벤트명</h3>
@@ -111,7 +110,12 @@
 			<h3>이벤트 개최 장소</h3>
 			<input type="text" name="addr" id="addr" class="regInput" readonly>
 			<h3>이벤트 최대 인원</h3>
-			<input type="text" name="maxgnum" id="addr" class="regInput" readonly> <input type="hidden" name="eldate" id="date2" readonly> <input type="hidden" id="description" class="regInput" disabled="disabled">
+			<input type="text" name="maxgnum" id="addr" class="regInput" readonly>
+			 
+			<input type="hidden" name="eldate" id="date2" readonly> 
+			<input type="hidden" id="description" class="regInput" disabled="disabled">
+			<input type="hidden" id="latlng" name="latlng" class="regInput">
+			
 			<button type="submit" id="selectEnd" class='regButton'>이벤트 생성</button>
 			<button type="button" class="regButton-back">뒤로가기</button>
 			<button type="button" class="regButton-first">처음으로</button>

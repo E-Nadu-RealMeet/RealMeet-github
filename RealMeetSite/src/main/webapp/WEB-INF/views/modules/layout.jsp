@@ -19,7 +19,6 @@
 <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 <!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script> -->
-<script src="${pageContext.request.contextPath}/resources/core/js/gmap/gmaps.js"></script>
 
 <!-- Scripts -->
 <script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
@@ -43,6 +42,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css<tiles:getAsString name="css"/>" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/upload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js<tiles:getAsString name="js"/>"></script>
+
+<!-- google map api -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgH95U-UGuPS-t2hK--kjCb2-Spu3pEZ0&signed_in=true&callback=initMap"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/gmap/gmaps.js"></script>
 
 </head>
 <body>

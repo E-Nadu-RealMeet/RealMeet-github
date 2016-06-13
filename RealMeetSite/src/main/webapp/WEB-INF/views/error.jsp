@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:set var="introValue" value="에러페이지입니다." />
 	<c:out value="${error}"/>
 </body>
 </html>
