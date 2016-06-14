@@ -58,15 +58,29 @@
 				<a href="${pageContext.request.contextPath}/board/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
 			</div>
 			<div class="paging_noline">
-				<span><a href="javascript:alert('처음페이지입니다.');"><img
+			
+			<!-- 1페이지 아닌경우 preview 이미지 보이기 -->
+				<c:if test="${pages != 1}">
+				<span><a href="freeboard?pages=${pages-1}"><img
 						src="${pageContext.request.contextPath}/resources/core/images/pre.gif" border='0' /></a></span>
-						<span>1</span>
+						</c:if>
+						<!-- <span>1</span>
 						<span><a href=>2</a></span>
 						<span><a href=>3</a></span>
 						<span><a href=>4</a></span>
 						<span><a href=>5</a></span>
-						<span><a href=>6</a></span>
-					<%-- <span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span> --%>
+						<span><a href=>6</a></span> -->
+					<c:forEach var="i" begin="0" end="${endPagesNum}">
+                        
+                        <c:if test="${startPageNum+i <= endPagesNum}">
+                       		<c:if test="${startPageNum+i == pages }">
+                       			<span><a class="strong" href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
+                     		</c:if>
+                        	
+                        	<a href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a>
+                        </c:if>
+                        
+                  </c:forEach>
 					<span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span>
 			</div>
 			<form name="searchbbs" action="freeBoard" method="get">
@@ -77,7 +91,7 @@
 						<option ${key=="title"?"selected":""} value='TITLE' >제목</option>
 						<option ${key=="writer"?"selected":""} value='WRITER'>작성자</option>
 						<option ${key=="content"?"selected":""} value='CONTENT'>내용</option>
-					</select> 
+					</select>
 					</div>
 					<div class="col-sm-8">
 					<label class="hidden" for="query"></label>

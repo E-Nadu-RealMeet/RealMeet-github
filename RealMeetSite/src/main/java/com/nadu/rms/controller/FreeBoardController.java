@@ -28,12 +28,22 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeBoard", method = RequestMethod.GET)
 	public String freeBoard(Model model, HttpServletRequest req){
 		
+		int pages = 1;
+		
+		String pages2 = req.getParameter("pages");
+		if(pages2 != null && pages2.equals("")){
+			pages = Integer.parseInt(pages2);
+		}
 		
 		String key=req.getParameter("key");
 		String query = req.getParameter("query");
 		String introValue="자유 게시판";
 		model.addAttribute("introValue", introValue );
-		List<Board> list = boardDao.selectFreeBoards(key,query);
+		List<Board> list = boardDao.selectFreeBoards(pages,key,query);
+		
+		//int CNT = boardDao.getCount();
+		//int startPageNum = pages - (pages -1)%5;
+		//int endPagesNum = CNT/5 + (CNT%5==0?0:1);
 		
 		
 		model.addAttribute("list", list);

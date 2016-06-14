@@ -8,11 +8,12 @@
 
 	<select id="selectBoards" parameterType="String" resultType="com.nadu.rms.vo.Board">
 	<choose>
-	<when test="param2 == null">
-	SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC
+	<when test="param3 == null">
+	SELECT * FROM (SELECT ROWNUM NUM, N.* FROM (SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC) N)WHERE NUM BETWEEN ${param1} AND ${param2} 
 	</when>
-	<when test="param2 != null">
-	SELECT * FROM (SELECT * FROM NOTICES WHERE ${param1} LIKE '%${param2}%' ORDER BY REGDATE DESC)
+	<when test="param4 != null">
+	<!-- SELECT * FROM (SELECT * FROM NOTICES WHERE ${param1} LIKE '%${param2}%' ORDER BY REGDATE DESC) -->
+	SELECT * FROM (SELECT ROWNUM NUM, N.* FROM (SELECT * FROM NOTICES WHERE ${param3} LIKE '%${param4}%' ORDER BY REGDATE DESC) N) WHERE NUM BETWEEN ${param1} AND ${param2}
 	</when>
 	</choose>
 	</select>

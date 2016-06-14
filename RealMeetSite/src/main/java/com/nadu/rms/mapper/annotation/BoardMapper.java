@@ -6,7 +6,7 @@ import com.nadu.rms.vo.Board;
 
 public interface BoardMapper {
 
-	List<Board> selectBoards(String key, String query);
+	List<Board> selectBoards(int startNum, int endNum, String key, String query);
 
 	
 	

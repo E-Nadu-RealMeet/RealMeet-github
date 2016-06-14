@@ -32,7 +32,7 @@ public class BoardDao {
 
 	}
 
-	public List<Board> selectFreeBoards(String key,String query){
+	public List<Board> selectFreeBoards(int pages, String key,String query){
 		
 		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
@@ -45,9 +45,11 @@ public class BoardDao {
 			sqlSession.close();
 		}*/
 		
+		int startNum = 1+(pages-1)*10;
+		int endNum = 10+(pages-1)*10;
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		List<Board> list = mapper.selectBoards(key, query); 
+		List<Board> list = mapper.selectBoards(startNum, endNum, key, query); 
 		session.close();
 		return list;
 	}
@@ -105,4 +107,16 @@ public class BoardDao {
 		}
 		
 	}
+
+	/*public int getCount) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try{
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.boardCount";
+			System.out.println(statement);
+			return sqlSession.selectOne(statement);
+
+		}finally {
+			sqlSession.close();
+		}
+	}*/
 }
