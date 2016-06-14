@@ -1,3 +1,7 @@
+section#top{
+	background-image: url("../images/thumb_cs_call.jpg");
+}
+
 div.modal-content div#header{
     display:none;
 }
@@ -12,6 +16,19 @@ div.modal-content div#footer{
 }
 div.modal-content div#main{
     margin-left:0;
+}
+
+div.modal-header {
+    background-color: #81918E;
+}
+
+div.modal-footer {
+    background-color: #81918E;
+}
+
+div.modal-body{
+	overflow-y: scroll;
+	height: 300px;
 }
 
 /* .modal { */

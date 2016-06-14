@@ -71,10 +71,15 @@
 
 <div class="modal fade" id="NoticesModal" role="dialog">
  <div class="modal-dialog">
-<div class="modal-content">
-<header>
+ <div class="modal-content">
+ 
+ <div class="modal-header">
+ <header>
 								<h2>공지사항</h2>
 							</header>
+ </div>
+<div class="modal-body">
+
 							
 
   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
@@ -100,22 +105,28 @@
 <!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /> -->
 <!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div> -->
 <!-- 				</form> -->
+</div>
+<div class="modal-footer">
 				<button data-dismiss="modal">닫기</button>
 
-
+<%-- <jsp:include page="Notices.jsp"></jsp:include> --%>
 
 </div>   
+
+</div>
 </div>
 </div>
 
 <div id="FAQsModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
+ <div class="modal-header">
 <header>
 								<h2>FAQ</h2>
 							</header>
-							
+</div>							
 
+<div class="modal-body">
   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
 				<tr>
@@ -134,24 +145,26 @@
 				</c:forEach>
 
 			</table>
-
+</div>
 <%-- 			<form method="get" action="FAQs/${title}"> --%>
 <!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
 <!-- 				</form> -->
+<div class="modal-footer">
 				<button data-dismiss="modal">닫기</button>
 </div>   
 
 </div>
 </div>
-
+</div>
 <div id="QNAModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
+ <div class="modal-header">
 <header>
 								<h2>내 문의내역</h2>
 							</header>
-							
-
+						</div>	
+<div class="modal-body">
   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
 				<tr>
@@ -170,21 +183,25 @@
 				</c:forEach>
 
 			</table>
-
+</div>
 <%-- 			<form method="get" action="FAQs/${title}"> --%>
 <!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
 <!-- 				</form> -->
+<div class="modal-footer">
 				<button data-dismiss="modal">닫기</button>
 </div>   
+</div>
 </div>
 </div>
 
 <div id="callModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
+
 <header>
 								<h2>문의하기</h2>
 							</header>
+
 
 <!-- 문의하기 기본 뷰 -->
 							<form method="post" action="insertQNA">
@@ -198,7 +215,7 @@
 									</div>
 								</div>
 							</form>
-		
+	
 </div>
 </div>
 </div>
@@ -206,7 +223,6 @@
 <div id="NoticesDetailModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
-
 <header>
 								<h2>공지사항</h2>
 							</header>
@@ -232,27 +248,26 @@
 			
 
 			</table>
-
-			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a>
+			</div>
 			</div>
 
 <%-- <jsp:include page="NoticesDetail.jsp"></jsp:include> --%>
-</div>
+
 
 </div>
-</div>
+
 
 
 <div id="FAQsDetailModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
-
+<div class="modal-header">
 <header>
 								<h2>FAQ</h2>
 							</header>
-				
+	</div>			
 
-
+<div class="modal-body">
 			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 				
 				
@@ -272,9 +287,11 @@
 			
 
 			</table>
-
-			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a>
+</div>
+<div class="modal-footer">
+			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" />
 			</div>
+			
 </div>
 </div>
 </div>
@@ -310,10 +327,9 @@
 
 			</table>
 
-			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" /></a>
+			<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" data-dismiss="modal" value="뒤로" />
 			</div>
 
 
-</div>
 </div>
 </div>

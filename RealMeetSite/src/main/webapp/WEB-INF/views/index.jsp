@@ -19,7 +19,7 @@
 
 	</div>
 </section>
-
+<%-- 
 <!-- About Me -->
 <section id="about" class="three">
 	<div class="container">
@@ -62,4 +62,4 @@
 		</c:forEach>
 
 	</div>
-</section>
+</section> --%>
