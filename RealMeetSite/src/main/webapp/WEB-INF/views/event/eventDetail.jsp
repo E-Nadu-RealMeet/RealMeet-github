@@ -159,24 +159,34 @@ $(document).ready(function() {
 							aria-labelledby="detail-tab" aria-expanded="true">
 							<!-- 이벤트 제목란 -->
 							<h2 class="blog-post-title">${detail.get(0).getEventname() }</h2>
+							<c:if test="${mid != null}">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventNameUpdate">수정</button>
+							</c:if>
 							<!-- 이벤트 날짜란 -->
 							<p class="blog-post-meta">${detail.get(0).getEldate() }
 								by <a href="#">${detail.get(0).getHolder() }</a>
 							</p>
+							<c:if test="${mid != null}">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventDateUpdate">수정</button>
+							</c:if>
 							<hr>
 							<!-- 이벤트 상세내용 -->
 							<blockquote>
 								<p>${detail.get(0).getDescription() }</p>		
 							</blockquote>
+							<c:if test="${mid != null}">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventContentUpdate">수정</button>
+							</c:if>
 							<hr>
 							<div id="lists"></div>
+							<c:if test="${mid != null}">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventAddrUpdate">수정</button>
+							</c:if>
 							<hr>
 							<h3>카테고리 : ${detail.get(0).getCategory() }</h3>
+							<c:if test="${mid != null}">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventCategoryUpdate">수정</button>
+							</c:if>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="pictures"
 							aria-labelledby="pictures-tab" aria-expanded="false">

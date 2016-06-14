@@ -49,22 +49,58 @@ public class CustomerController {
 	
 	@RequestMapping("customer")
 	public String customer(Model model){
-		List<Notices> Notices = customersDao.selectNotices();
-		model.addAttribute("Notices", Notices);
-		List<FAQ> FAQs = customersDao.selectFAQs();
-		model.addAttribute("FAQs", FAQs);
-		List<QNA> QNA = customersDao.selectQNAs(); 
-		model.addAttribute("QNA", QNA);
-		String introValue = "고객센터";
-        model.addAttribute("introValue", introValue );
+//		int pages = 1;
+//		int cntNotices = customersDao.countNotices();
+//		int cntFAQs = customersDao.countFAQs();
+//		int cntQNAs = customersDao.countQNAs();
+//		
+//		int startPageNum = pages - (pages -1)%5;
+//	    int endPagesNumNotices = cntNotices/5 + (cntNotices%5==0?0:1);
+//	    int endPagesNumFAQs = cntFAQs/5 + (cntFAQs%5==0?0:1);
+//	    int endPagesNumQNAs = cntQNAs/5 + (cntQNAs%5==0?0:1);
+//		List<Notices> Notices = customersDao.selectNotices(pages);
+//		model.addAttribute("Notices", Notices);
+//		List<FAQ> FAQs = customersDao.selectFAQs(pages);
+//		model.addAttribute("FAQs", FAQs);
+//		List<QNA> QNA = customersDao.selectQNAs(pages); 
+//		model.addAttribute("QNA", QNA);
+//		
+//		model.addAttribute("pages", pages);
+//		model.addAttribute("startPageNum", startPageNum);
+//		model.addAttribute("endPagesNumNotices", endPagesNumNotices);
+//		model.addAttribute("endPagesNumFAQs", endPagesNumFAQs);
+//		model.addAttribute("endPagesNumQNAs", endPagesNumQNAs);
+//		String introValue = "고객센터";
+//        model.addAttribute("introValue", introValue );
 		return "customer/customer";	
 	}
 	
 	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
 	public String Notices(Notices n, Model model){
+		int pages = 1;
+		int startPageNum = pages - (pages -1)%5;
+		int cntNotices = customersDao.countNotices();
+		int endPagesNumNotices = cntNotices/5 + (cntNotices%5==0?0:1);
 	//	List<Notices> Notices = customersDao.selectNotices();
 	//	model.addAttribute("Notices", Notices);
-		model.addAttribute("Notices", customersDao.selectNotices());
+		model.addAttribute("Notices", customersDao.selectNotices(pages));
+		model.addAttribute("pages", pages);
+		model.addAttribute("startPageNum", startPageNum);
+		model.addAttribute("endPagesNumNotices", endPagesNumNotices);
+		return "customer/Notices";
+	}
+	
+	@RequestMapping(value="Notices/{pages}", produces="text/plain;charset=UTF-8")
+	public String Noticespages(Notices n, Model model, @PathVariable int pages){
+		int startPageNum = pages - (pages -1)%5;
+		int cntNotices = customersDao.countNotices();
+		int endPagesNumNotices = cntNotices/5 + (cntNotices%5==0?0:1);
+	//	List<Notices> Notices = customersDao.selectNotices();
+	//	model.addAttribute("Notices", Notices);
+		model.addAttribute("Notices", customersDao.selectNotices(pages));
+		model.addAttribute("pages", pages);
+		model.addAttribute("startPageNum", startPageNum);
+		model.addAttribute("endPagesNumNotices", endPagesNumNotices);
 		return "customer/Notices";
 	}
 //	@RequestMapping(value="Notices", method=RequestMethod.GET)
@@ -83,13 +119,13 @@ public class CustomerController {
 		return "customer/NoticesDetail";
 
 	}
-	@RequestMapping(value="FAQsModal", method=RequestMethod.GET)
-	@ResponseBody
-	public String FAQs(Model model){
-		List<FAQ> FAQs = customersDao.selectFAQs();
-		model.addAttribute("FAQs", FAQs);
-		return "customer/FAQs";	
-	}
+//	@RequestMapping(value="FAQsModal", method=RequestMethod.GET)
+//	@ResponseBody
+//	public String FAQs(Model model){
+//		List<FAQ> FAQs = customersDao.selectFAQs();
+//		model.addAttribute("FAQs", FAQs);
+//		return "customer/FAQs";	
+//	}
 //	@RequestMapping(value="FAQs", method=RequestMethod.POST)
 //	public String searchFAQs(Model model, FAQ f){
 //		String title = f.getTitle();

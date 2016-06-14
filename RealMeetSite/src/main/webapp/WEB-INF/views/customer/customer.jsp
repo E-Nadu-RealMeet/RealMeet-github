@@ -24,12 +24,12 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
+										<a href="Notices"  data-toggle="modal" data-target="#NoticesModal"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2 >공지사항</h2>
 
-										</header></button>
+										</header></button></a>
 									</article>
 									<article class="item">
 										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
@@ -69,7 +69,7 @@
 						</section>
 					
 
-<div class="modal fade" id="NoticesModal" role="dialog">
+<div class="modal fade" id="NoticesModal" tabindex="-1" role="dialog" aria-labelledby="NoticesModalLabel" aria-hidden="true">
  <div class="modal-dialog">
  <div class="modal-content">
  
@@ -100,7 +100,22 @@
 				</c:forEach>
 
 			</table>
-
+			
+<ul>
+							<c:forEach var="i" begin="0" end="4">
+						
+								<li>
+								<c:if test="${startPageNum+i <= endPagesNumNotices}">
+									<c:if test="${startPageNum+i == pages}">
+										<a class="strong" href="Notices/${startPageNum+i}" data-toggle="modal" >${startPageNum+i}</a>
+									</c:if>
+									<c:if test="${startPageNum+i != pages}">
+										<a href="Notices/${startPageNum+i}" data-toggle="modal" >${startPageNum+i}</a>
+									</c:if>
+								</c:if>	
+								</li>
+							</c:forEach>
+							</ul>			
 <%-- 			<form method="get" action="Notices/${title}"> --%>
 <!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /> -->
 <!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div> -->

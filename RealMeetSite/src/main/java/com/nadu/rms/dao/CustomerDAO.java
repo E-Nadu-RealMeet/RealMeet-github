@@ -12,34 +12,59 @@ import com.nadu.rms.vo.QNA;
 
 public class CustomerDAO {
 
-	public List<QNA> selectQNAs() {
+	public List<QNA> selectQNAs(int pages) {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
         CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-        List<QNA> list = mapper.selectQNAs();
+        List<QNA> list = mapper.selectQNAs( pages);
         session.close();
         return list;
     }
 
-	public List<FAQ> selectFAQs() {
+	public List<FAQ> selectFAQs(int pages) {
 
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<FAQ> list = mapper.selectFAQs();
+		          List<FAQ> list = mapper.selectFAQs(pages);
 		          session.close();
 		          return list;
 		      }
 		  
 
-	public List<Notices> selectNotices() {
+	public List<Notices> selectNotices(int pages) {
 
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<Notices> list = mapper.selectNotices();
+		          List<Notices> list = mapper.selectNotices(pages);
+		          session.close();
+		          return list;
+		      }
+		  
+	public int countQNAs() {
+        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+        int list = mapper.countQNAs();
+        session.close();
+        return list;
+    }
+
+	public int countFAQs() {
+
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          int list = mapper.countFAQs();
 		          session.close();
 		          return list;
 		      }
 		  
 
+	public int countNotices() {
+
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          int list = mapper.countNotices();
+		          session.close();
+		          return list;
+		      }
 	
 	public Notices selectNoticeByNidx(String nidx) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
