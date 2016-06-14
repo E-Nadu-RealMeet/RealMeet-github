@@ -290,7 +290,7 @@ $(document).ready(function() {
 </header>
 
 <form action="editDate" method="post">
-<input type="datetime-local" name="elDate" value="${detail.get(0).getEldate() }" />
+<input type="datetime" name="elDate" value="${detail.get(0).getEldate() }" />
 <input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
 <button type="submit" class="btn btn-primary">수정</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>

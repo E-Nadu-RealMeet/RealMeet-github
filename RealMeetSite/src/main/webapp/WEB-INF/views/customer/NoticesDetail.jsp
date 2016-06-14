@@ -34,5 +34,5 @@
 
 			</table>
 
-			<a data-dismiss="modal"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
+			<a data-dismiss="modal" data-target="#NoticesModalDetail"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="뒤로" /></a>
 
