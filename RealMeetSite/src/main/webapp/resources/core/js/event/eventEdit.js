@@ -1,8 +1,6 @@
 $(document).ready(function() {
-	
-	
-	
 	$('[data-target="#EventAddrUpdate"]').click(function(){
+		
 		var map;
 		var markers = [];
 		$(document).ready(function(){
@@ -111,5 +109,6 @@ $(document).ready(function() {
 				}
 			})
 		}
-	})
-});
+
+		});
+		});

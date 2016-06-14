@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nadu.rms.dao.BoardDao;
-import com.nadu.rms.vo.FreeBoard;
+import com.nadu.rms.vo.Board;
 
 @Controller
 @RequestMapping("board/*")
@@ -28,14 +28,42 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeBoard", method = RequestMethod.GET)
 	public String freeBoard(Model model, HttpServletRequest req){
 		
+		int pages = 1;
+		
+		String pages2 = req.getParameter("pages");
+		if(pages2 != null && pages2.equals("")){
+			pages = Integer.parseInt(pages2);
+		}
+		
+		String key=req.getParameter("key");
+		String query = req.getParameter("query");
+		String introValue="자유 게시판";
+		model.addAttribute("introValue", introValue );
+		List<Board> list = boardDao.selectFreeBoards(pages,key,query);
+		
+		//int CNT = boardDao.getCount();
+		//int startPageNum = pages - (pages -1)%5;
+		//int endPagesNum = CNT/5 + (CNT%5==0?0:1);
+		
+		
+		model.addAttribute("list", list);
+		model.addAttribute("page", "board/freeBoard");
+		return "board/freeBoard";
+		
+	}
+	/*
+	@RequestMapping(value="/freeBoard", method = RequestMethod.POST)
+	public String freeBoard(Model model, HttpServletRequest req){
+		
 		String introValue="자유 게시판";
 		model.addAttribute("introValue", introValue );
 		List<FreeBoard> list = boardDao.selectFreeBoards();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", "board/freeBoard");
-		return "board/freeBoard";
-	}
+		return "redirect:board/freeBoard";
+	}*/
+	
 	@RequestMapping(value="/freeDetail", method = RequestMethod.GET)
 	public String freeDetail(Model model, HttpServletRequest req){
 		/*String list = boardDao.selectFreeDetail()
@@ -63,7 +91,7 @@ public class FreeBoardController {
 	
 	//게시물등록proc
 	@RequestMapping(value="/freeReg", method = RequestMethod.POST)
-	public String freeReg(FreeBoard board ){
+	public String freeReg(Board board ){
 		
 		boardDao.insertBoard(board);
 		return "redirect:freeBoard";
@@ -78,7 +106,7 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.POST)
-	public String freeUpdate(FreeBoard board, @PathVariable String nidx){
+	public String freeUpdate(Board board, @PathVariable String nidx){
 		
 		boardDao.updateBoard(board);
 		return "redirect:../freeDetail/"+nidx;

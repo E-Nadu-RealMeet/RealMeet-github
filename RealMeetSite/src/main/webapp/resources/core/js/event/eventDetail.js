@@ -29,6 +29,7 @@ function cancleProcess(elidx) {
 								// 리스트 재구성
 								alert("취소되었습니다.");
 							}
+							// esidx값 추출
 							var url = $(location).attr('href');
 							var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
 							listLoad(esidx);
@@ -65,6 +66,17 @@ function applyProcess(elidx){
 					url : 'apply/'+elidx,
 					success : function(res) {
 						alert(res);
+						if(res == 'success'){
+							alert('성공하였습니다.');
+						}
+						else if( res == 'No empty seats'){
+							alert('빈자리가 없습니다.');
+						}
+						else if( res == 'Already applied for this event'){
+							alert('이미 참석하셨습니다.');
+						}
+						
+						
 						var url = $(location).attr('href');
 						var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
 						
@@ -115,11 +127,17 @@ function createApplyElement(data){
 	newDiv.attr('class','');
 	var tmpStr = '<div class="chk" id=chk"'+data.elidx+'" name="chkDate">';
 	newDiv.attr('style',"");
-	newDiv.find('.target').attr('data-target','#apply'+data.elidx);
-	if(data.attended) {
+	
+	if(data.cntguest == data.maxguest && data.attended == false){
+		newDiv.find('.target').attr('data-target','');
+		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) '+ '여석이 없습니다.';
+	}
+	else if(data.attended) {
+		newDiv.find('.target').attr('data-target','#apply'+data.elidx);
 		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a style="cursor: pointer">' + '참석취소하기';
 	}
 	else{
+		newDiv.find('.target').attr('data-target','#apply'+data.elidx);
 		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a style="cursor: pointer">' + '참여하기';
 	}
 	newDiv.find('.target').html(tmpStr);
@@ -140,6 +158,7 @@ function createApplyElement(data){
 		var clickEvent = 'applyProcess('+data.elidx+')';
 	}
 	newDiv.find('.btn.btn-primary').attr('onclick',clickEvent);
+	newDiv.find('.btn.btn-primary').attr('data-dismiss','modal');
 	return newDiv;
 }
 

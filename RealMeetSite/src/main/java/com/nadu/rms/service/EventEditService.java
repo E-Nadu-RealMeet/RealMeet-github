@@ -58,5 +58,16 @@ public class EventEditService {
 		return up;
 	}
 	
+	public int eventCategoryEdit(HttpServletRequest req,String esidx, String category){
+		int up = 0;
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		
+		up = mapper.updateEventsCategoryByESIDX(esidx, category);
+		session.commit();
+		session.close();
+		return up;
+	}
 }
 

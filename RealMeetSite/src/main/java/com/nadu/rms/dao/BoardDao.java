@@ -11,8 +11,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.nadu.rms.config.MyBatisUtil;
+import com.nadu.rms.mapper.annotation.BoardMapper;
 import com.nadu.rms.vo.Events;
-import com.nadu.rms.vo.FreeBoard;
+import com.nadu.rms.vo.Board;
 
 public class BoardDao {
 	
@@ -30,25 +32,35 @@ public class BoardDao {
 
 	}
 
-	public List<FreeBoard> selectFreeBoards(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
+	public List<Board> selectFreeBoards(int pages, String key,String query){
+		
+		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
 			String statement = "com.nadu.rms.mapper.FreeBoardMapper.selectFreeBoard";
 			System.out.println(statement);
+			
 			return sqlSession.selectList(statement);
 
 		}finally {
 			sqlSession.close();
-		}
+		}*/
+		
+		int startNum = 1+(pages-1)*10;
+		int endNum = 10+(pages-1)*10;
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		List<Board> list = mapper.selectBoards(startNum, endNum, key, query); 
+		session.close();
+		return list;
 	}
+	
 
 	
 	
-	public FreeBoard selectFreeDetail(int nidx){
+	public Board selectFreeDetail(int nidx){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
-			String statement = "com.nadu.rms.mapper.FreeBoardMapper.selectFreeDetail";
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.selectBoardDetail";
 			System.out.println(statement);
 			return sqlSession.selectOne(statement, nidx);
 
@@ -58,10 +70,10 @@ public class BoardDao {
 		
 	}
 	
-	public int insertBoard(FreeBoard fb){
+	public int insertBoard(Board fb){
 		SqlSession sqlSesstion = getSqlSessionFactory().openSession();
 		try {
-			String statement = "com.nadu.rms.mapper.FreeBoardMapper.insertFreeBoard";
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.insertBoard";
 			return sqlSesstion.insert(statement, fb);
 		} finally {
 			sqlSesstion.commit();
@@ -70,10 +82,10 @@ public class BoardDao {
 		
 	}
 	
-	public int updateBoard(FreeBoard fb){
+	public int updateBoard(Board fb){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try {
-			String statement = "com.nadu.rms.mapper.FreeBoardMapper.updateFreeBoard";
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.updateBoard";
 			return sqlSession.update(statement, fb);
 		} finally {
 			sqlSession.commit();
@@ -84,7 +96,7 @@ public class BoardDao {
 	public void delBoard(String nidx) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try{
-			String statement = "com.nadu.rms.mapper.FreeBoardMapper.delFreeBoard";
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.delBoard";
 			
 			
 			sqlSession.delete(statement, nidx);
@@ -95,4 +107,16 @@ public class BoardDao {
 		}
 		
 	}
+
+	/*public int getCount) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try{
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.boardCount";
+			System.out.println(statement);
+			return sqlSession.selectOne(statement);
+
+		}finally {
+			sqlSession.close();
+		}
+	}*/
 }

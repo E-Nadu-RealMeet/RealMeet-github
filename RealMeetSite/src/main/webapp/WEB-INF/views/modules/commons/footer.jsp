@@ -2,8 +2,8 @@
 <div id="footer">
 	<!-- Copyright -->
 	<ul class="copyright">
-		<li>&copy; Ssangyong. All rights reserved.</li>
-		<li>Design: Nadu</li>
+		<li>Ssangyong. Project</li>
+		
 	</ul>
 
 </div>

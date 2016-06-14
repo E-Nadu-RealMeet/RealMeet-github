@@ -1,6 +1,6 @@
 package com.nadu.rms.vo;
 
-public class FreeBoard {
+public class Board {
 	
 	private String nidx;
 	private String writer;

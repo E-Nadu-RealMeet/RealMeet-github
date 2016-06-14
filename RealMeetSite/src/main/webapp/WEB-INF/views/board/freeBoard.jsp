@@ -2,164 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page session="false"%>
-<!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-<head>
-<title>Prologue by HTML5 UP</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/freeBoard/bootstrap.min.css" />
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
-<script src="${pageContext.request.contextPath}/resources/core/js/free/gmaps.js"></script>
-	
-<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-<script type="text/javascript">
-var map;
-var markers = [];
-$(document).ready(function(){
-  map = new GMaps({
-    div: '#map',
-    lat: 37.553152,
-    lng: 126.936894,
-    click: function(e) {
-    	var addr;
 
-		addMarker(e);
-    	addAddr(e);
-    	
-    	}
-  });
-
-  $('#addr').keyup(function(){
-	  GMaps.geocode({
-		  address: $('#addr').val().trim(),
-		  callback: function(results, status) {
-		    if (status == 'OK') {
-		      var latlng = results[0].geometry.location;
-		      map.setCenter(latlng.lat(), latlng.lng());
-		      map.addMarker({
-		        lat: latlng.lat(),
-		        lng: latlng.lng()
-		      });
-		    }
-		  }
-		});
-  });
-  
-  map.addControl({
-	  position: 'top_right',
-	  content: 'Geolocate',
-	  style: {
-	    margin: '5px',
-	    padding: '1px 6px',
-	    border: 'solid 1px #717B87',
-	    background: '#fff'
-	  },
-	  events: {
-	    click: function(){
-	      console.log(this);
-	    }
-	  }
-	});
-  });
-
-function addAddr(e){
-	rev_Geocode(e.latLng.lat(), e.latLng.lng());
-}
-  
-function addMarker(e){
-	var marker = map.addMarker({
-		lat: e.latLng.lat(),
-  		lng: e.latLng.lng(),
-  		
-	  		/* infoWindow: {
-				content: addr
-	 	 	} */
-	  	});
-	markers.push(marker);
-}
-  
-function setMapOnAll(map) {
-	  for (var i = 0; i < markers.length; i++) {
-	    markers[i].setMap(map);
-	  }
-	}
-	
-function clearMarkers() {
-	  setMapOnAll(null);
-	}
-	
-function deleteMarkers() {
-	  clearMarkers();
-	  markers = [];
-	}
-
-function rev_Geocode(arg1, arg2){
-	var lat = arg1; // 위도
-    var lng = arg2; // 경도
-    var geocode = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=false";
-	jQuery.ajax({
-		url: geocode,
-		type: 'POST',
-		success: function(myJSONResult){
-			if(myJSONResult.status == 'OK'){
-				var tag = "";
-				var i;
-				for (i=0; i<myJSONResult.results.length; i++){
-					tag+=myJSONResult.results[i].formatted_address
-				}
-				alert(myJSONResult.results[0].formatted_address)
-				/* alert(myJSONResult.results[0].formatted_address) */
-			}else if(myJSONResult.status == 'ZERO_RESULTS') {
-                alert("지오코딩이 성공했지만 반환된 결과가 없음을 나타냅니다.\n\n이는 지오코딩이 존재하지 않는 address 또는 원격 지역의 latlng을 전달받는 경우 발생할 수 있습니다.")
-            } else if(myJSONResult.status == 'OVER_QUERY_LIMIT') {
-                alert("할당량이 초과되었습니다.");
-            } else if(myJSONResult.status == 'REQUEST_DENIED') {
-                alert("요청이 거부되었습니다.\n\n대부분의 경우 sensor 매개변수가 없기 때문입니다.");
-            } else if(myJSONResult.status == 'INVALID_REQUEST') {
-                alert("일반적으로 쿼리(address 또는 latlng)가 누락되었음을 나타냅니다.");
-            }
-		}
-	})
-}
-
-</script>
-</head>
-
-<body>
-
-<%-- 	<!-- Header -->
-	<div id="header">
-		<jsp:include page="../modules/commons/leftBar.jsp"></jsp:include>
-	</div>
-	
-	<!-- Main -->
-	<div id="main">
-		<section id="top" class="one dark cover">
-				<header>
-					<h2>자유 게시판</h2>
-				</header>
-		</section>
-	<section> --%>
 	<div class="container">
-		<div id="real_cnt" style="max-width: 1000px; margin: 0px auto;">
-		 <div id="floating-panel">
-    	  <input onclick="deleteMarkers();" type=button value="Delete Markers">
- 		 </div>
-		<div id="map" style="width:100%;height:400px;"></div>
-			<br>
-			<br>
-			<br>
-
 			<table  class="table table-striped table-bordered">
 				<colgroup>
 					<col width="50" />
@@ -214,15 +58,29 @@ function rev_Geocode(arg1, arg2){
 				<a href="${pageContext.request.contextPath}/board/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
 			</div>
 			<div class="paging_noline">
-				<span><a href="javascript:alert('처음페이지입니다.');"><img
+			
+			<!-- 1페이지 아닌경우 preview 이미지 보이기 -->
+				<c:if test="${pages != 1}">
+				<span><a href="freeboard?pages=${pages-1}"><img
 						src="${pageContext.request.contextPath}/resources/core/images/pre.gif" border='0' /></a></span>
-						<span>1</span>
+						</c:if>
+						<!-- <span>1</span>
 						<span><a href=>2</a></span>
 						<span><a href=>3</a></span>
 						<span><a href=>4</a></span>
 						<span><a href=>5</a></span>
-						<span><a href=>6</a></span>
-					<%-- <span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span> --%>
+						<span><a href=>6</a></span> -->
+					<c:forEach var="i" begin="0" end="${endPagesNum}">
+                        
+                        <c:if test="${startPageNum+i <= endPagesNum}">
+                       		<c:if test="${startPageNum+i == pages }">
+                       			<span><a class="strong" href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
+                     		</c:if>
+                        	
+                        	<a href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a>
+                        </c:if>
+                        
+                  </c:forEach>
 					<span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span>
 			</div>
 			<form name="searchbbs" action="freeBoard" method="get">
@@ -230,10 +88,10 @@ function rev_Geocode(arg1, arg2){
 				<div class="searchbbs" style="width: 500px; margin-left: 30%">
 				<div class="col-sm-3">
 					<select name='key' style="height: 50px; font-size:medium;">
-						<option ${key=="search_sub"?"selected":""} value='search_sub' >제목</option>
-						<option ${key=="search_name"?"selected":""} value='search_name'>작성자</option>
-						<option ${key=="search_con"?"selected":""} value='search_con'>내용</option>
-					</select> 
+						<option ${key=="title"?"selected":""} value='TITLE' >제목</option>
+						<option ${key=="writer"?"selected":""} value='WRITER'>작성자</option>
+						<option ${key=="content"?"selected":""} value='CONTENT'>내용</option>
+					</select>
 					</div>
 					<div class="col-sm-8">
 					<label class="hidden" for="query"></label>
@@ -244,24 +102,4 @@ function rev_Geocode(arg1, arg2){
 				
 			</form>
 		</div>
-		</div>
 
-
-	
-	<!-- Scripts -->
-	<%-- <script
-		src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script
-		src="${pageContext.request.contextPath}/resources/core/js/main.js"></script> --%>
-
-</body>
-</html>

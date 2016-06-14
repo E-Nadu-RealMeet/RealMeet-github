@@ -225,5 +225,22 @@ public class EventController {
 		return "redirect:../event/"+esidx;
 		}
 	}
+
+	@RequestMapping(value = "editCategory", method = RequestMethod.POST)
+	public String eventCategoryEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String category) {
+		esidx = e.getEsidx();
+		e.setCategory(e.getCategory());
+		int up = eventEditService.eventCategoryEdit(req,esidx, category);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}
 	
+//	@RequestMapping(value="/gmap", method = RequestMethod.GET)
+//	public String gmap(){
+//		return "customer/gmap";
+//	}
 }
