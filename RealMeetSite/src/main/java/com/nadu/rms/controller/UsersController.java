@@ -1,6 +1,7 @@
 package com.nadu.rms.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.UsersDao;
+import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Users;
 
 @Controller
@@ -21,11 +25,17 @@ import com.nadu.rms.vo.Users;
 public class UsersController {
 	
 	UsersDao usersDao;
+	EventsDao eventsDao;
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
 	public void setUserDao(UsersDao usersDao) {
 		this.usersDao = usersDao;
+	}
+	
+	@Autowired
+	public void setEventsDao(EventsDao eventsDao) {
+		this.eventsDao = eventsDao;
 	}
 	
 	//회원정보수정
@@ -179,6 +189,8 @@ public class UsersController {
 	public String home(HttpServletRequest request, Model model){ 
 		String mid = (String) request.getSession().getAttribute("mid");
 		Users users = null;
+		List<Event_Eventlist> my_list = null;
+		List<Event_Eventlist> join_list = null;
 		if(mid == null || mid == ""){
 			model.addAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
@@ -187,8 +199,17 @@ public class UsersController {
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:../login";
 		}else{
+			
 			users = usersDao.selectUsers(mid);
+			my_list = eventsDao.selectMyEvents(mid);
+			join_list = eventsDao.selectJoinEvents(mid);
+			System.out.println("home_users = "+mid);
+			System.out.println("home_my_list ="+my_list);
+			System.out.println("home_join_list ="+join_list);
+			
 			model.addAttribute("users", users);
+			model.addAttribute("my_list", my_list);
+			model.addAttribute("join_list", join_list);
 			model.addAttribute("id", mid);
 			return "users/usersHome";
 		}

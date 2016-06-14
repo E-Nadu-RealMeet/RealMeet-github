@@ -194,12 +194,19 @@
 
 </head>
 <body style="padding: 0px; margin: 0px; font-family: Arial, sans-serif">
+	<div id="top_loginModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <jsp:include page="../login.jsp" flush="false"></jsp:include>
+            </div>
+        </div>
+    </div>
 	<div class="join-top">
 		<ul style="margin: 0 auto;position: fixed;background-color: rgba(0, 0, 0, 0.2);width: 100%;text-align: right;right: 0;z-index: 11;top: 0;font-size: 1.2em;">
 			<li><a class="topButton" href="${pageContext.request.contextPath}/">홈</a></li>
 
 			<c:if test="${empty mid}">
-				<li><a class="topButton" href="${pageContext.request.contextPath}/login" type="button">로그인</a></li>
+				<li><a class="topButton" href="#" data-toggle="modal" data-target="#top_loginModal" type="button">로그인</a></li>
 			</c:if>
 			<c:if test="${!empty mid}">
 				<li><a class="topButton" href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
@@ -213,13 +220,7 @@
 			
 		</ul>
 	</div>
-	<div id="loginModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <jsp:include page="../login.jsp" flush="false"></jsp:include>
-            </div>
-        </div>
-    </div>
+	
 
 </body>
 </html>
