@@ -29,25 +29,45 @@ public class FreeBoardController {
 	public String freeBoard(Model model, HttpServletRequest req){
 		
 		int pages = 1;
+		String tmpPages = req.getParameter("pages");
+		/*검색 필터*/
+		String key=req.getParameter("key");
+		/*검색어*/
+		String query = req.getParameter("query");
 		
-		String pages2 = req.getParameter("pages");
-		if(pages2 != null && pages2.equals("")){
-			pages = Integer.parseInt(pages2);
+		if(tmpPages != null && !tmpPages.equals("")){
+			pages = Integer.parseInt(tmpPages);
+		}
+		if(key == null || key.equals("")){
+			key = "title";
+		}
+		if(query == null || query.equals("")){
+			query = "";
 		}
 		
-		String key=req.getParameter("key");
-		String query = req.getParameter("query");
-		String introValue="자유 게시판";
-		model.addAttribute("introValue", introValue );
-		List<Board> list = boardDao.selectFreeBoards(pages,key,query);
+		//startPageNum, endPageNum 생성
+		int cnt = boardDao.getCountByType("free");
+		int startPageNum = pages - (pages-1)%10;
+		int endPageNum = cnt/10 + (cnt%10==0?0:1);
 		
-		//int CNT = boardDao.getCount();
-		//int startPageNum = pages - (pages -1)%5;
-		//int endPagesNum = CNT/5 + (CNT%5==0?0:1);
+		//startNum, endNum 생성
+		int startNum = (pages-1)*10+1;
+		int endNum = startNum+9;
 		
+		//만약 전체 갯수보다 예상한 endNum의 수가 큰 경우 글 전체갯수로 변경.
+		if(endNum >= cnt) endNum = cnt;
+		System.out.println(endNum);
+		// 수정필요
+		List<Board> list = boardDao.selectBoards(startNum, endNum, key, query, "free");
 		
-		model.addAttribute("list", list);
+		/*리턴 값*/
+		model.addAttribute("startPageNum",startPageNum);
+		model.addAttribute("endPageNum",endPageNum);
+		model.addAttribute("introValue","자유 게시판");
+		model.addAttribute("list",list);
 		model.addAttribute("page", "board/freeBoard");
+		
+		
 		return "board/freeBoard";
 		
 	}
@@ -93,7 +113,10 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeReg", method = RequestMethod.POST)
 	public String freeReg(Board board ){
 		
-		boardDao.insertBoard(board);
+		System.out.println(board.getBidx());
+		System.out.println(board.getContent());
+		System.out.println(board.getTitle());
+		//boardDao.insertBoard(board);
 		return "redirect:freeBoard";
 		
 		

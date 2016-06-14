@@ -114,6 +114,10 @@ function getEventList(page){
 } 
 
 
+function openFilters(){
+	
+}
+
 /*contextPath 가져오는 함수 by 지원 */
 function getContextPath(){
     var offset=location.href.indexOf(location.host)+location.host.length;

@@ -6,34 +6,38 @@
 	
 <mapper namespace="com.nadu.rms.mapper.annotation.BoardMapper">
 
-	<select id="selectBoards" parameterType="String" resultType="com.nadu.rms.vo.Board">
-	<choose>
-	<when test="param3 == null">
-	SELECT * FROM (SELECT ROWNUM NUM, N.* FROM (SELECT * FROM NOTICES ORDER BY TO_NUMBER(NIDX) DESC) N)WHERE NUM BETWEEN ${param1} AND ${param2} 
-	</when>
-	<when test="param4 != null">
-	<!-- SELECT * FROM (SELECT * FROM NOTICES WHERE ${param1} LIKE '%${param2}%' ORDER BY REGDATE DESC) -->
-	SELECT * FROM (SELECT ROWNUM NUM, N.* FROM (SELECT * FROM NOTICES WHERE ${param3} LIKE '%${param4}%' ORDER BY REGDATE DESC) N) WHERE NUM BETWEEN ${param1} AND ${param2}
-	</when>
-	</choose>
-	</select>
+	<!-- <select id="selectBoards" parameterType="String" resultType="com.nadu.rms.vo.Board">
+		<choose>
+			<when test="param3 == null">
+				SELECT * FROM (SELECT ROWNUM NUM, B.* FROM (SELECT * FROM BOARDS WHERE TYPE = #{type} ORDER BY
+				TO_NUMBER(BIDX) DESC) B)WHERE NUM BETWEEN ${param1} AND ${param2}
+			</when>
 
+			<when test="param4 != null">
+				SELECT * FROM (SELECT ROWNUM NUM, B.* FROM (SELECT * FROM BOARDS WHERE
+				${param3} LIKE '%${param4}%' AND TYPE = #{type} ORDER BY REGDATE DESC) B) WHERE NUM
+				BETWEEN ${param1} AND ${param2}
+			</when>
+		</choose>
+	</select> -->
+	<!-- SELECT * FROM (SELECT * FROM BOARDS WHERE ${param1} LIKE '%${param2}%'
+				ORDER BY REGDATE DESC) -->
 	
 	<select id="selectBoardDetail" parameterType="Integer" resultType="com.nadu.rms.vo.Board">
-	SELECT * FROM NOTICES WHERE NIDX = #{nidx}
+	SELECT * FROM BOARDS WHERE BIDX = #{bidx}
 	</select>
 	
 	<insert id="insertBoard" parameterType="com.nadu.rms.vo.Board">
-	INSERT INTO NOTICES(NIDX, WRITER, TITLE, CONTENT, REGDATE) 
-	VALUES(TO_CHAR(NOTICES_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE)
+	INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE) 
+	VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE)
 	</insert>
 	
 	<update id="updateBoard" parameterType="com.nadu.rms.vo.Board">
-	UPDATE NOTICES SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE NIDX = #{nidx, jdbcType=VARCHAR}
+	UPDATE BOARDS SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE BIDX = #{bidx, jdbcType=VARCHAR}
 	</update>
 	
 	<delete id="delBoard" parameterType="String">
-	DELETE FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}
+	DELETE FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}
 	</delete>
 	
 </mapper>

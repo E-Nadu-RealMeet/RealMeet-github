@@ -32,26 +32,21 @@ public class BoardDao {
 
 	}
 
-	public List<Board> selectFreeBoards(int pages, String key,String query){
+	public List<Board> selectBoards(int startNum, int endNum, String key, String query, String type){
 		
-		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.FreeBoardMapper.selectFreeBoard";
-			System.out.println(statement);
-			
-			return sqlSession.selectList(statement);
-
-		}finally {
-			sqlSession.close();
-		}*/
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		List<Board> list = mapper.selectBoards(startNum, endNum, key, query, type); 
+		session.close();
+		return list;
 		
-		int startNum = 1+(pages-1)*10;
+	/*	int startNum = 1+(pages-1)*10;
 		int endNum = 10+(pages-1)*10;
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
 		List<Board> list = mapper.selectBoards(startNum, endNum, key, query); 
 		session.close();
-		return list;
+		return list;*/
 	}
 	
 
@@ -108,15 +103,22 @@ public class BoardDao {
 		
 	}
 
-	/*public int getCount) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try{
-			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.boardCount";
-			System.out.println(statement);
-			return sqlSession.selectOne(statement);
+	public int getCountByType(String type) {
+
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int cnt = mapper.getCountByType(type);
+		session.close();
+		return cnt;
+		/*try{
+			
+			
+			String statement = "com.nadu.rms.mapper.annotation.BoardMapper.getCountByType";
+			return sqlSession.selectOne(statement, type);
 
 		}finally {
 			sqlSession.close();
-		}
-	}*/
+		}*/
+		
+	}
 }
