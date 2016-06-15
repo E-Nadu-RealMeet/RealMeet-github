@@ -152,7 +152,7 @@
 	}
 }
 
-.join-top {
+/* .join-top {
 	text-align: right;
 	color: #275973;
 	line-height: 44px;
@@ -176,7 +176,7 @@
 .join-top ul li {
 	display: inline;
 	margin-right: 20px;
-}
+} */
 </style>
 
 <style>

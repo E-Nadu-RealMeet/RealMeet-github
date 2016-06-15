@@ -1,4 +1,8 @@
 @CHARSET "UTF-8";
 section#top {
-	background-image: url("images/index-top1.jpg");
+	background-image: url("");
+	/* images/index-top1.jpg */
+}
+#main>section#top {
+	position: relative;
 }
