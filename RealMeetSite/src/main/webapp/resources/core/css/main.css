@@ -2589,6 +2589,19 @@ body.header-visible #header {
 	border-bottom: solid 1px #ddd;
 }
 
+#selectfilter{
+	text-align: left;
+	margin-top: 10px;
+}
+#selectfilter a span{
+	
+	padding: 0px 20px 0px 20px;
+	font-size:17px;
+	color: #191919;
+
+}
+
+
 #sidebar span {
 	padding: 0 5px 0 0;
 }
