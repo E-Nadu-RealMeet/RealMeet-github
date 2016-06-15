@@ -48,7 +48,7 @@
 
 
 					<p class="article-comment margin-small" align="center">
-						<a class="btn btn-primary" href="board/freeBoard">목록</a> 
+						<a class="btn btn-primary" href="freeBoard">목록</a> 
 						<button class="btn btn-primary" type="submit">등록</button>
 
 					</p>
