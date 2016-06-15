@@ -78,7 +78,6 @@
 		</div>
 
 		<input type="hidden" name="rating" id="rating" value="10" />
-		<!-- <input type="hidden" name="interest" id="interest" value="sports" /> -->
 		<div class="form-group" style="margin-top: 10px">
 			<div class="col-lg-offset-2 col-lg-10">
 

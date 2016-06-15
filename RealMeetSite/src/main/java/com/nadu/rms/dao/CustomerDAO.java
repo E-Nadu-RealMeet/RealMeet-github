@@ -39,7 +39,32 @@ public class CustomerDAO {
 		          return list;
 		      }
 		  
+	public int countQNAs() {
+        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+        int list = mapper.countQNAs();
+        session.close();
+        return list;
+    }
 
+	public int countFAQs() {
+
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          int list = mapper.countFAQs();
+		          session.close();
+		          return list;
+		      }
+		  
+
+	public int countNotices() {
+
+		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		          int list = mapper.countNotices();
+		          session.close();
+		          return list;
+		      }
 	
 	public Notices selectNoticeByNidx(String nidx) {
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();

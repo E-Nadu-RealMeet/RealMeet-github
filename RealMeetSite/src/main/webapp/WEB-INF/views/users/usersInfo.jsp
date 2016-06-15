@@ -1,6 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
+<head>
+<style type="text/css">
+.row{
+	margin: -40px 0 -1px -40px;
+}
+</style>
+</head>
 <div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
 	<div class="row">
 		<div class="col-md-9" style="width: 100%; margin: 0 auto;">
