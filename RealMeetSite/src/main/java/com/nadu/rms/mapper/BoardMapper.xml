@@ -22,7 +22,7 @@
 	</select> -->
 	<!-- SELECT * FROM (SELECT * FROM BOARDS WHERE ${param1} LIKE '%${param2}%'
 				ORDER BY REGDATE DESC) -->
-	
+	<!-- 
 	<select id="selectBoardDetail" parameterType="Integer" resultType="com.nadu.rms.vo.Board">
 	SELECT * FROM BOARDS WHERE BIDX = #{bidx}
 	</select>
@@ -39,5 +39,5 @@
 	<delete id="delBoard" parameterType="String">
 	DELETE FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}
 	</delete>
-	
+	 -->
 </mapper>
