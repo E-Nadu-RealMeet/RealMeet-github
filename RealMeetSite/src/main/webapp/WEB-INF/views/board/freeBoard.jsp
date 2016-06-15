@@ -23,9 +23,9 @@
 				</thead>
 				<c:forEach var="aa" items="${list}">
 				<tr>
-					<td>${aa.getNidx()}</td>
+					<td>${aa.getBidx()}</td>
 					<td class='c1'><b>질문</b></td>
-					<td class='subject'><a href="${pageContext.request.contextPath}/board/freeDetail/${aa.getNidx()}"><b>${aa.getTitle()}</b></a></td>
+					<td class='subject'><a href="${pageContext.request.contextPath}/board/freeDetail/${aa.getBidx()}"><b>${aa.getTitle()}</b></a></td>
 					<td>${aa.getWriter()}</td>
 					<td>${aa.getRegdate()}</td>
 				</tr>
@@ -70,9 +70,9 @@
 						<span><a href=>4</a></span>
 						<span><a href=>5</a></span>
 						<span><a href=>6</a></span> -->
-					<c:forEach var="i" begin="0" end="${endPagesNum}">
+					<c:forEach var="i" begin="0" end="${endPageNum}">
                         
-                        <c:if test="${startPageNum+i <= endPagesNum}">
+                        <c:if test="${startPageNum+i <= endPageNum}">
                        		<c:if test="${startPageNum+i == pages }">
                        			<span><a class="strong" href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
                      		</c:if>

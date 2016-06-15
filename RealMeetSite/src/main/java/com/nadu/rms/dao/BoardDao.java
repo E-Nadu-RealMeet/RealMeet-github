@@ -40,13 +40,6 @@ public class BoardDao {
 		session.close();
 		return list;
 		
-	/*	int startNum = 1+(pages-1)*10;
-		int endNum = 10+(pages-1)*10;
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		List<Board> list = mapper.selectBoards(startNum, endNum, key, query); 
-		session.close();
-		return list;*/
 	}
 	
 

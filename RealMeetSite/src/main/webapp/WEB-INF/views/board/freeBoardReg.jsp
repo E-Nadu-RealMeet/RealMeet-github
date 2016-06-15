@@ -26,7 +26,7 @@
 	<!-- Main -->
 			<div class="container">
 				<br> <br>
-				<h2 align="center">공지사항</h2>
+				<h2 align="center">자유게시판</h2>
 				<form action="${pageContext.request.contextPath}/board/freeReg" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">

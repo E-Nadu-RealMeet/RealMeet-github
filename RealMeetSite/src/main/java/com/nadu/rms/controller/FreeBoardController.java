@@ -124,7 +124,7 @@ public class FreeBoardController {
 		System.out.println(board.getBidx());
 		System.out.println(board.getContent());
 		System.out.println(board.getTitle());
-		//boardDao.insertBoard(board);
+		boardDao.insertBoard(board);
 		return "redirect:freeBoard";
 		
 		
