@@ -23,7 +23,7 @@
 
 							
 							<div class="row">
-								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
+								<div class="5u" style="margin-left: 7%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
 										<button data-toggle="modal" data-target="#NoticesModal" style="background-image:url('../resources/core/images/pic02.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">공지사항</h2></button>
 									</article>
