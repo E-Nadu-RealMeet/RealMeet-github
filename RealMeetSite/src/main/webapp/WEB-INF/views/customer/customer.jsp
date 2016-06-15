@@ -24,12 +24,12 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<a href="#NoticesModal" data-toggle="modal"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg">
+										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2 >공지사항</h2>
 
-										</header></button></a>
+										</header></button>
 									</article>
 									<article class="item">
 										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
@@ -82,12 +82,12 @@
 
 							
 
-  <table class="table ">
+  <table class="table">
             <thead>
                 <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성일</th>
+                    <th style="text-align: center;">번호</th>
+                    <th style="text-align: center;">제목</th>
+                    <th style="text-align: center;">작성일</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,14 +100,14 @@
 			</c:forEach>
 			</tbody>
         </table>
-        <ul class="pager">
-            <li data-bind="css: {'disabled': !previousPageEnabled()}"> <a href="#" data-bind="click: previousPage">Previous</a>
+<!--         <ul class="pager"> -->
+<!--             <li data-bind="css: {'disabled': !previousPageEnabled()}"> <a href="#" data-bind="click: previousPage">Previous</a> -->
 
-            </li>
-            <li data-bind="css: {'disabled': !nextPageEnabled()}"> <a href="#" data-bind="click: nextPage">Next</a>
+<!--             </li> -->
+<!--             <li data-bind="css: {'disabled': !nextPageEnabled()}"> <a href="#" data-bind="click: nextPage">Next</a> -->
 
-            </li>
-        </ul>			
+<!--             </li> -->
+<!--         </ul>			 -->
 <%-- 			<form method="get" action="Notices/${title}"> --%>
 <!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /> -->
 <!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div> -->
@@ -134,7 +134,7 @@
 </div>							
 
 <div class="modal-body">
-  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+  <table class="table">
 
 				<tr>
 					<th style="text-align: center;">번호</th>
@@ -142,7 +142,7 @@
 					<th style="text-align: center;">작성일</th>
 				</tr>
 
-
+				<tbody>
 				<c:forEach var="FAQs" items="${FAQs}">
 					<tr>
 						<td>${FAQs.fidx}</td>
@@ -150,7 +150,7 @@
 						<td>${FAQs.regdate}</td>
 					</tr>
 				</c:forEach>
-
+				</tbody>
 			</table>
 </div>
 <%-- 			<form method="get" action="FAQs/${title}"> --%>
@@ -172,7 +172,7 @@
 							</header>
 						</div>	
 <div class="modal-body">
-  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+  <table class="table">
 
 				<tr>
 					<th style="text-align: center;">번호</th>
@@ -180,7 +180,7 @@
 					<th style="text-align: center;">작성일</th>
 				</tr>
 
-
+				<tbody>
 				<c:forEach var="QNA" items="${QNA}">
 					<tr>
 						<td>${QNA.qidx}</td>
@@ -188,7 +188,7 @@
 						<td>${QNA.regdate}</td>
 					</tr>
 				</c:forEach>
-
+				</tbody>
 			</table>
 </div>
 <%-- 			<form method="get" action="FAQs/${title}"> --%>

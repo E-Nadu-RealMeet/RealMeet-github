@@ -159,7 +159,7 @@ $(document).ready(function() {
 							aria-labelledby="detail-tab" aria-expanded="true">
 							<!-- 이벤트 제목란 -->
 							<h2 class="blog-post-title">${detail.get(0).getEventname() }</h2>
-							<c:if test="${mid != null}">
+							<c:if test="${mid == detail.get(0).getHolder()}">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventNameUpdate">수정</button>
 							</c:if>
 							<!-- 이벤트 날짜란 -->

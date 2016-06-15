@@ -134,6 +134,10 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
+		String mid = (String)req.getSession().getAttribute("mid");
+		if(mid != null && mid != ""){
+			model.addAttribute("mid", mid);
+		}
 		String introValue = "모임의 자세한 정보입니다.";
         model.addAttribute("introValue", introValue );
 		/* eventDetailService로 필요한 데이터 가져옴 */
