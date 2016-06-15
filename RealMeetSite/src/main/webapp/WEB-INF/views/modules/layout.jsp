@@ -37,7 +37,6 @@
 <!-- holder.js link -->
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/main.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" />
 <!-- tiles를 이용한 부분 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css<tiles:getAsString name="css"/>" />
 <c:if test="${page == 'index' }">
@@ -69,17 +68,21 @@
 		
 		<!-- Content -->
 		<section id="portfolio" class="two">
-			<c:if test="${page=='event/eventList'}">
-				<tiles:insertAttribute name="gmap"></tiles:insertAttribute>
-			</c:if>
-			<c:if test="${page=='index'}">
-				<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
-			</c:if>
-			
-			<tiles:insertAttribute name="content"></tiles:insertAttribute>
-			<c:if test="${page=='index'}">
-				<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
-			</c:if>
+			<div id="contain-left">
+				<c:if test="${page=='index'}">
+					<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
+				</c:if>
+				<c:if test="${page=='event/eventList'}">
+					<tiles:insertAttribute name="gmap"></tiles:insertAttribute>
+				</c:if>
+				<tiles:insertAttribute name="content"></tiles:insertAttribute>
+			</div>
+			<div id="contain-right">
+				<c:if test="${page=='index'}">
+					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
+				</c:if>
+				<!-- content 나눠서 넣으실 분은 나눠서 여기에 넣어주세요 -->
+			</div>
 		</section>
 	</div>
 	<!-- Footer -->

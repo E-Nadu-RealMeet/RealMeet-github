@@ -27,7 +27,7 @@
 	<div class="join-top">
 		<div class="container" id="topMenu">
 			<ul id="topMenuUl-left">
-				<li><a class="topButton"
+				<li><a class="topButton" id="topButton-logo"
 					href="${pageContext.request.contextPath}/">homepage</a></li>
 					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>event</a>
 						<ul class="submenu">
