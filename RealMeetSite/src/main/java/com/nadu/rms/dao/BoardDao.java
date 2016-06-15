@@ -32,11 +32,11 @@ public class BoardDao {
 
 	}
 
-	public List<Board> selectBoards(int startNum, int endNum, String key, String query, String type){
+	public List<Board> selectBoards(Map<String, Object> paramMap){
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		List<Board> list = mapper.selectBoards(startNum, endNum, key, query, type); 
+		List<Board> list = mapper.selectBoards(paramMap); 
 		session.close();
 		return list;
 		

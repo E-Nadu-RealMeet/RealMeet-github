@@ -1,6 +1,8 @@
 package com.nadu.rms.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,7 +41,7 @@ public class FreeBoardController {
 			pages = Integer.parseInt(tmpPages);
 		}
 		if(key == null || key.equals("")){
-			key = "title";
+			key = "TITLE";
 		}
 		if(query == null || query.equals("")){
 			query = "";
@@ -58,8 +60,14 @@ public class FreeBoardController {
 		if(endNum >= cnt) endNum = cnt;
 		System.out.println(endNum);
 		// 수정필요
-		List<Board> list = boardDao.selectBoards(startNum, endNum, key, query, "free");
 		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("startNum", startNum);
+		paramMap.put("endNum", endNum);
+		paramMap.put("key", key);
+		paramMap.put("query", query);
+		paramMap.put("type", "free");
+		List<Board> list = boardDao.selectBoards(paramMap);
 		/*리턴 값*/
 		model.addAttribute("startPageNum",startPageNum);
 		model.addAttribute("endPageNum",endPageNum);
