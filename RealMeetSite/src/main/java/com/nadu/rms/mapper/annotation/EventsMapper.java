@@ -38,6 +38,12 @@ public interface EventsMapper {
 	@Update("UPDATE EVENTS SET CATEGORY = #{category, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public int updateEventsCategoryByESIDX(@Param("esidx")String esidx, @Param("category")String category);
 	
+	@Select("SELECT * FROM VIEW_JOIN_ES_EL WHERE HOLDER = #{holder, jdbcType=VARCHAR}")
+	public List<Event_Eventlist> selectMyEvents(@Param("holder")String holder);
+	
+	@Select("SELECT * FROM VIEW_JOIN_ES_EL WHERE ELIDX IN(SELECT ELIDX FROM GUESTLIST WHERE GUEST LIKE '%'||#{guest, jdbcType=VARCHAR}||'%')")
+	public List<Event_Eventlist> selectJoinEvents(@Param("guest")String guest);
+	
 	public int insertEvents(Event_Eventlist e);
 	
 	@Select("SELECT COUNT(ESIDX) FROM EVENTS")
@@ -45,4 +51,5 @@ public interface EventsMapper {
 	
 	@Select("SELECT CNAME FROM CATEGORIES")
 	public List<String> getCategories();
+	
 }

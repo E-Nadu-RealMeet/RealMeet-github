@@ -48,7 +48,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("customer")
-	public String customer(Model model){
+	public String customer(HttpServletRequest req, Model model){
 		List<Notices> Notices = customersDao.selectNotices();
 		model.addAttribute("Notices", Notices);
 		List<FAQ> FAQs = customersDao.selectFAQs();
@@ -61,12 +61,26 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
-	public String Notices(Notices n, Model model){
-	//	List<Notices> Notices = customersDao.selectNotices();
-	//	model.addAttribute("Notices", Notices);
-		model.addAttribute("Notices", customersDao.selectNotices());
-		return "customer/Notices";
+	@ResponseBody
+	public String Notices(HttpServletRequest req, Notices n, Model model){
+		String returnValue = customerService.NoticesListLoad(req);
+		log.info("gson : " + returnValue);
+		return returnValue;
 	}
+	
+//	@RequestMapping(value="Notices/{pages}", produces="text/plain;charset=UTF-8")
+//	public String Noticespages(Notices n, Model model, @PathVariable int pages){
+//		int startPageNum = pages - (pages -1)%5;
+//		int cntNotices = customersDao.countNotices();
+//		int endPagesNumNotices = cntNotices/5 + (cntNotices%5==0?0:1);
+//	//	List<Notices> Notices = customersDao.selectNotices();
+//	//	model.addAttribute("Notices", Notices);
+//		model.addAttribute("Notices", customersDao.selectNotices(pages));
+//		model.addAttribute("pages", pages);
+//		model.addAttribute("startPageNum", startPageNum);
+//		model.addAttribute("endPagesNumNotices", endPagesNumNotices);
+//		return "customer/Notices";
+//	}
 //	@RequestMapping(value="Notices", method=RequestMethod.GET)
 ////	@ResponseBody
 //	public String searchNotices(Model model, Notices n){
@@ -83,13 +97,13 @@ public class CustomerController {
 		return "customer/NoticesDetail";
 
 	}
-	@RequestMapping(value="FAQsModal", method=RequestMethod.GET)
-	@ResponseBody
-	public String FAQs(Model model){
-		List<FAQ> FAQs = customersDao.selectFAQs();
-		model.addAttribute("FAQs", FAQs);
-		return "customer/FAQs";	
-	}
+//	@RequestMapping(value="FAQsModal", method=RequestMethod.GET)
+//	@ResponseBody
+//	public String FAQs(Model model){
+//		List<FAQ> FAQs = customersDao.selectFAQs();
+//		model.addAttribute("FAQs", FAQs);
+//		return "customer/FAQs";	
+//	}
 //	@RequestMapping(value="FAQs", method=RequestMethod.POST)
 //	public String searchFAQs(Model model, FAQ f){
 //		String title = f.getTitle();

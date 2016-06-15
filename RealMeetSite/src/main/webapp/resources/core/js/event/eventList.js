@@ -217,6 +217,9 @@ function geocodeLatLng(geocoder, map, infowindow, input) {
 		}
 	});
 }
+function openFilters(){
+	
+}
 
 /*contextPath 가져오는 함수 by 지원 */
 function getContextPath(){

@@ -126,4 +126,20 @@ public class EventsDao {
 		}
 		
 	}*/
+	
+	public List<Event_Eventlist> selectMyEvents(String holder){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> events = mapper.selectMyEvents(holder);
+		session.close();
+		return events;
+	}
+	
+	public List<Event_Eventlist> selectJoinEvents(String guest){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> events = mapper.selectJoinEvents(guest);
+		session.close();
+		return events;
+	}
 }

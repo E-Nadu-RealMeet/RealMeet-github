@@ -19,8 +19,7 @@
 					</div> -->
 		</div>
 
-		<button class="btn btn-lg btn-success" type=button>날짜별</button>
-		<button class="btn btn-lg" type=button>이름별</button>
-		<button class="btn btn-lg btn-success" type=button>지역별</button>
+		
+		
 	</div>
 </div>

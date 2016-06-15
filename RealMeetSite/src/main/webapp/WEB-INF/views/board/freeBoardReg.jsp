@@ -26,7 +26,7 @@
 	<!-- Main -->
 			<div class="container">
 				<br> <br>
-				<h2 align="center">공지사항</h2>
+				<h2 align="center">자유게시판</h2>
 				<form action="${pageContext.request.contextPath}/board/freeReg" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">
@@ -48,7 +48,7 @@
 
 
 					<p class="article-comment margin-small" align="center">
-						<a class="btn btn-primary" href="board/freeBoard">목록</a> 
+						<a class="btn btn-primary" href="freeBoard">목록</a> 
 						<button class="btn btn-primary" type="submit">등록</button>
 
 					</p>

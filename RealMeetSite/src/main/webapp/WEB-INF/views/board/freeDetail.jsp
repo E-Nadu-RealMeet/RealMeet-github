@@ -75,8 +75,8 @@
 
 			<p class="article-comment margin-small" align="center">
 				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeBoard">목록</a> 
-				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getNidx()}">수정</a> 
-				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getNidx()}">삭제</a>
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}">수정</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}">삭제</a>
 			</p>
 			<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
 				<br>

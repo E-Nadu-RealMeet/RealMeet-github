@@ -1,6 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false"%>
+
+<style type="text/css">
+.col-lg-10 ul {
+	list-style-type: none;
+}
+
+.col-lg-10 li {
+	float: left;
+	padding: 0px 10px 10px 10px;
+}
+</style>
+
 <div class="container"
 	style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; text-align: center;">
 
@@ -45,11 +57,26 @@
 			</div>
 		</div>
 
-		<div class="form-group" id="divNickname">
+		<%-- <div class="form-group" id="divNickname">
 			<label for="inputNickname" class="col-lg-2 control-label" style="font-size: 20px;">관심카테고리</label>
 			<div class="col-lg-10">
 				<input type="text" class="form-control" id="interest" data-rule-required="true" name="interest" style="width: 80%; margin-top: 1%;"
 					value=${users.getInterest() }>
+			</div>
+		</div> --%>
+		<div class="form-group" id="divInterest">
+			<label for="inputInterest" class="col-lg-2 control-label" style="font-size: 20px;">흥미 카테고리</label>
+			<div class="col-lg-10" style="font-size: 15px; padding: 6px 12px;">
+				<ul>
+					<li><input type="checkbox" id="sport" name="interest" value="식사"> 식사<br></li>
+					<li><input type="checkbox" id="game" name="interest" value="운동"> 운동<br></li>
+					<li><input type="checkbox" id="talk" name="interest" value="일상대화"> 일상대화<br></li>
+					<li><input type="checkbox" id="cul" name="interest" value="문화생활"> 문화생활<br></li>
+					<li><input type="checkbox" id="meet" name="interest" value="만남"> 만남<br></li>
+					<li><input type="checkbox" id="vol" name="interest" value="자원봉사"> 자원봉사<br></li>
+					<li><input type="checkbox" id="study" name="interest" value="스터디"> 스터디<br></li>
+				</ul>
+
 			</div>
 		</div>
 

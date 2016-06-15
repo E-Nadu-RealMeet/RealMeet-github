@@ -27,7 +27,7 @@
 			<div class="container">
 				<br> <br>
 				<h2 align="center">공지사항</h2>
-				<form action="${pageContext.request.contextPath}/board/freeUpdate/${aa.getNidx()}" method="post">
+				<form action="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">
 							<dt class="article-detail-title">제목</dt>

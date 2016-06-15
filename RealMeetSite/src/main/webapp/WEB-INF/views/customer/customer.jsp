@@ -24,12 +24,12 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
+										<a href="#NoticesModal" data-toggle="modal"><button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg">
 										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
 										<header>
 											<h2 >공지사항</h2>
 
-										</header></button>
+										</header></button></a>
 									</article>
 									<article class="item">
 										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
@@ -82,25 +82,32 @@
 
 							
 
-  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
-
-				<tr>
-					<th style="text-align: center;">번호</th>
-					<th style="text-align: center;">제목</th>
-					<th style="text-align: center;">작성일</th>
-				</tr>
-
-
-				<c:forEach var="Notices" items="${Notices}">
+  <table class="table ">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="Notices" items="${Notices}">
 					<tr>
 						<td>${Notices.nidx}</td>
 						<td><a href="NoticesDetail/${Notices.nidx}" data-toggle="modal" data-target="#NoticesDetailModal" style="color: #81918E;">${Notices.title}</a></td>
 						<td>${Notices.regdate}</td>
 					</tr>
-				</c:forEach>
+			</c:forEach>
+			</tbody>
+        </table>
+        <ul class="pager">
+            <li data-bind="css: {'disabled': !previousPageEnabled()}"> <a href="#" data-bind="click: previousPage">Previous</a>
 
-			</table>
+            </li>
+            <li data-bind="css: {'disabled': !nextPageEnabled()}"> <a href="#" data-bind="click: nextPage">Next</a>
 
+            </li>
+        </ul>			
 <%-- 			<form method="get" action="Notices/${title}"> --%>
 <!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /> -->
 <!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div> -->

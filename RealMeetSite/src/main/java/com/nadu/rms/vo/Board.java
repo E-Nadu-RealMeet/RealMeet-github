@@ -2,17 +2,21 @@ package com.nadu.rms.vo;
 
 public class Board {
 	
-	private String nidx;
+	private String bidx;
 	private String writer;
 	private String title;
 	private String content;
 	private String regdate;
-	
-	public String getNidx() {
-		return nidx;
+	private String target;
+	private int step;
+	private int blevel;
+	private String type;
+	private int readcount;
+	public String getBidx() {
+		return bidx;
 	}
-	public void setNidx(String nidx) {
-		this.nidx = nidx;
+	public void setBidx(String bidx) {
+		this.bidx = bidx;
 	}
 	public String getWriter() {
 		return writer;
@@ -38,4 +42,35 @@ public class Board {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	public String getTarget() {
+		return target;
+	}
+	public void setTarget(String target) {
+		this.target = target;
+	}
+	public int getStep() {
+		return step;
+	}
+	public void setStep(int step) {
+		this.step = step;
+	}
+	public int getBlevel() {
+		return blevel;
+	}
+	public void setBlevel(int blevel) {
+		this.blevel = blevel;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	
 }

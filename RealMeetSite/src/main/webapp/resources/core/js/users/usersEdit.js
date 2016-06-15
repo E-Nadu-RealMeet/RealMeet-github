@@ -4,6 +4,12 @@ function formCheck() {
 	var password_check = document.getElementById('passwordCheck');
 	var member_phoneNumber = document.getElementById('phoneNumber');
 	
+	var interest = new Array();
+	$("input[name=interest]:checked").each(function(){
+
+		interest.push($(this).val());
+	})
+	
 	if (password.value == '' || password.value == null) {
 		alert('비밀번호를 입력하세요');
 		focus.password;
@@ -45,5 +51,19 @@ function formCheck() {
 		focus.member_phoneNumber;
 		return false;
 	}
+	if(interest.length < 1){
+		alert('최소 한개이상의 흥미 카테고리를 선택하여야 합니다.');
+		return false;
+	}
+	
+	//흥미 카테고리데이터 보내기
+	$.ajax({
+		url:'join',
+		type:'GET',
+		data: interest,
+		success:function(data){
+		}
+	});
+	
 	return true;
 }
