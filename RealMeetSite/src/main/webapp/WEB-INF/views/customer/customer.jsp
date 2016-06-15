@@ -25,18 +25,18 @@
 							<div class="row">
 								<div class="5u" style="margin-left: 7%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<button data-toggle="modal" data-target="#NoticesModal" style="background-image:url('../resources/core/images/pic02.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">공지사항</h2></button>
+										<button data-toggle="modal" data-target="#NoticesModal" style="background-image:url('../resources/core/images/Norway-summer-landscape-grass-trees-road-hills-green_1920x1080.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">공지사항</h2></button>
 									</article>
 									<article class="item">
-										<button data-toggle="modal" data-target="#QNAModal" style="background-image:url('../resources/core/images/pic06.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">문의내역</h2></button>
+										<button data-toggle="modal" data-target="#QNAModal" style="background-image:url('../resources/core/images/16.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">문의내역</h2></button>
 									</article>
 								</div>
 								<div class="5u" style="margin-top: 7%" >
 									<article class="item">
-										<button data-toggle="modal" data-target="#FAQsModal" style="background-image:url('../resources/core/images/pic04.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">FAQ</h2></button>
+										<button data-toggle="modal" data-target="#FAQsModal" style="background-image:url('../resources/core/images/duga14.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">FAQ</h2></button>
 									</article>
 									<article class="item">
-										<button data-toggle="modal" data-target="#callModal" style="background-image:url('../resources/core/images/pic05.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">문의하기</h2></button>
+										<button data-toggle="modal" data-target="#callModal" style="background-image:url('../resources/core/images/F4-1.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">문의하기</h2></button>
 									</article>
 								</div>
 							</div>
