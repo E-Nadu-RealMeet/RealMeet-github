@@ -3,7 +3,7 @@ section#top{
 }
 
 div.modal-content{
-	margin-top: 25%;
+	margin-top: 20%;
 }
 
 div.modal-content div#header{
@@ -23,16 +23,16 @@ div.modal-content div#main{
 }
 
 div.modal-header {
-    background-color: #81918E;
+    background-color: #95a5a2;
 }
 
 div.modal-footer {
-    background-color: #81918E;
+    background-color: #95a5a2;
 }
 
 div.modal-body{
 	overflow-y: scroll;
-	height: 400px;
+	height: 500px;
 }
 
 /* .modal { */

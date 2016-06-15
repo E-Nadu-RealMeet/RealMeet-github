@@ -8,7 +8,7 @@
 
 				<!-- Portfolio -->
 					<section id="portfolio" class="two">
-						<div class="container">
+						<div class="container" style="width: 200%">
 
 							<header>
 								<h2>이용안내</h2>
@@ -35,7 +35,7 @@
 			</li>
 			
 			</ul>
-				
+			<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" value="뒤로" /></a>	
 		</div>
 					</section>
 
