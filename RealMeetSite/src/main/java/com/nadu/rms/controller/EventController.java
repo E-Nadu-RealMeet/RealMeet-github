@@ -33,13 +33,15 @@ public class EventController {
 	EventDetailService eventDetailService;
 	EventApplyService eventApplyService;
 	EventEditService eventEditService;
+	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	
 	
 	@Autowired
 	public void setEventEditService(EventEditService eventEditService) {
 		this.eventEditService = eventEditService;
 	}
 
-	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	
 
 	
 	@Autowired

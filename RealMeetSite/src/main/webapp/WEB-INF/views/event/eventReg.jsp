@@ -59,11 +59,11 @@
 	</div>
 	<div class="selectBox" id="selectBox-date" style="display: none;">
 		<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
-			<h3>첫 이벤트가 진행될 날짜를 입력해주세요</h3>
+			<h3>첫 이벤트가 진행될 날짜와 시작 시간을 입력해주세요</h3>
 
 			<br>
 		</div>
-		<input id="regInput-date" class="regInput" type="datetime-local" value="2016-11-16T15:25:33"> <br>
+		<input id="regInput-date" class="regInput" type="datetime-local"> <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>
@@ -90,7 +90,7 @@
 		<button type="button" class="regButton-first">처음으로</button>
 	</div>
 	<div class="selectBox" id="selectBox-check" style="display: none">
-		<form action="reg.do" method="post" id="regForm">
+		<form action="reg" method="post" id="regForm">
 			<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
 				<h2>입력한 내용이 아래와 같나요??</h2>
 				<br>

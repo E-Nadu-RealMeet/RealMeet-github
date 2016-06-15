@@ -2,6 +2,8 @@ package com.nadu.rms.config;
 
 import javax.servlet.ServletContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.nadu.rms.controller.EventController;
 import com.nadu.rms.controller.UploadController;
 
 @Configuration
@@ -34,6 +37,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	/**
      * CSS / JavaScript / Image 등의 정적 리소스를 처리해주는 핸들러를 등록
      */
+	
+	static final Logger log = LoggerFactory.getLogger(WebConfig.class);
 	@Autowired
 	ServletContext context;
 	
@@ -125,6 +130,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public UploadController uploadController(){
     	String uploadPath = uploadRepository();
+    	log.info(uploadPath);
     	UploadController uploadController = new UploadController();
     	/*uploadController.setMethodNameResolver(new MethodNameResolver() {
 			

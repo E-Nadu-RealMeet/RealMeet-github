@@ -127,10 +127,13 @@ $(document).ready(
 					deleteMarkers();
 					//placeMarkerAndPanTo(e.latLng, map);
 					geocodeLatLng(geocoder, map, infowindow, latLng);
+					setLatlngToInput(latLng)
 				});
 				function placeMarkerAndPanTo(latLng, map, arg) {
 					var marker = new google.maps.Marker({
 						position : latLng,
+						draggable:false,
+						content:arg,
 						map : map
 					});
 					markers.push(marker);
@@ -149,11 +152,19 @@ $(document).ready(
 								var latlng = results[0].geometry.location;
 								placeMarkerAndPanTo(latlng, map, $('#addr').val().trim());
 								map.setZoom(15);
+								var latLng = latlng.toString();
+								var latLng=latLng.substring(1,latLng.length-2);
+								setLatlngToInput(latLng)
 							}
 						}
 					});
 				});
-				
+				function setLatlngToInput(latlng){
+					var latlng2 = latlng.toString()
+					//alert(latlng2)
+					//alert(typeof(latlng2))
+					$('#latlng').val(latlng2.toString())
+				}
 				// Sets the map on all markers in the array.
 				function setMapOnAll(map) {
 				  for (var i = 0; i < markers.length; i++) {
