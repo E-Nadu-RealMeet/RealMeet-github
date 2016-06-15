@@ -12,29 +12,29 @@ import com.nadu.rms.vo.QNA;
 
 public class CustomerDAO {
 
-	public List<QNA> selectQNAs(int pages) {
+	public List<QNA> selectQNAs() {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
         CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-        List<QNA> list = mapper.selectQNAs( pages);
+        List<QNA> list = mapper.selectQNAs();
         session.close();
         return list;
     }
 
-	public List<FAQ> selectFAQs(int pages) {
+	public List<FAQ> selectFAQs() {
 
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<FAQ> list = mapper.selectFAQs(pages);
+		          List<FAQ> list = mapper.selectFAQs();
 		          session.close();
 		          return list;
 		      }
 		  
 
-	public List<Notices> selectNotices(int pages) {
+	public List<Notices> selectNotices() {
 
 		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-		          List<Notices> list = mapper.selectNotices(pages);
+		          List<Notices> list = mapper.selectNotices();
 		          session.close();
 		          return list;
 		      }

@@ -25,19 +25,10 @@ import com.nadu.rms.vo.QNA;
       public String NoticesListLoad(HttpServletRequest req){
           Gson gson = new Gson();
           List<Notices> notices = customerDAO.selectNotices();
-          JsonClassForNoticesListLoad set = new JsonClassForNoticesListLoad();
+          JsonClassForNoticesListLoad set = new JsonClassForNoticesListLoad(); 
           set.setNotices(notices);
+          System.out.println(notices);
           return gson.toJson(set);
-          
-      }
-      
-      public String NoticesDetailLoad(HttpServletRequest req, String nidx){
-          Gson gson = new Gson();
-          Notices noticesdetail = customerDAO.selectNoticeByNidx(nidx);
-          JsonClassForNoticesDetailLoad set = new JsonClassForNoticesDetailLoad();
-          set.setNotices(noticesdetail);
-          String noticesDetail = gson.toJson(set);
-          return noticesDetail;
           
       }
   
@@ -52,14 +43,6 @@ import com.nadu.rms.vo.QNA;
       
   }
   
-  class JsonClassForNoticesDetailLoad{
-      Notices notices;
-  
-      public void setNotices(Notices noticesdetail) {
-          this.notices = noticesdetail;
-      }
-
-}
   
   class JsonClassForFAQListLoad{
       List<FAQ> faq;
@@ -71,13 +54,6 @@ import com.nadu.rms.vo.QNA;
       
   }
   
-  class JsonClassForFAQDetailLoad{
-      FAQ faq;
-  
-      public void setFAQs(FAQ faqDetail) {
-          this.faq = faqDetail;
-      }
-}
   
   class JsonClassForQNAsListLoad{
       List<QNA> qna;
@@ -89,13 +65,5 @@ import com.nadu.rms.vo.QNA;
       
   }
   
-  class JsonClassForQNAsDetailLoad{
-      QNA qna;
-  
-      public void setNotices(QNA qnaDetail) {
-          this.qna = qnaDetail;
-      }
-
-}
   
  }

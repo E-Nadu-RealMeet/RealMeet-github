@@ -166,7 +166,7 @@ $(document).ready(function() {
 							<p class="blog-post-meta">${detail.get(0).getEldate() }
 								by <a href="#">${detail.get(0).getHolder() }</a>
 							</p>
-							<c:if test="${mid != null}">
+							<c:if test="${mid == detail.get(0).getHolder() }">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventDateUpdate">수정</button>
 							</c:if>
 							<hr>
@@ -174,17 +174,17 @@ $(document).ready(function() {
 							<blockquote>
 								<p>${detail.get(0).getDescription() }</p>		
 							</blockquote>
-							<c:if test="${mid != null}">
+							<c:if test="${mid == detail.get(0).getHolder() }">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventContentUpdate">수정</button>
 							</c:if>
 							<hr>
 							<div id="lists"></div>
-							<c:if test="${mid != null}">
+							<c:if test="${mid == detail.get(0).getHolder() }">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventAddrUpdate">수정</button>
 							</c:if>
 							<hr>
 							<h3>카테고리 : ${detail.get(0).getCategory() }</h3>
-							<c:if test="${mid != null}">
+							<c:if test="${mid == detail.get(0).getHolder() }">
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventCategoryUpdate">수정</button>
 							</c:if>
 						</div>
