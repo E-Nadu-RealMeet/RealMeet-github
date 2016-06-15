@@ -41,10 +41,10 @@
 								<li>
 								<c:if test="${startPageNum+i <= endPagesNumNotices}">
 									<c:if test="${startPageNum+i == pages}">
-										<a class="strong" href="Notices/${startPageNum+i}" data-toggle="modal" >${startPageNum+i}</a>
+										<a class="strong" href="Notices/${startPageNum+i}" data-toggle="modal" data-target="#NoticesPagesModal">${startPageNum+i}</a>
 									</c:if>
 									<c:if test="${startPageNum+i != pages}">
-										<a href="Notices/${startPageNum+i}" data-toggle="modal" >${startPageNum+i}</a>
+										<a href="Notices/${startPageNum+i}" data-toggle="modal" data-target="#NoticesPagesModal">${startPageNum+i}</a>
 									</c:if>
 								</c:if>	
 								</li>
@@ -59,3 +59,65 @@
 				<button data-dismiss="modal">닫기</button>
 
 				
+<div class="modal fade" id="NoticesPagesModal" tabindex="-1" role="dialog" aria-labelledby="NoticesModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+ <div class="modal-content">
+ 
+ <div class="modal-header">
+ <header>
+								<h2>공지사항</h2>
+							</header>
+ </div>
+<div class="modal-body">
+
+							
+
+  <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
+
+				<tr>
+					<th style="text-align: center;">번호</th>
+					<th style="text-align: center;">제목</th>
+					<th style="text-align: center;">작성일</th>
+				</tr>
+
+
+				<c:forEach var="Notices" items="${Notices}">
+					<tr>
+						<td>${Notices.nidx}</td>
+						<td><a href="NoticesDetail/${Notices.nidx}" data-toggle="modal" data-target="#NoticesDetailModal" style="color: #81918E;">${Notices.title}</a></td>
+						<td>${Notices.regdate}</td>
+					</tr>
+				</c:forEach>
+
+			</table>
+			
+<ul>
+							<c:forEach var="i" begin="0" end="4">
+						
+								<li>
+								<c:if test="${startPageNum+i <= endPagesNumNotices}">
+									<c:if test="${startPageNum+i == pages}">
+										<a class="strong" href="Notices/${startPageNum+i}" data-toggle="modal" data-target="#NoticesModal">${startPageNum+i}</a>
+									</c:if>
+									<c:if test="${startPageNum+i != pages}">
+										<a href="Notices/${startPageNum+i}" data-toggle="modal" data-target="#NoticesModal">${startPageNum+i}</a>
+									</c:if>
+								</c:if>	
+								</li>
+							</c:forEach>
+							</ul>			
+<%-- 			<form method="get" action="Notices/${title}"> --%>
+<!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /> -->
+<!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="검색" /></div> -->
+<!-- 				</form> -->
+</div>
+<div class="modal-footer">
+				<button data-dismiss="modal">닫기</button>
+
+<%-- <jsp:include page="Notices.jsp"></jsp:include> --%>
+
+</div>   
+
+</div>
+</div>
+</div>
