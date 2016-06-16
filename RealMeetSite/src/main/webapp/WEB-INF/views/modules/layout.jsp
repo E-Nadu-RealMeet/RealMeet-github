@@ -82,6 +82,9 @@
 			<div class="col-sm-6 pofol-right">
 				<c:if test="${page=='event/eventDetail'}">
 				</c:if>
+				<c:if test="${page=='index'}">
+					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
+				</c:if>
 				<c:if test="${page=='event/eventList'}">
 					<tiles:insertAttribute name="content"></tiles:insertAttribute>
 				</c:if>
