@@ -40,13 +40,9 @@ public class EventsDao {
 	}
 	
 	//�씠踰ㅽ듃�� �쑀�� �젙蹂� �쉷�뱷Map<Object, Object>
-	public List<Event_User> selectEventsNUser(int startNum, int endNum){
+	public List<Event_User> selectEventsNUser(Map<String,Object> paramMap){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		Map<String,Integer> paramMap = new HashMap<String,Integer>();
-		paramMap.put("startNum", startNum);
-		paramMap.put("endNum", endNum);
 		
 		List<Event_User> events = mapper.selectEventsNUser(paramMap);
 		session.close();
@@ -107,10 +103,10 @@ public class EventsDao {
 				
 	}
 	
-	public int selectCntEvents(){
+	public int selectCntEvents(Map<String,Object> paramMap){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		int cnt = mapper.selectCntEvents();
+		int cnt = mapper.selectCntEvents(paramMap);
 		session.close();
 		return cnt;
 	}

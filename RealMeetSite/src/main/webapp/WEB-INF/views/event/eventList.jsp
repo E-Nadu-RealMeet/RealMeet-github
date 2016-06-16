@@ -16,11 +16,20 @@
 		if($("#"+id).length > 0){
 			return;
 		}else{
+			
 			$("#selectfilter").append("<a id="+id+" class="+c+" value="+v+"><span>"+v+"</span></a><a id="+id+" href=javascript:delfilter('"+id+"');><img src=http://img.incruit.com/fe/sub_home_contents_job/img/button/btn_delete.gif></a>");
+			$("#viewList").empty();
+			page = 1;
+			getEventList(page);
+			page++;
 		}
 	}
 	function delfilter(divId){
 		$("[id="+divId+"]").remove();
+		$("#viewList").empty();
+		page = 1;
+		getEventList(page);
+		page++;
 	}
 </script>
 
@@ -143,16 +152,19 @@
 						</ul>
 					</div></li>
 			</ul>
-			<div id="selectfilter"></div>
+			<div id="selectfilter">
+			</div>
 
 
 		</div>
 	</div>
-	<div class="row" style="margin: 0.6em;">
+	<div id="viewList">
+	</div>
+	<div class="row dummy" style="margin: 0.6em; display: none;">
 		<div class="col-md-6 portfolio-item">
 			<div class="col-md-6 portfolio-item-detail">
 				<p>
-					<span class="caption-title"> <a href="#">Project One</a>
+					<span class="caption-title"><a href="#">Project Two</a>
 					</span>
 				</p>
 				<br>
@@ -163,24 +175,6 @@
 				</p>
 				<span class="icon fa-heart-o">${e.getGood()}</span> &nbsp <span
 					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
-			</div>
-		</div>
-	</div>
-	<div class="row" style="margin: 0.6em;">
-		<div class="col-md-6 portfolio-item">
-			<div class="col-md-6 portfolio-item-detail">
-				<p>
-					<span class="caption-title"> <a href="#">Project Two</a>
-					</span>
-				</p>
-				<br>
-				<p>
-					<span class="caption-desc"> Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam viverra euismod odio, gravida
-						pellentesque urna varius vitae. </span>
-				</p>
-				<span class="icon fa-heart-o"></span> &nbsp <span
-					class="icon fa-commenting-o"></span>
 			</div>
 		</div>
 	</div>
