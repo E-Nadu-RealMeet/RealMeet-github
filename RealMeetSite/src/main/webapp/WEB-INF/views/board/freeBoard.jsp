@@ -55,7 +55,14 @@
 
 			</table>
 			<div class="board_list_button ">
+			<c:choose>
+			<c:when test="${!empty mid}">
 				<a href="${pageContext.request.contextPath}/board/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
+			</c:when>
+			<c:when test="${empty mid}">
+				<a href="#"  align="right" onclick="loginChk(); return null;"><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
+			</c:when>
+			</c:choose>
 			</div>
 			<div class="paging_noline">
 			

@@ -65,20 +65,65 @@
 					<div class="panel-heading">
 						<h5>조회수</h5>
 					</div>
-					<div class="panel-body">29</div>
+					<div class="panel-body">${aa.getReadcount()}</div>
 				</div> 
 				<div class="article-content">
 					${aa.getContent()}
 				</div>
-			</div>
-
-
-			<p class="article-comment margin-small" align="center">
+				
+				<br>
+			<p class="article-comment margin-small" align="right">
 				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeBoard">목록</a> 
 				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}">수정</a> 
 				<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}">삭제</a>
 			</p>
-			<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
+			</div>
+			
+			
+			<div class="container">
+			<c:if test="${not empty cwriter}">
+			<form action="${pageContext.request.contextPath}/board/commentReg">
+			<div>
+			<h4>${cwriter}</h4>
+			<textarea rows="4" cols="80" name="content"></textarea>
+			<button class="btn btn-primary" type="submit">등록</button>
+			<input type="hidden" id="bidx" value="${aa.getBidx()}">
+			</div>
+			</form>
+			</c:if>
+			
+								
+														
+				
+			
+			
+			<ul class="media-list" style="text-align: left;">
+ 				<li class="media">
+    				<div class="media-left">
+      					<a href="#">
+        					<img class="media-object" src="..." alt="">
+      					</a>
+    				</div>
+    				<div class="media-body">
+    				<div class="row">
+    				<div class="col-md-8">
+      					<h4 class="media-heading">Media heading</h4>
+      					...
+      					
+      					</div>
+      					<div class="col-md-2" style="text-align: right;">
+      					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+      					</div>
+      					</div>
+    				</div>
+  				</li>
+			</ul>
+			
+			</div>
+
+			
+			<!-- <div class="margin-small" style="border-top: 1px solid #dfdfdf;">
 				<br>
 				<dl class="article-detail-row">
 					<dt class="article-detail-title">다음글</dt>
@@ -88,7 +133,7 @@
 					<dt class="article-detail-title">이전글</dt>
 					<dd class="article-detail-data">이전 글이 없습니다.</dd>
 				</dl>
-			</div>
+			</div> -->
 
 
 
