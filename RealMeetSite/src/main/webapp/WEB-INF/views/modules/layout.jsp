@@ -56,7 +56,7 @@
 	<!-- Header -->
 	<div id="header">
 	
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
+		<%-- <tiles:insertAttribute name="header"></tiles:insertAttribute> --%>
 		
 	</div>
 	<!-- Main -->
@@ -69,25 +69,24 @@
 		<!-- Content -->
 		<section id="portfolio" class="two">
 			<div class="col-sm-6 pofol-left">
-				<c:if test="${page=='index'}">
+				 <c:if test="${page=='index'}">
 					<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
 				</c:if>
 				<c:if test="${page=='event/eventList'}">
 					<tiles:insertAttribute name="gmap"></tiles:insertAttribute>
-				</c:if>
-				<c:if test="${page!='event/eventList'}">
-					<tiles:insertAttribute name="content"></tiles:insertAttribute>
-				</c:if>
+				</c:if> 
+				<tiles:insertAttribute name="content-left"></tiles:insertAttribute>
 			</div>
 			<div class="col-sm-6 pofol-right">
-				<c:if test="${page=='event/eventDetail'}">
+				<c:if test="${page=='index' }">
+					<tiles:insertAttribute name="content-right"></tiles:insertAttribute>
+				</c:if>
+				<%-- <c:if test="${page=='event/eventDetail'}">
 				</c:if>
 				<c:if test="${page=='index'}">
 					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
-				</c:if>
-				<c:if test="${page=='event/eventList'}">
-					<tiles:insertAttribute name="content"></tiles:insertAttribute>
-				</c:if>
+				</c:if> --%>
+				<%-- <tiles:insertAttribute name="content-left"></tiles:insertAttribute> --%>
 				<!-- content 나눠서 넣으실 분은 나눠서 여기에 넣어주세요 -->
 				
 			</div>

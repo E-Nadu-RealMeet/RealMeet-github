@@ -66,10 +66,10 @@ public class UsersController {
 		
 		if(af>0){
 			System.out.println("회원정보수정 성공");
-			return "redirect:../users/info";
+			return "redirect:../users/home";
 		}else{
 			System.out.println("회원정보수정 실패");
-			return "redirect:../"; 
+			return "redirect:../users/edit"; 
 		}
 	}
 
@@ -153,7 +153,7 @@ public class UsersController {
 		}else{
 			log.info("회원삭제 실패");
 			//실패해도 메인페이지로 가면 실패 메세지는 따로 띄우나요?
-			return "redirect:../"; 
+			return "redirect:../users/check"; 
 		}
 	}
 	

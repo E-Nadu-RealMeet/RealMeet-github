@@ -3,52 +3,36 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-  <!-- <definition name="index" template="/WEB-INF/views/modules/index/layout.jsp">
-    <put-attribute name="header" value="/WEB-INF/views/modules/commons/leftBar.jsp" />
-    <put-attribute name="topMenu" value="/WEB-INF/views/modules/commons/topMenu.jsp" />
-    <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
-    <put-attribute name="Portfolio" value="/WEB-INF/views/modules/commons/content.jsp" />
-    <put-attribute name="about" value="/WEB-INF/views/modules/commons/content.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
-    <put-attribute name="slideBanner" value="/WEB-INF/views/modules/commons/slideBanner.jsp"/>
-    <put-attribute name="container1" value="/WEB-INF/views/modules/index/container1.jsp"/>
-    <put-attribute name="about" value="/WEB-INF/views/modules/index/about.jsp"></put-attribute>
-  </definition> -->
   <definition name="*" template="/WEB-INF/views/modules/layout.jsp">
   	<!-- 공통사항 -->
     <put-attribute name="header" value="/WEB-INF/views/modules/commons/leftBar.jsp" />
     <put-attribute name="topMenu" value="/WEB-INF/views/modules/commons/topMenu.jsp" />
     <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
-    <put-attribute name="page" value="{1}"></put-attribute>
+   <!--  <put-attribute name="page" value="{1}"></put-attribute> -->
     <put-attribute name="login" value="/WEB-INF/views/modules/login.jsp"/>
     <!-- 공통사항 -->
     <!-- 추가사항 -->
-    <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+     <put-attribute name="content-left" value="/WEB-INF/views/{1}.jsp"/>
     <put-attribute name="carousel" value="/WEB-INF/views/modules/commons/carousel.jsp"/>
-    <put-attribute name="listContent" value="/WEB-INF/views/event/eventList.jsp"/>
-<!--     <put-attribute name="listFilter" value="/WEB-INF/views/event/eventListFilter.jsp"/> -->
+     <put-attribute name="content-right" value="/WEB-INF/views/event/eventList.jsp"/>
+    <!---->
     <put-attribute name="css" value="/{1}.css"/>
     <put-attribute name="js" value="/{1}.js"/>
     <!-- 추가사항 -->
   </definition>
   <definition name="*/*" template="/WEB-INF/views/modules/layout.jsp">
-  	<!-- 공통사항 -->
     <put-attribute name="header" value="/WEB-INF/views/modules/commons/leftBar.jsp" />
     <put-attribute name="topMenu" value="/WEB-INF/views/modules/commons/topMenu.jsp" />
     <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
     <put-attribute name="page" value="{1}/{2}"></put-attribute>
     <put-attribute name="login" value="/WEB-INF/views/modules/login.jsp"/>
-    <!-- 공통사항 -->
-    <!-- 추가사항 -->
-    <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    <put-attribute name="content-right" value="/WEB-INF/views/{1}/{2}-right.jsp"/>
+    <put-attribute name="content-left" value="/WEB-INF/views/{1}/{2}.jsp"/>
     <put-attribute name="gmap" value="/WEB-INF/views/modules/commons/gmap.jsp"></put-attribute>
     <put-attribute name="css" value="/{1}/{2}.css"/>
     <put-attribute name="js" value="/{1}/{2}.js"/>
-    <!-- 추가사항 -->
   </definition>
-
-  <definition name="modules/commons/carousel" template="/WEB-INF/views/modules/commons/carousel.jsp"></definition>
 
 </tiles-definitions>

@@ -136,15 +136,22 @@ public class EventController {
 		if(mid != null && mid != ""){
 			model.addAttribute("mid", mid);
 		}
-		String introValue = "모임의 자세한 정보입니다.";
-        model.addAttribute("introValue", introValue );
+		
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
-		eventDetailService.detailLoad(req, esidx, model);
-		model.addAttribute("page","event/eventDetail");
+		int iv = eventDetailService.detailLoad(req, esidx, model);
 		
+		
+		if(iv>0){
 		//뷰 리턴(detail)
-		return "event/eventDetail";
+			String introValue = "모임의 자세한 정보입니다.";
+	        model.addAttribute("introValue", introValue );
+	        model.addAttribute("page","event/eventDetail");
+	        
+			return "event/eventDetail";
+		}else{
+			return "redirect:list";
+		}
 	}
 
 	// 이벤트 등록
