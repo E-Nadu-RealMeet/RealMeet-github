@@ -8,13 +8,14 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <script src="${pageContext.request.contextPath}/resources/core/js/customer.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" />
 
 
 				<!-- Portfolio -->
 
 
 					<section id="portfolio" class="two">
-						<div class="container" id="container">
+						<div class="container" id="container" style="width: 200%">
 
 
 
@@ -22,39 +23,20 @@
 
 							
 							<div class="row">
-								<div class="5u" style="margin-left: 6%; margin-bottom: 7%; margin-top: 7%">
+								<div class="5u" style="margin-left: 7%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#NoticesModal">
-										<img src="${pageContext.request.contextPath}/resources/core/images/pic02.jpg" alt="" width="200px" height="100px"/>
-										<header>
-											<h2 >공지사항</h2>
-
-										</header></button>
+										<button data-toggle="modal" data-target="#NoticesModal" style="background-image:url('../resources/core/images/Norway-summer-landscape-grass-trees-road-hills-green_1920x1080.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">공지사항</h2></button>
 									</article>
 									<article class="item">
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#QNAModal">
-										<img src="${pageContext.request.contextPath}/resources/core/images/pic06.jpg" alt="" width="200px" height="100px"/>
-										<header>
-											<h2>내 문의내역</h2>
-										</header></button>
+										<button data-toggle="modal" data-target="#QNAModal" style="background-image:url('../resources/core/images/16.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">문의내역</h2></button>
 									</article>
 								</div>
 								<div class="5u" style="margin-top: 7%" >
 									<article class="item">
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#FAQsModal">
-										<img src="${pageContext.request.contextPath}/resources/core/images/pic04.jpg" alt="" width="200px" height="100px"/>
-										<header>
-											<h2>FAQ</h2>
-										</header></button>
+										<button data-toggle="modal" data-target="#FAQsModal" style="background-image:url('../resources/core/images/duga14.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">FAQ</h2></button>
 									</article>
 									<article class="item">
-										<button type="button" style="background-color: #81918E;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#callModal">
-										<img src="${pageContext.request.contextPath}/resources/core/images/pic05.jpg" alt="" width="200px" height="100px"/>
-									
-										<header>
-											<h2>문의하기</h2>
-										</header>
-										</button>
+										<button data-toggle="modal" data-target="#callModal" style="background-image:url('../resources/core/images/F4-1.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">문의하기</h2></button>
 									</article>
 								</div>
 							</div>
@@ -62,7 +44,7 @@
 							
 							<a href="information" >
 										<header>
-											<h3>이용안내</h3>
+											<h2>이용안내</h2>
 										</header></a>
 						</div>
 												
@@ -195,6 +177,9 @@
 <!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
 <!-- 				</form> -->
 <div class="modal-footer">
+<c:if test="${mid == 'admin'}">
+<button data-toggle="modal" data-target="#AnswerModal">답변</button>
+</c:if>
 				<button data-dismiss="modal">닫기</button>
 </div>   
 </div>
@@ -204,12 +189,12 @@
 <div id="callModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
 <div class="modal-content">
-
+<div class="modal-header">
 <header>
 								<h2>문의하기</h2>
 							</header>
 
-
+</div>
 <!-- 문의하기 기본 뷰 -->
 							<form method="post" action="insertQNA">
 								<div class="row">
@@ -217,12 +202,13 @@
 									<div class="11u$" style="margin-left: 2%">
 										<textarea name="content" placeholder="내용"></textarea>
 									</div>
+									
 									<div class="11u$" style="margin-left: 2%">
 										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="문의" />
 									</div>
 								</div>
 							</form>
-	
+
 </div>
 </div>
 </div>

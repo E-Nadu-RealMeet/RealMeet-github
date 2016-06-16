@@ -1,5 +1,6 @@
 package com.nadu.rms.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.GuestlistDao;
@@ -31,6 +33,8 @@ public class EventDataService {
 	}
 
 	public String listLoad(HttpServletRequest req) {
+
+		String[] query = req.getParameterValues("filterQuery");
 
 		// Json 형태로 변환시켜줄 Gson 객체 생성
 		Gson gson = new Gson();

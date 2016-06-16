@@ -111,6 +111,13 @@
 						</ul>
 					</div></li>
 			</ul>
+			<div id="selectfilter">
+					<a class="region" value="서울"><span>서울</span></a>
+					<a class="region" value="경상도"><span>경상도</span></a>
+					<a class="interest" value="스터디"><span>스터디</span></a>
+			</div>
+			
+			
 		</div>
 	</div>
 	<div class="row" style="margin: 0.6em;">
