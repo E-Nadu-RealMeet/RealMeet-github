@@ -80,12 +80,7 @@
 				</c:if>
 			</div>
 			<div class="col-sm-6 pofol-right">
-<<<<<<< .merge_file_a01112
-				<c:if test="${page=='index'}">
-					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
-=======
 				<c:if test="${page=='event/eventDetail'}">
->>>>>>> .merge_file_a09552
 				</c:if>
 				<c:if test="${page=='event/eventList'}">
 					<tiles:insertAttribute name="content"></tiles:insertAttribute>
