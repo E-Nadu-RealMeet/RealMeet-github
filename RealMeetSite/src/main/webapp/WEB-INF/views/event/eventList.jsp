@@ -113,4 +113,44 @@
 			</ul>
 		</div>
 	</div>
+	<div class="row" style="margin: 0.6em;">
+	   <div class="col-md-6 portfolio-item">
+	       <div class="col-md-6 portfolio-item-detail">
+	       <p>
+		       <span class="caption-title">
+		           <a href="#">Project One</a>
+		       </span>
+	       </p>
+	       <br>
+	       <p>
+		       <span class="caption-desc">
+		       		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+		       </span>
+	       </p>
+	       <span class="icon fa-heart-o">${e.getGood()}</span>
+						&nbsp
+				<span class="icon fa-commenting-o">${e.getReviewCnt()}</span>
+	       </div>
+	   </div>
+	</div>
+	<div class="row" style="margin: 0.6em;">
+	   <div class="col-md-6 portfolio-item">
+	       <div class="col-md-6 portfolio-item-detail">
+	       <p>
+		       <span class="caption-title">
+		           <a href="#">Project Two</a>
+		       </span>
+	       </p>
+	       <br>
+	       <p>
+		       <span class="caption-desc">
+		       		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+		       </span>
+	       </p>
+	       <span class="icon fa-heart-o"></span>
+						&nbsp
+						<span class="icon fa-commenting-o"></span>
+	       </div>
+	   </div>
+	</div>
 </div>
