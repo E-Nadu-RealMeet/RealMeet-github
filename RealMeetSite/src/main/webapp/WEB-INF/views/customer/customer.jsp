@@ -23,7 +23,7 @@
 
 							
 							<div class="row">
-								<div class="5u" style="margin-left: 7%; margin-bottom: 7%; margin-top: 7%">
+								<div class="5u" style="margin-left: 8%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
 										<button data-toggle="modal" data-target="#NoticesModal" style="background-image:url('../resources/core/images/Norway-summer-landscape-grass-trees-road-hills-green_1920x1080.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">공지사항</h2></button>
 									</article>
@@ -150,7 +150,7 @@
 <div class="modal-content">
  <div class="modal-header">
 <header>
-								<h2>내 문의내역</h2>
+								<h2>문의내역</h2>
 							</header>
 						</div>	
 <div class="modal-body">
@@ -168,6 +168,9 @@
 						<td>${QNA.qidx}</td>
 						<td><a href="QNADetail/${QNA.qidx}" data-toggle="modal" data-target="#QNADetailModal" style="color: #81918E;">${QNA.title}</a></td>
 						<td>${QNA.regdate}</td>
+						<c:if test="${mid == 'won'}">
+						<td><a href="Answer/${QNA.qidx}"><button>답변</button></a></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -177,9 +180,7 @@
 <!-- 				<div class="4u" align="center"><input style="margin-left: 100%;" type="text" name="title" placeholder="제목" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="검색" /></div> -->
 <!-- 				</form> -->
 <div class="modal-footer">
-<c:if test="${mid == 'admin'}">
-<button data-toggle="modal" data-target="#AnswerModal">답변</button>
-</c:if>
+
 				<button data-dismiss="modal">닫기</button>
 </div>   
 </div>
@@ -295,7 +296,7 @@
 <div class="modal-content">
 
 <header>
-								<h2>내 문의내역</h2>
+								<h2>문의내역</h2>
 							</header>
 				
 
@@ -305,16 +306,16 @@
 				
 				<tr>
 					<th>제목</th>
-					<th>${QNAsDetail.title}</th>
+					<th>${QNADetail.title}</th>
 				</tr>
 				
 				<tr>
 					<th>작성일</th>
-					<th>${QNAsDetail.regdate}</th>
+					<th>${QNADetail.regdate}</th>
 				</tr>
 				
 					<tr>
-					<td>${QNAsDetail.content}</td>
+					<td>${QNADetail.content}</td>
 					</tr>
 			
 
@@ -326,3 +327,4 @@
 
 </div>
 </div>
+

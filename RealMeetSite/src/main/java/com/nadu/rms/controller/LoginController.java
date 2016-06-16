@@ -27,7 +27,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String home(HttpServletRequest request, HttpServletResponse response, String mid, String pwd,String checkBoxMid, Model model) {
+	public String home(HttpServletRequest request, HttpServletResponse response, String mid, String pwd,String type, String checkBoxMid, Model model) {
 
 		UsersDao dao = new UsersDao();
 		Users m = dao.selectUsers(mid);
@@ -39,6 +39,7 @@ public class LoginController {
 		} else {
 			request.getSession().setAttribute("mid", mid);
 			request.getSession().setAttribute("pwd", pwd);
+			request.getSession().setAttribute("type", type);
 			request.getSession().setAttribute("checkBoxMid", checkBoxMid);
 			String savePage = (String) request.getSession().getAttribute("savePage");
 			if(checkBoxMid != null  && !checkBoxMid.equals("")){

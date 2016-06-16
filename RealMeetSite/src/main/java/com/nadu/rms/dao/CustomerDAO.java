@@ -19,6 +19,14 @@ public class CustomerDAO {
         session.close();
         return list;
     }
+	
+	public List<QNA> selectQNAsNoAnswer() {
+        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+        CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+        List<QNA> list = mapper.selectQNAsNoAnswer();
+        session.close();
+        return list;
+    }
 
 	public List<FAQ> selectFAQs() {
 
@@ -109,33 +117,16 @@ public class CustomerDAO {
 		}
 		
 	}
-//
-//	public List<FAQ> selectFAQsByTitle(String title) {
-//		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-//		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-//		          List<FAQ> list = mapper.selectFAQsByTitle(title);
-//		          session.close();
-//		          return list;
-//
-//		         
-//
-//	}
-//
-//	public List<Notices> selectNoticesByTitle(String title) {
-//		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-//		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-//		          List<Notices> list = mapper.selectNoticesByTitle(title);
-//		          session.close();
-//		          return list;
-//
-//	}
-//
-//	public List<QNA> selectQNAsByTitle(String title) {
-//		          SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-//		          CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-//		          List<QNA> list = mapper.selectQNAsByTitle(title);
-//		          session.close();
-//		          return list;
-//
-//	}
+
+	public int addAnswer(QNA q) {
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		CustomerMapper mapper = session.getMapper(CustomerMapper.class);
+		try {
+			int statement = mapper.addAnswer(q);
+			return statement;
+		} finally {
+			session.commit(); // commit�� ���ϸ� ������ �Է��� �ȵ˴ϴ�.
+			session.close();
+		}
+	}
 }

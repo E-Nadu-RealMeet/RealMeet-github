@@ -7,7 +7,6 @@
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/Detail.css" /> --%>
 
 
-
 							<header>
 								<h2>공지사항</h2>
 							</header>
