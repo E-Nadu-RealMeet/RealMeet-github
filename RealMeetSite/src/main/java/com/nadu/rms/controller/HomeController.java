@@ -2,6 +2,9 @@ package com.nadu.rms.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,7 @@ public class HomeController {
      * Simply selects the home view to render by returning its name.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home(HttpServletRequest request,Model model) {
        
     	String introValue = "DadleMoyeo에 오신 것을 환영합니다.";
         model.addAttribute("introValue", introValue );
@@ -44,6 +47,10 @@ public class HomeController {
 		model.addAttribute("list", list);    
 		model.addAttribute("page","index");
          
+		Cookie[] coos = request.getCookies();
+		String cookieMid = CookieSearch.getCookie(coos, "mid");
+		model.addAttribute("cookieMid", cookieMid);
+		
         return "index";
     }
 }

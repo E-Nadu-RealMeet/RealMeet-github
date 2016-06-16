@@ -21,10 +21,8 @@ public class LoginController {
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, Model model) {
-		Cookie[] coos = request.getCookies();
-		String cookieMid = CookieSearch.getCookie(coos, "mid");
-		model.addAttribute("cookieMid", cookieMid);
+	public String home(Model model) {
+		
 		return "modules/login";
 	}
 
