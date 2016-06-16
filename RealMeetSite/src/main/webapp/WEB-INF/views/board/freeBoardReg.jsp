@@ -37,7 +37,8 @@
 						<dl class="article-detail-row half-row">
 							<dt class="article-detail-title">작성자</dt>
 							<dd class="article-detail-data half-data">
-								<input type="text" name="writer">
+								${mid}
+								<input type="hidden" name="writer" value="${mid}">
 							</dd>
 						</dl>
 						<div class="article-content">

@@ -22,7 +22,7 @@ public interface BoardMapper {
 	@Select("SELECT * FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
 	Board selectBoardDetail(@Param("bidx")int bidx);
 
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE)")
+	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'free', 0)")
 	int insertBoard(Board fb);
 	
 	@Update("UPDATE BOARDS SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
@@ -30,5 +30,8 @@ public interface BoardMapper {
 	
 	@Delete("DELETE FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
 	int delBoard(@Param("bidx")String bidx);
+	
+	@Update("UPDATE BOARDS SET READCOUNT=READCOUNT+1 WHERE BIDX=#{bidx, jdbcType=VARCHAR}")
+	int upHitBoard(@Param("bidx")int bidx);
 	
 }

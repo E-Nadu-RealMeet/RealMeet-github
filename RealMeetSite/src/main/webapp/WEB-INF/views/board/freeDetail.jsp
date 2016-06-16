@@ -37,9 +37,6 @@
 		</table>
 	</div>
 
-
-
-
 <p class="article-comment margin-small" align="right">
 	<a class="btn btn-primary"
 		href="${pageContext.request.contextPath}/board/freeBoard">목록</a> <a

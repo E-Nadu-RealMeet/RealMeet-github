@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.nadu.rms.dao.BannerDAO;
 import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.dao.CategoryDAO;
+import com.nadu.rms.dao.CommentDao;
 import com.nadu.rms.dao.CustomerDAO;
 import com.nadu.rms.dao.EventlistDao;
 import com.nadu.rms.dao.EventsDao;
@@ -26,7 +27,6 @@ import com.nadu.rms.service.EventRegService;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.nadu.rms.controller"})
 public class AutowiredConfig  extends WebMvcConfigurerAdapter{
-	
 
     @Bean
     public EventsDao eventsDao(){
@@ -90,5 +90,4 @@ public class AutowiredConfig  extends WebMvcConfigurerAdapter{
     public CustomerService customerService(){
     	return new CustomerService();
     }
-    
 }

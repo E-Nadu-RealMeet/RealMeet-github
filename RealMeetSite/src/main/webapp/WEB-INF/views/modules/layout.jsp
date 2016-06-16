@@ -75,16 +75,22 @@
 				<c:if test="${page=='event/eventList'}">
 					<tiles:insertAttribute name="gmap"></tiles:insertAttribute>
 				</c:if>
-				<tiles:insertAttribute name="content"></tiles:insertAttribute>
+				<c:if test="${page!='event/eventList'}">
+					<tiles:insertAttribute name="content"></tiles:insertAttribute>
+				</c:if>
 			</div>
 			<div class="col-sm-6 pofol-right">
-				<c:if test="${page=='index'}">
-					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
-				</c:if>
-				<!-- content 나눠서 넣으실 분은 나눠서 여기에 넣어주세요 -->
 				<c:if test="${page=='event/eventDetail'}">
 					<tiles:insertAttribute name="content-right"></tiles:insertAttribute>
 				</c:if>
+				<c:if test="${page=='index'}">
+					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
+				</c:if>
+				<c:if test="${page=='event/eventList'}">
+					<tiles:insertAttribute name="content"></tiles:insertAttribute>
+				</c:if>
+				<!-- content 나눠서 넣으실 분은 나눠서 여기에 넣어주세요 -->
+				
 			</div>
 		</section>
 	</div>

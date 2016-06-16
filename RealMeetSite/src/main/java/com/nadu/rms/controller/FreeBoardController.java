@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,21 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nadu.rms.dao.BoardDao;
+import com.nadu.rms.dao.CommentDao;
 import com.nadu.rms.vo.Board;
+import com.nadu.rms.vo.Comment;
 
 @Controller
 @RequestMapping("board/*")
 public class FreeBoardController {
 	
 	BoardDao boardDao;
+	CommentDao commentDao;
 	
 	@Autowired
 	public void setBoardDao(BoardDao boardDao){
 		this.boardDao = boardDao;
 	}
 	
+	@Autowired
+	public void setCommentDao(CommentDao commentDao){
+		this.commentDao = commentDao;
+	}
+	
 	@RequestMapping(value="/freeBoard", method = RequestMethod.GET)
 	public String freeBoard(Model model, HttpServletRequest req){
+		String mid = (String) req.getSession().getAttribute("mid");
 		
 		int pages = 1;
 		String tmpPages = req.getParameter("pages");
@@ -73,8 +83,8 @@ public class FreeBoardController {
 		model.addAttribute("endPageNum",endPageNum);
 		model.addAttribute("introValue","자유 게시판");
 		model.addAttribute("list",list);
+		model.addAttribute("mid", mid);
 		model.addAttribute("page", "board/freeBoard");
-		
 		
 		return "board/freeBoard";
 		
@@ -97,22 +107,32 @@ public class FreeBoardController {
 		/*String list = boardDao.selectFreeDetail()
 		 
 		model.addAttribute("list", list);*/
+		
 		return "board/freeDetail";
 	}
 	
-	@RequestMapping(value="/freeDetail/{nidx}", method = RequestMethod.GET)
-	public String freeDetail(@PathVariable int nidx, Model model){
+	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
+	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		boardDao.upHitBoard(bidx);
+		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
+		model.addAttribute("bb", commentDao.selectComments(paramMap));
+		
 		model.addAttribute("introValue","자유 게시판");
-		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
-		model.addAttribute("bb", boardDao.selectFreeDetail(nidx+1));
-		model.addAttribute("cc", boardDao.selectFreeDetail(nidx-1));
+		String cwriter=(String) req.getSession().getAttribute("mid");
+		model.addAttribute("cwriter", cwriter);
 		
 		return "board/freeDetail";
 	}
 	
 	//게시물등록
 	@RequestMapping(value="/freeReg", method = RequestMethod.GET)
-	public String freeReg(Model model){
+	public String freeReg(HttpServletRequest req, Model model){
+		String mid = (String) req.getSession().getAttribute("mid");
+		
+		model.addAttribute("mid", mid);
 		model.addAttribute("introValue","글 쓰기");
 		
 		return "board/freeBoardReg";
@@ -129,6 +149,17 @@ public class FreeBoardController {
 		return "redirect:freeBoard";
 		
 		
+	}
+	
+	@RequestMapping(value="/commentReg", method = RequestMethod.POST)
+	public String commentReg(Comment comment, HttpServletRequest req){
+		
+		
+		String bidx = req.getParameter("bidx");
+		System.out.println(bidx);
+			
+		
+		return "redirect:../freeDetail"+bidx;
 	}
 	
 	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.GET)
