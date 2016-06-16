@@ -80,13 +80,18 @@
 				</c:if>
 			</div>
 			<div class="col-sm-6 pofol-right">
+<<<<<<< .merge_file_a01112
 				<c:if test="${page=='index'}">
 					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
+=======
+				<c:if test="${page=='event/eventDetail'}">
+>>>>>>> .merge_file_a09552
 				</c:if>
 				<c:if test="${page=='event/eventList'}">
 					<tiles:insertAttribute name="content"></tiles:insertAttribute>
 				</c:if>
 				<!-- content 나눠서 넣으실 분은 나눠서 여기에 넣어주세요 -->
+				
 			</div>
 		</section>
 	</div>

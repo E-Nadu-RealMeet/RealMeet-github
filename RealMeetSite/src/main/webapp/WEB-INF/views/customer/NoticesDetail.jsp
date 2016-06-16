@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -8,7 +7,7 @@
 
 
 							<header>
-								<h2>°øÁö»çÇ×</h2>
+								<h2>ê³µì§€ì‚¬í•­</h2>
 							</header>
 				
 
@@ -17,12 +16,12 @@
 				
 				
 				<tr>
-					<th>Á¦¸ñ</th>
+					<th>ì œëª©</th>
 					<th>${NoticesDetail.title}</th>
 				</tr>
 				
 				<tr>
-					<th>ÀÛ¼ºÀÏ</th>
+					<th>ì‘ì„±ì¼</th>
 					<th>${NoticesDetail.regdate}</th>
 				</tr>
 				
@@ -33,5 +32,5 @@
 
 			</table>
 
-			<a data-dismiss="modal" data-target="#NoticesModalDetail"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="µÚ·Î" /></a>
+			<a data-dismiss="modal" data-target="#NoticesModalDetail"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="ë’¤ë¡œ" /></a>
 

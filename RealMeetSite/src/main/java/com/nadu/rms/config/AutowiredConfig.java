@@ -27,7 +27,6 @@ import com.nadu.rms.service.EventRegService;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.nadu.rms.controller"})
 public class AutowiredConfig  extends WebMvcConfigurerAdapter{
-	
 
     @Bean
     public EventsDao eventsDao(){
@@ -95,6 +94,4 @@ public class AutowiredConfig  extends WebMvcConfigurerAdapter{
     public CustomerService customerService(){
     	return new CustomerService();
     }
-    
-   
 }

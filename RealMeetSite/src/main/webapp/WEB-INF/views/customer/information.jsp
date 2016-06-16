@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -15,31 +14,31 @@ section#top{
 						<div class="container" style="width: 200%">
 
 							<header>
-								<h2>ÀÌ¿ë¾È³»</h2>
+								<h2>ì´ìš©ì•ˆë‚´</h2>
 							</header>
 
 			<ul>
 			<li>
-			<p>ÀÌº¥Æ® ¸®½ºÆ®</p>
+			<p>ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸</p>
 			</li>
 			<li>
 			<img alt="" src="${pageContext.request.contextPath}/resources/core/images/capture01.png" width="75%" height="75%">
 			</li>
 			<li>
-			<p>ÀÌº¥Æ® ¸®½ºÆ® ÅÇÀ» ÅëÇØ ÇöÀç ¸ðÁýÇÏ°í ÀÖ´Â ¸®½ºÆ®¸¦ È®ÀÎÇØ º¼¼ö ÀÖ½À´Ï´Ù.</p>
+			<p>ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸ íƒ­ì„ í†µí•´ í˜„ìž¬ ëª¨ì§‘í•˜ê³  ìžˆëŠ” ë¦¬ìŠ¤íŠ¸ë¥¼ í™•ì¸í•´ ë³¼ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</p>
 			</li>
 			<li>
-			<p>ÀÌº¥Æ® ¸¸µé±â</p>
+			<p>ì´ë²¤íŠ¸ ë§Œë“¤ê¸°</p>
 			</li>
 			<li>
 			<img alt="" src="${pageContext.request.contextPath}/resources/core/images/capture02.png" width="75%" height="75%">
 			</li>
 			<li>
-			<p>ÀÌº¥Æ® ¸¸µé±â ÅÇÀ» ÅëÇØ ÀÚ±â°¡ Á÷Á¢ ¿øÇÏ´Â ¸ðÀÓÀ» ¸¸µé¼ö ÀÖ½À´Ï´Ù.</p>
+			<p>ì´ë²¤íŠ¸ ë§Œë“¤ê¸° íƒ­ì„ í†µí•´ ìžê¸°ê°€ ì§ì ‘ ì›í•˜ëŠ” ëª¨ìž„ì„ ë§Œë“¤ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</p>
 			</li>
 			
 			</ul>
-			<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" value="µÚ·Î" /></a>	
+			<a href="customer"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="button" value="ë’¤ë¡œ" /></a>	
 		</div>
 					</section>
 
