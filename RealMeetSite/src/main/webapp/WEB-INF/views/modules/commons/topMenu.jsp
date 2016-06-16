@@ -44,11 +44,11 @@
 			<ul id="topMenuUl-right">
 				<c:if test="${empty mid}">
 					<li><a class="topButton" href="#" data-toggle="modal"
-						data-target="#top_loginModal" type="button">login</a></li>
+						data-target="#top_loginModal" type="button"><span class="icon fa-unlock"></span>login</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/logout">logout</a></li>
+						href="${pageContext.request.contextPath}/logout"><span class="icon fa-lock"></span>logout</a></li>
 				</c:if>
 				<c:if test="${empty mid}">
 					<li><a class="topButton"

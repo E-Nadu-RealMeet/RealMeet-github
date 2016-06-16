@@ -44,7 +44,9 @@ public class UsersController {
 
 		String id = req.getParameter("id");
 		Users users = null;
+		String introValue = "정보를 수정해주세요.";
 		
+        model.addAttribute("introValue", introValue );
 		users = usersDao.selectUsers(id);
 		model.addAttribute("users", users);
 		model.addAttribute("id", id);
@@ -74,7 +76,8 @@ public class UsersController {
 	//회원가입
 	@RequestMapping(value="join", method = RequestMethod.GET)
 	public String usersJoin(Model model){
-		
+		String introValue = "회원가입페이지입니다.";
+        model.addAttribute("introValue", introValue );
 		model.addAttribute("page","users/usersJoin");
 		return "users/usersJoin";		
 	}
@@ -103,6 +106,8 @@ public class UsersController {
 	public String usersInfo(Model model, HttpServletRequest request){
 		
 		String mid = (String)request.getSession().getAttribute("mid");
+		String introValue = "현재 로그인되어있는 아이디의 정보입니다.";
+        model.addAttribute("introValue", introValue );
 		if(mid == null || mid == ""){
 			model.addAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
@@ -111,7 +116,7 @@ public class UsersController {
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:../login";
 		}
-
+		
 		Users users = null;
 		users = usersDao.selectUsers(mid);
 		model.addAttribute("users", users);
@@ -132,19 +137,23 @@ public class UsersController {
 	
 	//회원탈퇴 proc
 	@RequestMapping(value="check", method = RequestMethod.POST)
-	public String usersCheck(String id, HttpServletRequest request, String mid){
+	public String usersCheck(Model model, String id, HttpServletRequest request, String mid){
 		
-		System.out.println(id);
+		log.info(id);
 		request.getSession().setAttribute("mid", mid);
-		System.out.println("회원정보삭제시작");
+		log.info("회원정보삭제시작");
+		
+		String introValue = "모임 목록입니다.";
+        model.addAttribute("introValue", introValue );
 		int af = usersDao.delUsers(id);
 		
 		if(af>0){
-			System.out.println("회원삭제 성공");
+			log.info("회원삭제 성공");
 			mid = "";
 			return "redirect:../";
 		}else{
-			System.out.println("회원정보수정 실패");
+			log.info("회원삭제 실패");
+			//실패해도 메인페이지로 가면 실패 메세지는 따로 띄우나요?
 			return "redirect:../"; 
 		}
 	}

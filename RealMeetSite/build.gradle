@@ -39,9 +39,7 @@ spring: '3.2.2.RELEASE'
 // In this section you declare the dependencies for your production and test code
 // 의존성 설정
 dependencies {
-	compile 'org.slf4j:slf4j-api:1.7.1',
-		'org.slf4j:slf4j-simple:1.7.1',
-		'javax.mail:mail:1.4.5',
+	compile 'javax.mail:mail:1.4.5',
 		'javax.activation:activation:1.1.1',
 		'org.springframework:spring-core:3.2.2.RELEASE',
 		'org.springframework:spring-webmvc:3.2.2.RELEASE',
