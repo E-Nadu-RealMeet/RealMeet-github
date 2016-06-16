@@ -108,7 +108,9 @@ function getFilters(page){
 function createListElement(data){
 	// 이미있는 div 복제
 	var newDiv = $('.row.dummy').clone();
-	
+	newDiv.attr('onclick','#');
+	newDiv.attr('data-toggle','modal');
+	newDiv.attr('data-target',"#detail");
 	newDiv.attr('class','.row');
 	newDiv.attr('style',"margin: 0.6em;");
 	
@@ -118,6 +120,10 @@ function createListElement(data){
 	newDiv.find('.caption-desc').html(data.description);
 	newDiv.find('.icon.fa-heart-o').html(data.good);
 	newDiv.find('.icon.fa-commenting-o').html(data.reviewcnt);
+	
+	//모달 생성
+	
+	
 	
 	return newDiv;
 }

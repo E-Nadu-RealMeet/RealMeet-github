@@ -141,6 +141,7 @@
 	</div>
 	<div id="viewList">
 	</div>
+	<!-- dummy -->
 	<div class="row dummy" style="margin: 0.6em; display: none;">
 		<div class="col-md-6 portfolio-item">
 			<div class="col-md-6 portfolio-item-detail">
@@ -158,5 +159,50 @@
 					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
 			</div>
 		</div>
+		
+		<!-- <div class="modal fade" id="detail" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">상세 내용</h4>
+				</div>
+				<div class="modal-body" style="overflow: auto">
+					<div class="col-md-12" style="text-align: left"></div>
+					<hr>
+					<div class="col-md-2">
+						<img src="'+contextPath+'/resources/core/images/pic.jpg"
+							alt="Responsive image" class="img-rounded img-responsive"
+							style="width: 100px; height: 100px">
+					</div>
+					<div class="col-md-10">
+						<div style="text-align: left; font-size: 0.8em;">
+							<div>Nick :  님</div>
+							<div>ID : </div>
+							<div>RAITNG : </div>
+							<div>INTEREST : </div>
+							<div>PHONE : </div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<a href=''><button
+							type="button" class="btn btn-primary">상세 페이지 이동</button></a>
+				</div>
+			</div>
+		</div> -->
 	</div>
-</div>
+		
+		
+		
+		
+	</div>
+	
+	
+	
+	
