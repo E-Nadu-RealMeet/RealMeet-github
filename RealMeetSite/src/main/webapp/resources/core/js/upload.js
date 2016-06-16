@@ -45,7 +45,6 @@ $(document).ready(function(){
        {
             var fd = new FormData();
             fd.append('file', files[i]);
-      		alert((countImg+1)+"번째 사진 업로드")
             var status = new createStatusbar(obj, countImg); //Using this we can set progress.
             status.setFileNameSize(files[i].name,files[i].size);
             sendFileToServer(fd,status,countImg);

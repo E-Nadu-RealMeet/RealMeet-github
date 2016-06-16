@@ -83,7 +83,7 @@
 			<h3>이벤트 수용 인원은 몇명까지 가능합니까?</h3>
 			<br>
 		</div>
-		<input type="number" name="quantity" min="2" max="20" class="regInput" > <br>
+		<input type="number" min="2" max="20" class="regInput" > <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>

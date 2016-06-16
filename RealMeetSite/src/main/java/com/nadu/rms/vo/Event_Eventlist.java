@@ -11,7 +11,7 @@ public class Event_Eventlist {
 	private String elidx;
 	private String addr;
 	private String eldate;
-	private int maxgnum;
+	private String maxgnum;
 	private int good;
 	private String latlng;
 	
@@ -27,11 +27,11 @@ public class Event_Eventlist {
 	public void setGood(int good) {
 		this.good = good;
 	}
-	public int getMaxgnum() {
+	public String getMaxgnum() {
 		return maxgnum;
 	}
 	public void setMaxgnum(String maxgnum) {
-		this.maxgnum = Integer.parseInt(maxgnum);
+		this.maxgnum = maxgnum;
 	}
 	public String getEsidx() {
 		return esidx;

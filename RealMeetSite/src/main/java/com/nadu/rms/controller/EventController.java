@@ -42,10 +42,6 @@ public class EventController {
 	public void setEventEditService(EventEditService eventEditService) {
 		this.eventEditService = eventEditService;
 	}
-
-	
-
-	
 	@Autowired
 	public void setEventApplyService(EventApplyService eventApplyService) {
 		this.eventApplyService = eventApplyService;
@@ -175,7 +171,7 @@ public class EventController {
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
 	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
-
+		log.info("maxNum : "+e.getMaxgnum());
 		int iv = eventRegService.eventReg(e, request);
 		log.info("eventReg 실행 결과 : "+iv);
 		if(iv>1){
