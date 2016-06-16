@@ -55,8 +55,9 @@ dependencies {
 		'javax.jms:jms:1.1',
 		'javax.servlet:jstl:1.2',
 		'ch.qos.logback:logback-classic:1.1.7',
-		'com.hynnet:oracle-driver-ojdbc6:12.1.0.1';
-		
+		'com.hynnet:oracle-driver-ojdbc6:12.1.0.1',
+		'org.codehaus.jackson:jackson-core-asl:1.9.12',
+		'org.codehaus.jackson:jackson-mapper-asl:1.9.12';
 
   compile group: 'com.google.code.gson', name: 'gson', version: '2.2.4'
   compile group: 'org.webjars.bower', name: 'jquery', version: '2.2.3'

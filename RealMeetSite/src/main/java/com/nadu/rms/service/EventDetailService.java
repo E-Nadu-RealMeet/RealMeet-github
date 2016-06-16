@@ -39,14 +39,15 @@ public class EventDetailService {
 		this.reviewsDAO = reviewsDAO;
 	}
 	
-	public void detailLoad(HttpServletRequest req,String esidx, Model model){
+	public int detailLoad(HttpServletRequest req,String esidx, Model model){
 		
 		List<Event_Eventlist> detail = eventsDAO.selectEventsDetailByESIDX(esidx);
-		
 		model.addAttribute("detail",detail);	// detail로 뷰에 넘김
 		/* 디테일에 해당하는 리뷰 가져오기.*/
 		List<Review> reviews = reviewsDAO.selectReviewsByEsidx(esidx);
 		model.addAttribute("reviews", reviews);
+		
+		return detail.size();
 		
 	}
 	// 이벤트 리스트 데이터 반환
@@ -81,7 +82,7 @@ public class EventDetailService {
 			tmpObject.setDate(e.getEldate());
 			tmpObject.setAttended(false);
 			
-			tmpObject.setMaxguest(e.getMaxgnum());
+			tmpObject.setMaxguest(Integer.parseInt(e.getMaxgnum()));
 			// 참여자 숫자 가져오기
 			for (Map<Object, Object> c : cntlist) {
 				//각 elidx마다 카운트된 숫자들중

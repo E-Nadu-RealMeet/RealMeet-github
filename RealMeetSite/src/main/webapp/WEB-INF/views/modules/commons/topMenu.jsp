@@ -60,13 +60,13 @@
 				</c:if>
 				<c:if test="${empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/join">join</a></li>
+						href="${pageContext.request.contextPath}/users/join"><span class="icon fa-user-plus"></span>join</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/info?id=${mid}"><span class="fa fa-user-plus"></span>info</a></li>
+						href="${pageContext.request.contextPath}/users/home"><span class="fa fa-user-plus"></span>info</a></li>
 				</c:if>
-
+				<li><a href="${pageContext.request.contextPath}/customer/customer" class="skel-layers-ignoreHref"><span class="icon fa-users"></span>고객센터</a></li>
 			</ul>
 		</div>
 	</div>

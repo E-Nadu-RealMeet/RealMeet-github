@@ -3,3 +3,8 @@
 section#top {
 	background-image: url("../images/user-top.jpg");
 }
+.col-sm-6.pofol-left {
+    width: 90%;
+    float: none;
+    margin: auto;
+}

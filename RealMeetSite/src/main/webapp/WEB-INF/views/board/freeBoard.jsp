@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 
 	<div class="container">
 			<table  class="table table-striped table-bordered">
@@ -57,10 +56,10 @@
 			<div class="board_list_button ">
 			<c:choose>
 			<c:when test="${!empty mid}">
-				<a href="${pageContext.request.contextPath}/board/freeReg"  align="right" ><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
+				<button onclick="window.location.href='${pageContext.request.contextPath}/board/freeReg'" style="float:right;">WRITE</button>
 			</c:when>
 			<c:when test="${empty mid}">
-				<a href="#"  align="right" onclick="loginChk(); return null;"><div class="board_button" style="margin-right: 100px;">WRITE</div></a>
+				<button style="float:right;"  onclick="loginChk(); return null;">WRITE</button>
 			</c:when>
 			</c:choose>
 			</div>

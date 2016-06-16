@@ -35,6 +35,14 @@ div.modal-body{
 	height: 500px;
 }
 
+
+div.modal-content div.col-sm-6.pofol-left{
+
+	width: 100%;
+}
+
+
+
 /* .modal { */
 /*     display: none; Hidden by default */
 /*     position: fixed; Stay in place */

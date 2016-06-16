@@ -22,8 +22,8 @@ public interface EventsMapper {
 	@Select("SELECT * FROM VIEW_JOIN_ES_ALL")
 	public List<Event_Eventlist> selectEventRelateAll();
 	
-	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_USERS) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC")
-	public List<Event_User> selectEventsNUser(Map<String, Integer> paramMap);
+	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_ALL WHERE REGEXP_LIKE(ADDR,#{region, jdbcType=VARCHAR}) AND REGEXP_LIKE(CATEGORY,#{category,jdbcType=VARCHAR})) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC")
+	public List<Event_User> selectEventsNUser(Map<String, Object> paramMap);
 	
 //	@Select("UPDATE EVENTS SET EVENTNAME = #{eventname, jdbcType=VARCHAR}, HOLDER = #{holder, jdbcType=VARCHAR}, DESCRIPTION = #{description, jdbcType=VARCHAR}, IMGSRC = #{imgsrc, jdbcType=VARCHAR}, ABSTRACT = #{abstract, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	@Update("UPDATE EVENTS SET EVENTNAME = #{eventname, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
@@ -46,8 +46,8 @@ public interface EventsMapper {
 	
 	public int insertEvents(Event_Eventlist e);
 	
-	@Select("SELECT COUNT(ESIDX) FROM EVENTS")
-	public int selectCntEvents();
+	@Select("SELECT COUNT(*) FROM VIEW_JOIN_ES_ALL WHERE REGEXP_LIKE(ADDR,#{region, jdbcType=VARCHAR}) AND REGEXP_LIKE(CATEGORY,#{category,jdbcType=VARCHAR})")
+	public int selectCntEvents(Map<String,Object> paramMap);
 	
 	@Select("SELECT CNAME FROM CATEGORIES")
 	public List<String> getCategories();

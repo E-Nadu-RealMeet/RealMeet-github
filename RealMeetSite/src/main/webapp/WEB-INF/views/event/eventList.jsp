@@ -4,32 +4,149 @@
 	pageEncoding="UTF-8"%>
 
 <head>
+<script type="text/javascript">
+
+	function divshow(aisi) {
+		document.getElementById(aisi).style.visibility = 'visible';
+	}
+	function divhide(aisi) {
+		document.getElementById(aisi).style.visibility = 'hidden';
+	}
+	function newfilter(c,v,id){
+		if($("#"+id).length > 0){
+			return;
+		}else{			
+			$("#selectfilter").append("<a id="+id+" class="+c+" value="+v+"><span>"+v+"</span></a><a id="+id+" href=javascript:delfilter('"+id+"');><img src=http://img.incruit.com/fe/sub_home_contents_job/img/button/btn_delete.gif></a>");
+			$("#viewList").empty();
+			page = 1;
+			getEventList(page);
+			page++;
+		}
+	}
+	function delfilter(divId){
+		$("[id="+divId+"]").remove();
+		$("#viewList").empty();
+		page = 1;
+		getEventList(page);
+		page++;
+	}
+</script>
+
 </head>
 <%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventList.js?ver=1" type="text/javascript"></script> --%>
 <div class="container" id="container">
 	<div style="max-width: 1000px; padding: 10px; margin: 10px auto;">
-		<div>
-			<!-- <div class="dropdown">
-						<button class="btn btn-default dropdwon-toggle" type="button" id="dr1" data-toggle="dropdown" aria-expanded="true">
-							DropDown
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dr1" style="margin: 0 auto;">
-						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-						 </ul>
-					</div> -->
-		</div>
+	<div id="menubar">
+		<ul id="sidebar" class="nav nav-pills nav-stacked">
+			<li class="menu"><a onmouseover="divshow('menu_div_0');"
+				onmouseleave="divhide('menu_div_0');" onfocus=this.blur><span
+					class="fa fa-bars">카테고리전체</span></a>
+				<div id=menu_div_0 class="menu_div"
+					onmouseover="divshow('menu_div_0');"
+					onmouseleave="divhide('menu_div_0');">
+					<div>
+						<ul style="width: 200px; border-top: none;">
+							<li style="border: 1px solid #ddd;"><a href="#">지역별</a>
+								<ul style="width: 250px;">
+									<li><a href="javascript:newfilter('region','서울','seuol');">서울</a></li>
+									<li><a
+										href="javascript:newfilter('region','인천', 'incheon');">인천</a></li>
+									<li><a
+										href="javascript:newfilter('region','경기', 'gyeongi');">경기</a></li>
+								</ul>
+								<ul style="width: 250px;">
+									<li><a
+										href="javascript:newfilter('region','충청도','chungcheong');">충청도</a></li>
+									<li><a
+										href="javascript:newfilter('region','강원도','gangwon');">강원도</a></li>
+									<li><a
+										href="javascript:newfilter('region','경상도','gyeongsang');">경상도</a></li>
+								</ul>
+								<ul style="width: 250px;">
+									<li><a
+										href="javascript:newfilter('region','전라도','jeolla');">전라도</a></li>
+								</ul></li>
+						</ul>
+					</div>
+					<div style="display: inline-block;">
+						<ul style="text-align: center; width: 250px; border-top: none;">
+							<li style="border: 1px solid #ddd;"><a href="#">관심분야별</a>
+								<ul style="width: 250px;">
+									<li><a
+										href="javascript:newfilter('interest','인연','relation');">인연</a></li>
+									<li><a
+										href="javascript:newfilter('interest','게임','game');">게임</a></li>
+								</ul>
+								<ul style="width: 250px;">
+									<li><a
+										href="javascript:newfilter('interest','모임','meeting');">모임</a></li>
+									<li><a
+										href="javascript:newfilter('interest','여행','travel');">여행</a></li>
+								</ul>
+								<ul style="width: 250px;">
+									<li><a
+										href="javascript:newfilter('interest','맛집','restaurant');">맛집</a></li>
+									<li><a
+										href="javascript:newfilter('interest','강연','lecture');">강연</a></li>
+								</ul>
+								<ul style="width: 250px;">
+									<li><a
+										href="javascript:newfilter('interest','지식','knowledge');">지식</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div></li>
 
-
+			<li class="menu"><a onmouseover="divshow('menu_div_1');"
+				onmouseleave="divhide('menu_div_1');" onfocus=this.blur><span
+					class="fa fa-map-marker">지역</span></a>
+				<div id="menu_div_1" class="menu_div"
+					onmouseover="divshow('menu_div_1');"
+					onmouseleave="divhide('menu_div_1');">
+					<ul>
+						<li><a href="javascript:newfilter('region','서울','seuol');">서울</a></li>
+						<li><a href="javascript:newfilter('region','인천', 'incheon');">인천</a></li>
+						<li><a href="javascript:newfilter('region','경기', 'gyeongi');">경기</a></li>
+						<li><a href="javascript:newfilter('region','충청도','chungcheong');">충청도</a></li>
+						<li><a href="javascript:newfilter('region','강원도','gangwon');">강원도</a></li>
+						<li><a href="javascript:newfilter('region','경상도','gyeongsang');">경상도</a></li>
+						<li><a href="javascript:newfilter('region','전라도','jeolla');">전라도</a></li>
+					</ul>
+				</div></li>
+			<li class="menu"><a onmouseover="divshow('menu_div_2');"
+				onmouseleave="divhide('menu_div_2');" onfocus=this.blur><span
+					class="fa fa-share-alt">관심분야</span></a>
+				<div id="menu_div_2" class="menu_div"
+					onmouseover="divshow('menu_div_2');"
+					onmouseleave="divhide('menu_div_2');">
+					<ul>
+						<li><a
+							href="javascript:newfilter('interest','인연','relation');">인연</a></li>
+						<li><a href="javascript:newfilter('interest','게임','game');">게임</a></li>
+						<li><a
+							href="javascript:newfilter('interest','모임','meeting');">모임</a></li>
+						<li><a href="javascript:newfilter('interest','여행','travel');">여행</a></li>
+						<li><a
+							href="javascript:newfilter('interest','맛집','restaurant');">맛집</a></li>
+						<li><a
+							href="javascript:newfilter('interest','강연','lecture');">강연</a></li>
+						<li><a
+							href="javascript:newfilter('interest','지식','knowledge');">지식</a></li>
+					</ul>
+				</div></li>
+		</ul>
+		<div id="selectfilter"></div>
 	</div>
-	<div class="row" style="margin: 0.6em;">
+</div>
+	</div>
+	<div id="viewList">
+	</div>
+	<!-- dummy -->
+	<div class="row dummy" style="margin: 0.6em; display: none;">
 		<div class="col-md-6 portfolio-item">
 			<div class="col-md-6 portfolio-item-detail">
 				<p>
-					<span class="caption-title"> <a href="#">Project One</a>
+					<span class="caption-title"><a href="#">Project Two</a>
 					</span>
 				</p>
 				<br>
@@ -42,23 +159,50 @@
 					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
 			</div>
 		</div>
-	</div>
-	<div class="row" style="margin: 0.6em;">
-		<div class="col-md-6 portfolio-item">
-			<div class="col-md-6 portfolio-item-detail">
-				<p>
-					<span class="caption-title"> <a href="#">Project Two</a>
-					</span>
-				</p>
-				<br>
-				<p>
-					<span class="caption-desc"> Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam viverra euismod odio, gravida
-						pellentesque urna varius vitae. </span>
-				</p>
-				<span class="icon fa-heart-o"></span> &nbsp <span
-					class="icon fa-commenting-o"></span>
+		
+		<!-- <div class="modal fade" id="detail" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">상세 내용</h4>
+				</div>
+				<div class="modal-body" style="overflow: auto">
+					<div class="col-md-12" style="text-align: left"></div>
+					<hr>
+					<div class="col-md-2">
+						<img src="'+contextPath+'/resources/core/images/pic.jpg"
+							alt="Responsive image" class="img-rounded img-responsive"
+							style="width: 100px; height: 100px">
+					</div>
+					<div class="col-md-10">
+						<div style="text-align: left; font-size: 0.8em;">
+							<div>Nick :  님</div>
+							<div>ID : </div>
+							<div>RAITNG : </div>
+							<div>INTEREST : </div>
+							<div>PHONE : </div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<a href=''><button
+							type="button" class="btn btn-primary">상세 페이지 이동</button></a>
+				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
-</div>
+		
+		
+		
+		
+	</div>
+	
+	
+	
+	

@@ -55,18 +55,20 @@ public class CustomerController {
 		model.addAttribute("FAQs", FAQs);
 		List<QNA> QNA = customersDao.selectQNAs(); 
 		model.addAttribute("QNA", QNA);
+		List<QNA> QNANoAnswer = customersDao.selectQNAsNoAnswer(); 
+		model.addAttribute("QNANoAnswer", QNANoAnswer);
 		String introValue = "고객센터";
         model.addAttribute("introValue", introValue );
 		return "customer/customer";	
 	}
 	
-	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
-	@ResponseBody
-	public String Notices(HttpServletRequest req, Notices n, Model model){
-		String returnValue = customerService.NoticesListLoad(req);
-		log.info("gson : " + returnValue);
-		return returnValue;
-	}
+//	@RequestMapping(value="Notices", produces="text/plain;charset=UTF-8")
+//	@ResponseBody
+//	public String Notices(HttpServletRequest req, Notices n, Model model){
+//		String returnValue = customerService.NoticesListLoad(req);
+//		log.info("gson : " + returnValue);
+//		return returnValue;
+//	}
 	
 //	@RequestMapping(value="Notices/{pages}", produces="text/plain;charset=UTF-8")
 //	public String Noticespages(Notices n, Model model, @PathVariable int pages){
@@ -145,6 +147,19 @@ public class CustomerController {
 			return "redirect:../customer/customer";
 		}
 	}
+	
+	@RequestMapping(value = "addAnswer", method = RequestMethod.POST)
+	public String addAnswer(Model model, QNA q) {
+		q.setAnswer(q.getAnswer());
+		q.setQidx(q.getQidx());
+		int iv = customersDao.addAnswer(q);
+		if(iv>0){
+			
+			return "redirect:../customer/customer";
+		}else{
+			return "redirect:../customer/customer";
+		}
+	}
 
 //	@RequestMapping(value="QNAModal", method=RequestMethod.POST)
 //
@@ -160,5 +175,9 @@ public class CustomerController {
 		return "customer/QNADetail";
 	}
 	
-	
+	@RequestMapping(value="Answer/{qidx}", method=RequestMethod.GET)
+	public String Answer(HttpServletRequest request, Model model, @PathVariable String qidx){
+		model.addAttribute("QNADetail", customersDao.selectQNAByQidx(qidx));
+		return "customer/Answer";
+	}
 }

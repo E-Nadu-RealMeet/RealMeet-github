@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -10,7 +9,7 @@
 					
 
 							<header>
-								<h2>°øÁö»çÇ×</h2>
+								<h2>ê³µì§€ì‚¬í•­</h2>
 							</header>
 
 
@@ -19,9 +18,9 @@
   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
 				<tr>
-					<th style="text-align: center;">¹øÈ£</th>
-					<th style="text-align: center;">Á¦¸ñ</th>
-					<th style="text-align: center;">ÀÛ¼ºÀÏ</th>
+					<th style="text-align: center;">ë²ˆí˜¸</th>
+					<th style="text-align: center;">ì œëª©</th>
+					<th style="text-align: center;">ìž‘ì„±ì¼</th>
 				</tr>
 
 
@@ -51,12 +50,12 @@
 							</c:forEach>
 							</ul>			
 <%-- 			<form method="get" action="Notices/${title}"> --%>
-<!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="Á¦¸ñ" /> -->
-<!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="°Ë»ö" /></div> -->
+<!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="ì œëª©" /> -->
+<!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="ê²€ìƒ‰" /></div> -->
 <!-- 				</form> -->
 
 
-				<button data-dismiss="modal">´Ý±â</button>
+				<button data-dismiss="modal">ë‹«ê¸°</button>
 
 				
 <div class="modal fade" id="NoticesPagesModal" tabindex="-1" role="dialog" aria-labelledby="NoticesModalLabel" aria-hidden="true">
@@ -65,7 +64,7 @@
  
  <div class="modal-header">
  <header>
-								<h2>°øÁö»çÇ×</h2>
+								<h2>ê³µì§€ì‚¬í•­</h2>
 							</header>
  </div>
 <div class="modal-body">
@@ -75,9 +74,9 @@
   <table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
 				<tr>
-					<th style="text-align: center;">¹øÈ£</th>
-					<th style="text-align: center;">Á¦¸ñ</th>
-					<th style="text-align: center;">ÀÛ¼ºÀÏ</th>
+					<th style="text-align: center;">ë²ˆí˜¸</th>
+					<th style="text-align: center;">ì œëª©</th>
+					<th style="text-align: center;">ìž‘ì„±ì¼</th>
 				</tr>
 
 
@@ -107,12 +106,12 @@
 							</c:forEach>
 							</ul>			
 <%-- 			<form method="get" action="Notices/${title}"> --%>
-<!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="Á¦¸ñ" /> -->
-<!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="°Ë»ö" /></div> -->
+<!-- 				<div class="4u" align="center" ><input style="margin-left: 100%;" type="text" name="title" placeholder="ì œëª©" /> -->
+<!-- 				<input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#NoticesModal" value="ê²€ìƒ‰" /></div> -->
 <!-- 				</form> -->
 </div>
 <div class="modal-footer">
-				<button data-dismiss="modal">´Ý±â</button>
+				<button data-dismiss="modal">ë‹«ê¸°</button>
 
 <%-- <jsp:include page="Notices.jsp"></jsp:include> --%>
 

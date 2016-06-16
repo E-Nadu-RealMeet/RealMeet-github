@@ -1,6 +1,7 @@
 package com.nadu.rms.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,10 +42,6 @@ public class EventController {
 	public void setEventEditService(EventEditService eventEditService) {
 		this.eventEditService = eventEditService;
 	}
-
-	
-
-	
 	@Autowired
 	public void setEventApplyService(EventApplyService eventApplyService) {
 		this.eventApplyService = eventApplyService;
@@ -107,11 +105,11 @@ public class EventController {
 		return returnValue;
 	}
 	// list 페이지 ajax 대응
-	@RequestMapping(value = "list/dataload", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value = "list/dataload")
 	@ResponseBody
-	public String eventListDataLoad(HttpServletRequest req, HttpServletResponse res, Model model){
+	public String eventListDataLoad(@RequestBody Map< String, Object> query, HttpServletRequest req, HttpServletResponse res, Model model){
 		
-		String returnValue = eventDataService.listLoad(req);
+		String returnValue = eventDataService.listLoad(req, query);
 		// 얻은 값 반환.
 
 		log.info("gson : " + returnValue);
@@ -138,15 +136,22 @@ public class EventController {
 		if(mid != null && mid != ""){
 			model.addAttribute("mid", mid);
 		}
-		String introValue = "모임의 자세한 정보입니다.";
-        model.addAttribute("introValue", introValue );
+		
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
-		eventDetailService.detailLoad(req, esidx, model);
-		model.addAttribute("page","event/eventDetail");
+		int iv = eventDetailService.detailLoad(req, esidx, model);
 		
+		
+		if(iv>0){
 		//뷰 리턴(detail)
-		return "event/eventDetail";
+			String introValue = "모임의 자세한 정보입니다.";
+	        model.addAttribute("introValue", introValue );
+	        model.addAttribute("page","event/eventDetail");
+	        
+			return "event/eventDetail";
+		}else{
+			return "redirect:list";
+		}
 	}
 
 	// 이벤트 등록
@@ -173,7 +178,7 @@ public class EventController {
 	// 이벤트 등록 proc
 	@RequestMapping(value = "reg", method = RequestMethod.POST)
 	public String eventReg(Event_Eventlist e, HttpServletRequest request) {
-
+		log.info("maxNum : "+e.getMaxgnum());
 		int iv = eventRegService.eventReg(e, request);
 		log.info("eventReg 실행 결과 : "+iv);
 		if(iv>1){

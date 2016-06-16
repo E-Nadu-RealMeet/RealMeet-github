@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -8,7 +7,7 @@
 					
 
 							<header>
-								<h2>³» ¹®ÀÇ³»¿ª</h2>
+								<h2>ë‚´ ë¬¸ì˜ë‚´ì—­</h2>
 							</header>
 				
 
@@ -17,13 +16,13 @@
 				
 				
 				<tr>
-					<th>Á¦¸ñ</th>
+					<th>ì œëª©</th>
 					<th>${QNADetail.title}</th>
 				</tr>
 
 				
 				<tr>
-					<th>ÀÛ¼ºÀÏ</th>
+					<th>ì‘ì„±ì¼</th>
 					<th>${QNADetail.regdate}</th>
 				</tr>
 				
@@ -31,7 +30,7 @@
 					<td colspan="2">${QNADetail.content}</td>
 					</tr>
 					<tr>
-					<td colspan="2">´äº¯</td>
+					<td colspan="2">ë‹µë³€</td>
 					</tr>
 					
 					<tr>
@@ -40,4 +39,4 @@
 
 			</table>
 
-			<a data-dismiss="modal"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="µÚ·Î" /></a>
+			<a data-dismiss="modal"><input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="ë’¤ë¡œ" /></a>
