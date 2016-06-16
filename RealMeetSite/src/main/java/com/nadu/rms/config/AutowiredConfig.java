@@ -45,6 +45,10 @@ public class AutowiredConfig  extends WebMvcConfigurerAdapter{
     	return new BoardDao();
     }
     @Bean
+    public CommentDao commentDao(){
+    	return new CommentDao();
+    }
+    @Bean
     public CustomerDAO customersDao(){
     	return new CustomerDAO();
     }

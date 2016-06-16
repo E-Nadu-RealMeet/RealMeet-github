@@ -26,7 +26,6 @@
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
     <put-attribute name="carousel" value="/WEB-INF/views/modules/commons/carousel.jsp"/>
-    <put-attribute name="listContent" value="/WEB-INF/views/event/eventList.jsp"/>
     <put-attribute name="css" value="/{1}.css"/>
     <put-attribute name="js" value="/{1}.js"/>
     <!-- 추가사항 -->
@@ -42,7 +41,6 @@
     <!-- 공통사항 -->
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
-    <put-attribute name="content-right" value="/WEB-INF/views/{1}/{2}-right.jsp"></put-attribute>
     <put-attribute name="gmap" value="/WEB-INF/views/modules/commons/gmap.jsp"></put-attribute>
     <put-attribute name="css" value="/{1}/{2}.css"/>
     <put-attribute name="js" value="/{1}/{2}.js"/>

@@ -7,6 +7,15 @@
 }
 </style>
 </head>
+<div class="container" style="text-align: left;">
+	<div class="featurette" id="services">
+            <img style="margin: 5em 5em 5em 5em;" class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/140x140">
+            <h2 class="featurette-heading">The Second Heading
+                <span class="text-muted">Is Pretty Cool Too.</span>
+            </h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+</div>
 <div style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto;">
 	<div class="row">
 		<div class="col-md-9" style="width: 100%; margin: 0 auto;">

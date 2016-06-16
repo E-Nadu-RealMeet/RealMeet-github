@@ -120,7 +120,6 @@ public class UsersController {
 		Users users = null;
 		users = usersDao.selectUsers(mid);
 		model.addAttribute("users", users);
-		model.addAttribute("id", mid);
 		
 		return "users/usersInfo";		
 	}
