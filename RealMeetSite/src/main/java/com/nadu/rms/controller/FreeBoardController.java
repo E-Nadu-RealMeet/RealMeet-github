@@ -116,11 +116,11 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
 		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		
+		System.out.println(bidx);
 		boardDao.upHitBoard(bidx);
+		System.out.println(bidx+1);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
-		model.addAttribute("bb", commentDao.selectComments(paramMap));
+		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
 		
 		String cwriter=(String) req.getSession().getAttribute("mid");
