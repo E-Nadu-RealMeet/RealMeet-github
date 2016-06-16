@@ -12,6 +12,16 @@
 	function divhide(aisi) {
 		document.getElementById(aisi).style.visibility = 'hidden';
 	}
+	function newfilter(c,v,id){
+		if($("#"+id).length > 0){
+			return;
+		}else{
+			$("#selectfilter").append("<a id="+id+" class="+c+" value="+v+"><span>"+v+"</span></a><a id="+id+" href=javascript:delfilter('"+id+"');><img src=http://img.incruit.com/fe/sub_home_contents_job/img/button/btn_delete.gif></a>");
+		}
+	}
+	function delfilter(divId){
+		$("[id="+divId+"]").remove();
+	}
 </script>
 
 </head>
@@ -45,14 +55,20 @@
 							<ul style="text-align: center; width: 200px; border-top: none;">
 								<li style="border: 1px solid #ddd;"><a href="#">지역별</a>
 									<ul style="width: 200px;">
-										<li><a>서울</a></li>
-										<li><a>인천/경기</a></li>
-										<li><a>충청도</a></li>
+										<li><a
+											href="javascript:newfilter('region','서울','seuol');">서울</a></li>
+										<li><a
+											href="javascript:newfilter('region','인천/경기', 'incheon');">인천/경기</a></li>
+										<li><a
+											href="javascript:newfilter('region','충청도','chungcheong');">충청도</a></li>
 									</ul>
 									<ul style="width: 200px;">
-										<li><a>강원도</a></li>
-										<li><a>경상도</a></li>
-										<li><a>전라도</a></li>
+										<li><a
+											href="javascript:newfilter('region','강원도','gangwon');">강원도</a></li>
+										<li><a
+											href="javascript:newfilter('region','경상도','gyeongsang');">경상도</a></li>
+										<li><a
+											href="javascript:newfilter('region','전라도','jeolla');">전라도</a></li>
 									</ul></li>
 
 							</ul>
@@ -61,19 +77,26 @@
 							<ul style="text-align: center; width: 250px; border-top: none;">
 								<li style="border: 1px solid #ddd;"><a href="#">관심분야별</a>
 									<ul style="width: 250px;">
-										<li><a>식사</a></li>
-										<li><a>운동</a></li>
+										<li><a
+											href="javascript:newfilter('interest','식사','meal');">식사</a></li>
+										<li><a
+											href="javascript:newfilter('interest','운동','exercise');">운동</a></li>
 									</ul>
 									<ul style="width: 250px;">
-										<li><a>일상대화</a></li>
-										<li><a>문화생활</a></li>
+										<li><a
+											href="javascript:newfilter('interest','일상대화','communication');">일상대화</a></li>
+										<li><a
+											href="javascript:newfilter('interest','문화생활','culture');">문화생활</a></li>
 									</ul>
 									<ul style="width: 250px;">
-										<li><a>만남</a></li>
-										<li><a>자원봉사</a></li>
+										<li><a
+											href="javascript:newfilter('interest','만남','meet');">만남</a></li>
+										<li><a
+											href="javascript:newfilter('interest','자원봉사','volunteer');">자원봉사</a></li>
 									</ul>
 									<ul style="width: 250px;">
-										<li><a>스터디</a></li>
+										<li><a
+											href="javascript:newfilter('interest','스터디','study');">스터디</a></li>
 									</ul></li>
 							</ul>
 						</div>
@@ -86,12 +109,16 @@
 						onmouseover="divshow('menu_div_1');"
 						onmouseleave="divhide('menu_div_1');">
 						<ul>
-							<li><a>서울</a></li>
-							<li><a>인천/경기</a></li>
-							<li><a>충청도</a></li>
-							<li><a>강원도</a></li>
-							<li><a>경상도</a></li>
-							<li><a>전라도</a></li>
+							<li><a href="javascript:newfilter('region','서울','seuol');">서울</a></li>
+							<li><a
+								href="javascript:newfilter('region','인천/경기','incheon');">인천/경기</a></li>
+							<li><a
+								href="javascript:newfilter('region','충청도','chungcheong');">충청도</a></li>
+							<li><a
+								href="javascript:newfilter('region','강원도','gangwon');">강원도</a></li>
+							<li><a
+								href="javascript:newfilter('region','경상도','gyeongsang');">경상도</a></li>
+							<li><a href="javascript:newfilter('region','전라도','jeolla');">전라도</a></li>
 						</ul>
 					</div></li>
 				<li class="menu"><a onmouseover="divshow('menu_div_2');"
@@ -101,63 +128,60 @@
 						onmouseover="divshow('menu_div_2');"
 						onmouseleave="divhide('menu_div_2');">
 						<ul>
-							<li><a>식사</a></li>
-							<li><a>운동</a></li>
-							<li><a>일상대화</a></li>
-							<li><a>문화생활</a></li>
-							<li><a>만남</a></li>
-							<li><a>자원봉사</a></li>
-							<li><a>스터디</a></li>
+							<li><a href="javascript:newfilter('interest','식사','meal');">식사</a></li>
+							<li><a
+								href="javascript:newfilter('interest','운동','exercise');">운동</a></li>
+							<li><a
+								href="javascript:newfilter('interest','일상대화','communication');">일상대화</a></li>
+							<li><a
+								href="javascript:newfilter('interest','문화생활','culture');">문화생활</a></li>
+							<li><a href="javascript:newfilter('interest','만남','meet');">만남</a></li>
+							<li><a
+								href="javascript:newfilter('interest','자원봉사','volunteer');">자원봉사</a></li>
+							<li><a
+								href="javascript:newfilter('interest','스터디','study');">스터디</a></li>
 						</ul>
 					</div></li>
 			</ul>
-			<div id="selectfilter">
-					<a class="region" value="서울"><span>서울</span></a>
-					<a class="region" value="경상도"><span>경상도</span></a>
-					<a class="interest" value="스터디"><span>스터디</span></a>
-			</div>
-			
-			
+			<div id="selectfilter"></div>
+
+
 		</div>
 	</div>
 	<div class="row" style="margin: 0.6em;">
-	   <div class="col-md-6 portfolio-item">
-	       <div class="col-md-6 portfolio-item-detail">
-	       <p>
-		       <span class="caption-title">
-		           <a href="#">Project One</a>
-		       </span>
-	       </p>
-	       <br>
-	       <p>
-		       <span class="caption-desc">
-		       		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
-		       </span>
-	       </p>
-	       <span class="icon fa-heart-o">${e.getGood()}</span>
-						&nbsp
-				<span class="icon fa-commenting-o">${e.getReviewCnt()}</span>
-	       </div>
-	   </div>
+		<div class="col-md-6 portfolio-item">
+			<div class="col-md-6 portfolio-item-detail">
+				<p>
+					<span class="caption-title"> <a href="#">Project One</a>
+					</span>
+				</p>
+				<br>
+				<p>
+					<span class="caption-desc"> Lorem ipsum dolor sit amet,
+						consectetur adipiscing elit. Nam viverra euismod odio, gravida
+						pellentesque urna varius vitae. </span>
+				</p>
+				<span class="icon fa-heart-o">${e.getGood()}</span> &nbsp <span
+					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
+			</div>
+		</div>
 	</div>
 	<div class="row" style="margin: 0.6em;">
-	   <div class="col-md-6 portfolio-item">
-	       <div class="col-md-6 portfolio-item-detail">
-	       <p>
-		       <span class="caption-title">
-		           <a href="#">Project Two</a>
-		       </span>
-	       </p>
-	       <br>
-	       <p>
-		       <span class="caption-desc">
-		       		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
-		       </span>
-	       </p>
-	       <span class="icon fa-heart-o"></span>
-						&nbsp
-						<span class="icon fa-commenting-o"></span>
-	       </div>
-	   </div>
+		<div class="col-md-6 portfolio-item">
+			<div class="col-md-6 portfolio-item-detail">
+				<p>
+					<span class="caption-title"> <a href="#">Project Two</a>
+					</span>
+				</p>
+				<br>
+				<p>
+					<span class="caption-desc"> Lorem ipsum dolor sit amet,
+						consectetur adipiscing elit. Nam viverra euismod odio, gravida
+						pellentesque urna varius vitae. </span>
+				</p>
+				<span class="icon fa-heart-o"></span> &nbsp <span
+					class="icon fa-commenting-o"></span>
+			</div>
+		</div>
 	</div>
 </div>
