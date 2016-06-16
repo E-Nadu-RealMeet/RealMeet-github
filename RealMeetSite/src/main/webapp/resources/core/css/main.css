@@ -2547,6 +2547,7 @@ body.header-visible #header {
 	border: 1px solid #ddd;
 	visibility: hidden;
 	background-color: #fff;
+	z-index: 1;
 }
 
 #menu_div_1 {
@@ -2556,6 +2557,7 @@ body.header-visible #header {
 	border: 1px solid #ddd;
 	visibility: hidden;
 	background-color: #fff;
+	z-index: 1;
 }
 
 #menu_div_2 {
@@ -2565,6 +2567,7 @@ body.header-visible #header {
 	border: 1px solid #ddd;
 	visibility: hidden;
 	background-color: #fff;
+	z-index: 1;
 }
 
 .menu_div ul li {
@@ -2576,7 +2579,6 @@ body.header-visible #header {
 
 #menubar {
 	border: solid 2px #ddd;
-	height: 350px;
 }
 
 #menubar ul li {
