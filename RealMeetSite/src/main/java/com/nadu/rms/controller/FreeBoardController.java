@@ -97,13 +97,12 @@ public class FreeBoardController {
 		/*String list = boardDao.selectFreeDetail()
 		 
 		model.addAttribute("list", list);*/
-		
 		return "board/freeDetail";
 	}
 	
 	@RequestMapping(value="/freeDetail/{nidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int nidx, Model model){
-		
+		model.addAttribute("introValue","자유 게시판");
 		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
 		model.addAttribute("bb", boardDao.selectFreeDetail(nidx+1));
 		model.addAttribute("cc", boardDao.selectFreeDetail(nidx-1));
@@ -113,7 +112,9 @@ public class FreeBoardController {
 	
 	//게시물등록
 	@RequestMapping(value="/freeReg", method = RequestMethod.GET)
-	public String freeReg(){
+	public String freeReg(Model model){
+		model.addAttribute("introValue","글 쓰기");
+		
 		return "board/freeBoardReg";
 	}
 	
@@ -133,6 +134,7 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.GET)
 	public String freeUpate(@PathVariable int nidx, Model model){
 		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
+		model.addAttribute("introValue","게시글 수정");
 		return "board/freeBoardUp";
 	}
 	

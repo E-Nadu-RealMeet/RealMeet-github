@@ -5,7 +5,11 @@ section#top {
 }
 .col-sm-6.pofol-left {
     width: 90%;
+    margin: 0 auto;
+    float: none;
 }
 .col-sm-6.pofol-right {
     width: 0%;
+    padding: 0px;
+    margin: 0px;
 }

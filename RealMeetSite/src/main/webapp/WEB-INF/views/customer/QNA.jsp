@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -8,16 +7,16 @@
 						<div class="container">
 
 							<header>
-								<h2>³» ¹®ÀÇ³»¿ª</h2>
+								<h2>ë‚´ ë¬¸ì˜ë‚´ì—­</h2>
 							</header>
 
 
 			<table border="1" style="width: 75%; text-align: center; margin-left: 12.5%; background-color: white;">
 
 				<tr>
-					<th style="text-align: center;">¹øÈ£</th>
-					<th style="text-align: center;">Á¦¸ñ</th>
-					<th style="text-align: center;">ÀÛ¼ºÀÏ</th>
+					<th style="text-align: center;">ë²ˆí˜¸</th>
+					<th style="text-align: center;">ì œëª©</th>
+					<th style="text-align: center;">ìž‘ì„±ì¼</th>
 				</tr>
 
 
@@ -33,7 +32,7 @@
 			
 
 				<form method="get" action="QNA/${title}">
-				<div class="4u" ><input style="margin-left: 100%;" type="text" name="title" placeholder="Á¦¸ñ" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="°Ë»ö" /></div>
+				<div class="4u" ><input style="margin-left: 100%;" type="text" name="title" placeholder="ì œëª©" /><input style="margin-left:100%; padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="ê²€ìƒ‰" /></div>
 				</form>
 				
 		</div>		
