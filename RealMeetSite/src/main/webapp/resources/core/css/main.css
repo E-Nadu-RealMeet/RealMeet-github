@@ -93,6 +93,7 @@ section#top #topNameH2 {
 	opacity: 1;
 	color: rgba(255, 255, 255, 0.99);
 	font-family: 'Jeju Hallasan', serif;
+	font-size: 2em;
 }
 /* Containers */
 .mainContainer {
@@ -147,9 +148,6 @@ section#top #topNameH2 {
 	}
 	.container.\32 5\25 {
 		width: 300px;
-	}
-	.container {
-		width: 1200px;
 	}
 }
 
@@ -1898,7 +1896,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
 #main>section#top {
 	position: relative;
-	height: 400px;
+	/* height: 400px; */
 }
 
 #main>section#portfolio {
@@ -2891,4 +2889,39 @@ label#saveId-label {
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color:    #af9eaf;
+}
+
+/* 로그인 페이지 */
+div#login-div {
+    position: fixed;
+    z-index: 4000;
+    min-width: 30em;
+    margin: 0 auto;
+    background: white;
+    padding: 2em;
+    left: 30%;
+    right: 30%;
+    top: 10%;
+    border: 1px solid #cecece;
+    border-radius: 10px;
+    /* border-bottom-right-radius: 15px 25px; */
+    box-shadow: 3px 3px 10px 2px lightgray;
+}
+div.login-sum{
+	display:none;
+    position: fixed;
+    z-index: 20;
+    /* min-width: 30em; */
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2em;
+    /* left: 30%; */
+    /* right: 30%; */
+    top: 0;
+    /* border-bottom-right-radius: 15px 25px; */
+}
+.col-sm-6.pofol-right {
+    padding-top: 0;
 }
