@@ -82,6 +82,9 @@
 					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
 				</c:if>
 				<!-- content 나눠서 넣으실 분은 나눠서 여기에 넣어주세요 -->
+				<c:if test="${page=='event/eventDetail'}">
+					<tiles:insertAttribute name="content-right"></tiles:insertAttribute>
+				</c:if>
 			</div>
 		</section>
 	</div>
