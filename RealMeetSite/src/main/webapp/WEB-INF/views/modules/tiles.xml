@@ -27,6 +27,7 @@
     <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
     <put-attribute name="carousel" value="/WEB-INF/views/modules/commons/carousel.jsp"/>
     <put-attribute name="listContent" value="/WEB-INF/views/event/eventList.jsp"/>
+<!--     <put-attribute name="listFilter" value="/WEB-INF/views/event/eventListFilter.jsp"/> -->
     <put-attribute name="css" value="/{1}.css"/>
     <put-attribute name="js" value="/{1}.js"/>
     <!-- 추가사항 -->

@@ -84,4 +84,17 @@ public class BoardDao {
 		}*/
 		
 	}
+
+
+
+
+	public void upHitBoard(int bidx) {
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		mapper.upHitBoard(bidx);
+		session.commit();
+		session.close();
+		
+	}
 }

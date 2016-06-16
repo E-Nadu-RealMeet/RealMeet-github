@@ -54,7 +54,7 @@ public class EventDataService {
 			String key = keys.next();
 			System.out.println("key :"+key);
 			if(!key.equals("page") && query.get(key).toString().length() != 0){
-				query.replace(key, query.get(key).toString().substring(0, query.get(key).toString().length()-2));
+				query.replace(key, query.get(key).toString().substring(0, query.get(key).toString().length()-1));
 			}
 			// 아무것도 없을시, 전체 검색을 위해 문자 '^' 추가.(정규식)
 			if(query.get(key).toString().length() == 0){
@@ -71,8 +71,7 @@ public class EventDataService {
 		int startNum = (page - 1) * 5 + 1;
 		int endNum = startNum + 4;
 
-		if (endNum > cnt)
-			endNum = cnt;
+		if (endNum > cnt) endNum = cnt;
 		// 수정필요 -> page 이용하여 정해진 갯수만큼 불러오깅 ㅋㅋㅋ
 		// List<Map<Object,Object>> datas = eventsDAO.selectEventsNUser();
 		query.put("startNum", startNum);

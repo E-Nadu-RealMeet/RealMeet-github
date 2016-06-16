@@ -98,7 +98,7 @@ function getFilters(page){
    	  $.each(filterMap, function (key, value) {
    	  	 /* body... */
    	  	 if(filter == key){
-   	  	 	filterMap[key] += fValue+"||";
+   	  	 	filterMap[key] += fValue+"|";
    	  	 }
    	  });
     });

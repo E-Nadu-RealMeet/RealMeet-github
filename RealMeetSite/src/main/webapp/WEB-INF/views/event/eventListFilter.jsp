@@ -1,41 +1,28 @@
-<%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <head>
 <script type="text/javascript">
-
-	function divshow(aisi) {
-		document.getElementById(aisi).style.visibility = 'visible';
+function divshow(aisi) {
+	document.getElementById(aisi).style.visibility = 'visible';
+}
+function divhide(aisi) {
+	document.getElementById(aisi).style.visibility = 'hidden';
+}
+function newfilter(c,v,id){
+	if($("#"+id).length > 0){
+		return;
+	}else{
+		$("#selectfilter").append("<a id="+id+" class="+c+" value="+v+"><span>"+v+"</span></a><a id="+id+" href=javascript:delfilter('"+id+"');><img src=http://img.incruit.com/fe/sub_home_contents_job/img/button/btn_delete.gif></a>");
 	}
-	function divhide(aisi) {
-		document.getElementById(aisi).style.visibility = 'hidden';
-	}
-	function newfilter(c,v,id){
-		if($("#"+id).length > 0){
-			return;
-		}else{			
-			$("#selectfilter").append("<a id="+id+" class="+c+" value="+v+"><span>"+v+"</span></a><a id="+id+" href=javascript:delfilter('"+id+"');><img src=http://img.incruit.com/fe/sub_home_contents_job/img/button/btn_delete.gif></a>");
-			$("#viewList").empty();
-			page = 1;
-			getEventList(page);
-			page++;
-		}
-	}
-	function delfilter(divId){
-		$("[id="+divId+"]").remove();
-		$("#viewList").empty();
-		page = 1;
-		getEventList(page);
-		page++;
-	}
+}
+function delfilter(divId){
+	$("[id="+divId+"]").remove();
+}
 </script>
-
 </head>
-<%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventList.js?ver=1" type="text/javascript"></script> --%>
-<div class="container" id="container">
-	<div style="max-width: 1000px; padding: 10px; margin: 10px auto;">
+
+<div style="max-width: 1000px; padding: 10px; margin: 10px auto;">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
 			<li class="menu"><a onmouseover="divshow('menu_div_0');"
@@ -136,27 +123,5 @@
 				</div></li>
 		</ul>
 		<div id="selectfilter"></div>
-	</div>
-</div>
-	</div>
-	<div id="viewList">
-	</div>
-	<div class="row dummy" style="margin: 0.6em; display: none;">
-		<div class="col-md-6 portfolio-item">
-			<div class="col-md-6 portfolio-item-detail">
-				<p>
-					<span class="caption-title"><a href="#">Project Two</a>
-					</span>
-				</p>
-				<br>
-				<p>
-					<span class="caption-desc"> Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam viverra euismod odio, gravida
-						pellentesque urna varius vitae. </span>
-				</p>
-				<span class="icon fa-heart-o">${e.getGood()}</span> &nbsp <span
-					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
-			</div>
-		</div>
 	</div>
 </div>
