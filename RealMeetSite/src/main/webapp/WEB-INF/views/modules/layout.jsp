@@ -61,14 +61,14 @@
 	</div>
 	<!-- Main -->
 	<div id="main">
-	
+		
 		<tiles:insertAttribute name="topMenu"></tiles:insertAttribute>
 		<!-- Intro -->
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
-		
+		<tiles:insertAttribute name="login"></tiles:insertAttribute>
 		<!-- Content -->
 		<section id="portfolio" class="two">
-			<div id="contain-left">
+			<div class="col-sm-6 pofol-left">
 				<c:if test="${page=='index'}">
 					<tiles:insertAttribute name="carousel"></tiles:insertAttribute>
 				</c:if>
@@ -77,7 +77,7 @@
 				</c:if>
 				<tiles:insertAttribute name="content"></tiles:insertAttribute>
 			</div>
-			<div id="contain-right">
+			<div class="col-sm-6 pofol-right">
 				<c:if test="${page=='index'}">
 					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
 				</c:if>

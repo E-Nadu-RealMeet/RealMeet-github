@@ -21,6 +21,7 @@
     <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
     <put-attribute name="page" value="{1}"></put-attribute>
+    <put-attribute name="login" value="/WEB-INF/views/modules/login.jsp"/>
     <!-- 공통사항 -->
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
@@ -37,6 +38,7 @@
     <put-attribute name="intro" value="/WEB-INF/views/modules/commons/intro.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/modules/commons/footer.jsp" />
     <put-attribute name="page" value="{1}/{2}"></put-attribute>
+    <put-attribute name="login" value="/WEB-INF/views/modules/login.jsp"/>
     <!-- 공통사항 -->
     <!-- 추가사항 -->
     <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>

@@ -17,22 +17,29 @@
 </head>
 <body>
 
-	<div id="top_loginModal" class="modal fade">
+	<%-- <div id="top_loginModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<jsp:include page="../login.jsp" flush="false"></jsp:include>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 	<div class="join-top">
 		<div class="container" id="topMenu">
 			<ul id="topMenuUl-left">
 				<li><a class="topButton" id="topButton-logo"
-					href="${pageContext.request.contextPath}/">homepage</a></li>
+					href="${pageContext.request.contextPath}/"><span class="icon fa-child"></span>DADLEMOYEO</a></li>
 					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>event</a>
 						<ul class="submenu">
 							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">event list</span></a></li>
-							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">event create</span></a></li>
+							<c:choose>
+							<c:when test="${empty mid}">
+							<li><a href="#" id="reg-link" class="skel-layers-ignoreHref" onclick="loginChk(); return null;"><span class="icon fa-th">event create</span></a></li>
+							</c:when>
+							<c:when test="${!empty mid}">
+							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref" onclick="return loginChk();"><span class="icon fa-th">event create</span></a></li>
+							</c:when>
+							</c:choose>
 						</ul>
 					</li>
 					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>board</a>
@@ -43,10 +50,11 @@
 			</ul>
 			<ul id="topMenuUl-right">
 				<c:if test="${empty mid}">
-					<li><a class="topButton" href="#" data-toggle="modal"
-						data-target="#top_loginModal" type="button"><span class="icon fa-unlock"></span>login</a></li>
+					<li><a class="topButton" href="#"
+						type="button" onclick="openLoginForm();"><span class="icon fa-unlock"></span>login</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
+					<li><c:out value="[${mid}]님 안녕하세요"/></li>
 					<li><a class="topButton"
 						href="${pageContext.request.contextPath}/logout"><span class="icon fa-lock"></span>logout</a></li>
 				</c:if>
@@ -56,7 +64,7 @@
 				</c:if>
 				<c:if test="${!empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/info?id=${mid}">info</a></li>
+						href="${pageContext.request.contextPath}/users/info?id=${mid}"><span class="fa fa-user-plus"></span>info</a></li>
 				</c:if>
 
 			</ul>

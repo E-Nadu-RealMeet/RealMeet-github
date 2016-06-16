@@ -3,3 +3,9 @@
 section#top {
 	background-image: url("../images/board-top.jpg");
 }
+.col-sm-6.pofol-left {
+    width: 90%;
+}
+.col-sm-6.pofol-right {
+    width: 0%;
+}
