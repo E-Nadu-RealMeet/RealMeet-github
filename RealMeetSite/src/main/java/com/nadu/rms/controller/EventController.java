@@ -186,17 +186,17 @@ public class EventController {
 			model.addAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
-			log.info("현재 페이지"+savePage);
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:"+beforePage;
+		}else{
+			request.getSession().setAttribute("savePage", null);
+			List<String> categories = eventRegService.getCategories();
+			String introValue = "모임을 만들어봐요.";
+	        model.addAttribute("introValue", introValue);
+			model.addAttribute("categories", categories);
+			model.addAttribute("page","event/eventReg");
+			return "event/eventReg";
 		}
-		
-		List<String> categories = eventRegService.getCategories();
-		String introValue = "모임을 만들어봐요.";
-        model.addAttribute("introValue", introValue);
-		model.addAttribute("categories", categories);
-		model.addAttribute("page","event/eventReg");
-		return "event/eventReg";
 	}
 
 	// 이벤트 등록 proc
