@@ -12,6 +12,13 @@ public class Board {
 	private int blevel;
 	private String type;
 	private int readcount;
+	private int origin;
+	public int getOrigin() {
+		return origin;
+	}
+	public void setOrigin(int origin) {
+		this.origin = origin;
+	}
 	public String getBidx() {
 		return bidx;
 	}

@@ -2,6 +2,7 @@ package com.nadu.rms.mapper.annotation;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -12,9 +13,11 @@ import org.apache.ibatis.annotations.Update;
 import com.nadu.rms.vo.Board;
 
 public interface BoardMapper {
-
-	@Select("SELECT * FROM (SELECT ROWNUM NUM, B.* FROM (SELECT * FROM BOARDS WHERE	${key} LIKE '%${query}%' AND TYPE = #{type, jdbcType=VARCHAR} ORDER BY REGDATE DESC) B) WHERE NUM BETWEEN #{startNum, jdbcType=INTEGER} AND #{endNum, jdbcType=INTEGER}")
+	@Select("SELECT * FROM (SELECT ROWNUM NUM, B.* FROM (SELECT * FROM BOARDS WHERE	ORIGIN IS NULL AND ${key} LIKE '%${query}%' AND TYPE = #{type, jdbcType=VARCHAR} ORDER BY REGDATE DESC) B) WHERE NUM BETWEEN #{startNum, jdbcType=INTEGER} AND #{endNum, jdbcType=INTEGER}")
 	List<Board> selectBoards(Map<String, Object> paramMap);
+	
+	@Select("SELECT * FROM (SELECT ROWNUM NUM, B.* FROM (SELECT * FROM BOARDS WHERE	${key} LIKE '%${query}%' AND TYPE = #{type, jdbcType=VARCHAR} ORDER BY REGDATE DESC) B) WHERE NUM BETWEEN #{startNum, jdbcType=INTEGER} AND #{endNum, jdbcType=INTEGER}")
+	List<Board> selectBoards_(Map<String, Object> paramMap);
 
 	@Select("SELECT COUNT(BIDX) FROM BOARDS WHERE TYPE = #{type, jdbcType=VARCHAR}")
 	int getCountByType(@Param("type")String type);
@@ -39,5 +42,8 @@ public interface BoardMapper {
 
 	@Select("SELECT COUNT(STEP) FROM BOARDS WHERE TARGET = #{bidx, jdbcType=VARCHAR} AND STEP>0")
 	int getCountByStep(@Param("bidx")int bidx);
+	
+	//@Select("SELECT * FROM (SELECT ROWNUM NUM, BOARD FROM WHERE ")
+	List<Board> getReplyBoardsFromBidx(Map<String, Object> paramMap);
 	
 }

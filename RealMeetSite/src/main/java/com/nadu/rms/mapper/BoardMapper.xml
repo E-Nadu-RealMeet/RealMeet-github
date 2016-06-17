@@ -42,9 +42,17 @@
 	 -->
 	 
 	 <insert id="insertRefly" parameterType="map">
-	 INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, #{target, jdbcType=VARCHAR}, #{step, jdbcType=INTEGER}, #{blevel, jdbcType=INTEGER}, 'free', 0)
+	 INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT, ORIGIN) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, #{target, jdbcType=VARCHAR}, #{step, jdbcType=INTEGER}, #{blevel, jdbcType=INTEGER}, 'free', 0, #{origin, jdbcType=INTEGER})
 	 <selectKey keyProperty="bidx" resultType="INTEGER" order="AFTER">
 	 SELECT BOARDS_SEQ.CURRVAL FROM dual
 	 </selectKey>
 	 </insert>
+	 
+	<select id="getReplyBoardsFromBidx" parameterType="map" resultType="com.nadu.rms.vo.Board">
+	SELECT * FROM BOARDS 
+	WHERE ORIGIN IS NOT NULL AND ORIGIN IN
+		<foreach item="item" index="index" collection="bidxSet" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
 </mapper>
