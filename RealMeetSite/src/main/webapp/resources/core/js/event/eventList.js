@@ -10,7 +10,7 @@ $(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증
 
 //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
 $(window).scroll(function(){  
-	//alert("얼럿");
+	
 	if($(window).scrollTop() >= $(document).height() - $(window).height()){
 		//alert("휠다운");
 		if(isDone == false){
@@ -110,6 +110,7 @@ function getEventList(page){
 			var list = returnData.datas;
 			var startNum = returnData.startNum;
 			var endNum = returnData.endNum;
+
 			if(returnData.startNum <= returnData.cnt){
 				
 				//컨텍스트패스 받아오기(이미지 경로용)
