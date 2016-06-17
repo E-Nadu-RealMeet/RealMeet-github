@@ -33,5 +33,11 @@ public interface BoardMapper {
 	
 	@Update("UPDATE BOARDS SET READCOUNT=READCOUNT+1 WHERE BIDX=#{bidx, jdbcType=VARCHAR}")
 	int upHitBoard(@Param("bidx")int bidx);
+
+//	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, #{target, jdbcType=VARCHAR}, #{cnt, jdbcType=INTEGER}, #{blevel, jdbcType=}, 'free', 0)")
+	int insertRefly(Map<String, Object> paramMap);
+
+	@Select("SELECT COUNT(STEP) FROM BOARDS WHERE TARGET = #{bidx, jdbcType=VARCHAR} AND STEP>0")
+	int getCountByStep(@Param("bidx")int bidx);
 	
 }

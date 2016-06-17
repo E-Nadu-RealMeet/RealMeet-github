@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -37,7 +35,7 @@ public class FreeBoardController {
 	public void setCommentDao(CommentDao commentDao){
 		this.commentDao = commentDao;
 	}
-	static final Logger log = LoggerFactory.getLogger(FreeBoardController.class);
+	
 	@RequestMapping(value="/freeBoard", method = RequestMethod.GET)
 	public String freeBoard(Model model, HttpServletRequest req){
 		String mid = (String) req.getSession().getAttribute("mid");
@@ -45,7 +43,7 @@ public class FreeBoardController {
 		int pages = 1;
 		String tmpPages = req.getParameter("pages");
 		/*검색 필터*/
-		String key=req.getParameter("key");
+		String key= req.getParameter("key");
 		/*검색어*/
 		String query = req.getParameter("query");
 		
@@ -78,6 +76,7 @@ public class FreeBoardController {
 		paramMap.put("endNum", endNum);
 		paramMap.put("key", key);
 		paramMap.put("query", query);
+		System.out.println(query+"쿼리문");
 		paramMap.put("type", "free");
 		List<Board> list = boardDao.selectBoards(paramMap);
 		/*리턴 값*/
@@ -87,6 +86,7 @@ public class FreeBoardController {
 		model.addAttribute("list",list);
 		model.addAttribute("mid", mid);
 		model.addAttribute("page", "board/freeBoard");
+		
 		
 		return "board/freeBoard";
 		
@@ -104,9 +104,16 @@ public class FreeBoardController {
 		return "redirect:board/freeBoard";
 	}*/
 	
+	@RequestMapping(value="/freeDetail", method = RequestMethod.GET)
+	public String freeDetail(Model model, HttpServletRequest req){
+		/*String list = boardDao.selectFreeDetail()
+		 
+		model.addAttribute("list", list);*/
+		return "board/freeDetail";
+	}
+	
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
-<<<<<<< HEAD
 		
 		System.out.println(bidx);
 		boardDao.upHitBoard(bidx);
@@ -114,22 +121,10 @@ public class FreeBoardController {
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
-=======
-		log.info("freeDetail 시작");
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		
-		//boardDao.upHitBoard(bidx);
-		log.info("freeDetail 1");
-		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
-		log.info("freeDetail 2");
-		model.addAttribute("bb", commentDao.selectComments(paramMap));
-		log.info("freeDetail 3");
-		model.addAttribute("introValue","자유 게시판");
->>>>>>> 80ecfcf099f7f75e1868987d300952ac9c9e36b3
 		
 		String cwriter=(String) req.getSession().getAttribute("mid");
 		model.addAttribute("cwriter", cwriter);
-		log.info("freeDetail 끝");
+		
 		return "board/freeDetail";
 	}
 	
@@ -137,10 +132,7 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeReg", method = RequestMethod.GET)
 	public String freeReg(HttpServletRequest req, Model model){
 		String mid = (String) req.getSession().getAttribute("mid");
-		
 		model.addAttribute("mid", mid);
-		model.addAttribute("introValue","글 쓰기");
-		
 		return "board/freeBoardReg";
 	}
 	
@@ -156,7 +148,7 @@ public class FreeBoardController {
 		
 		
 	}
-	
+	//댓글 등록
 	@RequestMapping(value="/commentReg", method = RequestMethod.POST)
 	public String commentReg(Comment comment, HttpServletRequest req){
 		
@@ -167,11 +159,9 @@ public class FreeBoardController {
 		
 		return "redirect:../freeDetail"+bidx;
 	}
-	
 	@RequestMapping(value="/freeUpdate/{nidx}", method = RequestMethod.GET)
 	public String freeUpate(@PathVariable int nidx, Model model){
 		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
-		model.addAttribute("introValue","게시글 수정");
 		return "board/freeBoardUp";
 	}
 	
@@ -183,6 +173,37 @@ public class FreeBoardController {
 		
 		
 	}
+	
+	//답글 등록
+	@RequestMapping(value="/freeReflyReg/{bidx}", method = RequestMethod.GET)
+	public String freeRefly(@PathVariable int bidx, Model model, HttpServletRequest req){
+		
+		String mid=(String) req.getSession().getAttribute("mid");
+		model.addAttribute("aa",boardDao.selectFreeDetail(bidx));
+		model.addAttribute("mid",mid);
+		return "board/freeReflyReg";
+	}
+	//답글 등록Proc
+	@RequestMapping(value="/freeReflyReg/{bidx}", method = RequestMethod.POST)
+	public String freeRefly(Board board,@PathVariable int bidx){
+
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		int cnt = boardDao.selectReflyStepNum(bidx);
+		cnt = cnt+1;
+		board.setBlevel(board.getBlevel()+1);
+		
+		paramMap.put("bidx", board.getBidx());
+		paramMap.put("writer", board.getWriter());
+		paramMap.put("title", board.getTitle());
+		paramMap.put("content", board.getContent());
+		paramMap.put("target", board.getTarget());
+		paramMap.put("step", cnt);
+		paramMap.put("blevel", board.getBlevel());
+		boardDao.insertRefly(paramMap);
+		int bidx2=(Integer) paramMap.get("bidx");
+		return "redirect:../freeDetail/"+bidx2;
+	}
+	
 	@RequestMapping(value="/freeDel/{nidx}")
 	public String freeDel(@PathVariable String nidx){
 		boardDao.delBoard(nidx);
