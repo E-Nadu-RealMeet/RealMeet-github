@@ -168,8 +168,8 @@
 						<td>${QNA.qidx}</td>
 						<td><a href="QNADetail/${QNA.qidx}" data-toggle="modal" data-target="#QNADetailModal" style="color: #81918E;">${QNA.title}</a></td>
 						<td>${QNA.regdate}</td>
-						<c:if test="${mid == 'won'}">
-						<td><a href="Answer/${QNA.qidx}"><span class="icon fa-pencil-square-o">답변</span></a></td>
+						<c:if test="${mid == 'won' && QNA.answer == 'N/A'}">
+						<td><a href="Answer/${QNA.qidx}" data-toggle="modal" data-target="#AnswerModal"><span class="icon fa-pencil-square-o">답변</span></a></td>
 						</c:if>
 					</tr>
 				</c:forEach>
@@ -328,3 +328,28 @@
 </div>
 </div>
 
+
+<div id="AnswerModal" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+<div class="modal-content">
+
+<header>
+								<h2>답변하기</h2>
+							</header>
+							
+							<h3>답변할 게시물 : ${QNADetail.title}</h3>
+								
+					
+							<form action="addAnswer" method="post">
+									<div class="11u$" style="margin-left: 4%">
+										<textarea name="answer" placeholder="답변내용"></textarea>
+									</div>
+									
+									<div class="11u$" style="margin-left: 4%">
+										<input style="padding: 0.5em 2.0em 0.5em 2.0em;" type="submit" value="답변" />
+										<input type="hidden" name="qidx" value="${QNADetail.qidx}">
+									</div>
+							</form>
+</div>
+</div>
+</div>
