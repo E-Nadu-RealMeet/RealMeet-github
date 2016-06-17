@@ -5,6 +5,7 @@ section#top {
 }
 .col-sm-6.pofol-left {
     width: 70%;
+    margin-left: 5em;
 }
 .col-sm-6.pofol-right {
     width: 20%;
@@ -33,4 +34,50 @@ section#top {
 }
 button.btn.btn-default {
     color: black !important;
+}
+.media, .media-body {
+    font-size: 120%;
+}
+.media, .media .media {
+    margin-bottom: 15px;
+}
+button.btn.btn-primary {
+    font-size: 1.3em;
+}
+div#detail-img {
+    overflow: auto;
+    margin-top: 2em;
+    padding-bottom: 2em;
+   /*  border-bottom: 1px solid #d4d4d4; */
+}
+.container.con-list {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 0.3em;
+}
+.container.con-list.Title {
+    border-bottom: 1px solid gainsboro;
+    border-top: 1px solid gainsboro;
+        margin-top: 1em;
+}
+span.detail-info-Title {
+    font-weight: bold;
+    font-size: 150%;
+    line-height: 39px;
+}
+.container.Title {
+    margin-bottom: 0.3em;
+}
+.list-contents-title {
+    font-weight: 500;
+    font-size: 110%;
+    border-bottom: 1px solid #d6d6d6;
+    /* border-top: 1px solid #f3f3f3; */
+    line-height: 2em;
+}
+div#detail-info-titleDiv {
+    border-bottom: 1px solid gainsboro;
+    line-height: 2.5em;
+    text-align: center;
+    font-size: 130%;
+    margin-bottom: 1em;
 }

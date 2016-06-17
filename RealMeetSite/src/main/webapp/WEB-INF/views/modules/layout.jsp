@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE HTML>
 <!--
@@ -54,11 +53,11 @@
 <body>
 	
 	<!-- Header -->
-	<div id="header">
+	<%-- <div id="header">
 	
-		<%-- <tiles:insertAttribute name="header"></tiles:insertAttribute> --%>
+		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		
-	</div>
+	</div> --%>
 	<!-- Main -->
 	<div id="main">
 		
@@ -66,6 +65,7 @@
 		<!-- Intro -->
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
 		<tiles:insertAttribute name="login"></tiles:insertAttribute>
+		<tiles:insertAttribute name="error"></tiles:insertAttribute>
 		<!-- Content -->
 		<section id="portfolio" class="two">
 			<div class="col-sm-6 pofol-left">
@@ -78,11 +78,10 @@
 				<tiles:insertAttribute name="content-left"></tiles:insertAttribute>
 			</div>
 			<div class="col-sm-6 pofol-right">
-				<c:if test="${page=='index' }">
+				<c:if test="${page=='index' || page=='event/eventDetail'}">
 					<tiles:insertAttribute name="content-right"></tiles:insertAttribute>
 				</c:if>
-				<%-- <c:if test="${page=='event/eventDetail'}">
-				</c:if>
+				<%-- 
 				<c:if test="${page=='index'}">
 					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>
 				</c:if> --%>

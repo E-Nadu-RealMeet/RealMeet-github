@@ -73,25 +73,25 @@
 							<li style="border: 1px solid #ddd;"><a href="#">관심분야별</a>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','인연','relation');">인연</a></li>
+										href="javascript:newfilter('category','인연','relation');">인연</a></li>
 									<li><a
-										href="javascript:newfilter('interest','게임','game');">게임</a></li>
+										href="javascript:newfilter('category','게임','game');">게임</a></li>
 								</ul>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','모임','meeting');">모임</a></li>
+										href="javascript:newfilter('category','모임','meeting');">모임</a></li>
 									<li><a
-										href="javascript:newfilter('interest','여행','travel');">여행</a></li>
+										href="javascript:newfilter('category','여행','travel');">여행</a></li>
 								</ul>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','맛집','restaurant');">맛집</a></li>
+										href="javascript:newfilter('category','맛집','restaurant');">맛집</a></li>
 									<li><a
-										href="javascript:newfilter('interest','강연','lecture');">강연</a></li>
+										href="javascript:newfilter('category','강연','lecture');">강연</a></li>
 								</ul>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','지식','knowledge');">지식</a></li>
+										href="javascript:newfilter('category','지식','knowledge');">지식</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -121,17 +121,17 @@
 					onmouseleave="divhide('menu_div_2');">
 					<ul>
 						<li><a
-							href="javascript:newfilter('interest','인연','relation');">인연</a></li>
-						<li><a href="javascript:newfilter('interest','게임','game');">게임</a></li>
+							href="javascript:newfilter('category','인연','relation');">인연</a></li>
+						<li><a href="javascript:newfilter('category','게임','game');">게임</a></li>
 						<li><a
-							href="javascript:newfilter('interest','모임','meeting');">모임</a></li>
-						<li><a href="javascript:newfilter('interest','여행','travel');">여행</a></li>
+							href="javascript:newfilter('category','모임','meeting');">모임</a></li>
+						<li><a href="javascript:newfilter('category','여행','travel');">여행</a></li>
 						<li><a
-							href="javascript:newfilter('interest','맛집','restaurant');">맛집</a></li>
+							href="javascript:newfilter('category','맛집','restaurant');">맛집</a></li>
 						<li><a
-							href="javascript:newfilter('interest','강연','lecture');">강연</a></li>
+							href="javascript:newfilter('category','강연','lecture');">강연</a></li>
 						<li><a
-							href="javascript:newfilter('interest','지식','knowledge');">지식</a></li>
+							href="javascript:newfilter('category','지식','knowledge');">지식</a></li>
 					</ul>
 				</div></li>
 		</ul>
@@ -158,48 +158,7 @@
 				<span class="icon fa-heart-o">${e.getGood()}</span> &nbsp <span
 					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
 			</div>
-		</div>
-		
-		<!-- <div class="modal fade" id="detail" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">상세 내용</h4>
-				</div>
-				<div class="modal-body" style="overflow: auto">
-					<div class="col-md-12" style="text-align: left"></div>
-					<hr>
-					<div class="col-md-2">
-						<img src="'+contextPath+'/resources/core/images/pic.jpg"
-							alt="Responsive image" class="img-rounded img-responsive"
-							style="width: 100px; height: 100px">
-					</div>
-					<div class="col-md-10">
-						<div style="text-align: left; font-size: 0.8em;">
-							<div>Nick :  님</div>
-							<div>ID : </div>
-							<div>RAITNG : </div>
-							<div>INTEREST : </div>
-							<div>PHONE : </div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<a href=''><button
-							type="button" class="btn btn-primary">상세 페이지 이동</button></a>
-				</div>
-			</div>
-		</div> -->
-	</div>
-		
-		
-		
+		</div>		
 		
 	</div>
 	

@@ -9,6 +9,32 @@ $(document).ready(function(){
 })
 
 
+$(document).ready(function() {
+	$('#myCarousel').carousel('cycle');
+	$('#myCarousel2').carousel('cycle');
+});
+
+function review_data(){
+
+	var obj = {"title" : $("#title").val(), "content" : $("#content").val()};
+	var json_obj = JSON.stringify(obj);
+
+	$.ajax({
+		type: "POST",
+		dataType : 'json',
+		url : "review",
+		data : json_obj,
+		contentType : "application/json; charset=utf-8",
+		success : function(data) {
+			location.reload();
+		},
+		error : function(data){
+		}
+	});
+}
+
+
+
 function cancleProcess(elidx) {
 	 /* body... */ 
 
@@ -65,7 +91,6 @@ function applyProcess(elidx){
 					dataType : 'text',
 					url : 'apply/'+elidx,
 					success : function(res) {
-						alert(res);
 						if(res == 'success'){
 							alert('성공하였습니다.');
 						}
@@ -75,7 +100,6 @@ function applyProcess(elidx){
 						else if( res == 'Already applied for this event'){
 							alert('이미 참석하셨습니다.');
 						}
-						
 						
 						var url = $(location).attr('href');
 						var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
@@ -93,11 +117,6 @@ function applyProcess(elidx){
 			alert('에러 발생')
 		}
 	})
-	
-
-		
-		
-	
 	
 }
 

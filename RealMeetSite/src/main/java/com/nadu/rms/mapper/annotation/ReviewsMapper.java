@@ -9,7 +9,7 @@ import com.nadu.rms.vo.Review;
 
 public interface ReviewsMapper {
 
-	@Select("SELECT * FROM REVIEWS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	@Select("SELECT * FROM REVIEWS WHERE ESIDX = #{esidx, jdbcType=VARCHAR} ORDER BY TO_NUMBER(RIDX) DESC")
 	public List<Review> selectReviewsByEsidx(@Param("esidx")String esidx); 
 	
 	@Select("SELECT COUNT(*) FROM REVIEWS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")

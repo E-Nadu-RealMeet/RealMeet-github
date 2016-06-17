@@ -1,5 +1,6 @@
 package com.nadu.rms.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -137,6 +138,12 @@ public class EventController {
 			model.addAttribute("mid", mid);
 		}
 		
+		/*해당 이벤트 이미지 가져오기 위함*/
+		String imgsrc = eventDetailService.EventDetailImg(esidx);
+		System.out.println("imgsrc: "+imgsrc);
+		List<String> list = Arrays.asList(imgsrc.split(":"));
+
+		
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		int iv = eventDetailService.detailLoad(req, esidx, model);
@@ -145,6 +152,8 @@ public class EventController {
 		if(iv>0){
 		//뷰 리턴(detail)
 			String introValue = "모임의 자세한 정보입니다.";
+			req.getSession().setAttribute("esidx", esidx);
+			model.addAttribute("list", list);
 	        model.addAttribute("introValue", introValue );
 	        model.addAttribute("page","event/eventDetail");
 	        
@@ -153,26 +162,75 @@ public class EventController {
 			return "redirect:list";
 		}
 	}
+	
+	@RequestMapping(value = "review", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventDetailReview(@RequestBody Map< String, Object> data, HttpServletRequest req, Model model) {
+		String mid = (String)req.getSession().getAttribute("mid");
+		String esidx = (String)req.getSession().getAttribute("esidx");
+		String title = (String)data.get("title");
+		String content = (String)data.get("content");
+		
+		System.out.print("review="+mid);
+		System.out.print(","+esidx);
+		System.out.print(","+title);
+		System.out.println(","+content);
+		
+
+		int iv = eventDetailService.ReviewInsert(title, content, mid, esidx);
+		if(iv>0){
+			System.out.println("여기");
+			return "success";
+			/*return "redirect:../event/"+esidx;*/
+		}else{
+			/*return "redirect:list";*/
+			return "fail";
+		}
+	}
 
 	// 이벤트 등록
 	@RequestMapping(value = "reg", method = RequestMethod.GET)
 	public String eventReg(Model model, HttpServletRequest request) {
 		String mid = (String)request.getSession().getAttribute("mid");
 		if(mid == null || mid == ""){
+			// 페이지 계산
+			// 이전 페이지 http://localhost/~
+			String beforePageAll = request.getHeader("referer");
+
+			// 현재 페이지 /test/index.jsp
+			int requestURIsize = request.getRequestURI().length();
+			// 현재 페이지 http://localhost:8080/test/index.jsp
+			int requestURLsize = request.getRequestURL().length();
+
+			// localhost까지 길이 계산
+			int extrasize = requestURLsize - requestURIsize;
+
+			// 프로젝트 이름 길이
+			int projsize = request.getContextPath().length();
+
+			// 필요한 페이지
+			log.info("beforePageAll : "+beforePageAll);
+			String beforePage="/";
+			if(beforePageAll!=null&&beforePageAll.length()!=0)
+			{
+				beforePage = beforePageAll.substring(extrasize + projsize);
+			}
+			log.info("beforePage : " + beforePage);
+			
 			model.addAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
-			log.info("현재 페이지"+savePage);
 			request.getSession().setAttribute("savePage", savePage);
-			return "redirect:../login";
+			return "redirect:"+beforePage;
+		}else{
+			request.getSession().setAttribute("savePage", null);
+			List<String> categories = eventRegService.getCategories();
+			String introValue = "모임을 만들어봐요.";
+	        model.addAttribute("introValue", introValue);
+			model.addAttribute("categories", categories);
+			model.addAttribute("page","event/eventReg");
+			return "event/eventReg";
 		}
-		
-		List<String> categories = eventRegService.getCategories();
-		String introValue = "모임을 만들어봐요.";
-        model.addAttribute("introValue", introValue);
-		model.addAttribute("categories", categories);
-		model.addAttribute("page","event/eventReg");
-		return "event/eventReg";
 	}
 
 	// 이벤트 등록 proc

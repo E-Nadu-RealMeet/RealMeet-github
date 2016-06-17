@@ -12,6 +12,8 @@ import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.mapper.annotation.EventsMapper;
 import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Event_User;
+import com.nadu.rms.vo.Events;
+import com.nadu.rms.vo.Review;
 
 public class EventsDao {
 
@@ -123,6 +125,15 @@ public class EventsDao {
 		
 	}*/
 	
+	public String selectEvents(String esidx){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		String imgsrc = mapper.selectEventsImg(esidx);
+		session.close();
+		return imgsrc;
+	}
+	
 	public List<Event_Eventlist> selectMyEvents(String holder){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
@@ -137,5 +148,14 @@ public class EventsDao {
 		List<Event_Eventlist> events = mapper.selectJoinEvents(guest);
 		session.close();
 		return events;
+	}
+	
+	public int ReviewInsert(String title, String content, String mid, String esidx){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int cnt = mapper.ReviewInsert(title, content, mid, esidx);
+		session.commit();
+		session.close();
+		return cnt;
 	}
 }

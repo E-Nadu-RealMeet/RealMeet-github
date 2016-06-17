@@ -1,16 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<head>
-<style type="text/css">
-.row {
-	margin: -40px 0 -1px -40px;
-}
-</style>
-</head>
-<div class="container">
-	<c:out value="회원정보"></c:out>
-	<hr style="border: solid 1px #ddd; margin: 0 0 1em 0;">
+<div class="container" style="margin-bottom: 10px; text-align: center;  padding-top: 0.6em;">
+	<span style="font-size: 2em"><c:out value="회원정보"></c:out></span>
+	<hr style="border: solid 1px #ddd;">
 	<div class="featurette" id="services" style="text-align: left;">
 		<img style="margin: 5em 5em 5em 5em;"
 			class="featurette-image img-circle img-responsive pull-left"
@@ -31,7 +24,7 @@
 		<p class="lead"></p>
 		<p class="lead"></p>
 	</div>
-	<div class="row">
+	<div class="row" style="margin: -40px 0 -1px -40px;">
 		<div class="col-md-12">
 			<hr>
 			<button class="btn btn-default pull-right"

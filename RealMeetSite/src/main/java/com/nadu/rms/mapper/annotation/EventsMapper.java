@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Update;
 
 import com.nadu.rms.vo.Event_Eventlist;
 import com.nadu.rms.vo.Event_User;
+import com.nadu.rms.vo.Events;
+import com.nadu.rms.vo.Review;
 
 public interface EventsMapper {
 	@Select("SELECT * FROM EVENTS")
@@ -52,4 +54,9 @@ public interface EventsMapper {
 	@Select("SELECT CNAME FROM CATEGORIES")
 	public List<String> getCategories();
 	
+	@Select("SELECT IMGSRC FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public String selectEventsImg(@Param("esidx")String esidx);
+	
+	@Insert("INSERT INTO REVIEWS(RIDX, WRITER, REGDATE, TITLE, CONTENT, ESIDX) VALUES(TO_CHAR(REVIEW_SEQ.NEXTVAL),#{mid, jdbcType=VARCHAR}, SYSDATE, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},#{esidx, jdbcType=VARCHAR})")
+	public int ReviewInsert(@Param("title")String title, @Param("content")String content, @Param("mid")String mid, @Param("esidx")String esidx);
 }

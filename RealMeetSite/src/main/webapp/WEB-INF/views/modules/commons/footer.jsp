@@ -2,7 +2,7 @@
 <div id="footer">
 	<!-- Copyright -->
 	<ul class="copyright">
-		<li>Ssangyong. Project</li>
+		<li><h3>다들모여~!</h3></li>
 		
 	</ul>
 

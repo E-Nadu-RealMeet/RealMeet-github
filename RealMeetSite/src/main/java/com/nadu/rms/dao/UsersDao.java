@@ -8,6 +8,37 @@ import com.nadu.rms.vo.Users;
 
 public class UsersDao {
 	
+	public Users selectUser(String id, String pwd) {
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+		
+		try {
+			Users users = mapper.selectUsers(id);
+			//아이디와 비밀번호 체크
+			if(users!=null&&users.getId().equals(id)&&users.getPwd().equals(pwd)){
+				return users;
+			}else{
+				return null;
+			}
+		} finally {
+			session.commit();
+			session.close();
+		}
+		
+		
+		/*SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		try{
+			String statement = "com.nadu.rms.mapper.UsersMapper.selectUsers";
+			System.out.println(statement);
+			return sqlSession.selectOne(statement, id);
+			return sqlSession.selectList(statement, id);
+			
+		}finally {
+			sqlSession.close();
+		}*/
+	}
 	/*private SqlSessionFactory getSqlSessionFactory(){
 
 		String resource="com/nadu/rms/config/mybatis-config.xml";
@@ -53,6 +84,7 @@ public class UsersDao {
 		
 		try {
 			Users users = mapper.selectUsers(id);
+			//아이디와 비밀번호 체크
 			return users;
 		} finally {
 			session.commit();

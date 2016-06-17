@@ -213,3 +213,11 @@ section#top {
 		padding: 7px 0px 7px;
 	}
 }
+.container.left {
+    width: 50%;
+    float: left;
+}
+.container.right {
+    width: 50%;
+    float: right;
+}
