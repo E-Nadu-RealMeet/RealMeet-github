@@ -22,11 +22,14 @@ function review_data(){
 	$.ajax({
 		type: "POST",
 		dataType : 'json',
-		url : "reveiw",
+		url : "review",
 		data : json_obj,
 		contentType : "application/json; charset=utf-8",
 		success : function(data) {
+			location.reload();
 		},
+		error : function(data){
+		}
 	});
 }
 
