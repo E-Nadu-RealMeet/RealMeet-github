@@ -75,7 +75,7 @@ function createListElement(data){
 	newDiv.find('.col-md-6.portfolio-item').attr('style','background-image: url("'+getContextPath()+'/resources/core/images/upload/'+data.imgsrc+'");');
 	newDiv.find('.caption-desc').html(data.description);
 	newDiv.find('.icon.fa-heart-o').html(data.good);
-	newDiv.find('.icon.fa-commenting-o').html(data.reviewcnt);
+	newDiv.find('.icon.fa-commenting-o').html(data.reviewCnt);
 	
 	return newDiv;
 }
