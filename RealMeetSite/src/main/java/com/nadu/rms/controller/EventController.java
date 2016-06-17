@@ -165,16 +165,17 @@ public class EventController {
 	
 	@RequestMapping(value = "review", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String eventDetailReview(@RequestBody Map< String, Object> data, HttpServletRequest req, Model model) {
-		String mid = (String)req.getSession().getAttribute("mid");
-		String esidx = (String)req.getSession().getAttribute("esidx");
+	public String eventDetailReview(@RequestBody Map< String, Object> data, HttpServletRequest request) {
+		
+		String mid = (String)request.getSession().getAttribute("mid");
+		String esidx = (String)request.getSession().getAttribute("esidx");
 		String title = (String)data.get("title");
 		String content = (String)data.get("content");
 		
-		System.out.print("review="+mid);
+		/*System.out.print("review="+mid);
 		System.out.print(","+esidx);
 		System.out.print(","+title);
-		System.out.println(","+content);
+		System.out.println(","+content);*/
 		
 
 		int iv = eventDetailService.ReviewInsert(title, content, mid, esidx);

@@ -68,11 +68,11 @@ function createListElement(data){
 	newDiv.attr('data-toggle','modal');
 	newDiv.attr('data-target',"#detail");
 	newDiv.attr('class','.row');
-	newDiv.attr('style',"margin: 0.6em; cursor: pointer");
+	newDiv.attr('style',"cursor: pointer");
 	
 	newDiv.find('.caption-title').html('<a href=\"#\">'+data.eventname+'</a>');
 	
-	newDiv.find('.col-md-6.portfolio-item').attr('style','background-image: url("'+getContextPath()+'/resources/core/images/upload/'+data.imgsrc+'");');
+	newDiv.find('.container.eventlist').attr('style','background-image: url("'+getContextPath()+'/resources/core/images/upload/'+data.imgsrc+'");background-size: cover;');
 	newDiv.find('.caption-desc').html(data.description);
 	newDiv.find('.icon.fa-heart-o').html(data.good);
 	newDiv.find('.icon.fa-commenting-o').html(data.reviewcnt);
