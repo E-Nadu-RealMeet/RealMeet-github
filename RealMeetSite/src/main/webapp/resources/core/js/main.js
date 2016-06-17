@@ -149,3 +149,9 @@ function closeLoginForm() {
 $('#reg-link').click(function() {
 	loginChk()
 })
+$(document).ready(function(){
+	$('.login-sum').click(function(e) {
+		closeLoginForm();
+		$('.login-sum').off("click");
+	})
+})

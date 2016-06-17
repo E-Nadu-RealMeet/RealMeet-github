@@ -295,6 +295,8 @@ input#regInput2 {
 }
 .col-sm-6.pofol-left {
     width: 90%;
+    float: none;
+    margin: 0 auto;
 }
 .col-sm-6.pofol-right {
     width: 0%;

@@ -54,11 +54,11 @@
 <body>
 	
 	<!-- Header -->
-	<div id="header">
+	<%-- <div id="header">
 	
-		<%-- <tiles:insertAttribute name="header"></tiles:insertAttribute> --%>
+		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		
-	</div>
+	</div> --%>
 	<!-- Main -->
 	<div id="main">
 		
@@ -66,6 +66,7 @@
 		<!-- Intro -->
 		<tiles:insertAttribute name="intro"></tiles:insertAttribute>
 		<tiles:insertAttribute name="login"></tiles:insertAttribute>
+		<tiles:insertAttribute name="error"></tiles:insertAttribute>
 		<!-- Content -->
 		<section id="portfolio" class="two">
 			<div class="col-sm-6 pofol-left">
