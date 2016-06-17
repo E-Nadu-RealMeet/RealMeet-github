@@ -73,25 +73,25 @@
 							<li style="border: 1px solid #ddd;"><a href="#">관심분야별</a>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','인연','relation');">인연</a></li>
+										href="javascript:newfilter('category','인연','relation');">인연</a></li>
 									<li><a
-										href="javascript:newfilter('interest','게임','game');">게임</a></li>
+										href="javascript:newfilter('category','게임','game');">게임</a></li>
 								</ul>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','모임','meeting');">모임</a></li>
+										href="javascript:newfilter('category','모임','meeting');">모임</a></li>
 									<li><a
-										href="javascript:newfilter('interest','여행','travel');">여행</a></li>
+										href="javascript:newfilter('category','여행','travel');">여행</a></li>
 								</ul>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','맛집','restaurant');">맛집</a></li>
+										href="javascript:newfilter('category','맛집','restaurant');">맛집</a></li>
 									<li><a
-										href="javascript:newfilter('interest','강연','lecture');">강연</a></li>
+										href="javascript:newfilter('category','강연','lecture');">강연</a></li>
 								</ul>
 								<ul style="width: 250px;">
 									<li><a
-										href="javascript:newfilter('interest','지식','knowledge');">지식</a></li>
+										href="javascript:newfilter('category','지식','knowledge');">지식</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -121,17 +121,17 @@
 					onmouseleave="divhide('menu_div_2');">
 					<ul>
 						<li><a
-							href="javascript:newfilter('interest','인연','relation');">인연</a></li>
-						<li><a href="javascript:newfilter('interest','게임','game');">게임</a></li>
+							href="javascript:newfilter('category','인연','relation');">인연</a></li>
+						<li><a href="javascript:newfilter('category','게임','game');">게임</a></li>
 						<li><a
-							href="javascript:newfilter('interest','모임','meeting');">모임</a></li>
-						<li><a href="javascript:newfilter('interest','여행','travel');">여행</a></li>
+							href="javascript:newfilter('category','모임','meeting');">모임</a></li>
+						<li><a href="javascript:newfilter('category','여행','travel');">여행</a></li>
 						<li><a
-							href="javascript:newfilter('interest','맛집','restaurant');">맛집</a></li>
+							href="javascript:newfilter('category','맛집','restaurant');">맛집</a></li>
 						<li><a
-							href="javascript:newfilter('interest','강연','lecture');">강연</a></li>
+							href="javascript:newfilter('category','강연','lecture');">강연</a></li>
 						<li><a
-							href="javascript:newfilter('interest','지식','knowledge');">지식</a></li>
+							href="javascript:newfilter('category','지식','knowledge');">지식</a></li>
 					</ul>
 				</div></li>
 		</ul>

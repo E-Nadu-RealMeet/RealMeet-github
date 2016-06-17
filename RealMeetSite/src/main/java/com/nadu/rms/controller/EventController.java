@@ -1,5 +1,6 @@
 package com.nadu.rms.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -137,6 +138,12 @@ public class EventController {
 			model.addAttribute("mid", mid);
 		}
 		
+		/*해당 이벤트 이미지 가져오기 위함*/
+		String imgsrc = eventDetailService.EventDetailImg(esidx);
+		System.out.println("imgsrc: "+imgsrc);
+		List<String> list = Arrays.asList(imgsrc.split(":"));
+
+		
 		/* eventDetailService로 필요한 데이터 가져옴 */
 		//req.getSession().setAttribute("mid", "gyu");
 		int iv = eventDetailService.detailLoad(req, esidx, model);
@@ -145,10 +152,35 @@ public class EventController {
 		if(iv>0){
 		//뷰 리턴(detail)
 			String introValue = "모임의 자세한 정보입니다.";
+			req.getSession().setAttribute("esidx", esidx);
+			model.addAttribute("list", list);
 	        model.addAttribute("introValue", introValue );
 	        model.addAttribute("page","event/eventDetail");
 	        
 			return "event/eventDetail";
+		}else{
+			return "redirect:list";
+		}
+	}
+	
+	@RequestMapping(value = "reveiw", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventDetailReview(@RequestBody Map< String, Object> data, HttpServletRequest req, Model model) {
+		String mid = (String)req.getSession().getAttribute("mid");
+		String esidx = (String)req.getSession().getAttribute("esidx");
+		String title = (String)data.get("title");
+		String content = (String)data.get("content");
+		
+		System.out.print("review="+mid);
+		System.out.print(","+esidx);
+		System.out.print(","+title);
+		System.out.println(","+content);
+		
+
+		int iv = eventDetailService.ReviewInsert(title, content, mid, esidx);
+		if(iv>0){
+			System.out.println("여기");
+			return "redirect:../event/"+esidx;
 		}else{
 			return "redirect:list";
 		}

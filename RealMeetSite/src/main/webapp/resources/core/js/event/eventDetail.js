@@ -9,6 +9,29 @@ $(document).ready(function(){
 })
 
 
+$(document).ready(function() {
+	$('#myCarousel').carousel('cycle');
+	$('#myCarousel2').carousel('cycle');
+});
+
+function review_data(){
+
+	var obj = {"title" : $("#title").val(), "content" : $("#content").val()};
+	var json_obj = JSON.stringify(obj);
+
+	$.ajax({
+		type: "POST",
+		dataType : 'json',
+		url : "reveiw",
+		data : json_obj,
+		contentType : "application/json; charset=utf-8",
+		success : function(data) {
+		},
+	});
+}
+
+
+
 function cancleProcess(elidx) {
 	 /* body... */ 
 
