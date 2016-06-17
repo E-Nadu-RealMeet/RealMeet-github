@@ -3,8 +3,10 @@
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/core/css/customer.css" /> --%>
+
 <section id="portfolio" class="two">
-						<div class="container" style="width: 200%">
+						<div class="container" style="margin-left: 50%;">
 
 							<header>
 								<h2>답변하기</h2>
@@ -15,7 +17,7 @@
 					
 							<form action="addAnswer" method="post">
 									<div class="11u$" style="margin-left: 2%">
-										<textarea name="answer" placeholder="내용"></textarea>
+										<textarea name="answer" placeholder="답변내용"></textarea>
 									</div>
 									
 									<div class="11u$" style="margin-left: 2%">

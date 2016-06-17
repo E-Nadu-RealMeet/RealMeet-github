@@ -169,7 +169,7 @@
 						<td><a href="QNADetail/${QNA.qidx}" data-toggle="modal" data-target="#QNADetailModal" style="color: #81918E;">${QNA.title}</a></td>
 						<td>${QNA.regdate}</td>
 						<c:if test="${mid == 'won'}">
-						<td><a href="Answer/${QNA.qidx}"><button>답변</button></a></td>
+						<td><a href="Answer/${QNA.qidx}"><span class="icon fa-pencil-square-o">답변</span></a></td>
 						</c:if>
 					</tr>
 				</c:forEach>
