@@ -1,62 +1,6 @@
 var page = 1;  //페이징과 같은 방식이라고 생각하면 된다.		 
 var isDone = false;
 
-// 맵 
-Map = function(){
- this.map = new Object();
-};   
-Map.prototype = {   
-    put : function(key, value){   
-        this.map[key] = value;
-    },   
-    get : function(key){   
-        return this.map[key];
-    },
-    containsKey : function(key){    
-     return key in this.map;
-    },
-    containsValue : function(value){    
-     for(var prop in this.map){
-      if(this.map[prop] == value) return true;
-     }
-     return false;
-    },
-    isEmpty : function(key){    
-     return (this.size() == 0);
-    },
-    clear : function(){   
-     for(var prop in this.map){
-      delete this.map[prop];
-     }
-    },
-    remove : function(key){    
-     delete this.map[key];
-    },
-    keys : function(){   
-        var keys = new Array();   
-        for(var prop in this.map){   
-            keys.push(prop);
-        }   
-        return keys;
-    },
-    values : function(){   
-     var values = new Array();   
-        for(var prop in this.map){   
-         values.push(this.map[prop]);
-        }   
-        return values;
-    },
-    size : function(){
-      var count = 0;
-      for (var prop in this.map) {
-        count++;
-      }
-      return count;
-    }
-};
-
-
-
 
 $(function(){  //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
 	
@@ -77,6 +21,18 @@ $(window).scroll(function(){
 	}
 });
 
+function redirecting(esidx){
+	
+	var urls = '';
+	if(location.href.substring(location.href.indexOf(location.host)+location.host.length,location.href.length) == '/RealMeetSite/event/list'){
+		urls = ''+esidx;
+	}else{
+		urls = 'event/'+esidx;
+	}
+	
+	window.location = urls;
+}
+
 
 function getFilters(page){
    //
@@ -89,7 +45,6 @@ function getFilters(page){
    	'category':'',
    	'page':page
    };
-
 
    // 필터된 값들 가져오기
    $('#selectfilter').find('a').each(function(){
@@ -106,13 +61,14 @@ function getFilters(page){
 }
 
 function createListElement(data){
-	// 이미있는 div 복제
+	
+	// 이미있는 dummy div 복제후 뷰 생성
 	var newDiv = $('.row.dummy').clone();
-	newDiv.attr('onclick','#');
+	newDiv.attr('onclick','redirecting('+data.esidx+')');
 	newDiv.attr('data-toggle','modal');
 	newDiv.attr('data-target',"#detail");
 	newDiv.attr('class','.row');
-	newDiv.attr('style',"margin: 0.6em;");
+	newDiv.attr('style',"margin: 0.6em; cursor: pointer");
 	
 	newDiv.find('.caption-title').html('<a href=\"#\">'+data.eventname+'</a>');
 	
@@ -120,10 +76,6 @@ function createListElement(data){
 	newDiv.find('.caption-desc').html(data.description);
 	newDiv.find('.icon.fa-heart-o').html(data.good);
 	newDiv.find('.icon.fa-commenting-o').html(data.reviewcnt);
-	
-	//모달 생성
-	
-	
 	
 	return newDiv;
 }
@@ -159,7 +111,8 @@ function getEventList(page){
 			var startNum = returnData.startNum;
 			var endNum = returnData.endNum;
 			if(returnData.startNum <= returnData.cnt){
-				//뷰 만들기 ... 개 노가다 -ㅂ-
+				
+				//컨텍스트패스 받아오기(이미지 경로용)
 				var contextPath = getContextPath();
 				
 				for(var i=0; i<(endNum-startNum+1); i++){
@@ -174,13 +127,6 @@ function getEventList(page){
 				isDone = true;
 				page--;
 			}
-		},
-	 	error : function(xhr, stat, err) {
-
-		   	alert("error");
-
-		   	console.log(err);
-
 		}
 	});
 } 
