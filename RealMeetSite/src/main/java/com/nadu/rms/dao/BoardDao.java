@@ -97,4 +97,34 @@ public class BoardDao {
 		session.close();
 		
 	}
+
+
+
+
+	public int insertRefly(Map<String, Object> paramMap) {
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			return mapper.insertRefly(paramMap); 
+			
+		} finally {
+
+			session.commit();
+			session.close();
+		}
+		
+	}
+
+
+
+
+	public int selectReflyStepNum(int bidx) {
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int cnt = mapper.getCountByStep(bidx);
+		session.close();
+		return cnt;
+		
+	}
 }
