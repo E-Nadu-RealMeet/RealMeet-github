@@ -65,7 +65,6 @@ function applyProcess(elidx){
 					dataType : 'text',
 					url : 'apply/'+elidx,
 					success : function(res) {
-						alert(res);
 						if(res == 'success'){
 							alert('성공하였습니다.');
 						}

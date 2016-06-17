@@ -8,8 +8,14 @@ public class Users {
 	private int rating;
 	private String interest;
 	private String type;
+	private String imgsrc;
 	
-	
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
+	}
 	public String getType() {
 		return type;
 	}
