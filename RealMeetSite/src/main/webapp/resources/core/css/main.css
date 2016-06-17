@@ -2870,3 +2870,12 @@ span#error-login {
     background-size: 500%;
     margin-bottom: 1em;
 }
+#list-filter{
+	/* max-width: 1000px; */
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0px auto;
+}
+#list-filter li:hover{
+	background-color: gray;
+}

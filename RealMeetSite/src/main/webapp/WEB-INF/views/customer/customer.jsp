@@ -15,7 +15,7 @@
 
 
 					<section id="portfolio" class="two">
-						<div class="container" id="container" style="width: 200%">
+						<div class="container" id="container" style="margin-left: 1%; width: 200%">
 
 
 
@@ -23,7 +23,7 @@
 
 							
 							<div class="row">
-								<div class="5u" style="margin-left: 8%; margin-bottom: 7%; margin-top: 7%">
+								<div class="5u" style="margin-left: 7.5%; margin-bottom: 7%; margin-top: 7%">
 									<article class="item" >
 										<button data-toggle="modal" data-target="#NoticesModal" style="background-image:url('../resources/core/images/Norway-summer-landscape-grass-trees-road-hills-green_1920x1080.jpg'); width: 100%; height: 250px;"><h2 style="color: white;">공지사항</h2></button>
 									</article>

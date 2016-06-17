@@ -54,13 +54,13 @@
 			<label for="inputInterest" class="col-lg-2 control-label" style="font-size: 20px;">흥미 카테고리</label>
 			<div class="col-lg-10" style="font-size: 15px; padding: 6px 12px;">
 				<ul>
-					<li><input type="checkbox" id="sport" name="interest" value="식사"> 식사<br></li>
-					<li><input type="checkbox" id="game" name="interest" value="운동"> 운동<br></li>
-					<li><input type="checkbox" id="talk" name="interest" value="일상대화"> 일상대화<br></li>
-					<li><input type="checkbox" id="cul" name="interest" value="문화생활"> 문화생활<br></li>
-					<li><input type="checkbox" id="meet" name="interest" value="만남"> 만남<br></li>
-					<li><input type="checkbox" id="vol" name="interest" value="자원봉사"> 자원봉사<br></li>
-					<li><input type="checkbox" id="study" name="interest" value="스터디"> 스터디<br></li>
+					<li><input type="checkbox" id="relation" name="interest" value="인연"> 인연<br></li>
+					<li><input type="checkbox" id="game" name="interest" value="게임"> 게임<br></li>
+					<li><input type="checkbox" id="meeting" name="interest" value="모임"> 모임<br></li>
+					<li><input type="checkbox" id="travel" name="interest" value="여행"> 여행<br></li>
+					<li><input type="checkbox" id="restaurant" name="interest" value="맛집"> 맛집<br></li>
+					<li><input type="checkbox" id="lecture" name="interest" value="강연"> 강연<br></li>
+					<li><input type="checkbox" id="knowledge" name="interest" value="지식"> 지식<br></li>
 				</ul>
 
 			</div>

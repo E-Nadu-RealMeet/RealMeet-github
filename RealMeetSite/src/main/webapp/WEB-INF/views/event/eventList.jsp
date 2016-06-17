@@ -35,7 +35,7 @@
 </head>
 <%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventList.js?ver=1" type="text/javascript"></script> --%>
 <div class="container" id="container">
-	<div style="max-width: 1000px; padding: 10px; margin: 10px auto;">
+	<div id="list-filter">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
 			<li class="menu"><a onmouseover="divshow('menu_div_0');"
@@ -142,8 +142,8 @@
 	<div id="viewList">
 	</div>
 	<!-- dummy -->
-	<div class="row dummy" style="margin: 0.6em; display: none;">
-		<div class="col-md-6 portfolio-item">
+	<div class="row dummy" style="margin :0;display: none;">
+		<div class="container eventlist">
 			<div class="col-md-6 portfolio-item-detail">
 				<p>
 					<span class="caption-title"><a href="#">Project Two</a>

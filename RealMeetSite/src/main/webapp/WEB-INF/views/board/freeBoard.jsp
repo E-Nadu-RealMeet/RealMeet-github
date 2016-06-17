@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<% request.setCharacterEncoding("UTF-8"); %>
 	<div class="container">
 			<table  class="table table-striped table-bordered">
 				<colgroup>
@@ -94,7 +94,7 @@
 					</div>
 					<div class="col-sm-8">
 					<label class="hidden" for="query"></label>
-					<input type="text" name="query" value="${query}" style="height: 18px;">
+					<input type="text" id="query" name="query" value="${query}" style="height: 18px;">
 					</div>
 					<input type="image" src="${pageContext.request.contextPath}/resources/core/images/btn_find.gif" value="submit">
 				</div>

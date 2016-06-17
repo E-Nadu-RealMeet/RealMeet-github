@@ -3,3 +3,10 @@
 section#top {
 	background-image: url("../images/reg-top2.jpg");
 }
+.container {
+    margin-bottom: 0.7em;
+    box-shadow: 4px 4px 4px 4px #dedede;
+}
+.col-md-6.portfolio-item-detail {
+    padding: 0.6em;
+}

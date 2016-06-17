@@ -40,4 +40,11 @@
 	DELETE FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}
 	</delete>
 	 -->
+	 
+	 <insert id="insertRefly" parameterType="map">
+	 INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, #{target, jdbcType=VARCHAR}, #{step, jdbcType=INTEGER}, #{blevel, jdbcType=INTEGER}, 'free', 0)
+	 <selectKey keyProperty="bidx" resultType="INTEGER" order="AFTER">
+	 SELECT BOARDS_SEQ.CURRVAL FROM dual
+	 </selectKey>
+	 </insert>
 </mapper>

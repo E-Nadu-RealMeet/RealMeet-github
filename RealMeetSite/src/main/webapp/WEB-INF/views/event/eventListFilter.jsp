@@ -22,7 +22,7 @@ function delfilter(divId){
 </script>
 </head>
 
-<div style="max-width: 1000px; padding: 10px; margin: 10px auto;">
+<div id="list-filter">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
 			<li class="menu"><a onmouseover="divshow('menu_div_0');"
