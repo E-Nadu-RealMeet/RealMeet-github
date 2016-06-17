@@ -76,7 +76,6 @@ function applyProcess(elidx){
 							alert('이미 참석하셨습니다.');
 						}
 						
-						
 						var url = $(location).attr('href');
 						var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
 						
@@ -93,11 +92,6 @@ function applyProcess(elidx){
 			alert('에러 발생')
 		}
 	})
-	
-
-		
-		
-	
 	
 }
 
