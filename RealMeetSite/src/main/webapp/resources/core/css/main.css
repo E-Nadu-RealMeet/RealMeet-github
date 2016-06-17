@@ -2863,3 +2863,10 @@ span#error-login {
     margin-top: 1em;
     line-height: 3em;
 }
+#gradeImg{
+	background-image: url('images/stars-155652.png');
+    width: 40px;
+    height: 40px;
+    background-size: 500%;
+    margin-bottom: 1em;
+}

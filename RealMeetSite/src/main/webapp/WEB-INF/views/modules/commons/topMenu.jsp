@@ -25,39 +25,39 @@
 		</div>
 	</div> --%>
 	<div class="join-top">
-		<div class="container" id="topMenu">
+		<div class="container" id="topMenu" style="box-shadow: 1px 1px 1px 1px gainsboro;">
 			<ul id="topMenuUl-left">
 				<li><a class="topButton" id="topButton-logo"
 					href="${pageContext.request.contextPath}/"><span class="icon fa-child"></span>DADLEMOYEO</a></li>
-					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>event</a>
+					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>Event</a>
 						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">event list</span></a></li>
-							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">event create</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">Event list</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Event create</span></a></li>
 						</ul>
 					</li>
-					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>board</a>
+					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>Board</a>
 						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/board/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">free board</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">Free board</span></a></li>
 						</ul>
 					</li>
 			</ul>
 			<ul id="topMenuUl-right">
 				<c:if test="${empty mid}">
 					<li><a class="topButton" href="#"
-						type="button" onclick="openLoginForm();"><span class="icon fa-unlock"></span>login</a></li>
+						type="button" onclick="openLoginForm();"><span class="icon fa-unlock"></span>Login</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
-					<li><c:out value="[${mid}]님 안녕하세요"/></li>
+					<li>[<span style="font-weight: bold; font-size: 120%;"><c:out value="${mid}"/></span>]님 안녕하세요</li>
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/logout"><span class="icon fa-lock"></span>logout</a></li>
+						href="${pageContext.request.contextPath}/logout"><span class="icon fa-lock"></span>Logout</a></li>
 				</c:if>
 				<c:if test="${empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/join"><span class="icon fa-user-plus"></span>join</a></li>
+						href="${pageContext.request.contextPath}/users/join"><span class="icon fa-user-plus"></span>Join</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/home"><span class="fa fa-user-plus"></span>info</a></li>
+						href="${pageContext.request.contextPath}/users/home"><span class="fa fa-user-plus"></span>Info</a></li>
 				</c:if>
 				<li><a href="${pageContext.request.contextPath}/customer/customer" class="skel-layers-ignoreHref"><span class="icon fa-users"></span>고객센터</a></li>
 			</ul>

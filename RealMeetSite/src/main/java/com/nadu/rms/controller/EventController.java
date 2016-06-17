@@ -163,7 +163,7 @@ public class EventController {
 		}
 	}
 	
-	@RequestMapping(value = "reveiw", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value = "review", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventDetailReview(@RequestBody Map< String, Object> data, HttpServletRequest req, Model model) {
 		String mid = (String)req.getSession().getAttribute("mid");
@@ -180,9 +180,11 @@ public class EventController {
 		int iv = eventDetailService.ReviewInsert(title, content, mid, esidx);
 		if(iv>0){
 			System.out.println("여기");
-			return "redirect:../event/"+esidx;
+			return "success";
+			/*return "redirect:../event/"+esidx;*/
 		}else{
-			return "redirect:list";
+			/*return "redirect:list";*/
+			return "fail";
 		}
 	}
 
