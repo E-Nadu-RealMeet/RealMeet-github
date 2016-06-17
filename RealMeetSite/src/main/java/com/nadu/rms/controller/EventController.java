@@ -159,12 +159,36 @@ public class EventController {
 	public String eventReg(Model model, HttpServletRequest request) {
 		String mid = (String)request.getSession().getAttribute("mid");
 		if(mid == null || mid == ""){
+			// 페이지 계산
+			// 이전 페이지 http://localhost/~
+			String beforePageAll = request.getHeader("referer");
+
+			// 현재 페이지 /test/index.jsp
+			int requestURIsize = request.getRequestURI().length();
+			// 현재 페이지 http://localhost:8080/test/index.jsp
+			int requestURLsize = request.getRequestURL().length();
+
+			// localhost까지 길이 계산
+			int extrasize = requestURLsize - requestURIsize;
+
+			// 프로젝트 이름 길이
+			int projsize = request.getContextPath().length();
+
+			// 필요한 페이지
+			log.info("beforePageAll : "+beforePageAll);
+			String beforePage="/";
+			if(beforePageAll!=null&&beforePageAll.length()!=0)
+			{
+				beforePage = beforePageAll.substring(extrasize + projsize);
+			}
+			log.info("beforePage : " + beforePage);
+			
 			model.addAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
 			log.info("현재 페이지"+savePage);
 			request.getSession().setAttribute("savePage", savePage);
-			return "redirect:../login";
+			return "redirect:"+beforePage;
 		}
 		
 		List<String> categories = eventRegService.getCategories();

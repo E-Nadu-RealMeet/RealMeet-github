@@ -16,7 +16,7 @@ public class UsersDao {
 		try {
 			Users users = mapper.selectUsers(id);
 			//아이디와 비밀번호 체크
-			if(users.getId().equals(id)&&users.getPwd().equals(pwd)){
+			if(users!=null&&users.getId().equals(id)&&users.getPwd().equals(pwd)){
 				return users;
 			}else{
 				return null;

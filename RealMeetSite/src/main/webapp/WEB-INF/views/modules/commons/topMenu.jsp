@@ -32,14 +32,7 @@
 					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>event</a>
 						<ul class="submenu">
 							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">event list</span></a></li>
-							<c:choose>
-							<c:when test="${empty mid}">
-							<li><a href="#" id="reg-link" class="skel-layers-ignoreHref" onclick="loginChk('/event/reg'); return null;"><span class="icon fa-th">event create</span></a></li>
-							</c:when>
-							<c:when test="${!empty mid}">
-							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref" onclick="return loginChk();"><span class="icon fa-th">event create</span></a></li>
-							</c:when>
-							</c:choose>
+							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">event create</span></a></li>
 						</ul>
 					</li>
 					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>board</a>

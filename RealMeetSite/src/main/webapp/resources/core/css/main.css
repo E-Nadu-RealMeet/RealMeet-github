@@ -2855,3 +2855,11 @@ div.login-sum{
 .col-sm-6.pofol-right {
     padding-top: 0;
 }
+
+span#error-login {
+    color: red;
+    font-size: 150%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    line-height: 3em;
+}
