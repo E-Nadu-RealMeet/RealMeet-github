@@ -37,17 +37,17 @@
 						<c:set var="x" value="-152px"></c:set>
 						<c:set var="y" value="-43px"></c:set>
 					</c:when>
-					<c:when test="${holderInfo.getRating()<40}">
+					<c:when test="${holderInfo.getRating()<50}">
 						<!-- 노랑 -->
 						<c:set var="x" value="-152px"></c:set>
 						<c:set var="y" value="-43px"></c:set>
 					</c:when>
-					<c:when test="${holderInfo.getRating()<50}">
+					<c:when test="${holderInfo.getRating()<70}">
 						<!-- 초록 -->
 						<c:set var="x" value="-160px"></c:set>
 						<c:set var="y" value="-90px"></c:set>
 					</c:when>
-					<c:when test="${holderInfo.getRating()<60}">
+					<c:when test="${holderInfo.getRating()<=100}">
 						<!-- 남색 -->
 						<c:set var="x" value="-137px"></c:set>
 						<c:set var="y" value="-131px"></c:set>

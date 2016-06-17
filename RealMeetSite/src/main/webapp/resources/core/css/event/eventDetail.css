@@ -5,6 +5,7 @@ section#top {
 }
 .col-sm-6.pofol-left {
     width: 70%;
+    margin-left: 5em;
 }
 .col-sm-6.pofol-right {
     width: 20%;
