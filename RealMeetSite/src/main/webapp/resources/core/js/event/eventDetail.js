@@ -14,6 +14,29 @@ $(document).ready(function() {
 	$('#myCarousel2').carousel('cycle');
 });
 
+
+function review_login(){
+
+	/* 로그인 체크 */
+	$.ajax({
+		url:getContextPath()+'/midCheck',
+		type:'POST',
+		dataType: 'text',
+		success: function(data){
+			if(data ==="true"){
+			}
+			else{
+				/* 로그인 체크 실패 */
+				alert("로그인이 필요합니다.");
+			}
+		},
+		error: function(data){
+			alert('에러 발생')
+		}
+	})
+
+}
+
 function review_data(){
 
 	var obj = {"title" : $("#title").val(), "content" : $("#content").val()};
@@ -24,11 +47,13 @@ function review_data(){
 		dataType : 'json',
 		url : "review",
 		data : json_obj,
+		cache:false,
 		contentType : "application/json; charset=utf-8",
 		success : function(data) {
 			window.location.reload();
 		},
 		error : function(data){
+			alert('에러 발생')
 		}
 	});
 }

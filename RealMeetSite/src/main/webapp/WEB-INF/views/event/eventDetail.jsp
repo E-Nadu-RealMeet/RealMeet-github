@@ -77,15 +77,26 @@
 					<h4 style="font-size: 1.3em;">Leave a Reviews:</h4>
 					<form name="rData">
 						<div class="form-gropu">
-							<input type="text" id="title" name="title"
-								style="margin-bottom: 5px;">
+							<c:if test="${empty mid}">
+								<input type="text" style="margin-bottom: 5px;" onclick="review_login();" readonly="readonly"/>
+							</c:if>
+							<c:if test="${!empty mid}">
+								<input type="text" id="title" name="title" style="margin-bottom: 5px;"/>
+							</c:if>
 						</div>
+						
 						<div class="form-group">
-							<textarea class="form-control" id="content" name="content" rows="3"></textarea>
+							<c:if test="${empty mid}">
+								<textarea class="form-control" placeholder="로그인이 필요합니다." rows="3" onclick="review_login();" readonly="readonly"></textarea>
+							</c:if>
+							<c:if test="${!empty mid}">
+								<textarea class="form-control" id="content" name="content" rows="3"></textarea>
+							</c:if>
+							
 						</div>
-		
-						<button type="submit" class="btn btn-primary"
-							onclick="review_data();">Write</button>
+						<c:if test="${!empty mid}">
+							<button type="submit" class="btn btn-primary" onclick="review_data();">Write</button>
+						</c:if>
 					</form>
 				</div>
 		
