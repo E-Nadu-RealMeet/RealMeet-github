@@ -46,7 +46,7 @@
 	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'N/A')
 	</insert>
 	<update id="addAnswer" parameterType="com.nadu.rms.vo.QNA">
-	UPDATE (SELECT * FROM QNA WHERE ANSWER = 'N/A') SET ANSWER = #{answer, jdbcType=VARCHAR} WHERE QIDX = #{qidx, jdbcType=VARCHAR}
+	UPDATE QNA SET ANSWER = #{answer, jdbcType=VARCHAR} WHERE QIDX = #{qidx, jdbcType=VARCHAR}
 	</update>
 <!-- 	<select id="insertQNA" resultType="com.nadu.rms.vo.QNA"> -->
 <!-- 	INSERT INTO QNA(QIDX ,TITLE, CONTENT, REGDATE, ANSWER) VALUES((SELECT COUNT(QIDX) FROM QNA)+1, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},SYSDATE, 'N/A') -->

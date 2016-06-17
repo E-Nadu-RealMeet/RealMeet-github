@@ -44,6 +44,18 @@ public class EventDetailService {
 		this.reviewsDAO = reviewsDAO;
 	}
 	
+	public String EventDetailImg(String esidx){
+		
+		String imgsrc = eventsDAO.selectEvents(esidx);
+		return imgsrc;
+	}
+	
+	public int ReviewInsert(String title, String content, String mid, String esidx){
+		
+		int iv = eventsDAO.ReviewInsert(title, content, mid, esidx);
+		return iv;
+	}
+	
 	public int detailLoad(HttpServletRequest req,String esidx, Model model){
 		
 		String holder = "";

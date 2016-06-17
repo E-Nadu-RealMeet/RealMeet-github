@@ -151,7 +151,7 @@ public class CustomerController {
 	@RequestMapping(value = "addAnswer", method = RequestMethod.POST)
 	public String addAnswer(Model model, QNA q) {
 		q.setAnswer(q.getAnswer());
-		q.setQidx(q.getQidx());
+//		q.setQidx(q.getQidx());
 		int iv = customersDao.addAnswer(q);
 		if(iv>0){
 			
@@ -177,6 +177,8 @@ public class CustomerController {
 	
 	@RequestMapping(value="Answer/{qidx}", method=RequestMethod.GET)
 	public String Answer(HttpServletRequest request, Model model, @PathVariable String qidx){
+		String introValue = "고객센터";
+        model.addAttribute("introValue", introValue );
 		model.addAttribute("QNADetail", customersDao.selectQNAByQidx(qidx));
 		return "customer/Answer";
 	}

@@ -20,13 +20,42 @@
                 </p>
                 <!-- Date/Time -->
                 <p><span class="glyphicon glyphicon-time"></span> ${detail.get(0).getEldate() }</p>
-
+				
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-responsive" style="margin: auto;" src="http://placehold.it/900x300" alt="">
-
-                <hr>
+            	<!-- <img class="img-responsive" style="margin: auto;" src="http://placehold.it/900x300" alt=""> -->
+				<div id="myCarousel2" class="carousel slide vertical">
+					<div class="carousel-inner" role="listbox">
+		
+						<c:forEach var="e" items="${list}" varStatus="status">
+							<c:choose>
+								<c:when test="${status.count==1}">
+									<c:set var="numone" value=" active"></c:set>
+								</c:when>
+								<c:when test="${status.count!=1}">
+									<c:set var="numone" value=""></c:set>
+								</c:when>
+							</c:choose>
+							<div class="item${numone}" style="cursor: pointer;">
+								<img alt="${status.count}위"
+									src="${pageContext.request.contextPath}/resources/core/images/upload/${e}"
+									data-src="holder.js/1200x500/text:slide">
+		
+							</div>
+						</c:forEach>
+					</div>
+					<a class="left carousel-control" href="#myCarousel2" role="button"
+						data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#myCarousel2" role="button"
+						data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+				<hr>
 
                 <!-- Post Content -->
                 <p class="lead">${detail.get(0).getDescription() }
@@ -43,35 +72,43 @@
 
                 <!-- Blog Comments -->
 
-                <!-- Comments Form -->
-                <div class="well">
-                    <h4 style="font-size: 1.3em;">Leave a Reviews:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Write</button>
-                    </form>
-                </div>
-
-                <hr>
+		        <!-- Comments Form -->
+				<div class="well">
+					<h4 style="font-size: 1.3em;">Leave a Reviews:</h4>
+					<form name="rData">
+						<div class="form-gropu">
+							<input type="text" id="title" name="title"
+								style="margin-bottom: 5px;">
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" id="content" name="content" rows="3"></textarea>
+						</div>
+		
+						<button type="submit" class="btn btn-primary"
+							onclick="review_data();">Write</button>
+					</form>
+				</div>
+		
+				<hr>
 
                 <!-- Posted Comments -->
 
                 <!-- Comment -->
-               				<c:if test="${reviews.size() != 0}">
-									<c:forEach begin="0" end="${reviews.size()-1 }" var="i">
-										<!-- "col-sm-6" = 가용범위 1/2 크기 div -->
-										<div class="media">
-					                    <div class="media-body">
-					                        <h4 class="media-heading">${reviews.get(i).getTitle() }
-					                            <small>August 25, 2014 at 9:30 PM</small>
-					                        </h4>
-					                        ${reviews.get(i).getContent() }
-					                    </div>
-					                </div>
-									</c:forEach>
-								</c:if>
+                <div id="divSettings">
+						<c:if test="${reviews.size() != 0}">
+							<c:forEach begin="0" end="${reviews.size()-1 }" var="i">
+								<!-- "col-sm-6" = 가용범위 1/2 크기 div -->
+								<div class="media">
+									<div class="media-body">
+										<h4 class="media-heading">${reviews.get(i).getTitle() }
+											<small>${reviews.get(i).getRegdate() }</small>
+										</h4>
+										${reviews.get(i).getContent() }
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
+					</div>
                 <!-- Comment -->
 				  </c:if>
 
