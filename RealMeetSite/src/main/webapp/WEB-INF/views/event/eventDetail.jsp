@@ -103,7 +103,8 @@
 										<h4 class="media-heading">${reviews.get(i).getTitle() }
 											<small>${reviews.get(i).getRegdate() }</small>
 										</h4>
-										${reviews.get(i).getContent() }
+										${reviews.get(i).getContent() }<br>
+										<span>by ${reviews.get(i).getWriter() }</span>
 									</div>
 								</div>
 							</c:forEach>
