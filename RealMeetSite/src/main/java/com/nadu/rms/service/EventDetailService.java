@@ -110,7 +110,7 @@ public class EventDetailService {
 			tmpObject.setElidx(e.getElidx());
 			tmpObject.setAddr(e.getAddr());
 			tmpObject.setDate(e.getEldate());
-			tmpObject.setAttended(false);
+			tmpObject.setAttended("false");
 			
 			tmpObject.setMaxguest(Integer.parseInt(e.getMaxgnum()));
 			// 참여자 숫자 가져오기
@@ -130,9 +130,14 @@ public class EventDetailService {
 				System.out.println(g.getGidx());
 				System.out.println("e:"+e.getElidx()+"g:"+g.getElidx());
 				if(g.getElidx().equals(e.getElidx())){
-					tmpObject.setAttended(true);
+					tmpObject.setAttended("true");
 					break;
 				}
+			}
+			
+			//개최자인경우
+			if(req.getSession().getAttribute("mid").equals(e.getHolder())){
+				tmpObject.setAttended("owned");
 			}
 			
 			ret.add(tmpObject);
@@ -144,7 +149,7 @@ public class EventDetailService {
 	
 	class JsonClass{
 		String elidx;
-		boolean attended;
+		String attended;
 		String addr;
 		String date;
 		int maxguest;
@@ -156,10 +161,10 @@ public class EventDetailService {
 		public void setElidx(String elidx) {
 			this.elidx = elidx;
 		}
-		public boolean isAttended() {
+		public String isAttended() {
 			return attended;
 		}
-		public void setAttended(boolean attended) {
+		public void setAttended(String attended) {
 			this.attended = attended;
 		}
 		public String getAddr() {

@@ -147,11 +147,16 @@ function createApplyElement(data){
 	var tmpStr = '<div class="chk" id=chk"'+data.elidx+'" name="chkDate">';
 	newDiv.attr('style',"");
 	
-	if(data.cntguest == data.maxguest && data.attended == false){
+
+	if(data.attended == "owned"){
+		newDiv.find('.target').attr('data-target','');
+		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) '+ '';
+	}
+	else if(data.cntguest == data.maxguest && data.attended == "false"){
 		newDiv.find('.target').attr('data-target','');
 		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) '+ '여석이 없습니다.';
 	}
-	else if(data.attended) {
+	else if(data.attended == "true") {
 		newDiv.find('.target').attr('data-target','#apply'+data.elidx);
 		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a style="cursor: pointer">' + '참석취소하기';
 	}
