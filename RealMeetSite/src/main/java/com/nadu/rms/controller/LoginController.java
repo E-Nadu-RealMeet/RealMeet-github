@@ -20,28 +20,46 @@ public class LoginController {
 	
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home(Model model) {
 		
 		return "modules/login";
-	}
+	}*/
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String home(HttpServletRequest request, HttpServletResponse response, String mid, String pwd,String type, String checkBoxMid, Model model) {
-
-		UsersDao dao = new UsersDao();
-		Users m = dao.selectUsers(mid);
+		//페이지 계산
+		//이전 페이지 http://localhost/~
+		String beforePageAll = request.getHeader("referer");
 		
+		//현재 페이지 /test/index.jsp
+		int requestURIsize = request.getRequestURI().length();
+		//현재 페이지 http://localhost:8080/test/index.jsp
+		int requestURLsize = request.getRequestURL().length();
+		
+		//localhost까지 길이 계산
+		int extrasize = requestURLsize-requestURIsize;
+		
+		//프로젝트 이름 길이
+		int projsize = request.getContextPath().length();
+		
+		//필요한 페이지
+		String beforePage = beforePageAll.substring(extrasize+projsize);
+		log.info("beforePage : "+beforePage);
+		UsersDao dao = new UsersDao();
+		Users m = dao.selectUser(mid, pwd);
 		Cookie coo = null;
+		
 		if (m == null || !m.getId().equals(mid)) {
 			model.addAttribute("error","loginError");
-			return "redirect:/login";
+			return "redirect:"+beforePage;
 		} else {
 			request.getSession().setAttribute("mid", mid);
 			request.getSession().setAttribute("pwd", pwd);
 			request.getSession().setAttribute("type", type);
 			request.getSession().setAttribute("checkBoxMid", checkBoxMid);
 			String savePage = (String) request.getSession().getAttribute("savePage");
+			model.addAttribute("error",null);
 			if(checkBoxMid != null  && !checkBoxMid.equals("")){
 				//체크박스가 체크되어 있으면 쿠키 생성
 				coo = new Cookie("mid", mid);
@@ -62,7 +80,7 @@ public class LoginController {
 				return "redirect:" + savePage;
 			} else {
 				log.info("savePage: 없음");
-				return "redirect:" + "/";
+				return "redirect:"+beforePage;
 			}
 		}
 	}

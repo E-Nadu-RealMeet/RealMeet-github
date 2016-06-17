@@ -132,6 +132,7 @@ section#top #topNameH2 {
     background-color: white;
     /* border: 0.5px solid #cccccc; */
     /* margin-top: 15px; */
+    box-shadow: 5px 5px 5px #e8e8e8;
 }
 
 @media screen and (min-width: 961px) and (max-width: 1880px) {
@@ -2397,7 +2398,7 @@ ul.icons a {
     width: 100%;
     border: 1px solid;
     border-color: #e7e7e7;
-    padding-left: 4em;
+    /* padding-left: 4em; */
 }
 
 .join-top .container h1 {

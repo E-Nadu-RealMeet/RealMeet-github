@@ -1,23 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:choose>
-<c:when test="${param.error=='loginError'}">
-	<div class="login-sum" style="display:block;">
+<c:if test="${false}">
+<div class="login-sum" style="display:block;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<span id="error-login">로그인에 실패하셨습니다. 아이디와 비밀번호를 확인해주세요</span>
-</c:when>
-<c:when test="${empty param.error}">
-	<div class="login-sum" style="display: none;">
-	<div id="login-div" onclick="event.cancelBubble=true">
-</c:when>
-</c:choose>
 		<form action="${pageContext.request.contextPath}/login" method="post">
 			<a class="icon fa-times-circle-o"
 				style="float: right; font-size: 1.5em; color: #bf0b0b;"
 				onclick="closeLoginForm();"></a>
 			<div>
-				<c:if test="${!empty cookieMid}">
+				<c:if test="${cookieMid != null}">
 					<input type="text" size="20" name="mid" value="${cookieMid }"
 						placeholder="아이디를 입력해주세요">
 					<br>
@@ -28,7 +21,7 @@
 					<input type="checkbox" name="checkBoxMid" id="saveId"
 						checked="checked">
 				</c:if>
-				<c:if test="${empty cookieMid}">
+				<c:if test="${cookieMid == null || cookiemid == ''}">
 					<input type="text" size="20" name="mid" value=""
 						placeholder="아이디를 입력해주세요">
 					<br>
@@ -47,3 +40,4 @@
 		</form>
 	</div>
 </div>
+</c:if>
