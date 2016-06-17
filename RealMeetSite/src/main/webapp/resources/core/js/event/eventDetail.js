@@ -26,7 +26,7 @@ function review_data(){
 		data : json_obj,
 		contentType : "application/json; charset=utf-8",
 		success : function(data) {
-			location.reload();
+			window.location.reload();
 		},
 		error : function(data){
 		}
