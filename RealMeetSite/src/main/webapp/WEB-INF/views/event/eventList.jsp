@@ -58,10 +58,11 @@
 						<li><a href="javascript:newfilter('region','서울','seuol');">서울</a></li>
 						<li><a href="javascript:newfilter('region','인천', 'incheon');">인천</a></li>
 						<li><a href="javascript:newfilter('region','경기', 'gyeongi');">경기</a></li>
-						<li><a href="javascript:newfilter('region','충청도','chungcheong');">충청도</a></li>
-						<li><a href="javascript:newfilter('region','강원도','gangwon');">강원도</a></li>
-						<li><a href="javascript:newfilter('region','경상도','gyeongsang');">경상도</a></li>
-						<li><a href="javascript:newfilter('region','전라도','jeolla');">전라도</a></li>
+						<li><a href="javascript:newfilter('region','충청','chungcheong');">충청</a></li>
+						<li><a href="javascript:newfilter('region','강원','gangwon');">강원</a></li>
+						<li><a href="javascript:newfilter('region','경상','gyeongsang');">경상</a></li>
+						<li><a href="javascript:newfilter('region','전라','jeolla');">전라</a></li>
+						<li><a href="javascript:newfilter('region','제주','jeolla');">제주</a></li>
 					</ul>
 				</div></li>
 			<li class="menu"><a onmouseover="divshow('menu_div_2');"
