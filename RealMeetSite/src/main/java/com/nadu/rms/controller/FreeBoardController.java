@@ -181,30 +181,43 @@ public class FreeBoardController {
 	};
 
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
-	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
+	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest request){
 		
 		boardDao.upHitBoard(bidx);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
 		
-		String cwriter=(String) req.getSession().getAttribute("mid");
-
-
-		log.info("freeDetail 시작");
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		List<Comment> clist = commentDAO.selectComments(bidx);
-		// boardDao.upHitBoard(bidx);
+		//String cwriter=(String) request.getSession().getAttribute("mid");
 		
+		
+		log.info("freeDetail 시작");
+		int cStartNum = 1;
+		
+		if(request.getParameter("cStartNum")==null||request.getParameter("cStartNum").length()==0){
+			cStartNum=1;
+		}else{
+			cStartNum = Integer.parseInt(request.getParameter("startNum"));
+		}
+		log.info("freeDetail 1");
+		int cCurrPage;
+		if(request.getParameter("cCurrPage")==null||request.getParameter("cCurrPage").length()==0){
+			cCurrPage=1;
+		}else{
+			cCurrPage=Integer.parseInt(request.getParameter("cCurrPage"));
+		}
+		log.info("freeDetail 2");
+		List<Comment> clist = commentDAO.selectComments(bidx, (cCurrPage-1)*10+1, cCurrPage*10);
+		// boardDao.upHitBoard(bidx);
+		log.info("freeDetail 3");
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		model.addAttribute("clist", clist);
 		//model.addAttribute("bb", commentDao.selectComments(paramMap));
-
+		model.addAttribute("cStartNum", cStartNum);
+		model.addAttribute("cCurrPage", cCurrPage);
 		model.addAttribute("introValue", "자유 게시판");
-		
-
-		model.addAttribute("cwriter", cwriter);
-		
+		//model.addAttribute("cwriter", cwriter);
+		log.info("freeDetail 끝");
 		return "board/freeDetail";
 	}
 
