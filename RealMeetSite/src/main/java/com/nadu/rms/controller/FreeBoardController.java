@@ -183,26 +183,22 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
 		
+		/* 조회수 증가 */
 		boardDao.upHitBoard(bidx);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
-		
+	
 		String cwriter=(String) req.getSession().getAttribute("mid");
-
+		List<Comment> clist = commentDAO.selectComments(bidx);
 
 		log.info("freeDetail 시작");
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		List<Comment> clist = commentDAO.selectComments(bidx);
-		// boardDao.upHitBoard(bidx);
+		
+
 		
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		model.addAttribute("clist", clist);
-		//model.addAttribute("bb", commentDao.selectComments(paramMap));
-
 		model.addAttribute("introValue", "자유 게시판");
-		
-
 		model.addAttribute("cwriter", cwriter);
 		
 		return "board/freeDetail";
