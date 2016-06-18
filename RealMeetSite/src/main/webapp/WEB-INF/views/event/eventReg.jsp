@@ -95,24 +95,24 @@
 				<br>
 			</div>
 			<h3>카테고리</h3>
-			<input type="text" name="category" id="category" class="regInput" readonly>
+			<input type="text" name="category" id="category" class="regInput sbox-check" readonly>
 			<h3>이벤트명</h3>
-			<input type="text" name="eventname" class="regInput" readonly>
+			<input type="text" name="eventname" class="regInput sbox-check" readonly>
 			<h3>간단한 설명</h3>
-			<input type="text" name="abs" class="regInput" readonly>
+			<input type="text" name="abs" class="regInput sbox-check" readonly>
 			<h3>업로드한 파일</h3>
-			<input type="text" name="imgsrc" id="imgsrc" class="regInput" readonly />
+			<input type="text" name="imgsrc" id="imgsrc" class="regInput sbox-check" readonly />
 			<h3>자세한 설명</h3>
 			<div id="desc-text"></div>
 			<h3>이벤트 개최 날짜</h3>
-			<input type="datetime-local" class=regInput readonly />
+			<input type="datetime-local" class="regInput sbox-check" readonly />
 			<h3>이벤트 개최 장소</h3>
-			<input type="text" name="addr" id="addr" class="regInput" readonly>
+			<input type="text" name="addr" id="addr" class="regInput sbox-check" readonly>
 			<h3>이벤트 최대 인원</h3>
-			<input type="text" name="maxgnum" id="addr" class="regInput" readonly>
+			<input type="text" name="maxgnum" id="addr" class="regInput sbox-check" readonly>
 			 
 			<input type="hidden" name="eldate" id="date2" readonly> 
-			<input type="text" id="description" class="regInput" readonly>
+			<input type="hidden" id="description" class="regInput" readonly>
 			<input type="hidden" id="latlng" name="latlng" class="regInput">
 			
 			<button type="submit" id="selectEnd" class='regButton'>이벤트 생성</button>

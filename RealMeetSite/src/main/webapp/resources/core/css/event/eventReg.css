@@ -310,3 +310,12 @@ input#regInput2 {
 .col-sm-6.pofol-right {
     width: 0%;
 }
+.regInput.sbox-check{
+	border: 1px solid #afafaf;
+    border-radius: 0.5em;
+    box-shadow: -3px 0px 3px 1px gainsboro;
+    font-size: 1.5em;
+    line-height: 2em;
+    text-align: left;
+    padding-left: 1em;
+}

@@ -69,7 +69,8 @@ $(document).ready(
 				
 				currentString = replaceHtml(currentString);
 				descDiv.html(currentString);
-				selectBoxDesc.children('#description').val(currentString);
+				selectBoxDesc.find('#description').val(currentString)
+				selectBoxCheck.find('#description').val(currentString);
 			});
 
 			var regSave5 = selectBoxDesc.children('.regButton-save');

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.service.EventApplyService;
@@ -176,7 +177,7 @@ public class EventController {
 
 	// 이벤트 등록
 	@RequestMapping(value = "reg", method = RequestMethod.GET)
-	public String eventReg(Model model, HttpServletRequest request) {
+	public String eventReg(RedirectAttributes redirectAttr, Model model, HttpServletRequest request) {
 		String mid = (String)request.getSession().getAttribute("mid");
 		if(mid == null || mid == ""){
 			// 페이지 계산
@@ -202,14 +203,12 @@ public class EventController {
 				beforePage = beforePageAll.substring(extrasize + projsize);
 			}
 			log.info("beforePage : " + beforePage);
-			
-			request.getSession().setAttribute("error","notLoginError");
+			redirectAttr.addFlashAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:"+beforePage;
 		}else{
-			request.getSession().removeAttribute("error");
 			request.getSession().removeAttribute("savePage");
 			List<String> categories = eventRegService.getCategories();
 			String introValue = "모임을 만들어봐요.";

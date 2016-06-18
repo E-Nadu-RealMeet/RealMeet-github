@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.UsersDao;
@@ -117,25 +118,24 @@ public class UsersController {
 
 	// 회원정보
 	@RequestMapping(value = "info", method = RequestMethod.GET)
-	public String usersInfo(Model model, HttpServletRequest request) {
+	public String usersInfo(RedirectAttributes redirectAttr, Model model, HttpServletRequest request) {
 
 		String mid = (String) request.getSession().getAttribute("mid");
-		String introValue = "현재 로그인되어있는 아이디의 정보입니다.";
-		model.addAttribute("introValue", introValue);
+		
 		if (mid == null || mid == "") {
-			model.addAttribute("error", "notLoginError");
+			redirectAttr.addFlashAttribute("error", "notLoginError");
 			log.info("contextPath" + request.getContextPath() + "+" + request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
 			log.info("현재 페이지" + savePage);
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:" + BeforePageChk(request);
+		}else{
+			Users users = null;
+			users = usersDao.selectUsers(mid);
+			model.addAttribute("users", users);
+			request.getSession().removeAttribute("savaPage");
+			return "users/usersInfo";
 		}
-
-		Users users = null;
-		users = usersDao.selectUsers(mid);
-		model.addAttribute("users", users);
-
-		return "users/usersInfo";
 	}
 
 	// 회원탈퇴
@@ -252,7 +252,7 @@ public class UsersController {
 
 	// 회원정보, 내가만든이벤트리스트, 참여한 리스트 목록
 	@RequestMapping(value = "home")
-	public String home(HttpServletRequest request, Model model) {
+	public String home(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
 		// 페이지 계산
 		// 이전 페이지 http://localhost/~
 		String beforePageAll = request.getHeader("referer");
@@ -284,7 +284,7 @@ public class UsersController {
 
 		
 		if (mid == null || mid.length()==0) {
-			model.addAttribute("error", "notLoginError");
+			redirectAttr.addFlashAttribute("error", "notLoginError");
 			log.info("contextPath:" + request.getContextPath() + "+" + request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
 			log.info("현재 페이지:" + savePage);
@@ -302,7 +302,7 @@ public class UsersController {
 			System.out.println("home_my_list =" + my_list);
 			System.out.println("home_join_list =" + join_list);*/
 
-			request.getSession().setAttribute("savePage", null);
+			request.getSession().removeAttribute("savePage");
 			
 			model.addAttribute("users", users);
 			model.addAttribute("my_list", my_list);
