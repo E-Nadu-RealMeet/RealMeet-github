@@ -136,7 +136,7 @@ public class EventDetailService {
 			}
 			
 			//개최자인경우
-			if(req.getSession().getAttribute("mid").equals(e.getHolder())){
+			if(req.getSession().getAttribute("mid")!=null||req.getSession().getAttribute("mid").equals(e.getHolder())){
 				tmpObject.setAttended("owned");
 			}
 			

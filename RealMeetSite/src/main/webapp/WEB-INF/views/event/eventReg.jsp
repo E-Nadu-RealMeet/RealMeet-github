@@ -112,7 +112,7 @@
 			<input type="text" name="maxgnum" id="addr" class="regInput" readonly>
 			 
 			<input type="hidden" name="eldate" id="date2" readonly> 
-			<input type="hidden" id="description" class="regInput" disabled="disabled">
+			<input type="text" id="description" class="regInput" readonly>
 			<input type="hidden" id="latlng" name="latlng" class="regInput">
 			
 			<button type="submit" id="selectEnd" class='regButton'>이벤트 생성</button>
