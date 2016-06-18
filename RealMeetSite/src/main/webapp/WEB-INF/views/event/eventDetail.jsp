@@ -139,9 +139,9 @@
 							<div class="col-md-12" style="text-align: left">정말 참여하시겠습니까</div>
 						</div>
 						<div class="modal-footer">
-							<button type="submit" id="submitEvent" class="btn btn-primary"
+							<button type="submit" id="submitEvent" 
 								onclick="return applyProcess()">네</button>
-							<button type="button" id="close" class="btn btn-default"
+							<button type="button" id="close"
 								data-dismiss="modal">닫기</button>
 						</div>
 					</div>
