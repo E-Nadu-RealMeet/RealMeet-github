@@ -60,7 +60,7 @@
 			
 			<!-- 1페이지 아닌경우 preview 이미지 보이기 -->
 				<c:if test="${pages != 1}">
-				<span><a href="freeboard?pages=${pages-1}"><img
+				<span><a href="freeBoard?pages=${pages-1}"><img
 						src="${pageContext.request.contextPath}/resources/core/images/pre.gif" border='0' /></a></span>
 						</c:if>
 						<!-- <span>1</span>
@@ -73,10 +73,10 @@
                         
                         <c:if test="${startPageNum+i <= endPageNum}">
                        		<c:if test="${startPageNum+i == pages }">
-                       			<span><a class="strong" href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
+                       			<span><a class="strong" href="freeBoard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
                      		</c:if>
                         	
-                        	<a href="freeboard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a>
+                        	<a href="freeBoard?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a>
                         </c:if>
                         
                   </c:forEach>
