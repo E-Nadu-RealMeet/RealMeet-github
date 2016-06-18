@@ -129,6 +129,19 @@ public class UsersDao {
 			sqlSession.close();
 		}*/
 	}
+	
+	public int uploadfile(String newFileName, String mid){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+		
+		try {
+			int af = mapper.uploadfile(newFileName, mid);
+			return af;
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
 
 	public int delUsers(String id) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();

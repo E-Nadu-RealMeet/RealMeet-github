@@ -5,9 +5,12 @@
 	<span style="font-size: 2em"><c:out value="회원정보"></c:out></span>
 	<hr style="border: solid 1px #ddd;">
 	<div class="featurette" id="services" style="text-align: left;">
-		<img style="margin: 5em 5em 5em 5em;"
-			class="featurette-image img-circle img-responsive pull-left"
-			src="http://placehold.it/140x140">
+		<c:if test="${empty users.getImgsrc()}">
+		<img style="margin: 5em 5em 1em 5em; width: 140px; height 140px;" class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/140x140">
+		</c:if>
+		<c:if test="${!empty users.getImgsrc()}">
+		<img style="margin: 5em 5em 1em 5em; width: 140px; height 140px;" class="featurette-image img-circle img-responsive pull-left" src="${pageContext.request.contextPath}/resources/core/images/upload/${users.getImgsrc()}">
+		</c:if>
 		<h2 class="featurette-heading">${users.getId() }</h2>
 		<p class="lead">
 			<span class="text-muted">별명:</span> ${users.getNickname() }
@@ -21,6 +24,10 @@
 		<p class="lead">
 			<span class="text-muted">관심 카테고리:</span> ${users.getInterest() }
 		</p>
+		<form id="insertform" action="uploadfile" enctype="multipart/form-data" method="POST">
+			<input class="input-default pull-left" type="file" id="uploadfile" name="uploadfile" style="font-size: 14px;">
+			<button  class="btn btn-default pull-left" type="submit" name="submit" id="submit" style="color: #333 !important;">사진올리기</button>
+		</form>
 		<p class="lead"></p>
 		<p class="lead"></p>
 	</div>
