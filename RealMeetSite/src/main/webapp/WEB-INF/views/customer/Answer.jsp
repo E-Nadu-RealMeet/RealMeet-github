@@ -8,10 +8,20 @@
 
 
 							<header>
+								<c:if test="${mid == 'won' && QNA.answer == 'N/A'}">
 								<h2>답변하기</h2>
+								</c:if>
+								<c:if test="${mid == 'won' && QNA.answer != 'N/A'}">
+								<h2>답변 수정하기</h2>
+								</c:if>
 							</header>
 							
-							<h3>답변할 게시물 : ${QNADetail.title}</h3>
+							<c:if test="${mid == 'won' && QNA.answer == 'N/A'}">
+								<h3>답변할 게시물 : ${QNADetail.title}</h3>
+								</c:if>
+								<c:if test="${mid == 'won' && QNA.answer != 'N/A'}">
+								<h3>답변 수정할 게시물 : ${QNADetail.title}</h3>
+								</c:if>
 								
 					
 							<form action="addAnswer" method="post">
