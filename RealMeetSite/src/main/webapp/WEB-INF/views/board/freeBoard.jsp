@@ -53,9 +53,7 @@
 				</c:forEach>
 
 			</table>
-			<div class="board_list_button ">
-				<button onclick="window.location.href='${pageContext.request.contextPath}/board/freeReg'" style="float:right;">WRITE</button>
-			</div>
+			
 			<div class="paging_noline">
 			
 			<!-- 1페이지 아닌경우 preview 이미지 보이기 -->
@@ -82,9 +80,11 @@
                   </c:forEach>
 					<span><a href=""><img src="${pageContext.request.contextPath}/resources/core/images/nex.gif" border='0'></a></span>
 			</div>
+			<div style="float:left;width: 100%;">
+			<div class="board_list_search">
 			<form name="searchbbs" action="freeBoard" method="get">
 			
-				<div class="searchbbs" style="width: 500px; margin-left: 30%">
+				<div class="searchbbs">
 				<div class="col-sm-3">
 					<select name='key' style="height: 50px; font-size:medium;">
 						<option ${key=="title"?"selected":""} value='TITLE' >제목</option>
@@ -100,5 +100,10 @@
 				</div>
 				
 			</form>
+			</div>
+			<div class="board_list_button ">
+				<button onclick="window.location.href='${pageContext.request.contextPath}/board/freeReg'" style="float:right;">WRITE</button>
+			</div>
+			</div>
 		</div>
 

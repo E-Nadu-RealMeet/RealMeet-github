@@ -13,3 +13,13 @@ section#top {
     padding: 0px;
     margin: 0px;
 }
+.board_list_search {
+    width: 79%;
+    height: 4em;
+    float: left;
+}
+.board_list_button {
+    width: 20%;
+    height: 4em;
+    float: right;
+}
