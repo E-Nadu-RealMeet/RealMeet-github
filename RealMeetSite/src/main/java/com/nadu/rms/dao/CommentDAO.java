@@ -1,7 +1,6 @@
 package com.nadu.rms.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -9,7 +8,7 @@ import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.mapper.annotation.CommentMapper;
 import com.nadu.rms.vo.Comment;
 
-public class CommentDao {
+public class CommentDAO {
 	
 	public List<Comment> selectComments(int bidx){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -18,5 +17,13 @@ public class CommentDao {
 		session.close();
 		return list;
 	}
-
+	
+	public int insertComment(Comment comment){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		CommentMapper mapper = session.getMapper(CommentMapper.class);
+		int iv = mapper.insertComment(comment);
+		session.commit();
+		session.close();
+		return iv;
+	}
 }

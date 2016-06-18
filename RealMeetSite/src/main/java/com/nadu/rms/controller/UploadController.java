@@ -62,9 +62,9 @@ public class UploadController {
 				mpf.transferTo(new File(uploadDir + newFileName/*mpf.getOriginalFilename()*/));
 				
 				if(mpf.getName()==null){
-					log.error("업로드에 실패하였습니다.!!!!!!!!!!!!!!!!!");
+					log.error("업로드에 실패하였습니다.");
 				}else{
-					log.error("업로드에 성공하였습니다.!!!!!!!!!!!!!");
+					log.error("업로드에 성공하였습니다.");
 				}
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block

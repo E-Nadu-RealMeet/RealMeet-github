@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.nadu.rms.dao.BannerDAO;
 import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.dao.CategoryDAO;
-import com.nadu.rms.dao.CommentDao;
+import com.nadu.rms.dao.CommentDAO;
 import com.nadu.rms.dao.CustomerDAO;
 import com.nadu.rms.dao.EventlistDao;
 import com.nadu.rms.dao.EventsDao;
@@ -45,8 +45,8 @@ public class AutowiredConfig  extends WebMvcConfigurerAdapter{
     	return new BoardDao();
     }
     @Bean
-    public CommentDao commentDao(){
-    	return new CommentDao();
+    public CommentDAO commentDao(){
+    	return new CommentDAO();
     }
     @Bean
     public CustomerDAO customersDao(){

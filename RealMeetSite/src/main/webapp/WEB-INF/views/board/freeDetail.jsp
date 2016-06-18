@@ -60,43 +60,47 @@
 				</tr>
 			</tbody>
 		</table>
+		<form action="../../board/commentReg" method="post">
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>
 				<tr>				
 					<td class="table-bordered">작성자</td>
-					<td class="table-bordered">제목</td>
-					<td class="table-bordered"></td>
+					<td class="table-bordered">내용</td>
+					<td class="table-bordered">덧글쓰기</td>
 				</tr>
 			</thead>
 			<tbody class="table-condensed">
 				<tr>
-					<td class="table-bordered"><c:out value="${mid}" default=""></c:out></td>
-					<td class="table-bordered"><input type="text" style="width:90%;line-height: 1em;"/></td>
-					<td class="table-bordered"><button type="submit" style="padding: 0.5em 2em 0.5em 2em;">Write</button></td>
+					<td class="table-bordered"><input type="text" name="cwriter" id="mid" value="${mid}" readonly="readonly" style=""></td>
+					<td class="table-bordered"><input type="text" name="ccomment" id="comment-content"style="width:90%;line-height: 1em;"/></td>
+					<td class="table-bordered" id="tdWrite"><button type="submit" id="comment-write"style="padding: 0.5em 2em 0.5em 2em;">Write</button></td>
 				</tr>
 			</tbody>
 		</table>
+		<input type="hidden" name="bidx" value="${aa.getBidx()}">
+		</form>
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>
 				<tr>				
 					<td class="table-bordered">작성자</td>
-					<td class="table-bordered">제목</td>
+					<td class="table-bordered">내용</td>
 					<td class="table-bordered">작성일</td>
 				</tr>
 			</thead>
 			<tbody class="table-condensed">
+				<c:forEach var="c" items="${clist}" varStatus="status">
 				<tr>
-					<td class="table-bordered">덧글리스트(작성자)</td>
-					<td class="table-bordered">덧글리스트(제목)</td>
-					<td class="table-bordered">덧글리스트(작성일)</td>
+					<td class="table-bordered"><c:out value="${c.getCwriter() }"></c:out></td>
+					<td class="table-bordered"><c:out value="${c.getCcomment() }"></c:out></td>
+					<td class="table-bordered"><c:out value="${c.getRegdate() }"></c:out></td>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 변수 임시 설정 부분 (이후 삭제) -->
 		<c:set var="startPageNum" value="1"/>
 		<c:set var="endPageNum" value="5"/>
 		<c:forEach var="i" begin="0" end="${endPageNum}">
-                        
                         <c:if test="${startPageNum+i <= endPageNum}">
                        		<c:if test="${startPageNum+i == pages }">
                        			<span><a class="strong" href="${aa.getBidx()}?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
@@ -104,7 +108,6 @@
                         	
                         	<a href="${aa.getBidx()}?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a>
                         </c:if>
-                        
       </c:forEach>
 	</div>
 </div>

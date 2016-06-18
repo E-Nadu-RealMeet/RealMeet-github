@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nadu.rms.dao.BoardDao;
-import com.nadu.rms.dao.CommentDao;
+import com.nadu.rms.dao.CommentDAO;
 import com.nadu.rms.vo.Board;
 import com.nadu.rms.vo.Comment;
 
@@ -31,7 +31,7 @@ import com.nadu.rms.vo.Comment;
 public class FreeBoardController {
 
 	BoardDao boardDao;
-	CommentDao commentDao;
+	CommentDAO commentDAO;
 
 	@Autowired
 	public void setBoardDao(BoardDao boardDao) {
@@ -39,8 +39,8 @@ public class FreeBoardController {
 	}
 
 	@Autowired
-	public void setCommentDao(CommentDao commentDao) {
-		this.commentDao = commentDao;
+	public void setCommentDao(CommentDAO commentDAO) {
+		this.commentDAO = commentDAO;
 	}
 
 	static final Logger log = LoggerFactory.getLogger(FreeBoardController.class);
@@ -183,9 +183,7 @@ public class FreeBoardController {
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
 		
-		System.out.println(bidx);
 		boardDao.upHitBoard(bidx);
-		System.out.println(bidx+1);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
@@ -195,15 +193,15 @@ public class FreeBoardController {
 
 		log.info("freeDetail 시작");
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-
+		List<Comment> clist = commentDAO.selectComments(bidx);
 		// boardDao.upHitBoard(bidx);
-	
+		
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
-
+		model.addAttribute("clist", clist);
 		//model.addAttribute("bb", commentDao.selectComments(paramMap));
 
 		model.addAttribute("introValue", "자유 게시판");
-
+		
 
 		model.addAttribute("cwriter", cwriter);
 		
@@ -242,14 +240,13 @@ public class FreeBoardController {
 
 	//댓글 등록
 	@RequestMapping(value="/commentReg", method = RequestMethod.POST)
-	public String commentReg(Comment comment, HttpServletRequest req){
-		
-		
-
-		String bidx = req.getParameter("bidx");
-		System.out.println(bidx);
-
-		return "redirect:../freeDetail" + bidx;
+	public String commentReg(Comment comment, HttpServletRequest request){
+		String bidx = comment.getBidx();
+		int iv = commentDAO.insertComment(comment);
+		if(iv==0){
+			log.debug("댓글 등록 에러 발생");
+		}
+		return "redirect:freeDetail/" + bidx;
 	}
 	
 
