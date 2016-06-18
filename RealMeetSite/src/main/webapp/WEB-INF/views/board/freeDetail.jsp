@@ -97,21 +97,26 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<!-- 변수 임시 설정 부분 (이후 삭제) -->
+		<c:if test="${cStartNum!=1}">
+			<a href="${aa.getBidx()}?cCurrPage=${cStartNum-5}&cStartNum=${cStartNum-5}&field=${field}&query=${query}"">
+			<img src="/RealMeetSite/resources/core/images/pre.gif" border="0">
+			</a>
+		</c:if>
 		<c:forEach var="i" begin="${cStartNum}" end="${cEndNum}">
        		<c:choose>
        			<c:when test="${i == cCurrPage}">
-       				<span><a class="strong" href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a></span>
+       				<span><a class="strong" href="${aa.getBidx()}?cCurrPage=${i}&cStartNum=${cStartNum}&field=${field}&query=${query}">${i}</a></span>
        			</c:when>
        			<c:otherwise>
-       				<a href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a>
+       				<a href="${aa.getBidx()}?cCurrPage=${i}&cStartNum=${cStartNum}&field=${field}&query=${query}">${i}</a>
        			</c:otherwise>
        		</c:choose>
-       		<c:if test="${i == cCurrPage}">
-       			
-     		</c:if>
-        	
-      </c:forEach>
+      	</c:forEach>
+    	<c:if test="${sumCommentPage > cEndNum}">
+    		<a href="${aa.getBidx()}?cCurrPage=${cStartNum+5}&cStartNum=${cStartNum+5}&field=${field}&query=${query}"">
+      		<img src="/RealMeetSite/resources/core/images/nex.gif" border="0">
+      		</a>
+    	</c:if>
 	</div>
 </div>
 

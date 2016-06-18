@@ -182,7 +182,7 @@ public class FreeBoardController {
 
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest request){
-		
+		log.debug("freeDetail 시작");
 		boardDao.upHitBoard(bidx);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
@@ -190,14 +190,17 @@ public class FreeBoardController {
 		
 		//String cwriter=(String) request.getSession().getAttribute("mid");
 		
-		
-		//페이징 시작 페이지
+		//페이징 시작
+		final int pagePerComment = 5;
+		final int pagePerPaging = 5;
 		int cStartNum = 1;
+		log.debug("freeDetail 시작");
 		if(request.getParameter("cStartNum")==null||request.getParameter("cStartNum").length()==0){
 			cStartNum=1;
 		}else{
-			cStartNum = Integer.parseInt(request.getParameter("startNum"));
+			cStartNum = Integer.parseInt(request.getParameter("cStartNum"));
 		}
+		log.debug("freeDetail 시작");
 		//현재 페이지 입력
 		int cCurrPage;
 		if(request.getParameter("cCurrPage")==null||request.getParameter("cCurrPage").length()==0){
@@ -207,11 +210,13 @@ public class FreeBoardController {
 		}
 		//덧글 총 갯수
 		int commentCnt = commentDAO.selectCommentCnt(bidx);
-		int cEndNum = cStartNum+4;
-		if(cEndNum > commentCnt/10+1){
-			cEndNum = commentCnt/10+1;
+		//총 페이지
+		int sumCommentPage = commentCnt/pagePerComment+1;
+		int cEndNum = cStartNum+pagePerPaging-1;
+		if(cEndNum > sumCommentPage){
+			cEndNum = sumCommentPage;
 		}
-		List<Comment> clist = commentDAO.selectComments(bidx, (cCurrPage-1)*10+1, cCurrPage*10);
+		List<Comment> clist = commentDAO.selectComments(bidx, (cCurrPage-1)*pagePerComment+1, cCurrPage*pagePerComment);
 		// boardDao.upHitBoard(bidx);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		model.addAttribute("clist", clist);
@@ -219,8 +224,13 @@ public class FreeBoardController {
 		model.addAttribute("cStartNum", cStartNum);
 		model.addAttribute("cCurrPage", cCurrPage);
 		model.addAttribute("cEndNum", cEndNum);
+		model.addAttribute("sumCommentPage", sumCommentPage);
 		model.addAttribute("introValue", "자유 게시판");
 		//model.addAttribute("cwriter", cwriter);
+		log.debug("cStartNum"+cStartNum);
+		log.debug("cCurrPage"+cCurrPage);
+		log.debug("cEndNum"+cEndNum);
+		log.debug("sumCommentPage"+sumCommentPage);
 		return "board/freeDetail";
 	}
 
