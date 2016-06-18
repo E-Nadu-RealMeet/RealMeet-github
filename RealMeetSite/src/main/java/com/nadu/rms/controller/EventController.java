@@ -119,11 +119,11 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
-		String mid = (String)req.getSession().getAttribute("mid");
+		/*String mid = (String)req.getSession().getAttribute("mid");
 		if(mid != null && mid != ""){
 			model.addAttribute("mid", mid);
 		}
-		
+		*/
 		/*해당 이벤트 이미지 가져오기 위함*/
 		String imgsrc = eventDetailService.EventDetailImg(esidx);
 		System.out.println("imgsrc: "+imgsrc);
