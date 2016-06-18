@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgH95U-UGuPS-t2hK--kjCb2-Spu3pEZ0&signed_in=true&callback=initMap"></script>
-<div class="container">
+<div class="container" style="width: 95%">
 	<!-- <div id="floating-panel">
     	  <input onclick="deleteMarkers();" type=button value="Delete Markers">
  		 </div> -->

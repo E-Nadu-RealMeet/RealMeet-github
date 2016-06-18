@@ -41,7 +41,7 @@
 
 </head>
 <%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventList.js?ver=1" type="text/javascript"></script> --%>
-<div class="container" id="container">
+<div class="container" id="container" style="margin-left: 0%; width: 95%">
 	<div id="list-filter">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
@@ -90,21 +90,19 @@
 	</div>
 </div>
 	</div>
-	<div id="viewList">
+	<div id="viewList" style="width: 95%">
 	</div>
 	<!-- dummy -->
 	<div class="row dummy" style="margin :0;display: none;">
 		<div class="container eventlist">
 			<div class="col-md-6 portfolio-item-detail">
 				<p>
-					<span class="caption-title"><a href="#">Project Two</a>
+					<span class="caption-title"><a href="#"></a>
 					</span>
 				</p>
 				<br>
 				<p>
-					<span class="caption-desc"> Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam viverra euismod odio, gravida
-						pellentesque urna varius vitae. </span>
+					<span class="caption-desc"></span>
 				</p>
 				<span class="icon fa-heart-o">${e.getGood()}</span> &nbsp <span
 					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
