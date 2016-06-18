@@ -63,10 +63,13 @@
 		<form action="../../board/commentReg" method="post">
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>
+				<tr>
+					<td colspan="3"><span style="font-weight: bold; font-size:130%">덧글 쓰기</span></td>
+				</tr>
 				<tr>				
-					<td class="table-bordered">작성자</td>
+					<td class="table-bordered" style="width: 10em;">작성자</td>
 					<td class="table-bordered">내용</td>
-					<td class="table-bordered">덧글쓰기</td>
+					<td class="table-bordered" style="width: 10em;">덧글쓰기</td>
 				</tr>
 			</thead>
 			<tbody class="table-condensed">
@@ -81,10 +84,13 @@
 		</form>
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>
+				<tr>
+					<td colspan="3"><span style="font-weight: bold; font-size:130%">덧글 리스트</span></td>
+				</tr>
 				<tr>				
-					<td class="table-bordered">작성자</td>
+					<td class="table-bordered" style="width: 10em;">작성자</td>
 					<td class="table-bordered">내용</td>
-					<td class="table-bordered">작성일</td>
+					<td class="table-bordered" style="width: 10em;">작성일</td>
 				</tr>
 			</thead>
 			<tbody class="table-condensed">
