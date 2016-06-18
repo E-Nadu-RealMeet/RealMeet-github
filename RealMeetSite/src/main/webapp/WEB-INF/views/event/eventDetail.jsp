@@ -11,8 +11,10 @@
                 		<c:if test="${mid == detail.get(0).getHolder()}">
 							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventNameUpdate"></span>
 				  		</c:if>
-				  		카테고리 : ${detail.get(0).getCategory() }
+                		<hr>
                 </h1>
+				<span>카테고리 : ${detail.get(0).getCategory() }</span>
+               
 
                 <!-- Author -->
                 <p class="lead">

@@ -119,7 +119,7 @@
        		</c:choose>
       	</c:forEach>
     	<c:if test="${sumCommentPage > cEndNum}">
-    		<a href="${aa.getBidx()}?cCurrPage=${cStartNum+5}&cStartNum=${cStartNum+5}&field=${field}&query=${query}"">
+    		<a href="${aa.getBidx()}?cCurrPage=${cStartNum+5}&cStartNum=${cStartNum+5}&field=${field}&query=${query}">
       		<img src="/RealMeetSite/resources/core/images/nex.gif" border="0">
       		</a>
     	</c:if>

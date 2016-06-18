@@ -183,11 +183,11 @@ function createApplyElement(data){
 	}
 	else if(data.attended == "true") {
 		newDiv.find('.target').attr('data-target','#apply'+data.elidx);
-		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a style="cursor: pointer">' + '참석취소하기';
+		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a id="event-apply" style="cursor: pointer">' + '참석취소하기';
 	}
 	else{
 		newDiv.find('.target').attr('data-target','#apply'+data.elidx);
-		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a style="cursor: pointer">' + '참여하기';
+		tmpStr += " " + data.addr + ' / ' + data.date + ' / ' + '( '+data.cntguest+' / '+data.maxguest+ ' ) <a id="event-apply" style="cursor: pointer">' + '참여하기';
 	}
 	newDiv.find('.target').html(tmpStr);
 	//newDiv.find('.target').children('a').css('cursor', 'pointer'); 
