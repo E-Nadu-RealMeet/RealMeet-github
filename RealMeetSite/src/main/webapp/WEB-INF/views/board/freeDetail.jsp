@@ -44,8 +44,8 @@
 		href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}">수정</a>
 	<a class="btn btn-primary"
 		href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}">삭제</a>
-	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath}/board/freeReflyReg/${aa.getBidx()}">답글</a>
+	<%-- <a class="btn btn-primary"
+		href="${pageContext.request.contextPath}/board/freeReflyReg/${aa.getBidx()}">답글</a> --%>
 </p>
 	<div class="panel panel-default">
 		<table id="boardDetail" class="table">
@@ -62,7 +62,7 @@
 				<tr>
 					<td class="table-bordered">다음글</td>
 					<c:if test="${next != null }">
-						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${next.getBidx()}">${next.getTitle() } by ${prev.getWriter() }</a></td>
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${next.getBidx()}">${next.getTitle() } by ${next.getWriter() }</a></td>
 					</c:if>
 					<c:if test="${next == null }">
 						<td class="table-bordered">다음 글이 없습니다.</td>
@@ -73,10 +73,13 @@
 		<form action="../../board/commentReg" method="post">
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>
+				<tr>
+					<td colspan="3"><span style="font-weight: bold; font-size:130%">덧글 쓰기</span></td>
+				</tr>
 				<tr>				
-					<td class="table-bordered">작성자</td>
+					<td class="table-bordered" style="width: 10em;">작성자</td>
 					<td class="table-bordered">내용</td>
-					<td class="table-bordered">덧글쓰기</td>
+					<td class="table-bordered" style="width: 10em;">덧글쓰기</td>
 				</tr>
 			</thead>
 			<tbody class="table-condensed">
@@ -91,10 +94,13 @@
 		</form>
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>
+				<tr>
+					<td colspan="3"><span style="font-weight: bold; font-size:130%">덧글 리스트</span></td>
+				</tr>
 				<tr>				
-					<td class="table-bordered">작성자</td>
+					<td class="table-bordered" style="width: 10em;">작성자</td>
 					<td class="table-bordered">내용</td>
-					<td class="table-bordered">작성일</td>
+					<td class="table-bordered" style="width: 10em;">작성일</td>
 				</tr>
 			</thead>
 			<tbody class="table-condensed">
@@ -107,21 +113,26 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<!-- 변수 임시 설정 부분 (이후 삭제) -->
-		<c:forEach var="i" begin="${cStartNum}" end="${cStartNum+4}">
+		<c:if test="${cStartNum!=1}">
+			<a href="${aa.getBidx()}?cCurrPage=${cStartNum-5}&cStartNum=${cStartNum-5}&field=${field}&query=${query}"">
+			<img src="/RealMeetSite/resources/core/images/pre.gif" border="0">
+			</a>
+		</c:if>
+		<c:forEach var="i" begin="${cStartNum}" end="${cEndNum}">
        		<c:choose>
        			<c:when test="${i == cCurrPage}">
-       				<span><a class="strong" href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a></span>
+       				<span><a class="strong" href="${aa.getBidx()}?cCurrPage=${i}&cStartNum=${cStartNum}&field=${field}&query=${query}">${i}</a></span>
        			</c:when>
        			<c:otherwise>
-       				<a href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a>
+       				<a href="${aa.getBidx()}?cCurrPage=${i}&cStartNum=${cStartNum}&field=${field}&query=${query}">${i}</a>
        			</c:otherwise>
        		</c:choose>
-       		<c:if test="${i == cCurrPage}">
-       			
-     		</c:if>
-        	
-      </c:forEach>
+      	</c:forEach>
+    	<c:if test="${sumCommentPage > cEndNum}">
+    		<a href="${aa.getBidx()}?cCurrPage=${cStartNum+5}&cStartNum=${cStartNum+5}&field=${field}&query=${query}"">
+      		<img src="/RealMeetSite/resources/core/images/nex.gif" border="0">
+      		</a>
+    	</c:if>
 	</div>
 </div>
 

@@ -13,6 +13,14 @@ public class Board {
 	private String type;
 	private int readcount;
 	private int origin;
+	private int commentCnt;
+	
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 	public int getOrigin() {
 		return origin;
 	}

@@ -24,7 +24,7 @@
 				<tr>
 					<td>${aa.getBidx()}</td>
 					<td class='c1'><b>질문</b></td>
-					<td class='subject'><a href="${pageContext.request.contextPath}/board/freeDetail/${aa.getBidx()}"><b>${aa.getTitle()}</b></a></td>
+					<td class='subject'><a href="${pageContext.request.contextPath}/board/freeDetail/${aa.getBidx()}"><b>${aa.getTitle()}<c:out value="[${aa.getCommentCnt()}]"></c:out></b></a></td>
 					<td>${aa.getWriter()}</td>
 					<td>${aa.getRegdate()}</td>
 				</tr>
