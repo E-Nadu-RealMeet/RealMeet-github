@@ -31,7 +31,11 @@
 		page++;
 	}
 	function alldelfilter(){
+		$("#viewList").empty();
 		$("#selectfilter").empty();
+		page = 1;
+		getEventList(page);
+		page++;
 	}
 </script>
 
@@ -41,7 +45,7 @@
 	<div id="list-filter">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
-			<li class="menu"><a href=""><span class="fa fa-bars">필터 초기화</span></a>
+			<li class="menu"><a href="javascript:alldelfilter();"><span class="fa fa-bars">필터 초기화</span></a>
 			</li>
 
 			<li class="menu"><a onmouseover="divshow('menu_div_1');"
