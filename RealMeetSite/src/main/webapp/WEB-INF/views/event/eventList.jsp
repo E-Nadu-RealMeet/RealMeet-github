@@ -97,14 +97,12 @@
 		<div class="container eventlist">
 			<div class="col-md-6 portfolio-item-detail">
 				<p>
-					<span class="caption-title"><a href="#">Project Two</a>
+					<span class="caption-title"><a href="#"></a>
 					</span>
 				</p>
 				<br>
 				<p>
-					<span class="caption-desc"> Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam viverra euismod odio, gravida
-						pellentesque urna varius vitae. </span>
+					<span class="caption-desc"></span>
 				</p>
 				<span class="icon fa-heart-o">${e.getGood()}</span> &nbsp <span
 					class="icon fa-commenting-o">${e.getReviewCnt()}</span>
