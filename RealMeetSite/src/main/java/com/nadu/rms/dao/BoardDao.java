@@ -22,9 +22,7 @@ public class BoardDao {
 		return list;
 		
 	}
-	
 
-	
 	
 	public Board selectFreeDetail(int bidx){
 		

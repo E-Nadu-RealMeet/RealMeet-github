@@ -51,12 +51,22 @@
 		<table id="boardDetail" class="table">
 			<tbody>
 				<tr>
-					<td class="table-bordered">다음글</td>
-					<td class="table-bordered">다음 글이 없습니다.</td>
+					<td class="table-bordered">이전글</td>
+					<c:if test="${prev != null }">
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${prev.getBidx()}">${prev.getTitle() } by ${prev.getWriter() }</a></td>
+					</c:if>
+					<c:if test="${prev == null }">
+						<td class="table-bordered">이전 글이 없습니다.</td>
+					</c:if>
 				</tr>
 				<tr>
-					<td class="table-bordered">이전글</td>
-					<td class="table-bordered">이전 글이 없습니다.</td>
+					<td class="table-bordered">다음글</td>
+					<c:if test="${next != null }">
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${next.getBidx()}">${next.getTitle() } by ${prev.getWriter() }</a></td>
+					</c:if>
+					<c:if test="${next == null }">
+						<td class="table-bordered">다음 글이 없습니다.</td>
+					</c:if>
 				</tr>
 			</tbody>
 		</table>
@@ -98,16 +108,19 @@
 			</tbody>
 		</table>
 		<!-- 변수 임시 설정 부분 (이후 삭제) -->
-		<c:set var="startPageNum" value="1"/>
-		<c:set var="endPageNum" value="5"/>
-		<c:forEach var="i" begin="0" end="${endPageNum}">
-                        <c:if test="${startPageNum+i <= endPageNum}">
-                       		<c:if test="${startPageNum+i == pages }">
-                       			<span><a class="strong" href="${aa.getBidx()}?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a></span>
-                     		</c:if>
-                        	
-                        	<a href="${aa.getBidx()}?pages=${startPageNum+i}&field=${field}&query=${query}">${startPageNum+i}</a>
-                        </c:if>
+		<c:forEach var="i" begin="${cStartNum}" end="${cStartNum+4}">
+       		<c:choose>
+       			<c:when test="${i == cCurrPage}">
+       				<span><a class="strong" href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a></span>
+       			</c:when>
+       			<c:otherwise>
+       				<a href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a>
+       			</c:otherwise>
+       		</c:choose>
+       		<c:if test="${i == cCurrPage}">
+       			
+     		</c:if>
+        	
       </c:forEach>
 	</div>
 </div>

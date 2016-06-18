@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.dao.CommentDAO;
+import com.nadu.rms.service.BoardService;
 import com.nadu.rms.vo.Board;
 import com.nadu.rms.vo.Comment;
 
@@ -32,6 +33,12 @@ public class FreeBoardController {
 
 	BoardDao boardDao;
 	CommentDAO commentDAO;
+	BoardService BoardService;
+	
+	@Autowired
+	public void setBoardService(BoardService boardService) {
+		BoardService = boardService;
+	}
 
 	@Autowired
 	public void setBoardDao(BoardDao boardDao) {
@@ -181,26 +188,46 @@ public class FreeBoardController {
 	};
 
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
-	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
+	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest request){
 		
 		/* 조회수 증가 */
 		boardDao.upHitBoard(bidx);
-		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
+		Board thisBoard = boardDao.selectFreeDetail(bidx);
+		model.addAttribute("aa", thisBoard);
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
-	
-		String cwriter=(String) req.getSession().getAttribute("mid");
-		List<Comment> clist = commentDAO.selectComments(bidx);
+		BoardService.getAroundBoard(bidx, request);
 
+		
 		log.info("freeDetail 시작");
+		int cStartNum = 1;
 		
-
-		
+		if(request.getParameter("cStartNum")==null||request.getParameter("cStartNum").length()==0){
+			cStartNum=1;
+		}else{
+			cStartNum = Integer.parseInt(request.getParameter("startNum"));
+		}
+		log.info("freeDetail 1");
+		int cCurrPage;
+		if(request.getParameter("cCurrPage")==null||request.getParameter("cCurrPage").length()==0){
+			cCurrPage=1;
+		}else{
+			cCurrPage=Integer.parseInt(request.getParameter("cCurrPage"));
+		}
+		log.info("freeDetail 2");
+		List<Comment> clist = commentDAO.selectComments(bidx, (cCurrPage-1)*10+1, cCurrPage*10);
+		// boardDao.upHitBoard(bidx);
+		log.info("freeDetail 3");
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		model.addAttribute("clist", clist);
+
+		//model.addAttribute("bb", commentDao.selectComments(paramMap));
+		model.addAttribute("cStartNum", cStartNum);
+		model.addAttribute("cCurrPage", cCurrPage);
 		model.addAttribute("introValue", "자유 게시판");
-		model.addAttribute("cwriter", cwriter);
-		
+		//model.addAttribute("cwriter", cwriter);
+		log.info("freeDetail 끝");
+
 		return "board/freeDetail";
 	}
 

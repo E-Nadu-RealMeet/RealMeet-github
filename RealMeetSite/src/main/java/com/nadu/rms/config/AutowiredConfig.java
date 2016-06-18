@@ -16,6 +16,7 @@ import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.GuestlistDao;
 import com.nadu.rms.dao.ReviewsDao;
 import com.nadu.rms.dao.UsersDao;
+import com.nadu.rms.service.BoardService;
 import com.nadu.rms.service.CustomerService;
 import com.nadu.rms.service.EventApplyService;
 import com.nadu.rms.service.EventDataService;
@@ -93,5 +94,10 @@ public class AutowiredConfig  extends WebMvcConfigurerAdapter{
     @Bean
     public CustomerService customerService(){
     	return new CustomerService();
+    }
+    
+    @Bean
+    public BoardService boardService(){
+    	return new BoardService();
     }
 }

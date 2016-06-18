@@ -10,10 +10,10 @@ import com.nadu.rms.vo.Comment;
 
 public class CommentDAO {
 	
-	public List<Comment> selectComments(int bidx){
+	public List<Comment> selectComments(int bidx, int startNum, int endNum){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		CommentMapper mapper = session.getMapper(CommentMapper.class);
-		List<Comment> list = mapper.selectComments(bidx); 
+		List<Comment> list = mapper.selectComments(bidx, startNum, endNum); 
 		session.close();
 		return list;
 	}

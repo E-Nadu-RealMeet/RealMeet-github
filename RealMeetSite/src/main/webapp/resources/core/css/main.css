@@ -2879,3 +2879,7 @@ span#error-login {
 #list-filter li:hover{
 	background-color: gray;
 }
+a.strong {
+    font-size: 110%;
+    font-weight: bold;
+}
