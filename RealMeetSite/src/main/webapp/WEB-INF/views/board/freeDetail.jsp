@@ -44,8 +44,8 @@
 		href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}">수정</a>
 	<a class="btn btn-primary"
 		href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}">삭제</a>
-	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath}/board/freeReflyReg/${aa.getBidx()}">답글</a>
+	<%-- <a class="btn btn-primary"
+		href="${pageContext.request.contextPath}/board/freeReflyReg/${aa.getBidx()}">답글</a> --%>
 </p>
 	<div class="panel panel-default">
 		<table id="boardDetail" class="table">

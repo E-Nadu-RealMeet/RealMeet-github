@@ -81,7 +81,6 @@ public class FreeBoardController {
 		// 만약 전체 갯수보다 예상한 endNum의 수가 큰 경우 글 전체갯수로 변경.
 		if (endNum >= cnt)
 			endNum = cnt;
-		System.out.println(endNum);
 		// 수정필요
 
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -89,9 +88,17 @@ public class FreeBoardController {
 		paramMap.put("endNum", endNum);
 		paramMap.put("key", key);
 		paramMap.put("query", query);
-		System.out.println(query+"쿼리문");
 		paramMap.put("type", "free");
 		List<Board> list = boardDao.selectBoards(paramMap);
+		
+		//이후 list 가져올때 한번에 갖고 오는걸로
+		//list에 덧글 갯수 set
+		for (int i=0; i<list.size();i++) {
+			Board board = list.get(i);
+			int commentCnt = commentDAO.selectCommentCnt(Integer.parseInt(board.getBidx()));
+			board.setCommentCnt(commentCnt);
+			list.set(i, board);
+		}
 		
 //		sortBoardList(list);
 		
@@ -99,7 +106,7 @@ public class FreeBoardController {
 		model.addAttribute("startPageNum", startPageNum);
 		model.addAttribute("endPageNum", endPageNum);
 		model.addAttribute("introValue", "자유 게시판");
-		model.addAttribute("list", sortBoardList(list));
+		model.addAttribute("list", list);
 		model.addAttribute("mid", mid);
 		model.addAttribute("page", "board/freeBoard");
 
@@ -109,7 +116,7 @@ public class FreeBoardController {
 	
 	
 	
-	private List<Board> sortBoardList(List<Board> list) {
+	/*private List<Board> sortBoardList(List<Board> list) {
 		Set<Integer> bidxSet = new HashSet<Integer>();
 		List<Board> resultList = new ArrayList<Board>();
 		
@@ -171,18 +178,17 @@ public class FreeBoardController {
 		}
 		
 		return resultList;
-	}
+	}*/
 
-	Comparator<Board> sort = new Comparator<Board>() {
+	/*Comparator<Board> sort = new Comparator<Board>() {
 		public int compare(Board o1, Board o2) {
 			// 앞에 있는 보드가 뒤에 있는 보드보다 스텝이 앞서게 정렬
 			return o1.getStep() > o2.getStep() ? 1 : -1;
 		}
-	};
+	};*/
 
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest request){
-		log.debug("freeDetail 시작");
 		boardDao.upHitBoard(bidx);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
@@ -194,13 +200,11 @@ public class FreeBoardController {
 		final int pagePerComment = 5;
 		final int pagePerPaging = 5;
 		int cStartNum = 1;
-		log.debug("freeDetail 시작");
 		if(request.getParameter("cStartNum")==null||request.getParameter("cStartNum").length()==0){
 			cStartNum=1;
 		}else{
 			cStartNum = Integer.parseInt(request.getParameter("cStartNum"));
 		}
-		log.debug("freeDetail 시작");
 		//현재 페이지 입력
 		int cCurrPage;
 		if(request.getParameter("cCurrPage")==null||request.getParameter("cCurrPage").length()==0){
@@ -227,10 +231,6 @@ public class FreeBoardController {
 		model.addAttribute("sumCommentPage", sumCommentPage);
 		model.addAttribute("introValue", "자유 게시판");
 		//model.addAttribute("cwriter", cwriter);
-		log.debug("cStartNum"+cStartNum);
-		log.debug("cCurrPage"+cCurrPage);
-		log.debug("cEndNum"+cEndNum);
-		log.debug("sumCommentPage"+sumCommentPage);
 		return "board/freeDetail";
 	}
 
