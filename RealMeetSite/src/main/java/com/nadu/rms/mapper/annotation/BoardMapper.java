@@ -29,7 +29,7 @@ public interface BoardMapper {
 	int insertBoard(Board fb);
 	
 	@Update("UPDATE BOARDS SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
-	int updateBoard(Board fb);
+	int updateBoard(Board board);
 	
 	@Delete("DELETE FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
 	int delBoard(@Param("bidx")String bidx);

@@ -45,11 +45,11 @@ public class BoardDao {
 		
 	}
 	
-	public int updateBoard(Board fb){
+	public int updateBoard(Board board){
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		int ret = mapper.updateBoard(fb); 
+		int ret = mapper.updateBoard(board); 
 		session.commit();
 		session.close();
 		return ret;

@@ -290,20 +290,38 @@ public class FreeBoardController {
 	}
 	
 
-
-	@RequestMapping(value = "/freeUpdate/{nidx}", method = RequestMethod.GET)
-	public String freeUpate(@PathVariable int nidx, Model model) {
-		model.addAttribute("aa", boardDao.selectFreeDetail(nidx));
-		model.addAttribute("introValue", "게시글 수정");
-		return "board/freeBoardUp";
+	
+	@RequestMapping(value = "/freeUpdate/{bidx}", method = RequestMethod.GET)
+	public String freeUpate(@PathVariable int bidx, Model model, HttpServletRequest request) {
+		String mid = (String) request.getSession().getAttribute("mid");
+		if (mid == null || mid.length() == 0 || request.getParameter("bWriter")==null||request.getParameter("bWriter").length()==0) {
+			model.addAttribute("error", "notLoginError");
+			String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+			request.getSession().setAttribute("savePage", savePage);
+			return "redirect:../freeDetail/"+bidx;
+		}else if(!mid.equals(request.getParameter("bWriter"))){
+			log.info("글 수정할 권한이 없습니다.");
+			String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+			request.getSession().setAttribute("savePage", savePage);
+			return "redirect:../freeDetail/"+bidx;
+		}else{
+			Board board = boardDao.selectFreeDetail(bidx);
+			board.setContent(board.getContent().replaceAll("<br>", "\n"));
+			model.addAttribute("aa", board);
+			model.addAttribute("introValue", "게시글 수정");
+			return "board/freeBoardUp";
+		}
 	}
 
-	@RequestMapping(value = "/freeUpdate/{nidx}", method = RequestMethod.POST)
-	public String freeUpdate(Board board, @PathVariable String nidx) {
-
+	@RequestMapping(value = "/freeUpdate/{bidx}", method = RequestMethod.POST)
+	public String freeUpdate(Model model, Board board, @PathVariable String bidx, HttpServletRequest request) {
+		String mid = (String) request.getSession().getAttribute("mid");
+		board.setBidx(bidx);
+		String content = board.getContent().replaceAll("\n", "<br>");
+		model.addAttribute("introValue", "글 쓰기");
+		request.getSession().setAttribute("savePage", null);
 		boardDao.updateBoard(board);
-		return "redirect:../freeDetail/" + nidx;
-
+		return "redirect:../freeDetail/" + bidx;
 	}
 
 	

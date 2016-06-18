@@ -26,13 +26,12 @@
 	<!-- Main -->
 			<div class="container">
 				<br> <br>
-				<h2 align="center">공지사항</h2>
 				<form action="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">
 							<dt class="article-detail-title">제목</dt>
 							<dd class="article-detail-data">
-								<input type="text" name="title">
+								<input type="text" name="title" value="${aa.getTitle()}">
 							</dd>
 						</dl>
 						<dl class="article-detail-row half-row">
@@ -42,15 +41,14 @@
 							</dd>
 						</dl>
 						<div class="article-content">
-							<textarea rows="10" cols="100" name="content"></textarea>
+							<textarea rows="10" cols="100" name="content" > ${aa.getContent()}</textarea>
 						</div>
 					</div>
 
 
 					<p class="article-comment margin-small" align="center">
-						<a class="btn btn-primary" href="../board/freeBoard">목록</a> 
 						<button class="btn btn-primary" type="submit">등록</button>
-
+						<a class="btn btn-primary" href="../board/freeBoard">목록</a> 
 					</p>
 				</form>
 			</div>
