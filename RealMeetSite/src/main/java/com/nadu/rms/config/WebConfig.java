@@ -24,6 +24,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import com.nadu.rms.controller.UploadController;
+import com.nadu.rms.controller.UsersController;
 
 @Configuration
 @EnableWebMvc
@@ -140,6 +141,17 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     	return uploadController;
     	
     }
+    @Bean
+    public UsersController usersController(){
+    	String uploadPath = uploadRepository();
+    	log.info(uploadPath);
+    	UsersController usersController = new UsersController();
+
+    	usersController.setUploadRepository(uploadPath);
+    	return usersController;
+    	
+    }
+    
     @Bean
     public String uploadRepository(){
     	return context.getRealPath("")+"resources\\core\\images\\upload\\";

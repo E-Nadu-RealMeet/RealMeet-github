@@ -1,9 +1,13 @@
 package com.nadu.rms.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,13 +16,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.UsersDao;
 import com.nadu.rms.vo.Event_Eventlist;
-import com.nadu.rms.vo.Events;
 import com.nadu.rms.vo.Users;
 
 @Controller
@@ -28,6 +35,14 @@ public class UsersController {
 	UsersDao usersDao;
 	EventsDao eventsDao;
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
+	private String uploadRepository;
+	
+	
+	
+	@Autowired
+	public void setUploadRepository(String uploadRepository) {
+		this.uploadRepository = uploadRepository;
+	}
 
 	@Autowired
 	public void setUserDao(UsersDao usersDao) {
@@ -189,6 +204,50 @@ public class UsersController {
 			System.out.println("no");
 			out.write("NO");
 		}
+	}
+	
+	@RequestMapping(value="uploadfile", method=RequestMethod.POST)
+	public String imageupload(HttpServletRequest request, MultipartHttpServletRequest multipartRequest, ModelMap model){
+		
+		String mid = (String) request.getSession().getAttribute("mid");
+		Map<String, MultipartFile> files = multipartRequest.getFileMap();
+		MultipartFile cmf = (MultipartFile)files.get("uploadfile");
+		
+		String now = new SimpleDateFormat("yyyy.MMddHmsS").format(new Date());
+		String newFileName=null;
+		newFileName = now+cmf.getOriginalFilename();
+		log.info(newFileName);
+		String uploadDir = uploadRepository;
+		log.info(uploadDir);
+		
+		// 파일 업로드 처리 완료.
+		try {
+			new File(uploadDir).mkdir();
+			cmf.transferTo(new File(uploadDir + newFileName));
+			
+			if(cmf.getName()==null){
+				log.error("업로드에 실패하였습니다.!!!!!!!!!!!!!!!!!");
+			}else{
+				log.error("업로드에 성공하였습니다.!!!!!!!!!!!!!");
+			}
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.info("실패하였습니다.");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.info("실패하였습니다.");
+		}
+		int af = usersDao.uploadfile(newFileName, mid);
+		
+		if(af>0){
+			return "redirect:../users/home";
+		}else{
+			log.error("업로드에 실패하였습니다.!!!!!!!!!!!!!!!!!");
+			return "error";
+		}
+		
 	}
 
 	// 회원정보, 내가만든이벤트리스트, 참여한 리스트 목록

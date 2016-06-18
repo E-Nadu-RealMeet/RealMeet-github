@@ -2,6 +2,7 @@ package com.nadu.rms.mapper.annotation;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -20,5 +21,7 @@ public interface UsersMapper {
 	
 	@Insert("INSERT INTO USERS(ID, PWD, NICKNAME, PHONE, INTEREST) VALUES(#{id, jdbcType=NVARCHAR}, #{pwd, jdbcType=VARCHAR}, #{nickname, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{interest, jdbcType=VARCHAR})")
 	public int insertUsers(Users u);
-
+	
+	@Update("UPDATE USERS SET IMGSRC=#{newFileName, jdbcType=VARCHAR} WHERE ID=#{mid, jdbcType=VARCHAR}")
+	public int uploadfile(@Param("newFileName")String newFileName , @Param("mid")String mid);
 }
