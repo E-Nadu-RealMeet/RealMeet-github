@@ -180,9 +180,8 @@ public class EventController {
 
 		int iv = eventDetailService.ReviewInsert(title, content, mid, esidx);
 		if(iv>0){
-			System.out.println("여기");
+
 			return "success";
-			/*return "redirect:../event/"+esidx;*/
 		}else{
 			/*return "redirect:list";*/
 			return "fail";

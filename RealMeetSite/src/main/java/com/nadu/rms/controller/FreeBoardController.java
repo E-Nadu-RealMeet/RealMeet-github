@@ -1,17 +1,22 @@
 package com.nadu.rms.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -87,19 +92,94 @@ public class FreeBoardController {
 		System.out.println(query+"쿼리문");
 		paramMap.put("type", "free");
 		List<Board> list = boardDao.selectBoards(paramMap);
+		
+//		sortBoardList(list);
+		
 		/* 리턴 값 */
 		model.addAttribute("startPageNum", startPageNum);
 		model.addAttribute("endPageNum", endPageNum);
 		model.addAttribute("introValue", "자유 게시판");
-		model.addAttribute("list", list);
+		model.addAttribute("list", sortBoardList(list));
 		model.addAttribute("mid", mid);
 		model.addAttribute("page", "board/freeBoard");
 
 		return "board/freeBoard";
 
 	}
-
 	
+	
+	
+	private List<Board> sortBoardList(List<Board> list) {
+		Set<Integer> bidxSet = new HashSet<Integer>();
+		List<Board> resultList = new ArrayList<Board>();
+		
+		for (Board board : list) {
+			bidxSet.add(Integer.parseInt(board.getBidx()));
+		}
+		resultList.addAll(list);
+
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("bidxSet", bidxSet);
+		
+		if (!CollectionUtils.isEmpty(bidxSet)) {
+			
+			// replyBoardList: 답글만 가져옴
+			List<Board> replyBoardList = boardDao.selectReplyBoardsFromBidx(paramMap);
+			
+			// 답글의 최대 뎁스를 구함 (대대대댓글이 얼마나 있는지)
+			int maxBlevel = 0;
+			for (Board replyBoard : replyBoardList) {
+				int currentBoardBlevel = replyBoard.getBlevel();
+				
+				if (maxBlevel < currentBoardBlevel) {
+					maxBlevel = currentBoardBlevel;
+				}
+			}
+			
+			// 답글이 있을 경우 밑의 로직 실행
+			if (maxBlevel >= 1) {
+				for (int j = 1; j <= maxBlevel; j++) {
+					
+					List<Board> iteratorList = new ArrayList<Board>();
+					
+					// iteratorList: blevel이 for문 1바퀴당 1단계씩 추가되는 리스트
+					for (Board b : resultList) {
+						iteratorList.add(b);
+					}
+					
+					int i = 0;
+					for (Board board : iteratorList) {
+						List<Board> tmp = new ArrayList<Board>();
+						
+						for (Board replyBoard : replyBoardList) {
+							if (replyBoard.getBlevel() == j && Integer.parseInt(board.getBidx()) == Integer.parseInt(replyBoard.getTarget())) {
+								// tmp: 끼워 넣을 답글 목록을 담음
+								tmp.add(replyBoard);
+							}
+						}
+						
+						// tmp로 가져온 것들을 step 오름차순으로(작은 것부터) 정렬
+						Collections.sort(tmp, sort);
+						
+						// tmp를 원글 다음칸에 끼워넣음
+						resultList.addAll(i + 1, tmp);
+						System.out.println(board.getBidx());
+						i++;
+					}
+				}
+			}
+		}
+		
+		return resultList;
+	}
+
+	Comparator<Board> sort = new Comparator<Board>() {
+		public int compare(Board o1, Board o2) {
+			// 앞에 있는 보드가 뒤에 있는 보드보다 스텝이 앞서게 정렬
+			return o1.getStep() > o2.getStep() ? 1 : -1;
+		}
+	};
+
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest req){
 		

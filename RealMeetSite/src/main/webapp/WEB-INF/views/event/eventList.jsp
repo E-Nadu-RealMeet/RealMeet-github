@@ -30,6 +30,13 @@
 		getEventList(page);
 		page++;
 	}
+	function alldelfilter(){
+		$("#viewList").empty();
+		$("#selectfilter").empty();
+		page = 1;
+		getEventList(page);
+		page++;
+	}
 </script>
 
 </head>
@@ -38,64 +45,8 @@
 	<div id="list-filter">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
-			<li class="menu"><a onmouseover="divshow('menu_div_0');"
-				onmouseleave="divhide('menu_div_0');" onfocus=this.blur><span
-					class="fa fa-bars">카테고리전체</span></a>
-				<div id=menu_div_0 class="menu_div"
-					onmouseover="divshow('menu_div_0');"
-					onmouseleave="divhide('menu_div_0');">
-					<div>
-						<ul style="width: 200px; border-top: none;">
-							<li style="border: 1px solid #ddd;"><a href="#">지역별</a>
-								<ul style="width: 250px;">
-									<li><a href="javascript:newfilter('region','서울','seuol');">서울</a></li>
-									<li><a
-										href="javascript:newfilter('region','인천', 'incheon');">인천</a></li>
-									<li><a
-										href="javascript:newfilter('region','경기', 'gyeongi');">경기</a></li>
-								</ul>
-								<ul style="width: 250px;">
-									<li><a
-										href="javascript:newfilter('region','충청도','chungcheong');">충청도</a></li>
-									<li><a
-										href="javascript:newfilter('region','강원도','gangwon');">강원도</a></li>
-									<li><a
-										href="javascript:newfilter('region','경상도','gyeongsang');">경상도</a></li>
-								</ul>
-								<ul style="width: 250px;">
-									<li><a
-										href="javascript:newfilter('region','전라도','jeolla');">전라도</a></li>
-								</ul></li>
-						</ul>
-					</div>
-					<div style="display: inline-block;">
-						<ul style="text-align: center; width: 250px; border-top: none;">
-							<li style="border: 1px solid #ddd;"><a href="#">관심분야별</a>
-								<ul style="width: 250px;">
-									<li><a
-										href="javascript:newfilter('category','인연','relation');">인연</a></li>
-									<li><a
-										href="javascript:newfilter('category','게임','game');">게임</a></li>
-								</ul>
-								<ul style="width: 250px;">
-									<li><a
-										href="javascript:newfilter('category','모임','meeting');">모임</a></li>
-									<li><a
-										href="javascript:newfilter('category','여행','travel');">여행</a></li>
-								</ul>
-								<ul style="width: 250px;">
-									<li><a
-										href="javascript:newfilter('category','맛집','restaurant');">맛집</a></li>
-									<li><a
-										href="javascript:newfilter('category','강연','lecture');">강연</a></li>
-								</ul>
-								<ul style="width: 250px;">
-									<li><a
-										href="javascript:newfilter('category','지식','knowledge');">지식</a></li>
-								</ul></li>
-						</ul>
-					</div>
-				</div></li>
+			<li class="menu"><a href="javascript:alldelfilter();"><span class="fa fa-bars">필터 초기화</span></a>
+			</li>
 
 			<li class="menu"><a onmouseover="divshow('menu_div_1');"
 				onmouseleave="divhide('menu_div_1');" onfocus=this.blur><span

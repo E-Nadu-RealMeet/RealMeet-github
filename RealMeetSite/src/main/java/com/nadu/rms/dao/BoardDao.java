@@ -1,7 +1,9 @@
 package com.nadu.rms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -126,5 +128,16 @@ public class BoardDao {
 		session.close();
 		return cnt;
 		
+	}
+
+
+
+
+	public List<Board> selectReplyBoardsFromBidx(Map<String, Object> paramMap) {
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		List<Board> boardList = mapper.getReplyBoardsFromBidx(paramMap);
+		session.close();
+		return boardList;
 	}
 }
