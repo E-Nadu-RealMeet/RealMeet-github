@@ -18,9 +18,6 @@ public interface CustomerMapper {
 	@Select("SELECT * FROM QNA")
 	public List<QNA> selectQNAs( );
 	
-	@Select("SELECT * FROM QNA WHERE ANSWER = 'N/A'")
-	public List<QNA> selectQNAsNoAnswer( );
-	
 	@Select("SELECT * FROM NOTICES WHERE NIDX = #{nidx, jdbcType=VARCHAR}")
 	public Notices selectNoticeByNidx(String nidx);
 	

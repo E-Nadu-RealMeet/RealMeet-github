@@ -55,8 +55,6 @@ public class CustomerController {
 		model.addAttribute("FAQs", FAQs);
 		List<QNA> QNA = customersDao.selectQNAs(); 
 		model.addAttribute("QNA", QNA);
-		List<QNA> QNANoAnswer = customersDao.selectQNAsNoAnswer(); 
-		model.addAttribute("QNANoAnswer", QNANoAnswer);
 		String introValue = "고객센터";
         model.addAttribute("introValue", introValue );
 		return "customer/customer";	
