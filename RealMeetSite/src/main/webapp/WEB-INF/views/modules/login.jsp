@@ -6,7 +6,7 @@
 	<div class="login-sum" style="display:block;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<a class="icon fa-times-circle-o"
-				style="float: right; font-size: 1.5em; color: #bf0b0b;"
+				style="float: right; font-size: 1.5em; color: #bf0b0b; cursor : pointer"
 				onclick="closeLoginForm();"></a>
 		<span id="error-login">로그인에 실패하셨습니다. 아이디와 비밀번호를 확인해주세요</span>
 </c:when>
@@ -14,7 +14,7 @@
 	<div class="login-sum" style="display: none;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<a class="icon fa-times-circle-o"
-				style="float: right; font-size: 1.5em; color: #bf0b0b;"
+				style="float: right; font-size: 1.5em; color: #bf0b0b; cursor : pointer"
 				onclick="closeLoginForm();"></a>
 		<span id="error-login"> </span>
 </c:when>
@@ -22,7 +22,7 @@
 	<div class="login-sum" style="display:block;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<a class="icon fa-times-circle-o"
-			style="float: right; font-size: 1.5em; color: #bf0b0b;"
+			style="float: right; font-size: 1.5em; color: #bf0b0b; cursor : pointer"
 			onclick="closeLoginForm();"></a>
 		<span id="error-login">로그인이 필요합니다 로그인 해주세요</span>
 </c:when>

@@ -116,15 +116,8 @@ function applyProcess(elidx){
 					dataType : 'text',
 					url : 'apply/'+elidx,
 					success : function(res) {
-						if(res == 'success'){
-							alert('성공하였습니다.');
-						}
-						else if( res == 'No empty seats'){
-							alert('빈자리가 없습니다.');
-						}
-						else if( res == 'Already applied for this event'){
-							alert('이미 참석하셨습니다.');
-						}
+						
+						alert(res);
 						
 						var url = $(location).attr('href');
 						var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
@@ -192,22 +185,26 @@ function createApplyElement(data){
 	newDiv.find('.target').html(tmpStr);
 	//newDiv.find('.target').children('a').css('cursor', 'pointer'); 
 	newDiv.find('.modal.fade').attr('id','apply'+data.elidx);
-	if(data.attended){
+	if(data.attended == "true"){
 		tmpStr = '정말 취소 하시겠습니까?';
 	}
-	else{
+	else if (data.attended == "false"){
 		tmpStr = '정말 참여 하시겠습니까?';
 	}
+	
 	newDiv.find('.modal-body').children('div').html(tmpStr);
 	
-	if(data.attended){
+	if(data.attended == "owned"){
+		var clickEvent = '';
+	}
+	else if(data.attended == "true"){
 		var clickEvent = 'cancleProcess('+data.elidx+')';
 	}
-	else{
+	else if(data.attended == "false"){
 		var clickEvent = 'applyProcess('+data.elidx+')';
 	}
-	newDiv.find('.btn.btn-primary').attr('onclick',clickEvent);
-	newDiv.find('.btn.btn-primary').attr('data-dismiss','modal');
+	newDiv.find('#submitEvent').attr('onclick',clickEvent);
+	newDiv.find('#submitEvent').attr('data-dismiss','modal');
 	return newDiv;
 }
 
