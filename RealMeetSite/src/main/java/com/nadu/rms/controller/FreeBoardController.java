@@ -254,14 +254,15 @@ public class FreeBoardController {
 	public String freeReg(HttpServletRequest request, Model model) {
 		String mid = (String) request.getSession().getAttribute("mid");
 		if (mid == null || mid.length() == 0) {
-			model.addAttribute("error", "notLoginError");
+			request.getSession().setAttribute("error", "notLoginError");
 			String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:../board/freeBoard";
 		}else{
 			model.addAttribute("mid", mid);
 			model.addAttribute("introValue", "글 쓰기");
-			request.getSession().setAttribute("savePage", null);
+			request.getSession().removeAttribute("savePage");
+			request.getSession().removeAttribute("error");
 			return "board/freeBoardReg";
 		}
 	}

@@ -2466,7 +2466,7 @@ ul.icons a {
 }
 
 #menu_div_0 {
-	width: 700px;
+	width: 10em;
 	border-top: none;
 	position: absolute;
 	border: 1px solid #ddd;
@@ -2476,7 +2476,7 @@ ul.icons a {
 }
 
 #menu_div_1 {
-	width: 700px;
+	width: 10em;
 	border-top: none;
 	position: absolute;
 	border: 1px solid #ddd;
@@ -2486,7 +2486,7 @@ ul.icons a {
 }
 
 #menu_div_2 {
-	width: 800px;
+	width: 10em;
 	border-top: none;
 	position: absolute;
 	border: 1px solid #ddd;

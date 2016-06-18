@@ -203,13 +203,14 @@ public class EventController {
 			}
 			log.info("beforePage : " + beforePage);
 			
-			model.addAttribute("error","notLoginError");
+			request.getSession().setAttribute("error","notLoginError");
 			log.info("contextPath"+request.getContextPath()+"+"+request.getContextPath().length());
 			String savePage = request.getRequestURI().substring(request.getContextPath().length()+1);
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:"+beforePage;
 		}else{
-			request.getSession().setAttribute("savePage", null);
+			request.getSession().removeAttribute("error");
+			request.getSession().removeAttribute("savePage");
 			List<String> categories = eventRegService.getCategories();
 			String introValue = "모임을 만들어봐요.";
 	        model.addAttribute("introValue", introValue);
