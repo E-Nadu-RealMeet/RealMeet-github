@@ -39,11 +39,11 @@
 
 <p class="article-comment margin-small" align="right">
 	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath}/board/freeBoard">목록</a> <a
-		class="btn btn-primary"
-		href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}">수정</a>
-	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}">삭제</a>
+		href="${pageContext.request.contextPath}/board/freeBoard">목록</a> 
+	<c:if test="${aa.getWriter()==mid}">
+		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}?bWriter=${aa.getWriter()}">수정</a>
+		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}?bWriter=${aa.getWriter()}">삭제</a>
+	</c:if>
 	<%-- <a class="btn btn-primary"
 		href="${pageContext.request.contextPath}/board/freeReflyReg/${aa.getBidx()}">답글</a> --%>
 </p>

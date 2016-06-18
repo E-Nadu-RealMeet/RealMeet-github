@@ -52,9 +52,9 @@ function review_data(){
 		success : function(data) {
 			window.location.reload();
 		},
-		error : function(data){
-			alert('에러 발생')
-		}
+	     error:function(request,status,error){
+	         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    }
 	});
 }
 

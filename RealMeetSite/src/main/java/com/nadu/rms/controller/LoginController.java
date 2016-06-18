@@ -21,9 +21,9 @@ public class LoginController {
 	static final Logger log = LoggerFactory.getLogger(EventController.class);
 
 	
-	 @RequestMapping(value = "/login", method = RequestMethod.GET) public
-	 String login(HttpServletRequest request, Model model) {
-		 String error = request.getParameter("error");
+	 @RequestMapping(value = "/login", method = RequestMethod.GET) 
+	 public String login(HttpServletRequest request, Model model) {
+		 String error = (String) request.getSession().getAttribute("error");
 		 log.debug("error : ["+error+"]");
 		 if(error == null || error.length()==0){
 			 return "redirect:/";
@@ -57,9 +57,8 @@ public class LoginController {
 		UsersDao dao = new UsersDao();
 		Users m = dao.selectUser(mid, pwd);
 		Cookie coo = null;
-
 		if (m == null || !m.getId().equals(mid)) {
-			model.addAttribute("error", "loginError");
+			request.getSession().setAttribute("error", "loginError");
 			return "redirect:" + beforePage;
 		} else {
 			request.getSession().setAttribute("mid", mid);
@@ -67,7 +66,7 @@ public class LoginController {
 			request.getSession().setAttribute("type", type);
 			request.getSession().setAttribute("checkBoxMid", checkBoxMid);
 			String savePage = (String) request.getSession().getAttribute("savePage");
-			model.addAttribute("error", null);
+			request.getSession().removeAttribute("error");
 			if (checkBoxMid != null && !checkBoxMid.equals("")) {
 				// 체크박스가 체크되어 있으면 쿠키 생성
 				coo = new Cookie("mid", mid);
