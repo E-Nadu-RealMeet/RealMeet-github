@@ -21,5 +21,6 @@ public interface CommentMapper {
 			+ " VALUES(COMMENT_SEQ.NEXTVAL, #{bidx},#{cwriter},#{ccomment}, COMMENT_SEQ.CURRVAL)")
 	public int insertComment(Comment comment);
 	
+	@Select("SELECT COUNT(*) FROM COMMENTS WHERE BIDX=#{bidx}")
 	public int selectCommentCnt(@Param("bidx")int bidx);
 }

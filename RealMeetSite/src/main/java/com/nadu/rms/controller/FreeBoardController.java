@@ -191,33 +191,36 @@ public class FreeBoardController {
 		//String cwriter=(String) request.getSession().getAttribute("mid");
 		
 		
-		log.info("freeDetail 시작");
+		//페이징 시작 페이지
 		int cStartNum = 1;
-		
 		if(request.getParameter("cStartNum")==null||request.getParameter("cStartNum").length()==0){
 			cStartNum=1;
 		}else{
 			cStartNum = Integer.parseInt(request.getParameter("startNum"));
 		}
-		log.info("freeDetail 1");
+		//현재 페이지 입력
 		int cCurrPage;
 		if(request.getParameter("cCurrPage")==null||request.getParameter("cCurrPage").length()==0){
 			cCurrPage=1;
 		}else{
 			cCurrPage=Integer.parseInt(request.getParameter("cCurrPage"));
 		}
-		log.info("freeDetail 2");
+		//덧글 총 갯수
+		int commentCnt = commentDAO.selectCommentCnt(bidx);
+		int cEndNum = cStartNum+4;
+		if(cEndNum > commentCnt/10+1){
+			cEndNum = commentCnt/10+1;
+		}
 		List<Comment> clist = commentDAO.selectComments(bidx, (cCurrPage-1)*10+1, cCurrPage*10);
 		// boardDao.upHitBoard(bidx);
-		log.info("freeDetail 3");
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		model.addAttribute("clist", clist);
 		//model.addAttribute("bb", commentDao.selectComments(paramMap));
 		model.addAttribute("cStartNum", cStartNum);
 		model.addAttribute("cCurrPage", cCurrPage);
+		model.addAttribute("cEndNum", cEndNum);
 		model.addAttribute("introValue", "자유 게시판");
 		//model.addAttribute("cwriter", cwriter);
-		log.info("freeDetail 끝");
 		return "board/freeDetail";
 	}
 

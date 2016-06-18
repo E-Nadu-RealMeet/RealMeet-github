@@ -26,4 +26,11 @@ public class CommentDAO {
 		session.close();
 		return iv;
 	}
+	public int selectCommentCnt(int bidx){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		CommentMapper mapper = session.getMapper(CommentMapper.class);
+		int iv = mapper.selectCommentCnt(bidx);
+		session.close();
+		return iv;
+	}
 }

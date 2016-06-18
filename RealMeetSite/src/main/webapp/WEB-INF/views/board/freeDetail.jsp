@@ -98,7 +98,7 @@
 			</tbody>
 		</table>
 		<!-- 변수 임시 설정 부분 (이후 삭제) -->
-		<c:forEach var="i" begin="${cStartNum}" end="${cStartNum+4}">
+		<c:forEach var="i" begin="${cStartNum}" end="${cEndNum}">
        		<c:choose>
        			<c:when test="${i == cCurrPage}">
        				<span><a class="strong" href="${aa.getBidx()}?cCurrPage=${i}&field=${field}&query=${query}">${i}</a></span>
