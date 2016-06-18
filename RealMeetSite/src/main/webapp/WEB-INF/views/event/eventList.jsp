@@ -41,7 +41,7 @@
 
 </head>
 <%-- <script	src="${pageContext.request.contextPath}/resources/core/js/event/eventList.js?ver=1" type="text/javascript"></script> --%>
-<div class="container" id="container">
+<div class="container" id="container" style="margin-left: 0%; width: 95%">
 	<div id="list-filter">
 	<div id="menubar">
 		<ul id="sidebar" class="nav nav-pills nav-stacked">
@@ -90,7 +90,7 @@
 	</div>
 </div>
 	</div>
-	<div id="viewList">
+	<div id="viewList" style="width: 95%">
 	</div>
 	<!-- dummy -->
 	<div class="row dummy" style="margin :0;display: none;">
