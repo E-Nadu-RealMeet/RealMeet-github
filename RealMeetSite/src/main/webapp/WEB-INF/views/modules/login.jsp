@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <c:choose>
-<c:when test="${sessionScope.error=='loginError'}">
+<c:when test="${error=='loginError'}">
 	<div class="login-sum" style="display:block;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<a class="icon fa-times-circle-o"
@@ -10,7 +10,7 @@
 				onclick="closeLoginForm();"></a>
 		<span id="error-login">로그인에 실패하셨습니다. 아이디와 비밀번호를 확인해주세요</span>
 </c:when>
-<c:when test="${empty sessionScope.error}">
+<c:when test="${empty error}">
 	<div class="login-sum" style="display: none;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<a class="icon fa-times-circle-o"
@@ -18,7 +18,7 @@
 				onclick="closeLoginForm();"></a>
 		<span id="error-login"> </span>
 </c:when>
-<c:when test="${sessionScope.error=='notLoginError'}">
+<c:when test="${error=='notLoginError'}">
 	<div class="login-sum" style="display:block;">
 	<div id="login-div" onclick="event.cancelBubble=true">
 		<a class="icon fa-times-circle-o"

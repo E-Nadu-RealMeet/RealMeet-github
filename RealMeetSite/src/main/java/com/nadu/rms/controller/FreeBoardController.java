@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.dao.CommentDAO;
@@ -251,10 +252,10 @@ public class FreeBoardController {
 
 	// 게시물등록
 	@RequestMapping(value = "/freeReg", method = RequestMethod.GET)
-	public String freeReg(HttpServletRequest request, Model model) {
+	public String freeReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
 		String mid = (String) request.getSession().getAttribute("mid");
 		if (mid == null || mid.length() == 0) {
-			request.getSession().setAttribute("error", "notLoginError");
+			redirectAttr.addFlashAttribute("error", "notLoginError");
 			String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:../board/freeBoard";
@@ -282,12 +283,17 @@ public class FreeBoardController {
 	//댓글 등록
 	@RequestMapping(value="/commentReg", method = RequestMethod.POST)
 	public String commentReg(Comment comment, HttpServletRequest request){
+		String mid = (String) request.getSession().getAttribute("mid");
 		String bidx = comment.getBidx();
-		int iv = commentDAO.insertComment(comment);
-		if(iv==0){
-			log.debug("댓글 등록 에러 발생");
+		if(mid==null||mid.length()==0){
+			return "redirect:"+bidx;
+		}else{
+			int iv = commentDAO.insertComment(comment);
+			if(iv==0){
+				log.debug("댓글 등록 에러 발생");
+			}
+			return "redirect:freeDetail/" + bidx;
 		}
-		return "redirect:freeDetail/" + bidx;
 	}
 	
 

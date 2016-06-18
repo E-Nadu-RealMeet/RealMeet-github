@@ -29,35 +29,35 @@
 			<ul id="topMenuUl-left">
 				<li><a class="topButton" id="topButton-logo"
 					href="${pageContext.request.contextPath}/"><span class="icon fa-child"></span>DADLEMOYEO</a></li>
-					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>Event</a>
+					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>EVENT</a>
 						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">Event list</span></a></li>
-							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Event create</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/event/list" id="list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">EVENT LIST</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/event/reg" id="reg-link" class="skel-layers-ignoreHref"><span class="icon fa-th">EVENT CREATE</span></a></li>
 						</ul>
 					</li>
-					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>Board</a>
+					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>BOARD</a>
 						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/board/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">Free board</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">FREE BOARD</span></a></li>
 						</ul>
 					</li>
 			</ul>
 			<ul id="topMenuUl-right">
 				<c:if test="${empty mid}">
 					<li><a class="topButton" href="#"
-						type="button" onclick="openLoginForm();"><span class="icon fa-unlock"></span>Login</a></li>
+						type="button" onclick="openLoginForm();"><span class="icon fa-unlock"></span>LOGIN</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
 					<li>[<span style="font-weight: bold; font-size: 120%;"><c:out value="${mid}"/></span>]님 안녕하세요</li>
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/logout"><span class="icon fa-lock"></span>Logout</a></li>
+						href="${pageContext.request.contextPath}/logout"><span class="icon fa-lock"></span>LOGOUT</a></li>
 				</c:if>
 				<c:if test="${empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/join"><span class="icon fa-user-plus"></span>Join</a></li>
+						href="${pageContext.request.contextPath}/users/join"><span class="icon fa-user-plus"></span>JOIN</a></li>
 				</c:if>
 				<c:if test="${!empty mid}">
 					<li><a class="topButton"
-						href="${pageContext.request.contextPath}/users/home"><span class="fa fa-user-plus"></span>Info</a></li>
+						href="${pageContext.request.contextPath}/users/home"><span class="fa fa-user-plus"></span>INFO</a></li>
 				</c:if>
 				<li><a href="${pageContext.request.contextPath}/customer/customer" class="skel-layers-ignoreHref"><span class="icon fa-users"></span>고객센터</a></li>
 			</ul>

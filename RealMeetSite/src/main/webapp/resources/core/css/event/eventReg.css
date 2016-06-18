@@ -38,6 +38,7 @@ input#selectEnd4 {
 	width: 21%;
 }
 div#desc-text {
+	min-height: 2em;
     border: 1px solid #afafaf;
     border-radius: 0.5em;
     box-shadow: -3px 0px 3px 1px gainsboro;
@@ -45,6 +46,8 @@ div#desc-text {
     line-height: 2em;
     text-align: left;
     padding-left: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 /* input#regInput1 {
 	width: 100%;
@@ -309,4 +312,13 @@ input#regInput2 {
 }
 .col-sm-6.pofol-right {
     width: 0%;
+}
+.regInput.sbox-check{
+	border: 1px solid #afafaf;
+    border-radius: 0.5em;
+    box-shadow: -3px 0px 3px 1px gainsboro;
+    font-size: 1.5em;
+    line-height: 2em;
+    text-align: left;
+    padding-left: 1em;
 }

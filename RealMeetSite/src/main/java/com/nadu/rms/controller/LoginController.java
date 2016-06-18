@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nadu.rms.dao.UsersDao;
 import com.nadu.rms.vo.Users;
@@ -23,7 +24,7 @@ public class LoginController {
 	
 	 @RequestMapping(value = "/login", method = RequestMethod.GET) 
 	 public String login(HttpServletRequest request, Model model) {
-		 String error = (String) request.getSession().getAttribute("error");
+		 String error = (String) request.getAttribute("error");
 		 log.debug("error : ["+error+"]");
 		 if(error == null || error.length()==0){
 			 return "redirect:/";
@@ -34,7 +35,7 @@ public class LoginController {
 	 
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String home(HttpServletRequest request, HttpServletResponse response, String mid, String pwd, String type,
+	public String home(RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response, String mid, String pwd, String type,
 			String checkBoxMid, Model model) {
 		// 페이지 계산
 		// 이전 페이지 http://localhost/~
@@ -58,7 +59,7 @@ public class LoginController {
 		Users m = dao.selectUser(mid, pwd);
 		Cookie coo = null;
 		if (m == null || !m.getId().equals(mid)) {
-			request.getSession().setAttribute("error", "loginError");
+			redirectAttr.addFlashAttribute("error", "loginError");
 			return "redirect:" + beforePage;
 		} else {
 			request.getSession().setAttribute("mid", mid);
@@ -66,7 +67,6 @@ public class LoginController {
 			request.getSession().setAttribute("type", type);
 			request.getSession().setAttribute("checkBoxMid", checkBoxMid);
 			String savePage = (String) request.getSession().getAttribute("savePage");
-			request.getSession().removeAttribute("error");
 			if (checkBoxMid != null && !checkBoxMid.equals("")) {
 				// 체크박스가 체크되어 있으면 쿠키 생성
 				coo = new Cookie("mid", mid);

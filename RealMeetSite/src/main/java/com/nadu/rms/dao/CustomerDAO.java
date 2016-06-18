@@ -19,14 +19,6 @@ public class CustomerDAO {
         session.close();
         return list;
     }
-	
-	public List<QNA> selectQNAsNoAnswer() {
-        SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        CustomerMapper mapper = session.getMapper(CustomerMapper.class);
-        List<QNA> list = mapper.selectQNAsNoAnswer();
-        session.close();
-        return list;
-    }
 
 	public List<FAQ> selectFAQs() {
 

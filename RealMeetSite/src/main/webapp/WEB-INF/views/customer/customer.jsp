@@ -171,6 +171,9 @@
 						<c:if test="${mid == 'won' && QNA.answer == 'N/A'}">
 						<td><a href="Answer/${QNA.qidx}" data-toggle="modal" data-target="#AnswerModal"><span class="icon fa-pencil-square-o">답변</span></a></td>
 						</c:if>
+						<c:if test="${mid == 'won' && QNA.answer != 'N/A'}">
+						<td><a href="Answer/${QNA.qidx}" data-toggle="modal" data-target="#AnswerModal"><span class="icon fa-pencil-square-o">답변수정</span></a></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -334,10 +337,21 @@
 <div class="modal-content">
 
 <header>
+<c:if test="${mid == 'won' && QNA.answer == 'N/A'}">
 								<h2>답변하기</h2>
+								</c:if>
+								<c:if test="${mid == 'won' && QNA.answer != 'N/A'}">
+								<h2>답변 수정하기</h2>
+								</c:if>
 							</header>
 							
-							<h3>답변할 게시물 : ${QNADetail.title}</h3>
+							<c:if test="${mid == 'won' && QNA.answer == 'N/A'}">
+								<h3>답변할 게시물 : ${QNADetail.title}</h3>
+								</c:if>
+								<c:if test="${mid == 'won' && QNA.answer != 'N/A'}">
+								<h3>답변 수정할 게시물 : ${QNADetail.title}</h3>
+								</c:if>
+						
 								
 					
 							<form action="addAnswer" method="post">
