@@ -16,7 +16,7 @@
 			<h3>이벤트의 이름은 무엇으로 하실껀가요?</h3>
 		</div>
 		<hr>
-		<br> <input type="text" class="regInput"> <br>
+		<br> <input type="text" class="regInput" placeholder="이벤트 이름은 10자 이상 적어주세요"> <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>
@@ -103,7 +103,7 @@
 			<h3>업로드한 파일</h3>
 			<input type="text" name="imgsrc" id="imgsrc" class="regInput" readonly />
 			<h3>자세한 설명</h3>
-			<textarea id="description" name="description" class="regInput" readonly></textarea>
+			<div id="desc-text"></div>
 			<h3>이벤트 개최 날짜</h3>
 			<input type="datetime-local" class=regInput readonly />
 			<h3>이벤트 개최 장소</h3>

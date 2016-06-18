@@ -63,11 +63,12 @@ $(document).ready(
 			// 5번 박스의 저장 버튼 클릭시 textArea 줄바꿈 변환
 			var descText = selectBoxDesc.children('#desc-text');
 			descText.on('keyup', function(event) {
+				var descDiv = selectBoxCheck.find("#desc-text");
 				var currentString = descText.val();
-				selectBoxCheck.children("textarea").html(currentString);
-				var descInput = selectBoxCheck.children("#description");
+				//selectBoxCheck.children("textarea").html(currentString);
+				
 				currentString = replaceHtml(currentString);
-				descInput.val(currentString);
+				descDiv.html(currentString);
 				selectBoxDesc.children('#description').val(currentString);
 			});
 
@@ -231,4 +232,28 @@ $(document).ready(
 			 * $('#selectBox-abs').hide(); $('#selectBox4').hide();
 			 * $('#selectBoxDesc').hide();
 			 */
+			
+			//input check;
+			var inputName = selectBoxName.find('.regInput');
+			inputName.blur(function(){
+				if(inputName.val().length<10){
+					alert('이벤트 이름은 10자 이상이어야만 합니다.')
+					inputName.css("border", "1px solid red");
+					inputName.focus();
+				}else{
+					inputName.css("border", "1px solid gray");
+				}
+			})
+			$('#selectBox-quantity').find('.regInput').blur(function(){
+				if($('#selectBox-quantity').find('.regInput').val()<2){
+					alert('적어도 2명 이상은 필요합니다.');
+					$('#selectBox-quantity').find('.regInput').focus();
+				}else if($('#selectBox-quantity').find('.regInput').val()>40){
+					alert('40명 이상은 아직은 어렵습니다.')
+					$('#selectBox-quantity').find('.regInput').focus();
+				}else{
+					
+				}
+			})
+			
 		});

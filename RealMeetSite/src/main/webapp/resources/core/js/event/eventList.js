@@ -72,7 +72,7 @@ function createListElement(data){
 	
 	newDiv.find('.caption-title').html('<a href=\"#\">'+data.eventname+'</a>');
 	
-	newDiv.find('.container.eventlist').attr('style','background-image: url("'+getContextPath()+'/resources/core/images/upload/'+data.imgsrc+'");background-size: cover;');
+	newDiv.find('.container.eventlist').attr('style','background-image: url("'+getContextPath()+'/resources/core/images/upload/'+data.imgsrc+'");background-size: cover;    background-position-y: 20%;');
 	newDiv.find('.caption-desc').html(data.description);
 	newDiv.find('.icon.fa-heart-o').html(data.good);
 	newDiv.find('.icon.fa-commenting-o').html(data.reviewCnt);
