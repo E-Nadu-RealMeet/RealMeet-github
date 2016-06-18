@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nadu.rms.dao.BoardDao;
 import com.nadu.rms.dao.CommentDAO;
+import com.nadu.rms.service.BoardService;
 import com.nadu.rms.vo.Board;
 import com.nadu.rms.vo.Comment;
 
@@ -32,6 +33,12 @@ public class FreeBoardController {
 
 	BoardDao boardDao;
 	CommentDAO commentDAO;
+	BoardService BoardService;
+	
+	@Autowired
+	public void setBoardService(BoardService boardService) {
+		BoardService = boardService;
+	}
 
 	@Autowired
 	public void setBoardDao(BoardDao boardDao) {
@@ -189,10 +196,19 @@ public class FreeBoardController {
 
 	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest request){
+
+		/* 조회수 증가 */
 		boardDao.upHitBoard(bidx);
-		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
+		Board thisBoard = boardDao.selectFreeDetail(bidx);
+		model.addAttribute("aa", thisBoard);
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
+
+		BoardService.getAroundBoard(bidx, request);
+
+		
+		log.info("freeDetail 시작");
+
 		
 		//String cwriter=(String) request.getSession().getAttribute("mid");
 		
@@ -224,6 +240,7 @@ public class FreeBoardController {
 		// boardDao.upHitBoard(bidx);
 		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
 		model.addAttribute("clist", clist);
+
 		//model.addAttribute("bb", commentDao.selectComments(paramMap));
 		model.addAttribute("cStartNum", cStartNum);
 		model.addAttribute("cCurrPage", cCurrPage);
@@ -231,6 +248,9 @@ public class FreeBoardController {
 		model.addAttribute("sumCommentPage", sumCommentPage);
 		model.addAttribute("introValue", "자유 게시판");
 		//model.addAttribute("cwriter", cwriter);
+
+		log.info("freeDetail 끝");
+
 		return "board/freeDetail";
 	}
 

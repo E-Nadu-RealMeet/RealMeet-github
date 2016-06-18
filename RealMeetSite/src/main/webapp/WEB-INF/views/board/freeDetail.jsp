@@ -51,12 +51,22 @@
 		<table id="boardDetail" class="table">
 			<tbody>
 				<tr>
-					<td class="table-bordered">다음글</td>
-					<td class="table-bordered">다음 글이 없습니다.</td>
+					<td class="table-bordered">이전글</td>
+					<c:if test="${prev != null }">
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${prev.getBidx()}">${prev.getTitle() } by ${prev.getWriter() }</a></td>
+					</c:if>
+					<c:if test="${prev == null }">
+						<td class="table-bordered">이전 글이 없습니다.</td>
+					</c:if>
 				</tr>
 				<tr>
-					<td class="table-bordered">이전글</td>
-					<td class="table-bordered">이전 글이 없습니다.</td>
+					<td class="table-bordered">다음글</td>
+					<c:if test="${next != null }">
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${next.getBidx()}">${next.getTitle() } by ${next.getWriter() }</a></td>
+					</c:if>
+					<c:if test="${next == null }">
+						<td class="table-bordered">다음 글이 없습니다.</td>
+					</c:if>
 				</tr>
 			</tbody>
 		</table>

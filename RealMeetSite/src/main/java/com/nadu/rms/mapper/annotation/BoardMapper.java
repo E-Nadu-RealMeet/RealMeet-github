@@ -46,4 +46,12 @@ public interface BoardMapper {
 	//@Select("SELECT * FROM (SELECT ROWNUM NUM, BOARD FROM WHERE ")
 	List<Board> getReplyBoardsFromBidx(Map<String, Object> paramMap);
 	
+	@Select("SELECT * FROM BOARDS WHERE BIDX = (SELECT MAX(BIDX) FROM BOARDS WHERE TO_NUMBER(BIDX) < TO_NUMBER(#{bidx, jdbcType=INTEGER}))")
+	Board selectNextBoardIdx(@Param("bidx")int bidx);
+	
+	@Select("SELECT * FROM BOARDS WHERE BIDX = (SELECT MIN(BIDX) FROM BOARDS WHERE TO_NUMBER(BIDX) > TO_NUMBER(#{bidx, jdbcType=INTEGER}))")
+	Board selectPrevBoardIdx(@Param("bidx")int bidx);
+	
+	
+	
 }
