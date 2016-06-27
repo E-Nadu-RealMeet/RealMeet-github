@@ -120,11 +120,7 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
-		/*String mid = (String)req.getSession().getAttribute("mid");
-		if(mid != null && mid != ""){
-			model.addAttribute("mid", mid);
-		}
-		*/
+
 		/*해당 이벤트 이미지 가져오기 위함*/
 		String imgsrc = eventDetailService.EventDetailImg(esidx);
 		System.out.println("imgsrc: "+imgsrc);
@@ -132,7 +128,6 @@ public class EventController {
 
 		
 		/* eventDetailService로 필요한 데이터 가져옴 */
-		//req.getSession().setAttribute("mid", "gyu");
 		int iv = eventDetailService.detailLoad(req, esidx, model);
 		
 		
@@ -148,6 +143,14 @@ public class EventController {
 		}else{
 			return "redirect:list";
 		}
+	}
+	
+	// 이벤트 삭제 기능 ( Ajax 대응 )
+	@RequestMapping(value = "{esidx}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public String eventDelete(@PathVariable String esidx, HttpServletRequest req){
+		
+		return eventEditService.eventDelete(req, esidx);
 	}
 	
 	@RequestMapping(value = "review", produces="text/plain;charset=UTF-8")

@@ -3,6 +3,7 @@ package com.nadu.rms.mapper.annotation;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -46,6 +47,9 @@ public interface EventsMapper {
 	@Select("SELECT * FROM VIEW_JOIN_ES_EL WHERE ELIDX IN(SELECT ELIDX FROM GUESTLIST WHERE GUEST LIKE '%'||#{guest, jdbcType=VARCHAR}||'%')")
 	public List<Event_Eventlist> selectJoinEvents(@Param("guest")String guest);
 	
+	@Delete("DELETE FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR} ")
+	public int deleteEvent(@Param("esidx")String esidx);
+	
 	public int insertEvents(Event_Eventlist e);
 	
 	@Select("SELECT COUNT(*) FROM VIEW_JOIN_ES_MODIFYEL WHERE REGEXP_LIKE(ADDR,#{region, jdbcType=VARCHAR}) AND REGEXP_LIKE(CATEGORY,#{category,jdbcType=VARCHAR})")
@@ -53,6 +57,9 @@ public interface EventsMapper {
 	
 	@Select("SELECT CNAME FROM CATEGORIES")
 	public List<String> getCategories();
+	
+	@Select("SELECT * FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public Events selectEvent(@Param("esidx")String esidx);
 	
 	@Select("SELECT IMGSRC FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public String selectEventsImg(@Param("esidx")String esidx);
