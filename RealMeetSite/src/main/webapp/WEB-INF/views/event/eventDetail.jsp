@@ -2,6 +2,201 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 	<div class="container">
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgH95U-UGuPS-t2hK--kjCb2-Spu3pEZ0&signed_in=true&callback=initMap"></script>
+<script src="${pageContext.request.contextPath}/resources/core/js/gmap/gmaps.js"></script>	
+	
+<script type="text/javascript">
+function initMap(call) {
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom : 13,
+		center : {
+			lat : 37.553152,
+			lng : 126.936894
+		}
+	});
+	// Create the DIV to hold the control and call the CenterControl()
+	// constructor
+	// passing in this DIV.
+	var centerControlDiv = document.createElement('div');
+	var centerControl = new CenterControl(centerControlDiv, map);
+	var marker;
+	var markers=[];
+	var geocoder = new google.maps.Geocoder;
+	var infowindow;
+	$.ajax({
+		type : 'POST',
+		dataType : 'json',
+		url : 'dataloadformap',
+		success : function(data) {
+			// alert('검색된 모임의 갯수 : '+data.length);
+			for (var i = 0; i < data.length; i++) {
+				var addr = data[i].addr;
+				var latlngStr = data[i].latlng.split(', ', 2);
+				var latlng = {
+						lat : parseFloat(latlngStr[0]),
+						lng : parseFloat(latlngStr[1])
+					};
+				var content = data[i];
+				content.latlng = latlng;
+				content.imgsrc = content.imgsrc.split(':',2)[0]; 
+				placeMarkerAndPanTo(latlng, map, content);
+			}
+
+		},
+		error : function(error) {
+			alert('dataloadformap error: ' + error.message);
+		},
+		complete : function(data) {
+		}
+	});
+	centerControlDiv.index = 1;
+	map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+	function placeMarkerAndPanTo(latLng, map, arg) {
+		var marker = new google.maps.Marker({
+			position : latLng,
+			draggable:false,
+			map : map
+		});
+		markers.push(marker);
+		//map.panTo(latLng);
+		/*if(arg != null&& arg.length!=0){
+			infowindow.setContent(arg);
+			infowindow.open(map, marker);
+		}*/
+		google.maps.event.addListener(marker, 'click', function(){
+			infowindow = new google.maps.InfoWindow;
+			infowindow.setContent(arg.eventname+'<img src="'+getContextPath()+'/resources/core/images/upload/'+arg.imgsrc+'" style="width:40px;height:30px"/>')
+			infowindow.setPosition(arg.latlng)
+			infowindow.open(map);
+		})
+	}
+	
+}
+
+$('[data-target="#EventAddrUpdate"]').click(function(){
+		var map2 = new google.maps.Map(document.getElementById('map2'), {
+			zoom : 13,
+			center : {
+				lat : 37.553152,
+				lng : 126.936894
+			}
+		});
+		// Create the DIV to hold the control and call the
+		// CenterControl()
+		// constructor
+		// passing in this DIV.
+		var centerControlDiv = document.createElement('div');
+		var centerControl = new CenterControl(centerControlDiv, map2);
+		var marker;
+		var markers=[];
+		var geocoder = new google.maps.Geocoder;
+		var infowindow = new google.maps.InfoWindow;
+		centerControlDiv.index = 1;
+		map2.controls[google.maps.ControlPosition.TOP_CENTER]
+				.push(centerControlDiv);
+		/*
+		 * // 마커를 클릭하면 줌을 당기고 센터 중심으로. marker.addListener('click',
+		 * function() { map.setZoom(15);
+		 * map.setCenter(marker.getPosition()); });
+		 */
+		
+		map2.addListener('click', function(e) {
+			var latLng = e.latLng.toString();
+			latLng=latLng.substring(1,latLng.length-2);
+			deleteMarkers();
+			//placeMarkerAndPanTo(e.latLng, map);
+			geocodeLatLng(geocoder, map2, infowindow, latLng);
+			setLatlngToInput(latLng)
+		});
+		function placeMarkerAndPanTo(latLng, map2, arg) {
+			var marker = new google.maps.Marker({
+				position : latLng,
+				draggable:false,
+				content:arg,
+				map2 : map2
+			});
+			markers.push(marker);
+			map2.panTo(latLng);
+			if(arg != null&& arg.length!=0){
+				infowindow.setContent(arg);
+				infowindow.open(map2, marker);
+			}
+		}
+		$('#addr').keyup(function() {
+			GMaps.geocode({
+				address : $('#addr').val().trim(),
+				callback : function(results, status) {
+					if (status == 'OK') {
+						deleteMarkers();
+						var latlng = results[0].geometry.location;
+						placeMarkerAndPanTo(latlng, map2, $('#addr').val().trim());
+						map2.setZoom(15);
+						var latLng = latlng.toString();
+						var latLng=latLng.substring(1,latLng.length-2);
+						setLatlngToInput(latLng)
+					}
+				}
+			});
+		});
+		function setLatlngToInput(latlng){
+			var latlng2 = latlng.toString()
+			//alert(latlng2)
+			//alert(typeof(latlng2))
+			$('#latlng').val(latlng2.toString())
+		}
+		// Sets the map on all markers in the array.
+		function setMapOnAll(map2) {
+		  for (var i = 0; i < markers.length; i++) {
+		    markers[i].setMap(map2);
+		  }
+		}
+
+		// Removes the markers from the map, but keeps them in the array.
+		function clearMarkers() {
+		  setMapOnAll(null);
+		}
+
+		// Shows any markers currently in the array.
+		function showMarkers() {
+		  setMapOnAll(map);
+		}
+
+		// Deletes all markers in the array by removing references to them.
+		function deleteMarkers() {
+		  clearMarkers();
+		  markers = [];
+		}
+		//지오코딩 메서드
+		function geocodeLatLng(geocoder, map2, infowindow, input) {
+			  var latlngStr = input.split(',', 2);
+			  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+			  geocoder.geocode({'location': latlng}, function(results, status) {
+			    if (status === google.maps.GeocoderStatus.OK) {
+			      if (results[1]) {
+			        map2.setZoom(15);
+			        /*map.panTo(latlng);
+			        var marker = new google.maps.Marker({
+			          position: latlng,
+			          map: map
+			        });*/
+			        placeMarkerAndPanTo(latlng, map2, results[1].formatted_address);
+			        $('#addr').val(results[1].formatted_address)
+			      } else {
+			        window.alert('No results found');
+			      }
+			    } else {
+			      window.alert('Geocoder failed due to: ' + status);
+			    }
+			  });
+			}
+	
+})
+</script>
+
+
+	
             <!-- Blog Post Content Column -->
 				  <c:if test="${detail.size() != 0 }">
                 <!-- Blog Post -->
@@ -13,7 +208,12 @@
 				  		</c:if>
                 		<hr>
                 </h1>
-				<span>카테고리 : ${detail.get(0).getCategory() }</span>
+				<span>카테고리 : ${detail.get(0).getCategory() }
+				<c:if test="${mid == detail.get(0).getHolder()}">
+							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventCategoryUpdate"></span>
+							
+				  		</c:if>
+				</span>
                
 
                 <!-- Author -->
@@ -21,7 +221,11 @@
                 	 by <a href="#">${detail.get(0).getHolder() }</a>
                 </p>
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> ${detail.get(0).getEldate() }</p>
+                <p><span class="glyphicon glyphicon-time"></span> ${detail.get(0).getEldate() }
+                <c:if test="${mid == detail.get(0).getHolder()}">
+							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventDateUpdate"></span>
+				  		</c:if>
+                </p>
 				
                 <hr>
 
@@ -66,10 +270,16 @@
 					</c:if>
                 </p>
                 <hr>
-				  <div id="lists"><%-- <c:if test="${mid == detail.get(0).getHolder() }">
-							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventAddrUpdate"></span>
-				  </c:if> --%></div>
-				  
+                <div id="map" style="width: 100%; height: 400px;"></div>
+				  <div id="lists"></div> 
+				  <c:if test="${mid == detail.get(0).getHolder() }">
+							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventAddrUpdate">주소 수정</span> 
+							<form action="editAddr" method="POST">
+<input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
+<button type="submit" class="btn btn-primary">수정</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+</form>
+ 				  </c:if>
                 <hr>
 
                 <!-- Blog Comments -->
@@ -150,15 +360,19 @@
 		</div>
 
 
-<div class="modal fade" id="EventAddrUpdate" role="dialog">
- <div class="modal-dialog">
-<div class="modal-content">
-<h2>주소 수정</h2>
-<div id="map" style="width: 100%; height: 400px;"></div>
-
-</div>
-</div>
-</div>
+<!-- <div class="modal fade" id="EventAddrUpdate" role="dialog"> -->
+<!--  <div class="modal-dialog"> -->
+<!-- <div class="modal-content"> -->
+<!-- <h2>주소 수정</h2> -->
+<!-- <div id="map2" style="width: 100%; height: 400px;"></div> -->
+<!-- <form action="editAddr" method="POST"> -->
+<%-- <input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }"> --%>
+<!-- <button type="submit" class="btn btn-primary">수정</button> -->
+<!-- <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
+<!-- </form> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
 
 <div class="modal fade" id="EventCategoryUpdate" role="dialog">
  <div class="modal-dialog">

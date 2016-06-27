@@ -102,6 +102,17 @@ public class EventDataService {
 		String datas = gson.toJson(list);
 		return datas;
 	}
+	public String DataloadForMapByESIDX(String esidx) {
+		// Json 형태로 변환시켜줄 Gson 객체 생성
+		Gson gson = new Gson();
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		List<Event_Eventlist> list = mapper.selectEventRelateByESIDX(esidx);
+		
+		//vo만 쓸꺼면 class 선언 안해도 되네요
+		String datas = gson.toJson(list);
+		return datas;
+	}
 	
 	class JsonClassForListLoad {
 		List<Event_User> datas;
