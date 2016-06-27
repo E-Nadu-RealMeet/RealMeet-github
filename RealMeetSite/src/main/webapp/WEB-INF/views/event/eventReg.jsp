@@ -110,9 +110,8 @@
 			<input type="text" name="addr" id="addr" class="regInput sbox-check" readonly>
 			<h3>이벤트 최대 인원</h3>
 			<input type="text" name="maxgnum" id="addr" class="regInput sbox-check" readonly>
-			 
 			<input type="hidden" name="eldate" id="date2" readonly> 
-			<input type="hidden" id="description" class="regInput" readonly>
+			<input type="hidden" id="description" name="description" class="regInput" readonly>
 			<input type="hidden" id="latlng" name="latlng" class="regInput">
 			
 			<button type="submit" id="selectEnd" class='regButton'>이벤트 생성</button>
