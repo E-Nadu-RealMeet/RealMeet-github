@@ -57,9 +57,9 @@ public class UsersController {
 
 	// 회원정보수정
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String usersedit(Model model, HttpServletRequest req) {
+	public String usersedit(Model model, HttpServletRequest request) {
 
-		String id = req.getParameter("id");
+		String id = request.getParameter("id");
 		Users users = null;
 		String introValue = "정보를 수정해주세요.";
 
@@ -76,15 +76,15 @@ public class UsersController {
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String usersedit(Model model, Users users) {
 
-		System.out.println("회원정보수정시작");
+		log.info("회원정보수정시작");
 		int af = usersDao.updateUsers(users);
 		model.addAttribute("id", users.getId());
 
 		if (af > 0) {
-			System.out.println("회원정보수정 성공");
+			log.info("회원정보수정 성공");
 			return "redirect:../users/home";
 		} else {
-			System.out.println("회원정보수정 실패");
+			log.info("회원정보수정 실패");
 			return "redirect:../users/edit";
 		}
 	}
@@ -107,11 +107,11 @@ public class UsersController {
 		model.addAttribute("id", u.getId());
 
 		if (af > 0) {
-			System.out.println("회원추가 성공");
+			log.info("회원추가 성공");
 			request.getSession().setAttribute("mid", u.getId());
 			return "redirect:../users/info";
 		} else {
-			System.out.println("회원추가 실패");
+			log.info("회원추가 실패");
 			return "redirect:join";
 		}
 	}
@@ -175,7 +175,7 @@ public class UsersController {
 	@RequestMapping(value = "idcheck")
 	public void checkid(String id, HttpServletResponse res, Model model) throws Exception {
 		PrintWriter out = res.getWriter();
-		System.out.println(id);
+		log.info(id);
 		Users users = null;
 		users = usersDao.selectUsers(id);
 
@@ -192,20 +192,21 @@ public class UsersController {
 	@RequestMapping(value = "pwdcheck")
 	public void checkpwd(String id, String pwd, HttpServletResponse res, Model model) throws Exception {
 		PrintWriter out = res.getWriter();
-		System.out.println("pwdcheck=" + id);
-		System.out.println("pwdcheck=" + pwd);
+		log.info("pwdcheck=" + id);
+		log.info("pwdcheck=" + pwd);
 		Users users = null;
 		users = usersDao.selectUsers(id);
 
 		if (users.getPwd().equals(pwd)) {
-			System.out.println("yes");
+			log.info("yes");
 			out.write("YES");
 		} else {
-			System.out.println("no");
+			log.info("no");
 			out.write("NO");
 		}
 	}
 	
+	//회원이미지 업로드
 	@RequestMapping(value="uploadfile", method=RequestMethod.POST)
 	public String imageupload(HttpServletRequest request, MultipartHttpServletRequest multipartRequest, ModelMap model){
 		
@@ -296,11 +297,6 @@ public class UsersController {
 			users = usersDao.selectUsers(mid);
 			my_list = eventsDao.selectMyEvents(mid);
 			join_list = eventsDao.selectJoinEvents(mid);
-			
-			//sysout은 쓰지 않습니다. log로 써주세요
-			/*System.out.println("home_users = " + mid);
-			System.out.println("home_my_list =" + my_list);
-			System.out.println("home_join_list =" + join_list);*/
 
 			request.getSession().removeAttribute("savePage");
 			

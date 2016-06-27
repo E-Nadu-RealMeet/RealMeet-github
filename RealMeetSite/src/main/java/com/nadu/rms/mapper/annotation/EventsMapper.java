@@ -25,6 +25,9 @@ public interface EventsMapper {
 	@Select("SELECT * FROM VIEW_JOIN_ES_ALL")
 	public List<Event_Eventlist> selectEventRelateAll();
 	
+	@Select("SELECT * FROM VIEW_JOIN_ES_ALL WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public List<Event_Eventlist> selectEventRelateByESIDX(@Param("esidx")String esidx);
+	
 	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_MODIFYEL WHERE REGEXP_LIKE(ADDR,#{region, jdbcType=VARCHAR}) AND REGEXP_LIKE(CATEGORY,#{category,jdbcType=VARCHAR})) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC")
 	public List<Event_User> selectEventsNUser(Map<String, Object> paramMap);
 	
