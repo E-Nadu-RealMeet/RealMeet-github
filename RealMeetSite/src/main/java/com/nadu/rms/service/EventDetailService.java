@@ -46,7 +46,7 @@ public class EventDetailService {
 	
 	public String EventDetailImg(String esidx){
 		
-		String imgsrc = eventsDAO.selectEvents(esidx);
+		String imgsrc = eventsDAO.selectEventsImg(esidx);
 		return imgsrc;
 	}
 	

@@ -1,6 +1,42 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<head>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+
+	var interest = "${users.getInterest()}";
+	var splitInterest = interest.split(',');
+	
+ 	for(var i=0; i<splitInterest.length; i++){
+		switch(splitInterest[i]){
+			case "인연":
+				$("input:checkbox[id='relation']").prop("checked", true);
+				break;
+			case "게임":
+				$("input:checkbox[id='game']").prop("checked", true);
+				break;
+			case "모임":
+				$("input:checkbox[id='meeting']").prop("checked", true);
+				break;
+			case "여행":
+				$("input:checkbox[id='travel']").prop("checked", true);
+				break;
+			case "맛집":
+				$("input:checkbox[id='restaurant']").prop("checked", true);
+				break;
+			case "강연":
+				$("input:checkbox[id='lecture']").prop("checked", true);
+				break;
+			case "지식":
+				$("input:checkbox[id='knowledge']").prop("checked", true);
+				break;
+		}
+	}
+});
+</script>
+
 <style type="text/css">
 .col-lg-10 ul {
 	list-style-type: none;
@@ -11,6 +47,8 @@
 	padding: 0px 10px 10px 10px;
 }
 </style>
+</head>
+
 
 <div class="container"
 	style="padding: 2px; border-radius: 4px; border: 1px solid gray; border-image: none; width: 100%; max-width: 1000px; margin: 0 auto; text-align: center;">
@@ -87,4 +125,3 @@
 		</div>
 	</form>
 </div>
-
