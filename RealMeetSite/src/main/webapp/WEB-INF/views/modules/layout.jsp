@@ -20,7 +20,7 @@
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script> -->
 
 <!-- Scripts -->
-<script src="${pageContext.request.contextPath}/resources/core/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrolly.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/core/js/jquery.scrollzer.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/core/js/skel.min.js"></script>
@@ -29,9 +29,11 @@
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="${pageContext.request.contextPath}/resources/core/js/main.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/core/css/jquery.datetimepicker.css"/>
+<script src="${pageContext.request.contextPath}/resources/core/js/jquery.datetimepicker.full.js"></script>
 
 <!-- holder.js link -->
 <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->

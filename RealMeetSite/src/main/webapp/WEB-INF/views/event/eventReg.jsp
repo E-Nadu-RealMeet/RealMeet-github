@@ -1,5 +1,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- jQuery UI CSS파일 --> 
+<!-- <link rel="stylesheet" media="all" type="text/css" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" /> -->
+<%-- <link rel="stylesheet" media="all" type="text/css" href="${pageContext.request.contextPath}/resources/core/js/jquery-ui-timepicker-addon.css" /> --%>
+<!-- // jQuery UI 라이브러리 js파일 -->
+<%-- <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/jquery-ui-sliderAccess.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/core/js/jquery-ui-timepicker-addon-i18n.min.js"></script>
+<script type="text/javascript" src="https://sellfy.com/js/api_buttons.js"></script> --%>
+
+<!-- <style type="text/css">
+			dl.defs{ margin: 10px 0 10px 40px; }
+			dl.defs dt{ font-weight: bold; line-height: 20px; margin: 10px 0 0 0; }
+			dl.defs dd{ margin: -20px 0 10px 160px; padding-bottom: 10px; border-bottom: solid 1px #eee;}
+
+			.wrapper{ background-color: #ffffff; width: 800px; border: solid 1px #eeeeee; padding: 20px; margin: 0 auto; }
+			#tabs{ margin: 20px -20px; border: none; }
+			#tabs, #ui-datepicker-div, .ui-datepicker{ font-size: 85%; }
+			.clear{ clear: both; }
+
+			.example-container{ background-color: #f4f4f4; border-bottom: solid 2px #777777; margin: 0 0 20px 40px; padding: 20px; }
+			.example-container input{ border: solid 1px #aaa; padding: 4px; width: 175px; }
+			.ebook{}
+			.ebook img.ebookimg{ float: left; margin: 0 15px 15px 0; width: 100px; }
+			.ebook .buyp a iframe{ margin-bottom: -5px; }
+		</style> -->
 <div class="container">
 	<div class="selectBox" id="selectBox-cate">
 		<div>
@@ -59,10 +85,10 @@
 	<div class="selectBox" id="selectBox-date" style="display: none;">
 		<div style="border-bottom: 1px solid gray; margin-bottom: 2em">
 			<h3>첫 이벤트가 진행될 날짜와 시작 시간을 입력해주세요</h3>
-
+				
 			<br>
 		</div>
-		<input id="regInput-date" class="regInput" type="datetime-local"> <br>
+		<input id="fromDate"  type="text" class="regInput" > <br>
 		<button type="button" class="regButton-save">저장</button>
 		<button type="button" class="regButton-back">뒤로가기</button>
 		<button type="button" class="regButton-first">처음으로</button>
@@ -105,12 +131,11 @@
 			<h3>자세한 설명</h3>
 			<div id="desc-text"></div>
 			<h3>이벤트 개최 날짜</h3>
-			<input type="datetime-local" class="regInput sbox-check" readonly />
+			<input type="text" name="eldate"  class="regInput sbox-check" readonly />
 			<h3>이벤트 개최 장소</h3>
 			<input type="text" name="addr" id="addr" class="regInput sbox-check" readonly>
 			<h3>이벤트 최대 인원</h3>
 			<input type="text" name="maxgnum" id="addr" class="regInput sbox-check" readonly>
-			<input type="hidden" name="eldate" id="date2" readonly> 
 			<input type="hidden" id="description" name="description" class="regInput" readonly>
 			<input type="hidden" id="latlng" name="latlng" class="regInput">
 			
