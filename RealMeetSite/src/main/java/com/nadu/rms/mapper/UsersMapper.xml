@@ -25,5 +25,10 @@
 	<delete id="delUsers" parameterType="com.nadu.rms.vo.Users">
 		DELETE USERS WHERE ID = #{ID} 
 	</delete>-->
-
+	<update id="updateRatingUser" parameterType="com.nadu.rms.vo.Users">
+		<selectKey keyProperty="rating" resultType="Integer" order="BEFORE">
+			SELECT RATING${uRating} FROM USERS WHERE ID = #{id, jdbcType=VARCHAR}
+		</selectKey>
+		UPDATE USERS SET RATING = #{rating, jdbcType=INTEGER} WHERE ID=#{id, jdbcType=VARCHAR}
+	</update>
 </mapper>
