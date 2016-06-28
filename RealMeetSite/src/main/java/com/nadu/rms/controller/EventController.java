@@ -32,6 +32,14 @@ import com.nadu.rms.vo.Event_Eventlist;
 @RequestMapping("event/*")
 public class EventController {
 	
+	EventsDao eventsDao;
+	
+	
+	@Autowired
+	public void setEventsDao(EventsDao eventsDao) {
+		this.eventsDao = eventsDao;
+	}
+
 	EventDataService eventDataService;
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
@@ -245,11 +253,22 @@ public class EventController {
 		return datas;
 	}
 	
+	//특정 이벤트 목록 조회 (ajax)	
+	@RequestMapping(value="dataloadformapbyesidx", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventListDataloadForMapByESIDX(HttpServletRequest req, Event_Eventlist e, String esidx){
+		esidx = req.getParameter("esidx");
+		String datas = eventDataService.DataloadForMapByESIDX(esidx);
+		log.info(datas);
+		
+		return datas;
+	}
+	
 	@RequestMapping(value = "editName", method = RequestMethod.POST)
 	public String eventNameEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String eventName) {
 		esidx = e.getEsidx();
 		e.setEventname(e.getEventname());
-		int up = eventEditService.eventNameEdit(req,esidx, eventName);
+		int up = eventsDao.updateEventsNameByESIDX(esidx, eventName);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -262,7 +281,7 @@ public class EventController {
 	public String eventDateEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String elDate) {
 		esidx = e.getEsidx();
 		e.setEldate(e.getEldate());
-		int up = eventEditService.eventDateEdit(req,esidx, elDate);
+		int up = eventsDao.updateEventsDateByESIDX(esidx, elDate);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -275,7 +294,7 @@ public class EventController {
 	public String eventDescEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String description) {
 		esidx = e.getEsidx();
 		e.setDescription(e.getDescription());
-		int up = eventEditService.eventDescEdit(req,esidx, description);
+		int up = eventsDao.updateEventsDescByESIDX(esidx, description);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -288,7 +307,7 @@ public class EventController {
 	public String eventCategoryEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String category) {
 		esidx = e.getEsidx();
 		e.setCategory(e.getCategory());
-		int up = eventEditService.eventCategoryEdit(req,esidx, category);
+		int up = eventsDao.updateEventsCategoryByESIDX(esidx, category);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -296,7 +315,19 @@ public class EventController {
 		return "redirect:../event/"+esidx;
 		}
 	}
-	
+
+	@RequestMapping(value = "editAddr", method = RequestMethod.POST)
+	public String eventAddrEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String addr) {
+		esidx = e.getEsidx();
+		e.setCategory(e.getCategory());
+		int up = eventsDao.updateEventsAddrByESIDX(esidx, addr);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}	
 //	@RequestMapping(value="/gmap", method = RequestMethod.GET)
 //	public String gmap(){
 //		return "customer/gmap";
