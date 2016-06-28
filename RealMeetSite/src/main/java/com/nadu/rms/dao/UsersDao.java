@@ -166,4 +166,17 @@ public class UsersDao {
 			sqlSession.close();
 		}*/
 	}
+	public int updateRatingUser(String id, String uRating){
+		int iv = 0;
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+		
+		try{
+			iv = mapper.updateRatingUser(id, uRating);
+		}finally{
+			session.commit();
+			session.close();
+		}
+		return iv;
+	}
 }

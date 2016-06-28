@@ -16,7 +16,9 @@ import com.nadu.rms.dao.EventlistDao;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.mapper.annotation.EventlistMapper;
 import com.nadu.rms.mapper.annotation.EventsMapper;
+import com.nadu.rms.mapper.annotation.UsersMapper;
 import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Users;
 
 public class EventRegService {
 	EventsDao eventsDAO;
@@ -38,17 +40,21 @@ public class EventRegService {
 	// 이벤트 등록시 es&el 동시 등록 메서드
 	public int eventReg(Event_Eventlist e, HttpServletRequest request) {
 		int iv = 0;
-		
-		e.setHolder((String) request.getSession().getAttribute("mid"));
+		String mid = (String) request.getSession().getAttribute("mid");
+		e.setHolder(mid);
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		EventsMapper eventMapper = session.getMapper(EventsMapper.class);
+		EventlistMapper elMapper = session.getMapper(EventlistMapper.class);
+		UsersMapper usersMapper = session.getMapper(UsersMapper.class);
 		try{
-			iv = mapper.insertEvents(e);
-			log.info("mapper.insertEvents(e) 실행 결과"+iv);
+			iv = eventMapper.insertEvents(e);
+			log.info("insertEvents(e) 실행 결과"+iv);
 			
-			EventlistMapper mapper2 = session.getMapper(EventlistMapper.class);
-			iv+= mapper2.insertEventlist(e);
-			log.info("mapper2.insertEventlist(e) 실행 결과"+iv);
+			
+			iv+= elMapper.insertEventlist(e);
+			log.info("insertEventlist(e) 실행 결과"+iv);
+			Users u = new Users();
+			usersMapper.updateRatingUser(mid, "+5");
 			session.commit();
 		}catch(Exception ext){
 			log.debug(ext.getMessage());
