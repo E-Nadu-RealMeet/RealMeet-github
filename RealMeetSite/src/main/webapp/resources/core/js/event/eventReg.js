@@ -24,6 +24,43 @@ function inputCheck(arg) {
  */
 $(document).ready(
 		function() {
+			/*$.timepicker.regional['ko'] = {
+					timeOnlyTitle: '시간 선택',
+					timeText: '시간',
+					hourText: '시',
+					minuteText: '분',
+					secondText: '초',
+					millisecText: '밀리초',
+					microsecText: '마이크로',
+					timezoneText: '표준 시간대',
+					currentText: '현재 시각',
+					closeText: '닫기',
+					timeFormat: 'tt h:mm',
+					timeSuffix: '',
+					amNames: ['오전', 'AM', 'A'],
+					pmNames: ['오후', 'PM', 'P'],
+					isRTL: false
+			};
+			$.timepicker.setDefaults($.timepicker.regional['ko']);
+			$( "#fromDate" ).datetimepicker({
+				numberOfMonths: 2,
+				inline:true,
+				minDate: 0,
+				maxDate: 30,
+				controlType: 'select',
+				oneLine: true,
+				timeFormat: 'hh:mm tt'
+			});
+			$( "#fromTime" ).timepicker();*/
+			//선언한 TextBox에 DateTimePicker 위젯을 적용한다.
+			$( "#fromDate" ).datetimepicker({
+				lang:'ko',
+				timepicker:true,
+				format:'Y/m/d H:m',
+				formatDate:'Y/m/d',
+				minDate:'-1970/01/01', // yesterday is minimum date
+				maxDate:'+1970/01/30' // and tommorow is maximum date calendar
+			});
 			var container = $('.container');
 
 			var selectBoxName = container.children('#selectBox-name');
@@ -72,7 +109,7 @@ $(document).ready(
 				selectBoxDesc.find('#description').val(currentString)
 				selectBoxCheck.find('#description').val(currentString);
 			});
-
+			
 			var regSave5 = selectBoxDesc.children('.regButton-save');
 			regSave.click(function() {
 				var par = $(this).parent();
@@ -89,12 +126,13 @@ $(document).ready(
 					par.next().fadeIn(1100, "swing", par.fadeOut(10));
 				}
 			})
-			var regInputDate = $('#regInput-date');
+			
+			/*var regInputDate = $('#regInput-date');
 			regInputDate.blur(function() {
 				var value = regInputDate.val();
 				value = value.replace('T', ' ');
 				$('#date2').val(value.replace('T', ' '));
-			})
+			})*/
 			// 지도 불러오기.
 			regSave6.click(function() {
 				var map = new google.maps.Map(document.getElementById('map'), {

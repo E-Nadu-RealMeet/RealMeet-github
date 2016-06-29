@@ -16,12 +16,13 @@
 				<br>
 				<ul class="event-list">
 					<c:forEach var="item" items="${my_list }">
+					
 						<li><time datetime="${item.getEldate() }">
 								<span class="month"><c:out value="${item.getEldate() }"></c:out></span>
 								<!-- <span class="day">4</span>
 						<span class="month">Jul</span> -->
 							</time>
-							<div class="info">
+							<div class="info" onclick="redirecting(${item.getEsidx()})" style="cursor: pointer">
 								<h2 class="title">${item.getEventname() }</h2>
 								<p class="desc">${item.getDescription() }</p>
 								<ul>
@@ -31,14 +32,16 @@
 							</div>
 							<div class="social">
 								<ul>
-									<li class="facebook" style="width: 33%;"><a href="#"><span
-											class="fa fa-users"></span></a></li>
-									<li class="twitter" style="width: 34%;"><a href="#"><span
-											class="fa fa-heart"></span></a></li>
-									<li class="google-plus" style="width: 33%;"><a href="#"><span
-											class="fa fa-wifi"></span></a></li>
+									<li class="facebook" style="width: 33%;" onclick="deleteEvent(${item.getEsidx()})"><a><span
+											class="icon fa-times-circle-o" style="color: #bf0b0b;"></span></a></li>
+									<li class="twitter" style="width: 34%;"><!-- <a href="#"><span
+											class="fa fa-heart"></span></a> --></li>
+									<li class="google-plus" style="width: 33%;"><!-- <a href="#"><span
+											class="fa fa-wifi"></span></a> --></li>
 								</ul>
-							</div></li>
+							</div>
+						</li>
+						</a>
 					</c:forEach>
 				</ul>
 				<!-- <ul class="event-list">
@@ -153,7 +156,7 @@
 							<!-- <span class="day">4</span>
 					<span class="month">Jul</span> -->
 						</time>
-						<div class="info">
+						<div class="info" onclick="redirecting(${item.getEsidx()})" style="cursor: pointer">
 							<h2 class="title">${item.getEventname() }</h2>
 							<p class="desc">${item.getDescription() }</p>
 							<ul>

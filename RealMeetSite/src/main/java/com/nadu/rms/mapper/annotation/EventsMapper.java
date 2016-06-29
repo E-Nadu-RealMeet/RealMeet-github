@@ -3,6 +3,7 @@ package com.nadu.rms.mapper.annotation;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,6 +24,9 @@ public interface EventsMapper {
 	
 	@Select("SELECT * FROM VIEW_JOIN_ES_ALL")
 	public List<Event_Eventlist> selectEventRelateAll();
+	
+	@Select("SELECT * FROM VIEW_JOIN_ES_ALL WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public List<Event_Eventlist> selectEventRelateByESIDX(@Param("esidx")String esidx);
 	
 	@Select("SELECT * FROM (SELECT ROWNUM RNUM, RT.* FROM (SELECT * FROM VIEW_JOIN_ES_MODIFYEL WHERE REGEXP_LIKE(ADDR,#{region, jdbcType=VARCHAR}) AND REGEXP_LIKE(CATEGORY,#{category,jdbcType=VARCHAR})) RT ) WHERE RNUM BETWEEN #{startNum, jdbcType=VARCHAR} AND #{endNum, jdbcType=VARCHAR} ORDER BY ESIDX DESC")
 	public List<Event_User> selectEventsNUser(Map<String, Object> paramMap);
@@ -46,6 +50,9 @@ public interface EventsMapper {
 	@Select("SELECT * FROM VIEW_JOIN_ES_EL WHERE ELIDX IN(SELECT ELIDX FROM GUESTLIST WHERE GUEST LIKE '%'||#{guest, jdbcType=VARCHAR}||'%')")
 	public List<Event_Eventlist> selectJoinEvents(@Param("guest")String guest);
 	
+	@Delete("DELETE FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR} ")
+	public int deleteEvent(@Param("esidx")String esidx);
+	
 	public int insertEvents(Event_Eventlist e);
 	
 	@Select("SELECT COUNT(*) FROM VIEW_JOIN_ES_MODIFYEL WHERE REGEXP_LIKE(ADDR,#{region, jdbcType=VARCHAR}) AND REGEXP_LIKE(CATEGORY,#{category,jdbcType=VARCHAR})")
@@ -54,9 +61,15 @@ public interface EventsMapper {
 	@Select("SELECT CNAME FROM CATEGORIES")
 	public List<String> getCategories();
 	
+	@Select("SELECT * FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public Events selectEvent(@Param("esidx")String esidx);
+	
 	@Select("SELECT IMGSRC FROM EVENTS WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
 	public String selectEventsImg(@Param("esidx")String esidx);
 	
 	@Insert("INSERT INTO REVIEWS(RIDX, WRITER, REGDATE, TITLE, CONTENT, ESIDX) VALUES(TO_CHAR(REVIEW_SEQ.NEXTVAL),#{mid, jdbcType=VARCHAR}, SYSDATE, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},#{esidx, jdbcType=VARCHAR})")
 	public int ReviewInsert(@Param("title")String title, @Param("content")String content, @Param("mid")String mid, @Param("esidx")String esidx);
+
+	@Update("UPDATE EVENTLIST SET ADDR = #{addr, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public int updateEventsAddrByESIDX(@Param("esidx")String esidx, @Param("addr")String addr);
 }

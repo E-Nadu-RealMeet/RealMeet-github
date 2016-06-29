@@ -19,6 +19,14 @@ public class EventsDao {
 
 	private static final Logger log = LoggerFactory.getLogger(EventsDao.class);
 	
+	public Events selectEventByEsidx(String esidx){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		Events event = mapper.selectEvent(esidx);
+		session.close();
+		return event;
+	}
 
 	public List<Event_Eventlist> selectEvents(){
 		
@@ -105,6 +113,16 @@ public class EventsDao {
 				
 	}
 	
+	public int updateEventsAddrByESIDX(String esidx, String addr){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int events = mapper.updateEventsAddrByESIDX(esidx, addr);
+		session.commit();
+		session.close();
+		return events;
+				
+	}	
 	public int selectCntEvents(Map<String,Object> paramMap){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
@@ -125,7 +143,7 @@ public class EventsDao {
 		
 	}*/
 	
-	public String selectEvents(String esidx){
+	public String selectEventsImg(String esidx){
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
@@ -158,4 +176,15 @@ public class EventsDao {
 		session.close();
 		return cnt;
 	}
+	
+	public int deleteEvent(String esidx){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int iv = mapper.deleteEvent(esidx);
+		session.commit();
+		session.close();
+		return iv;
+	}
+	
 }

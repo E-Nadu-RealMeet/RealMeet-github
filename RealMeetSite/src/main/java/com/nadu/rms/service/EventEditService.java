@@ -13,6 +13,7 @@ import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.mapper.annotation.EventsMapper;
 import com.nadu.rms.vo.Event_Eventlist;
+import com.nadu.rms.vo.Events;
 
 public class EventEditService {
 
@@ -23,51 +24,35 @@ public class EventEditService {
 		this.eventsDAO = eventsDao;
 	}
 	
-	public int eventNameEdit(HttpServletRequest req,String esidx, String eventName){
-		int up = 0;
+	public String eventDelete(HttpServletRequest req, String esidx){
+		
+		String result = "error";
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		//esidx를 이용하여 해당 이벤트 정보가져오기.
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		Events event = mapper.selectEvent(esidx);
 		
-		up = mapper.updateEventsNameByESIDX(esidx, eventName);
+		//현재 로그인 회원과 개최자가 일치하는지 확인
+		String mid = (String)req.getSession().getAttribute("mid");
+		if(mid.equals(event.getHolder())){
+			
+			//삭제 수행
+			mapper = session.getMapper(EventsMapper.class);
+			int iv = mapper.deleteEvent(esidx);
+			if(iv > 0) result = "success"; 
+			else result = "error";
+
+		}
+		else{
+			//다를 경우 
+			result = "failed";
+		}
+		
 		session.commit();
 		session.close();
-		return up;
-	}
-	
-	public int eventDateEdit(HttpServletRequest req,String esidx, String elDate){
-		int up = 0;
 		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsDateByESIDX(esidx, elDate);
-		session.commit();
-		session.close();
-		return up;
-	}
-	public int eventDescEdit(HttpServletRequest req,String esidx, String description){
-		int up = 0;
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsDescByESIDX(esidx, description);
-		session.commit();
-		session.close();
-		return up;
-	}
-	
-	public int eventCategoryEdit(HttpServletRequest req,String esidx, String category){
-		int up = 0;
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsCategoryByESIDX(esidx, category);
-		session.commit();
-		session.close();
-		return up;
+		return "";
 	}
 }
 

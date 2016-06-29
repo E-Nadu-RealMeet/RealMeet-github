@@ -32,6 +32,14 @@ import com.nadu.rms.vo.Event_Eventlist;
 @RequestMapping("event/*")
 public class EventController {
 	
+	EventsDao eventsDao;
+	
+	
+	@Autowired
+	public void setEventsDao(EventsDao eventsDao) {
+		this.eventsDao = eventsDao;
+	}
+
 	EventDataService eventDataService;
 	EventRegService eventRegService;
 	EventDetailService eventDetailService;
@@ -120,11 +128,7 @@ public class EventController {
 	// 특정 이벤트 뷰 상세 보기
 	@RequestMapping(value = "{esidx}", method = RequestMethod.GET)
 	public String eventDetailViewLoad(@PathVariable String esidx,HttpServletRequest req, Model model) {
-		/*String mid = (String)req.getSession().getAttribute("mid");
-		if(mid != null && mid != ""){
-			model.addAttribute("mid", mid);
-		}
-		*/
+
 		/*해당 이벤트 이미지 가져오기 위함*/
 		String imgsrc = eventDetailService.EventDetailImg(esidx);
 		System.out.println("imgsrc: "+imgsrc);
@@ -132,7 +136,6 @@ public class EventController {
 
 		
 		/* eventDetailService로 필요한 데이터 가져옴 */
-		//req.getSession().setAttribute("mid", "gyu");
 		int iv = eventDetailService.detailLoad(req, esidx, model);
 		
 		
@@ -148,6 +151,14 @@ public class EventController {
 		}else{
 			return "redirect:list";
 		}
+	}
+	
+	// 이벤트 삭제 기능 ( Ajax 대응 )
+	@RequestMapping(value = "{esidx}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public String eventDelete(@PathVariable String esidx, HttpServletRequest req){
+		
+		return eventEditService.eventDelete(req, esidx);
 	}
 	
 	@RequestMapping(value = "review", produces="text/plain;charset=UTF-8")
@@ -242,11 +253,22 @@ public class EventController {
 		return datas;
 	}
 	
+	//특정 이벤트 목록 조회 (ajax)	
+	@RequestMapping(value="dataloadformapbyesidx", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String eventListDataloadForMapByESIDX(HttpServletRequest req, Event_Eventlist e, String esidx){
+		esidx = req.getParameter("esidx");
+		String datas = eventDataService.DataloadForMapByESIDX(esidx);
+		log.info(datas);
+		
+		return datas;
+	}
+	
 	@RequestMapping(value = "editName", method = RequestMethod.POST)
 	public String eventNameEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String eventName) {
 		esidx = e.getEsidx();
 		e.setEventname(e.getEventname());
-		int up = eventEditService.eventNameEdit(req,esidx, eventName);
+		int up = eventsDao.updateEventsNameByESIDX(esidx, eventName);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -259,7 +281,7 @@ public class EventController {
 	public String eventDateEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String elDate) {
 		esidx = e.getEsidx();
 		e.setEldate(e.getEldate());
-		int up = eventEditService.eventDateEdit(req,esidx, elDate);
+		int up = eventsDao.updateEventsDateByESIDX(esidx, elDate);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -272,7 +294,7 @@ public class EventController {
 	public String eventDescEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String description) {
 		esidx = e.getEsidx();
 		e.setDescription(e.getDescription());
-		int up = eventEditService.eventDescEdit(req,esidx, description);
+		int up = eventsDao.updateEventsDescByESIDX(esidx, description);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -285,7 +307,7 @@ public class EventController {
 	public String eventCategoryEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String category) {
 		esidx = e.getEsidx();
 		e.setCategory(e.getCategory());
-		int up = eventEditService.eventCategoryEdit(req,esidx, category);
+		int up = eventsDao.updateEventsCategoryByESIDX(esidx, category);
 		if (up>0) {
 			
 		return "redirect:../event/"+esidx;
@@ -293,7 +315,19 @@ public class EventController {
 		return "redirect:../event/"+esidx;
 		}
 	}
-	
+
+	@RequestMapping(value = "editAddr", method = RequestMethod.POST)
+	public String eventAddrEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String addr) {
+		esidx = e.getEsidx();
+		e.setAddr(e.getAddr());
+		int up = eventsDao.updateEventsAddrByESIDX(esidx, addr);
+		if (up>0) {
+			
+		return "redirect:../event/"+esidx;
+		}else{
+		return "redirect:../event/"+esidx;
+		}
+	}	
 //	@RequestMapping(value="/gmap", method = RequestMethod.GET)
 //	public String gmap(){
 //		return "customer/gmap";

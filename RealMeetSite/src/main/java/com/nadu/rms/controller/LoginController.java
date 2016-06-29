@@ -56,9 +56,9 @@ public class LoginController {
 		String beforePage = beforePageAll.substring(extrasize + projsize);
 		log.info("beforePage : " + beforePage);
 		UsersDao dao = new UsersDao();
-		Users m = dao.selectUser(mid, pwd);
+		Users u = dao.selectUser(mid, pwd);
 		Cookie coo = null;
-		if (m == null || !m.getId().equals(mid)) {
+		if (u == null || !u.getId().equals(mid)) {
 			redirectAttr.addFlashAttribute("error", "loginError");
 			return "redirect:" + beforePage;
 		} else {
@@ -66,6 +66,7 @@ public class LoginController {
 			request.getSession().setAttribute("pwd", pwd);
 			request.getSession().setAttribute("type", type);
 			request.getSession().setAttribute("checkBoxMid", checkBoxMid);
+			dao.updateRatingUser(u.getId(), "+1");
 			String savePage = (String) request.getSession().getAttribute("savePage");
 			if (checkBoxMid != null && !checkBoxMid.equals("")) {
 				// 체크박스가 체크되어 있으면 쿠키 생성
