@@ -257,7 +257,7 @@ public class EventController {
 	@RequestMapping(value="dataloadformapbyesidx", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String eventListDataloadForMapByESIDX(HttpServletRequest req, Event_Eventlist e, String esidx){
-		esidx = req.getParameter("esidx");
+		esidx = (String)req.getSession().getAttribute("esidx");
 		String datas = eventDataService.DataloadForMapByESIDX(esidx);
 		log.info(datas);
 		
