@@ -319,7 +319,7 @@ public class EventController {
 	@RequestMapping(value = "editAddr", method = RequestMethod.POST)
 	public String eventAddrEdit(Event_Eventlist e, HttpServletRequest req, String esidx, Model model, String addr) {
 		esidx = e.getEsidx();
-		e.setCategory(e.getCategory());
+		e.setAddr(e.getAddr());
 		int up = eventsDao.updateEventsAddrByESIDX(esidx, addr);
 		if (up>0) {
 			

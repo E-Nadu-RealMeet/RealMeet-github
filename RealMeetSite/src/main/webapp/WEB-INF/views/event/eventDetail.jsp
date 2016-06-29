@@ -399,7 +399,7 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 <h2>주소 수정</h2>
 <div id="map"></div>
 <form action="editAddr" method="POST">
-<input type="text" id="addr" class="regInput" placeholder="${detail.get(0).getAddr() }">
+<input type="text" id="addr" name="addr" class="regInput" placeholder="${detail.get(0).getAddr() }">
 <input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
 <button type="submit" class="btn btn-primary">수정</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
