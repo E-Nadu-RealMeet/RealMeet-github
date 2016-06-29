@@ -301,4 +301,36 @@ public class EventController {
 //	public String gmap(){
 //		return "customer/gmap";
 //	}
+	@RequestMapping(value="goodUserChk", method= RequestMethod.POST)
+	@ResponseBody
+	public String goodUserChk(HttpServletRequest request){
+		String mid = (String) request.getSession().getAttribute("mid");
+		if(mid ==null || mid.length()==0){
+			return "notlogin";
+		}
+		
+		int goodChk = eventDetailService.goodUserChk(mid);
+		if(goodChk==0){
+			return "noting";
+		}else{
+			return "exist";
+		}
+	}
+	@RequestMapping(value="goodApply/{esidx}", method= RequestMethod.POST)
+	@ResponseBody
+	public String goodApply(@PathVariable String esidx,RedirectAttributes redirectAttr,HttpServletRequest request){
+		String mid = (String) request.getSession().getAttribute("mid");
+		if(mid ==null || mid.length()==0){
+			redirectAttr.addFlashAttribute("error","notLoginError");
+			return "error";
+		}
+		int iv = eventDetailService.goodApply(mid, esidx);
+		if(iv==0){
+			return "error";
+		}else{
+			int goodChk = eventDetailService.goodUserChk(mid);
+			String sv = Integer.toString(goodChk);
+			return sv;
+		}
+	}
 }

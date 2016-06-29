@@ -1,5 +1,8 @@
 package com.nadu.rms.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +69,24 @@ public class LoginController {
 			request.getSession().setAttribute("pwd", pwd);
 			request.getSession().setAttribute("type", type);
 			request.getSession().setAttribute("checkBoxMid", checkBoxMid);
-			dao.updateRatingUser(u.getId(), "+1");
+			
+			//로그인 포인트 업 관련 코드
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			String date = df.format(cal.getTime());
+			if(u.getFlogdate()==null||u.getFlogdate().length()==0){
+				//정보를 현재 시간으로.
+				dao.updateFlocdateUser(mid, date);
+				dao.updateRatingUser(u.getId(), "+1");
+			}else if(!u.getFlogdate().split(" ")[0].equals(date)){
+				log.info("포인트를 업합니다.");
+				dao.updateFlocdateUser(mid, date);
+				dao.updateRatingUser(u.getId(), "+1");
+			}else{
+				log.info("포인트를 업하지 않습니다.");
+			}
+			
+			
 			String savePage = (String) request.getSession().getAttribute("savePage");
 			if (checkBoxMid != null && !checkBoxMid.equals("")) {
 				// 체크박스가 체크되어 있으면 쿠키 생성

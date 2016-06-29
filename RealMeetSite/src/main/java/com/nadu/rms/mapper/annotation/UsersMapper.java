@@ -27,4 +27,7 @@ public interface UsersMapper {
 	public int uploadfile(@Param("newFileName")String newFileName , @Param("mid")String mid);
 	
 	public int updateRatingUser(@Param("id")String id, @Param("uRating")String uRating);
+	
+	@Update("UPDATE USERS SET FLOGDATE = TO_DATE(#{date}) WHERE ID = #{id, jdbcType=VARCHAR}")
+	public int updateFlocdateUser(@Param("id")String id, @Param("date")String date);
 }

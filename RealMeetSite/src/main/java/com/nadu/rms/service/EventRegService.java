@@ -45,7 +45,6 @@ public class EventRegService {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper eventMapper = session.getMapper(EventsMapper.class);
 		EventlistMapper elMapper = session.getMapper(EventlistMapper.class);
-		UsersMapper usersMapper = session.getMapper(UsersMapper.class);
 		try{
 			iv = eventMapper.insertEvents(e);
 			log.info("insertEvents(e) 실행 결과"+iv);
@@ -53,8 +52,6 @@ public class EventRegService {
 			
 			iv+= elMapper.insertEventlist(e);
 			log.info("insertEventlist(e) 실행 결과"+iv);
-			Users u = new Users();
-			usersMapper.updateRatingUser(mid, "+5");
 			session.commit();
 		}catch(Exception ext){
 			log.debug(ext.getMessage());

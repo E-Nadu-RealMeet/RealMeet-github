@@ -208,6 +208,7 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 				  		</c:if>
                 		<hr>
                 </h1>
+                <div style="height: 10em;">
 				<span>카테고리 : ${detail.get(0).getCategory() }
 				<c:if test="${mid == detail.get(0).getHolder()}">
 							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventCategoryUpdate"></span>
@@ -215,7 +216,7 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 				  		</c:if>
 				</span>
                
-
+				
                 <!-- Author -->
                 <p class="lead">
                 	 by <a href="#">${detail.get(0).getHolder() }</a>
@@ -226,7 +227,8 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventDateUpdate"></span>
 				  		</c:if>
                 </p>
-				
+				<div style="border: 3px outset gray;width: 10%;float: right;box-shadow: 2px 1px 3px 0px #989898;"><span id="goodIcon" class="icon fa-heart"></span><span id="getGoodCnt">${detail.get(0).getGood() }</span></div>
+                </div>
                 <hr>
 
                 <!-- Preview Image -->
