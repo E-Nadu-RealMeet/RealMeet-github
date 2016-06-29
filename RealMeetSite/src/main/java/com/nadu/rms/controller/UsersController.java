@@ -3,14 +3,21 @@ package com.nadu.rms.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.websocket.Transformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nadu.rms.dao.EventsDao;
@@ -105,6 +111,10 @@ public class UsersController {
 		u.setInterest(interest);
 		int af = usersDao.insertUsers(u);
 		model.addAttribute("id", u.getId());
+		/*---------------------이메일 전송----------------------------*/
+		String email = request.getParameter("email");
+		sendEmail(email);		
+		/*---------------------------------------------------------*/
 
 		if (af > 0) {
 			log.info("회원추가 성공");
@@ -140,9 +150,9 @@ public class UsersController {
 
 	// 회원탈퇴
 	@RequestMapping(value = "check", method = RequestMethod.GET)
-	public String usersCheck(Model model, HttpServletRequest req) {
+	public String usersCheck(Model model, HttpServletRequest request) {
 
-		String id = req.getParameter("id");
+		String id = (String) request.getSession().getAttribute("mid");
 		model.addAttribute("id", id);
 
 		return "users/usersCheck";
@@ -150,19 +160,20 @@ public class UsersController {
 
 	// 회원탈퇴 proc
 	@RequestMapping(value = "check", method = RequestMethod.POST)
-	public String usersCheck(Model model, String id, HttpServletRequest request, String mid) {
+	public String usersCheck(Model model, HttpServletRequest request, HttpServletResponse res) {
 
-		log.info(id);
-		request.getSession().setAttribute("mid", mid);
+		
+		String mid = (String) request.getSession().getAttribute("mid");
+		log.info(mid);
 		log.info("회원정보삭제시작");
 
 		String introValue = "모임 목록입니다.";
 		model.addAttribute("introValue", introValue);
-		int af = usersDao.delUsers(id);
+		int af = usersDao.delUsers(mid);
 
 		if (af > 0) {
 			log.info("회원삭제 성공");
-			mid = "";
+			request.getSession().removeAttribute("mid");
 			return "redirect:../";
 		} else {
 			log.info("회원삭제 실패");
@@ -175,23 +186,24 @@ public class UsersController {
 	@RequestMapping(value = "idcheck")
 	public void checkid(String id, HttpServletResponse res, Model model) throws Exception {
 		PrintWriter out = res.getWriter();
-		log.info(id);
+		log.info("아이디중복체크 " +id);
 		Users users = null;
 		users = usersDao.selectUsers(id);
 
 		if (users == null) {
-			System.out.println(users);
+			log.info("아이디가 존재하지 않습니다. " +users);
 			out.write("YES");
 		} else {
-			System.out.println(users);
+			log.info("아이디가 존재합니다. " +users);
 			out.write("NO");
 		}
 	}
 
 	// 회원탈퇴 비번체크
 	@RequestMapping(value = "pwdcheck")
-	public void checkpwd(String id, String pwd, HttpServletResponse res, Model model) throws Exception {
+	public void checkpwd(String pwd, HttpServletRequest request, HttpServletResponse res, Model model) throws Exception {
 		PrintWriter out = res.getWriter();
+		String id = (String) request.getSession().getAttribute("mid");
 		log.info("pwdcheck=" + id);
 		log.info("pwdcheck=" + pwd);
 		Users users = null;
@@ -329,5 +341,50 @@ public class UsersController {
 		log.info("beforePage : " + beforePage);
 
 		return beforePage;
+	}
+	
+	public void sendEmail(String email){
+		String host = "smtp.gmail.com";
+		String subject = "이메일 인증";
+		String fromName = "관리자";
+		String from = "thephm89@gmail.com";
+		String to = email;
+		
+		String content = "<a href='http://www.naver.com'>http://www.naver.com</a>";
+		
+		try {
+			Properties props = new Properties();
+			props.put("mail.smtp.statttls.enable", "true");
+			props.put("mail.transport.protocol", "smtp");
+			props.put("mail.smtp.host", host);
+			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.port","465");
+			props.put("mail.smtp.user", from);
+			props.put("mail.smtp.auth","true");
+			
+			Session mailSession = Session.getInstance(props, new javax.mail.Authenticator(){
+				String un= "thephm89@gmail.com"; //보내는 사람의 이메일
+				String pwd= "dhk1dl2xm3"; //이메일 비밀번호
+				protected javax.mail.PasswordAuthentication getPasswordAuthentication(){
+					return new javax.mail.PasswordAuthentication(un, pwd);
+					
+				}
+			});
+			
+			Message msg = new MimeMessage(mailSession);
+			msg.setFrom(new InternetAddress(from, MimeUtility.encodeText(fromName,"UTF-8","B")));
+			
+			InternetAddress[] address = {new InternetAddress(to)};
+			msg.setRecipients(Message.RecipientType.TO, address);
+			msg.setSubject(subject);
+			msg.setSentDate(new java.util.Date());
+			msg.setContent(content, "text/html;charset=euc-kr");
+			
+			Transport.send(msg);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 }
