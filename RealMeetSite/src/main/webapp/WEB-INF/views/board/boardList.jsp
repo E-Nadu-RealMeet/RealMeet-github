@@ -21,13 +21,13 @@
 				</tr>
 				</thead>
 				<c:forEach var="aa" items="${list}">
-				<tr>
-					<td>${aa.getBidx()}</td>
-					<td class='c1'><b>질문</b></td>
-					<td class='subject'><a href="${pageContext.request.contextPath}/board/freeDetail/${aa.getBidx()}"><b>${aa.getTitle()}<c:out value="[${aa.getCommentCnt()}]"></c:out></b></a></td>
-					<td>${aa.getWriter()}</td>
-					<td>${aa.getRegdate()}</td>
-				</tr>
+					<tr>
+						<td>${aa.getBidx()}</td>
+						<td class='c1'><b>질문</b></td>
+						<td class='subject'><a href="${pageContext.request.contextPath}/board/boardDetail/${aa.getBidx()}"><b>${aa.getTitle()}<c:out value="[${aa.getCommentCnt()}]"></c:out></b></a></td>
+						<td>${aa.getWriter()}</td>
+						<td>${aa.getRegdate()}</td>
+					</tr>
 				</c:forEach>
 				
 				<c:forEach var="i" items="${qnalist}">

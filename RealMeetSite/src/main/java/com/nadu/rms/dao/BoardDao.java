@@ -24,7 +24,7 @@ public class BoardDao {
 	}
 
 	
-	public Board selectFreeDetail(int bidx){
+	public Board selectBoardDetail(int bidx){
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
@@ -38,7 +38,77 @@ public class BoardDao {
 		
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		int ret = mapper.insertBoard(fb); 
+		int ret = mapper.insertFreeBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+	public int insertFoodBoard(Board fb){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertFoodBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+	public int insertGameBoard(Board fb){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertGameBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+	public int insertKnowledgeBoard(Board fb){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertKnowledgeBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+		
+	public int insertLectureBoard(Board fb){
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertLectureBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+	public int insertMeetingBoard(Board fb){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertMeetingBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+	public int insertRshipBoard(Board fb){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertRshipBoard(fb); 
+		session.commit();
+		session.close();
+		return ret;
+		
+	}
+	public int insertTravelBoard(Board fb){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		int ret = mapper.insertTravelBoard(fb); 
 		session.commit();
 		session.close();
 		return ret;

@@ -78,6 +78,7 @@
 				<c:if test="${page!='event/eventList'}">
 					<tiles:insertAttribute name="content-left"></tiles:insertAttribute>
 				</c:if>
+				
 			</div>
 			<div class="col-sm-6 pofol-right">
 				<c:if test="${page=='index' || page=='event/eventDetail'}">
@@ -86,6 +87,7 @@
 				<c:if test="${page=='event/eventList'}">
 					<tiles:insertAttribute name="elist"></tiles:insertAttribute>
 				</c:if>
+				
 				<%-- 
 				<c:if test="${page=='index'}">
 					<tiles:insertAttribute name="listContent"></tiles:insertAttribute>

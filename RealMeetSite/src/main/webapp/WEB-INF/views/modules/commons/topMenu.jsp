@@ -38,6 +38,13 @@
 					<li><a class="topButton" href="#"><span class="icon fa-angle-double-down"></span>BOARD</a>
 						<ul class="submenu">
 							<li><a href="${pageContext.request.contextPath}/board/freeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">FREE BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/rshipBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">RELATIONSHIP BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/gameBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">GAME BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/travelBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">TRVEL BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/lectureBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">LECTURE BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/foodBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">FOOD BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/knowledgeBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">KNOWLEDGE BOARD</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/board/meetingBoard" id="" class="skel-layers-ignoreHref"><span class="icon fa-list">MEETING BOARD</span></a></li>
 						</ul>
 					</li>
 			</ul>

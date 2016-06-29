@@ -53,7 +53,7 @@
 				<tr>
 					<td class="table-bordered">이전글</td>
 					<c:if test="${prev != null }">
-						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${prev.getBidx()}">${prev.getTitle() }</a></td>
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/boardDetail/${prev.getBidx()}">${prev.getTitle() }</a></td>
 					</c:if>
 					<c:if test="${prev == null }">
 						<td class="table-bordered">이전 글이 없습니다.</td>
@@ -62,7 +62,7 @@
 				<tr>
 					<td class="table-bordered">다음글</td>
 					<c:if test="${next != null }">
-						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/freeDetail/${next.getBidx()}">${next.getTitle() }</a></td>
+						<td class="table-bordered"><a href="${pageContext.request.contextPath}/board/boardDetail/${next.getBidx()}">${next.getTitle() }</a></td>
 					</c:if>
 					<c:if test="${next == null }">
 						<td class="table-bordered">다음 글이 없습니다.</td>
