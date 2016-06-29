@@ -54,52 +54,5 @@ public class EventEditService {
 		
 		return "";
 	}
-	
-	public int eventNameEdit(HttpServletRequest req,String esidx, String eventName){
-		int up = 0;
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsNameByESIDX(esidx, eventName);
-		session.commit();
-		session.close();
-		return up;
-	}
-	
-	public int eventDateEdit(HttpServletRequest req,String esidx, String elDate){
-		int up = 0;
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsDateByESIDX(esidx, elDate);
-		session.commit();
-		session.close();
-		return up;
-	}
-	public int eventDescEdit(HttpServletRequest req,String esidx, String description){
-		int up = 0;
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsDescByESIDX(esidx, description);
-		session.commit();
-		session.close();
-		return up;
-	}
-	
-	public int eventCategoryEdit(HttpServletRequest req,String esidx, String category){
-		int up = 0;
-		
-		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		EventsMapper mapper = session.getMapper(EventsMapper.class);
-		
-		up = mapper.updateEventsCategoryByESIDX(esidx, category);
-		session.commit();
-		session.close();
-		return up;
-	}
 }
 

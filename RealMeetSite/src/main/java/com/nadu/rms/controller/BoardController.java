@@ -24,7 +24,7 @@ import com.nadu.rms.vo.Comment;
 
 @Controller
 @RequestMapping("board/*")
-public class FreeBoardController {
+public class BoardController {
 
 	BoardDao boardDao;
 	CommentDAO commentDAO;
@@ -45,10 +45,12 @@ public class FreeBoardController {
 		this.commentDAO = commentDAO;
 	}
 
-	static final Logger log = LoggerFactory.getLogger(FreeBoardController.class);
+	static final Logger log = LoggerFactory.getLogger(BoardController.class);
 
-	@RequestMapping(value = "/freeBoard", method = RequestMethod.GET)
-	public String freeBoard(Model model, HttpServletRequest req) {
+	
+	//자유 게시판 crud
+	@RequestMapping(value = "/{kind}Board", method = RequestMethod.GET)
+	public String freeBoard(Model model, HttpServletRequest req, @PathVariable String kind) {
 
 		String mid = (String) req.getSession().getAttribute("mid");
 
@@ -72,7 +74,7 @@ public class FreeBoardController {
 		}
 
 		// startPageNum, endPageNum 생성
-		int cnt = boardDao.getCountByType("free");
+		int cnt = boardDao.getCountByType(kind);
 		int startPageNum = pages - (pages - 1) % 10;
 		int endPageNum = cnt / 10 + (cnt % 10 == 0 ? 0 : 1);
 
@@ -90,7 +92,7 @@ public class FreeBoardController {
 		paramMap.put("endNum", endNum);
 		paramMap.put("key", key);
 		paramMap.put("query", query);
-		paramMap.put("type", "free");
+		paramMap.put("type", kind);
 		List<Board> list = boardDao.selectBoards(paramMap);
 		
 		//이후 list 가져올때 한번에 갖고 오는걸로
@@ -107,12 +109,18 @@ public class FreeBoardController {
 		/* 리턴 값 */
 		model.addAttribute("startPageNum", startPageNum);
 		model.addAttribute("endPageNum", endPageNum);
-		model.addAttribute("introValue", "자유 게시판");
+		
+		String kind2 = kind.toUpperCase();
+		if (kind2.equals("RSHIP")) {
+			kind2="RELATIONSHIP";
+		}
+		model.addAttribute("introValue", kind2+" BOARD");
+		
 		model.addAttribute("list", list);
 		model.addAttribute("mid", mid);
-		model.addAttribute("page", "board/freeBoard");
+		model.addAttribute("page", "board");
 
-		return "board/freeBoard";
+		return "board/boardList";
 
 	}
 	
@@ -189,12 +197,14 @@ public class FreeBoardController {
 		}
 	};*/
 
-	@RequestMapping(value="/freeDetail/{bidx}", method = RequestMethod.GET)
+	@RequestMapping(value="/boardDetail/{bidx}", method = RequestMethod.GET)
 	public String freeDetail(@PathVariable int bidx, Model model, HttpServletRequest request){
 
+		System.out.println(request.getAttribute("kind2"));
+		
 		/* 조회수 증가 */
 		boardDao.upHitBoard(bidx);
-		Board thisBoard = boardDao.selectFreeDetail(bidx);
+		Board thisBoard = boardDao.selectBoardDetail(bidx);
 		model.addAttribute("aa", thisBoard);
 		//model.addAttribute("bb", commentDao.selectComments(bidx));
 		
@@ -233,7 +243,7 @@ public class FreeBoardController {
 		}
 		List<Comment> clist = commentDAO.selectComments(bidx, (cCurrPage-1)*pagePerComment+1, cCurrPage*pagePerComment);
 		// boardDao.upHitBoard(bidx);
-		model.addAttribute("aa", boardDao.selectFreeDetail(bidx));
+		model.addAttribute("aa", boardDao.selectBoardDetail(bidx));
 		model.addAttribute("clist", clist);
 
 		//model.addAttribute("bb", commentDao.selectComments(paramMap));
@@ -246,11 +256,11 @@ public class FreeBoardController {
 
 		log.info("freeDetail 끝");
 
-		return "board/freeDetail";
+		return "board/boardDetail";
 	}
 
 
-	// 게시물등록
+	// 자유 게시물등록
 	@RequestMapping(value = "/freeReg", method = RequestMethod.GET)
 	public String freeReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
 		String mid = (String) request.getSession().getAttribute("mid");
@@ -268,7 +278,7 @@ public class FreeBoardController {
 		}
 	}
 
-	// 게시물등록proc
+	// 자유 게시물등록proc
 	@RequestMapping(value = "/freeReg", method = RequestMethod.POST)
 	public String freeReg(Board board) {
 
@@ -312,7 +322,7 @@ public class FreeBoardController {
 			request.getSession().setAttribute("savePage", savePage);
 			return "redirect:../freeDetail/"+bidx;
 		}else{
-			Board board = boardDao.selectFreeDetail(bidx);
+			Board board = boardDao.selectBoardDetail(bidx);
 			board.setContent(board.getContent().replaceAll("<br>", "\n"));
 			model.addAttribute("aa", board);
 			model.addAttribute("introValue", "게시글 수정");
@@ -337,7 +347,7 @@ public class FreeBoardController {
 	public String freeRefly(@PathVariable int bidx, Model model, HttpServletRequest req){
 		
 		String mid=(String) req.getSession().getAttribute("mid");
-		model.addAttribute("aa",boardDao.selectFreeDetail(bidx));
+		model.addAttribute("aa",boardDao.selectBoardDetail(bidx));
 		model.addAttribute("mid",mid);
 		return "board/freeReflyReg";
 	}
@@ -369,10 +379,210 @@ public class FreeBoardController {
 		boardDao.delBoard(nidx);
 		return "redirect:../freeBoard";
 	}
+	/*
+	// 자유 게시물등록
+		@RequestMapping(value = "/foodReg", method = RequestMethod.GET)
+		public String foodReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/foodBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/foodBoardReg";
+			}
+		}
+	
+		// 자유 게시물등록
+		@RequestMapping(value = "/gameReg", method = RequestMethod.GET)
+		public String gameReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/gameBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/gameBoardReg";
+			}
+		}
+		
+		// 자유 게시물등록
+		@RequestMapping(value = "/knowledgeReg", method = RequestMethod.GET)
+		public String knowledgeReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/knowledgeBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/knowledgeBoardReg";
+			}
+		}
+		
+		// 자유 게시물등록
+		@RequestMapping(value = "/lectureReg", method = RequestMethod.GET)
+		public String lectureReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/lectureBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/lectureBoardReg";
+			}
+		}
+		
+		// 자유 게시물등록
+		@RequestMapping(value = "/meetingReg", method = RequestMethod.GET)
+		public String meetingReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/meetingBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/meetingBoardReg";
+			}
+		}
+		
+		// 자유 게시물등록
+		@RequestMapping(value = "/rshipReg", method = RequestMethod.GET)
+		public String rshipReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/rshipBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/rshipBoardReg";
+			}
+		}
+		
+		// 자유 게시물등록
+		@RequestMapping(value = "/travelReg", method = RequestMethod.GET)
+		public String travelReg(RedirectAttributes redirectAttr, HttpServletRequest request, Model model) {
+			String mid = (String) request.getSession().getAttribute("mid");
+			if (mid == null || mid.length() == 0) {
+				redirectAttr.addFlashAttribute("error", "notLoginError");
+				String savePage = request.getRequestURI().substring(request.getContextPath().length() + 1);
+				request.getSession().setAttribute("savePage", savePage);
+				return "redirect:../board/travelBoard";
+			}else{
+				model.addAttribute("mid", mid);
+				model.addAttribute("introValue", "글 쓰기");
+				request.getSession().removeAttribute("savePage");
+				request.getSession().removeAttribute("error");
+				return "board/travelBoardReg";
+			}
+		}
+		
+	
+	// 음식 게시물등록proc
+		@RequestMapping(value = "/foodReg", method = RequestMethod.POST)
+		public String foodReg(Board board) {
 
-	@RequestMapping(value = "/gmap", method = RequestMethod.GET)
-	public String gmap() {
-		return "board/gmap";
-	}
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertFoodBoard(board);
+			return "redirect:foodBoard";
 
+		}
+		// 게임 게시물등록proc
+		@RequestMapping(value = "/foodReg", method = RequestMethod.POST)
+		public String gameReg(Board board) {
+			
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertGameBoard(board);
+			return "redirect:gameBoard";
+			
+		}
+		//지식 게시물등록proc
+		@RequestMapping(value = "/foodReg", method = RequestMethod.POST)
+		public String knowledgeReg(Board board) {
+			
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertKnowledgeBoard(board);
+			return "redirect:knowledgeBoard";
+			
+		}
+		// 강연 게시물등록proc
+		@RequestMapping(value = "/lectureReg", method = RequestMethod.POST)
+		public String lectureReg(Board board) {
+			
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertLectureBoard(board);
+			return "redirect:lectureBoard";
+			
+		}
+		// 모임 게시물등록proc
+		@RequestMapping(value = "/meetingReg", method = RequestMethod.POST)
+		public String meetingReg(Board board) {
+			
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertMeetingBoard(board);
+			return "redirect:meetingBoard";
+			
+		}
+		// 인연 게시물등록proc
+		@RequestMapping(value = "/rshipReg", method = RequestMethod.POST)
+		public String rshipReg(Board board) {
+			
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertRshipBoard(board);
+			return "redirect:rshipBoard";
+			
+		}
+		// 여행 게시물등록proc
+		@RequestMapping(value = "/travelReg", method = RequestMethod.POST)
+		public String travelReg(Board board) {
+			
+			System.out.println(board.getBidx());
+			System.out.println(board.getContent());
+			System.out.println(board.getTitle());
+			boardDao.insertTravelBoard(board);
+			return "redirect:travelBoard";
+			
+		}
+	*/
 }

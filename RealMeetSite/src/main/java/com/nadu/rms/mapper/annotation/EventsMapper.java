@@ -69,4 +69,7 @@ public interface EventsMapper {
 	
 	@Insert("INSERT INTO REVIEWS(RIDX, WRITER, REGDATE, TITLE, CONTENT, ESIDX) VALUES(TO_CHAR(REVIEW_SEQ.NEXTVAL),#{mid, jdbcType=VARCHAR}, SYSDATE, #{title, jdbcType=VARCHAR},#{content, jdbcType=VARCHAR},#{esidx, jdbcType=VARCHAR})")
 	public int ReviewInsert(@Param("title")String title, @Param("content")String content, @Param("mid")String mid, @Param("esidx")String esidx);
+
+	@Update("UPDATE EVENTLIST SET ADDR = #{addr, jdbcType=VARCHAR} WHERE ESIDX = #{esidx, jdbcType=VARCHAR}")
+	public int updateEventsAddrByESIDX(@Param("esidx")String esidx, @Param("addr")String addr);
 }

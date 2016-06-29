@@ -113,6 +113,16 @@ public class EventsDao {
 				
 	}
 	
+	public int updateEventsAddrByESIDX(String esidx, String addr){
+		
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		EventsMapper mapper = session.getMapper(EventsMapper.class);
+		int events = mapper.updateEventsAddrByESIDX(esidx, addr);
+		session.commit();
+		session.close();
+		return events;
+				
+	}	
 	public int selectCntEvents(Map<String,Object> paramMap){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		EventsMapper mapper = session.getMapper(EventsMapper.class);
