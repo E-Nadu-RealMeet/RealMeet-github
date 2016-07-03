@@ -24,33 +24,13 @@
 					<tr>
 						<td>${aa.getBidx()}</td>
 						<td class='c1'><b>질문</b></td>
-						<td class='subject'><a href="${pageContext.request.contextPath}/board/boardDetail/${aa.getBidx()}"><b>${aa.getTitle()}<c:out value="[${aa.getCommentCnt()}]"></c:out></b></a></td>
+						<td class='subject'><a href="${pageContext.request.contextPath}/board/boardDetail/${aa.getBidx()}?kind=${kind}"><b>${aa.getTitle()}<c:out value="[${aa.getCommentCnt()}]"></c:out></b></a></td>
 						<td>${aa.getWriter()}</td>
 						<td>${aa.getRegdate()}</td>
 					</tr>
 				</c:forEach>
 				
-				<c:forEach var="i" items="${qnalist}">
-					<tr>
-						<td>${i.qno}</td>
-						<td class='c1'>${i.kind }</td>
-						<%-- <td class='subject'><c:choose>
-								<c:when test="${i.writer.equals(user_id)}">
-									<a href="qnahit.do?cmd=qnahit&job=${i.qno}">${i.writer}님의
-										${i.kind} 입니다</a>
-								</c:when>
-
-								<c:otherwise>
-									<span id="other">${i.writer}님의 ${i.kind} 입니다<img
-										src="/img/icon_sec.gif" />
-									</span>
-								</c:otherwise>
-							</c:choose></td> --%>
-						<td>${i.writer}</td>
-						<td>${i.regdate}</td>
-						<td></td>
-					</tr>
-				</c:forEach>
+				
 
 			</table>
 			
@@ -102,7 +82,8 @@
 			</form>
 			</div>
 			<div class="board_list_button ">
-				<button onclick="window.location.href='${pageContext.request.contextPath}/board/freeReg'" style="float:right;">WRITE</button>
+				<button onclick="window.location.href='${pageContext.request.contextPath}/board/boardReg?kind=${kind}'" style="float:right;">WRITE</button>
+				
 			</div>
 			</div>
 		</div>

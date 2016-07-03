@@ -26,7 +26,7 @@
 			<div class="container">
 				<br> <br>
 				<h2 align="center">자유게시판</h2>
-				<form action="${pageContext.request.contextPath}/board/freeReg" method="post">
+				<form action="${pageContext.request.contextPath}/board/boardReg" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">
 							<dt class="article-detail-title">제목</dt>
@@ -45,6 +45,8 @@
 							<textarea rows="10" cols="100" name="content"></textarea>
 						</div>
 					</div>
+					<input type="hidden" name="kind" value="${kind}">
+					
 
 
 					<p class="article-comment margin-small" align="center">

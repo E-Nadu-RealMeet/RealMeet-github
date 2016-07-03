@@ -25,22 +25,9 @@ public interface BoardMapper {
 	@Select("SELECT * FROM BOARDS WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
 	Board selectBoardDetail(@Param("bidx")int bidx);
 
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'free', 0)")
+	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, #{type, jdbcType=VARCHAR}, 0)")
 	int insertFreeBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'food', 0)")
-	int insertFoodBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'game', 0)")
-	int insertGameBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'knowledge', 0)")
-	int insertKnowledgeBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'lecture', 0)")
-	int insertLectureBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'meeting', 0)")
-	int insertMeetingBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'rship', 0)")
-	int insertRshipBoard(Board fb);
-	@Insert("INSERT INTO BOARDS(BIDX, WRITER, TITLE, CONTENT, REGDATE, TARGET, STEP, BLEVEL, TYPE, READCOUNT) VALUES(TO_CHAR(BOARDS_SEQ.NEXTVAL), #{writer, jdbcType=NVARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, SYSDATE, TO_CHAR(BOARDS_SEQ.NEXTVAL), 0, 0, 'travel', 0)")
-	int insertTravelBoard(Board fb);
+	
 	
 	@Update("UPDATE BOARDS SET TITLE=#{title, jdbcType=VARCHAR}, CONTENT=#{content, jdbcType=VARCHAR}, REGDATE=SYSDATE WHERE BIDX = #{bidx, jdbcType=VARCHAR}")
 	int updateBoard(Board board);

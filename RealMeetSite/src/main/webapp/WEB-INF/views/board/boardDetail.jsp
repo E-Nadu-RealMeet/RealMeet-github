@@ -41,7 +41,7 @@
 	<a class="btn btn-primary"
 		href="${pageContext.request.contextPath}/board/freeBoard">목록</a> 
 	<c:if test="${aa.getWriter()==mid}">
-		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}?bWriter=${aa.getWriter()}">수정</a>
+		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/boardUpdate/${aa.getBidx()}?bWriter=${aa.getWriter()}&kind=${kind}">수정</a>
 		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}?bWriter=${aa.getWriter()}">삭제</a>
 	</c:if>
 	<%-- <a class="btn btn-primary"
@@ -88,9 +88,10 @@
 					<td class="table-bordered"><input type="text" name="ccomment" id="comment-content"style="width:90%;line-height: 1em;"/></td>
 					<td class="table-bordered" id="tdWrite"><button type="submit" id="comment-write"style="padding: 0.5em 2em 0.5em 2em;">Write</button></td>
 				</tr>
-			</tbody>
+			</tbody>			
 		</table>
 		<input type="hidden" name="bidx" value="${aa.getBidx()}">
+		<input type="hidden" name="kind" value="${kind}">
 		</form>
 		<table id="boardDetail" class="table table-striped table-hover">
 			<thead>

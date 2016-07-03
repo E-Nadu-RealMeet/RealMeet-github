@@ -26,7 +26,7 @@
 	<!-- Main -->
 			<div class="container">
 				<br> <br>
-				<form action="${pageContext.request.contextPath}/board/freeUpdate/${aa.getBidx()}" method="post">
+				<form action="${pageContext.request.contextPath}/board/boardUpdate/${aa.getBidx()}" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large">
 						<dl class="article-detail-row">
 							<dt class="article-detail-title">제목</dt>
@@ -48,6 +48,7 @@
 
 					<p class="article-comment margin-small" align="center">
 						<button class="btn btn-primary" type="submit">등록</button>
+						<input type="hidden" name="kind" value="${kind}">
 						<a class="btn btn-primary" href="../board/freeBoard">목록</a> 
 					</p>
 				</form>
