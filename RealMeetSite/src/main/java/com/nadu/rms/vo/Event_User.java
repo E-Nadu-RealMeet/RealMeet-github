@@ -11,7 +11,7 @@ public class Event_User {
 	private String category;
 	private int reviewCnt;
 	private String addr;
-
+	
 	
 	
 	public String getAddr() {

@@ -17,7 +17,6 @@
 					style="margin-right: 20%; color: #333 !important; margin-top: 1%;">중복확인</button>
 			</div>
 
-
 		</div>
 		<div class="form-group" id="divPassword">
 			<label for="inputPassword" class="col-lg-2 control-label" style="font-size: 20px;">패스워드</label>
@@ -67,6 +66,7 @@
 		</div>
 
 		<input type="hidden" name="rating" id="rating" value="10" />
+		<input type="hidden" name="email" id="email" value="thephm@naver.com"/>
 		<div class="form-group" style="margin-top: 10px">
 			<div class="col-lg-offset-2 col-lg-10">
 

@@ -8,13 +8,43 @@ $(document).ready(function(){
 
 })
 
+$(document).ready(function(){
+	jQuery.ajax({
+		url: 'goodUserChk',
+		type: 'POST',
+		success: function(data){
+			if(data==='noting'){
+				$('#goodIcon').attr('class','icon fa-heart-o');
+				$('#goodIcon').attr('style','cursor:pointer');
+				//$('#goodIcon').attr('class','icon fa-heart-o');
+				$('#goodIcon').attr('onclick','if(confirm("이 모임을 추천하시겠습니까?")){goodApply();}');
+			}else if(data==='notlogin'){
+				$('#goodIcon').attr('style','cursor:pointer');
+				//$('#goodIcon').attr('class','icon fa-heart-o');
+				$('#goodIcon').attr('onclick','if(confirm("로그인이 필요합니다. 로그인하시겠습니까?")){openLoginForm();}');
+			}
+		}
+	})
+})
 
 $(document).ready(function() {
 	$('#myCarousel').carousel('cycle');
 	$('#myCarousel2').carousel('cycle');
 });
 
-
+function goodApply(){
+	// esidx값 추출
+	var url = $(location).attr('href');
+	var esidx = url.substring(url.lastIndexOf('/')+1, url.length);
+	jQuery.ajax({
+		url: 'goodApply'+'/'+esidx,
+		type: 'post',
+		success:function(data){
+			alert('추천이 완료되었습니다.')
+			$('#getGoodCnt').text(data)
+		}
+	})
+}
 function review_login(){
 
 	/* 로그인 체크 */
@@ -341,6 +371,8 @@ $(document).ready(function() {
 		}
 	})
 });
+
+
 function getContextPath(){
     var offset=location.href.indexOf(location.host)+location.host.length;
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));

@@ -9,7 +9,21 @@ public class Users {
 	private String interest;
 	private String type;
 	private String imgsrc;
+	private String flogdate;
+	private String fregdate;
 	
+	public String getFlogdate() {
+		return flogdate;
+	}
+	public void setFlogdate(String flogdate) {
+		this.flogdate = flogdate;
+	}
+	public String getFregdate() {
+		return fregdate;
+	}
+	public void setFregdate(String fregdate) {
+		this.fregdate = fregdate;
+	}
 	public String getImgsrc() {
 		return imgsrc;
 	}

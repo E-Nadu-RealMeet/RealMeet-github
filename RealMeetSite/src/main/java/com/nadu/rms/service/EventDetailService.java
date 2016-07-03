@@ -6,16 +6,18 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import com.google.gson.Gson;
+import com.nadu.rms.config.MyBatisUtil;
 import com.nadu.rms.dao.EventsDao;
 import com.nadu.rms.dao.GuestlistDao;
 import com.nadu.rms.dao.ReviewsDao;
 import com.nadu.rms.dao.UsersDao;
+import com.nadu.rms.mapper.annotation.GoodUsersMapper;
 import com.nadu.rms.vo.Event_Eventlist;
-import com.nadu.rms.vo.Event_User;
 import com.nadu.rms.vo.Guestlist;
 import com.nadu.rms.vo.Review;
 import com.nadu.rms.vo.Users;
@@ -191,5 +193,33 @@ public class EventDetailService {
 		public void setCntguest(int cntguest) {
 			this.cntguest = cntguest;
 		}
+	}
+
+	public int goodUserChk(String mid) {
+		// TODO Auto-generated method stub
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		GoodUsersMapper mapper = session.getMapper(GoodUsersMapper.class);
+		int goodUserCnt=0;
+		try{
+			goodUserCnt = mapper.selectGoodUserCnt(mid);
+		}finally{
+			session.close();
+		}
+		
+		return goodUserCnt;
+	}
+	public int goodApply(String mid, String esidx) {
+		// TODO Auto-generated method stub
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		GoodUsersMapper mapper = session.getMapper(GoodUsersMapper.class);
+		int goodUserCnt=0;
+		try{
+			goodUserCnt = mapper.insertGoodUser(mid, esidx);
+		}finally{
+			session.commit();
+			session.close();
+		}
+		
+		return goodUserCnt;
 	}
 }

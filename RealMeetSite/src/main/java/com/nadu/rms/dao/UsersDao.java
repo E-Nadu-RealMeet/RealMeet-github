@@ -179,4 +179,17 @@ public class UsersDao {
 		}
 		return iv;
 	}
+	public int updateFlocdateUser(String id, String date){
+		int iv = 0;
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		UsersMapper mapper = session.getMapper(UsersMapper.class);
+		
+		try{
+			iv = mapper.updateFlocdateUser(id, date);
+		}finally{
+			session.commit();
+			session.close();
+		}
+		return iv;
+	}
 }

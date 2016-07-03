@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.nadu.rms.mapper.annotation.GoodUsersMapper">
+	<select id="selectGoodUserCnt" resultType="Integer">
+		SELECT COUNT(*) FROM GOODUSERS
+		<if test="id!=null">
+		 WHERE ID = #{id, jdbcType=VARCHAR}
+		 </if>
+	</select>
+</mapper>

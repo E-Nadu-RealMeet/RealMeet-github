@@ -31,7 +31,7 @@ function initMap(call) {
 	$.ajax({
 		type : 'POST',
 		dataType : 'json',
-		url : 'dataloadformap',
+		url : 'dataloadformapbyesidx',
 		success : function(data) {
 			// alert('검색된 모임의 갯수 : '+data.length);
 			for (var i = 0; i < data.length; i++) {
@@ -114,13 +114,10 @@ function geocodeLatLng(geocoder, map, infowindow, input) {
 }
 
 $('[data-target="#EventAddrUpdate"]').click(function(){
-	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom : 13,
-		center : {
-			lat : 37.553152,
-			lng : 126.936894
-		}
-	});
+	 geocoder = new google.maps.Geocoder();
+
+	    latLng = new google.maps.LatLng(37.553152, 126.936894);
+	
 	// Create the DIV to hold the control and call the
 	// CenterControl()
 	// constructor
@@ -246,6 +243,7 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 				  		</c:if>
                 		<hr>
                 </h1>
+                <div style="height: 10em;">
 				<span>카테고리 : ${detail.get(0).getCategory() }
 				<c:if test="${mid == detail.get(0).getHolder()}">
 							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventCategoryUpdate"></span>
@@ -253,7 +251,7 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 				  		</c:if>
 				</span>
                
-
+				
                 <!-- Author -->
                 <p class="lead">
                 	 by <a href="#">${detail.get(0).getHolder() }</a>
@@ -264,7 +262,8 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 							<span class="icon fa-pencil-square-o" data-toggle="modal" data-target="#EventDateUpdate"></span>
 				  		</c:if>
                 </p>
-				
+				<div style="border: 3px outset gray;width: 10%;float: right;box-shadow: 2px 1px 3px 0px #989898;"><span id="goodIcon" class="icon fa-heart"></span><span id="getGoodCnt">${detail.get(0).getGood() }</span></div>
+                </div>
                 <hr>
 
                 <!-- Preview Image -->
@@ -399,7 +398,7 @@ $('[data-target="#EventAddrUpdate"]').click(function(){
 <h2>주소 수정</h2>
 <div id="map"></div>
 <form action="editAddr" method="POST">
-<input type="text" id="addr" name="addr" class="regInput" placeholder="${detail.get(0).getAddr() }">
+<input type="text" id="addr" name="addr" class="regInput" value="${detail.get(0).getAddr() }">
 <input type="hidden" name="esidx" value="${detail.get(0).getEsidx() }">
 <button type="submit" class="btn btn-primary">수정</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>

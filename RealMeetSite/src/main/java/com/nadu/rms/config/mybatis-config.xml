@@ -42,6 +42,7 @@
 		<mapper resource="com/nadu/rms/mapper/ReviewsMapper.xml"/>
 		<mapper resource="com/nadu/rms/mapper/CategoryMapper.xml" />
 		<mapper resource="com/nadu/rms/mapper/GuestlistMapper.xml"/>
+		<mapper resource="com/nadu/rms/mapper/GoodUsersMapper.xml"/>
 	</mappers>
 	
 	
