@@ -356,7 +356,7 @@ public class BoardController {
 		return "redirect:../boardDetail/" + bidx+"?kind="+kind;
 	}
 
-	
+	/*
 	//답글 등록
 	@RequestMapping(value="/freeReflyReg/{bidx}", method = RequestMethod.GET)
 	public String freeRefly(@PathVariable int bidx, Model model, HttpServletRequest req){
@@ -385,14 +385,14 @@ public class BoardController {
 		boardDao.insertRefly(paramMap);
 		int bidx2=(Integer) paramMap.get("bidx");
 		return "redirect:../freeDetail/"+bidx2;
-	}
+	}*/
 	
 
-	@RequestMapping(value = "/boardDel/{nidx}")
-	public String freeDel(@PathVariable String nidx) {
-
-		boardDao.delBoard(nidx);
-		return "redirect:../boardList";
+	@RequestMapping(value = "/boardDel/{bidx}")
+	public String freeDel(@PathVariable String bidx, HttpServletRequest req, Model model) {
+		String kind = req.getParameter("kind");
+		boardDao.delBoard(bidx);
+		return "redirect:../"+kind+"Board";
 	}
 
 }

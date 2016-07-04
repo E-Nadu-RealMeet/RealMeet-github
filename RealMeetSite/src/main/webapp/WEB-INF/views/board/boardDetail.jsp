@@ -42,7 +42,7 @@
 		href="${pageContext.request.contextPath}/board/freeBoard">목록</a> 
 	<c:if test="${aa.getWriter()==mid}">
 		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/boardUpdate/${aa.getBidx()}?bWriter=${aa.getWriter()}&kind=${kind}">수정</a>
-		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/freeDel/${aa.getBidx()}?bWriter=${aa.getWriter()}">삭제</a>
+		<a class="btn btn-primary" href="${pageContext.request.contextPath}/board/boardDel/${aa.getBidx()}?bWriter=${aa.getWriter()}&kind=${kind}">삭제</a>
 	</c:if>
 	<%-- <a class="btn btn-primary"
 		href="${pageContext.request.contextPath}/board/freeReflyReg/${aa.getBidx()}">답글</a> --%>
