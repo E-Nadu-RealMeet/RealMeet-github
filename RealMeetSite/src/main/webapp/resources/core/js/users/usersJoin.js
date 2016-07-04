@@ -2,7 +2,6 @@ var count = 0;
 
 function idCheck(){
 
-
 	if ($("#id").val() == '' || $("#id").val() == null) {
 		alert("아이디를 입력하세요");
 		return false;
@@ -21,9 +20,6 @@ function idCheck(){
 		return false;
 	}
 
-
-
-
 	$.ajax({
 		type:"POST",
 		dataType : 'text',
@@ -33,7 +29,7 @@ function idCheck(){
 		},		
 		success : function(data) {
 			if ($.trim(data) == "YES") {
-				count = 1;
+				count += 1;
 				alert("아이디가 중복이 되지 않습니다. 쓰셔도 됩니다.");
 			} else {
 				alert("아이디가 중복이 됩니다. 다시 입력 해주세요");
@@ -43,6 +39,84 @@ function idCheck(){
 	});
 }
 
+function emailsend(){
+	
+	
+	if ($("#email").val() == '' || $("#email").val() == null) {
+		alert("이메일을 입력하세요");
+		return false;
+	}
+	
+	var certnum = null;
+	$.ajax({
+		type:"POST",
+		dataType : 'text',
+		url : "echeck",
+		data : {
+			"email" : $('#email').val()
+		},
+		success : function(returnData) {
+			if(returnData != null){
+				certnum = returnData;
+				$('input[name=certnum]').attr('value',certnum);
+				alert("인증번호가 발송되었습니다.")
+			}else{
+				alert("null!!!!!!");
+			}
+		}
+	});
+	
+	layer_open('pop-layer');
+}
+
+function layer_open(el){
+	var temp = $('#' + el);
+	var bg = temp.prev().hasClass('bg');
+	
+	if(bg){
+		$('.layer').fadeIn();
+	}else{
+		temp.fadeIn();
+	}
+	
+	if (temp.outerHeight() < $(document).height() ) temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
+	else temp.css('top', '0px');
+	if (temp.outerWidth() < $(document).width() ) temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
+	else temp.css('left', '0px');
+	
+	temp.find('a.cbtn').click(function(e){
+		if(bg){
+			$('.layer').fadeOut();
+		}else{
+			temp.fadeOut();
+		}
+		e.preventDefault();
+		
+	});
+	
+	$('.layer .bg').click(function(e){
+		$('.layer').fadeOut();
+		e.preventDefault();
+	});
+}
+
+function emailCheck(){
+	var form = document.authenform;
+	var authNum = $("#certnum").val();
+	
+	if(form.authnum.value!=authNum){
+		alert("인증번호가 틀렸습니다. 다시 입력해주세요");
+		form.authnum.value="";
+		return false;
+	}
+	if(form.authnum.value==authNum){
+		alert("인증완료");
+		$('#pop-layer').fadeOut();
+		count += 2;
+		return false;
+	}
+}
+
 
 function formCheck() {
 	var member_id = document.getElementById('id');
@@ -50,7 +124,11 @@ function formCheck() {
 	var password = document.getElementById('password');
 	var password_check = document.getElementById('passwordCheck');
 	var member_phoneNumber = document.getElementById('phoneNumber');
-
+	var email_check = document.getElementById('email');
+	
+	var email_format  = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+	
+	
 	var interest = new Array();
 	$("input[name=interest]:checked").each(function(){
 
@@ -104,6 +182,18 @@ function formCheck() {
 		focus.member_phoneNumber;
 		return false;
 	}
+	
+	if(email_check.value == '' ||email_check.value == null){
+		alert("이메일 주소를 입력해주세요.");
+		focus.email_check;
+		return false;
+	}
+	
+	if(email_format.test(email_check.value) == false){
+		alert("유효한 이메일 주소를 입력해주세요.");
+		focus.email_check;
+		return false;
+	}
 
 	if(interest.length < 1){
 		alert('최소 한개이상의 흥미 카테고리를 선택하여야 합니다.');
@@ -111,6 +201,12 @@ function formCheck() {
 	}
 
 	if (count == 0) {
+		alert("아이디 중복확인을 눌러주세요");
+		return false;
+	}else if(count == 1){
+		alert("이메일 인증을 눌러주세요");
+		return false;
+	}else if(count == 2) {
 		alert("아이디 중복확인을 눌러주세요");
 		return false;
 	}

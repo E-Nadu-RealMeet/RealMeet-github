@@ -9,9 +9,24 @@ public class Users {
 	private String interest;
 	private String type;
 	private String imgsrc;
+	private String email;
+	private int cert;
 	private String flogdate;
 	private String fregdate;
 	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getCert() {
+		return cert;
+	}
+	public void setCert(int cert) {
+		this.cert = cert;
+	}
 	public String getFlogdate() {
 		return flogdate;
 	}

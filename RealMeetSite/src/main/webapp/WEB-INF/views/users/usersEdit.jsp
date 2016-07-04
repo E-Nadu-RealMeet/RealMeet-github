@@ -66,14 +66,14 @@ $(document).ready(function() {
 		<div class="form-group" id="divPassword">
 			<label for="inputPassword" class="col-lg-2 control-label" style="font-size: 20px;">패스워드</label>
 			<div class="col-lg-10">
-				<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" name="pwd" placeholder="패스워드"
+				<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" name="pwd"
 					maxlength="30" style="width: 80%; margin-top: 1%;">
 			</div>
 		</div>
 		<div class="form-group" id="divPasswordCheck">
 			<label for="inputPasswordCheck" class="col-lg-2 control-label" style="font-size: 20px;">패스워드 확인</label>
 			<div class="col-lg-10">
-				<input type="password" class="form-control" id="passwordCheck" name="pwd" data-rule-required="true" placeholder="패스워드 확인" maxlength="30"
+				<input type="password" class="form-control" id="passwordCheck" name="pwd" data-rule-required="true" maxlength="30"
 					style="width: 80%; margin-top: 1%;">
 			</div>
 		</div>
@@ -90,17 +90,17 @@ $(document).ready(function() {
 			<label for="inputPhoneNumber" class="col-lg-2 control-label" style="font-size: 20px;">휴대폰 번호</label>
 			<div class="col-lg-10">
 				<input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" name="phone" maxlength="11"
-					value=${users.getPhone() } style="width: 80%; margin-top: 1%; border: solid 2px rgba(0, 0, 0, 0.15); border-radius: 0.35em;">
+					value=${users.getPhone() } style="width: 80%; margin-top: 1%;">
+			</div>
+		</div>
+		<div class="form-group" id="divEmail">
+			<label for="inputEmail" class="col-lg-2 control-label" style="font-size: 20px;">이메일</label>
+			<div class="col-lg-10">
+				<input type="email" class="form-control" id="email" data-rule-required="true" name="email"
+					style="width: 80%; margin-top: 1%;" value=${users.getEmail() }>
 			</div>
 		</div>
 
-		<%-- <div class="form-group" id="divNickname">
-			<label for="inputNickname" class="col-lg-2 control-label" style="font-size: 20px;">관심카테고리</label>
-			<div class="col-lg-10">
-				<input type="text" class="form-control" id="interest" data-rule-required="true" name="interest" style="width: 80%; margin-top: 1%;"
-					value=${users.getInterest() }>
-			</div>
-		</div> --%>
 		<div class="form-group" id="divInterest">
 			<label for="inputInterest" class="col-lg-2 control-label" style="font-size: 20px;">흥미 카테고리</label>
 			<div class="col-lg-10" style="font-size: 15px; padding: 6px 12px;">

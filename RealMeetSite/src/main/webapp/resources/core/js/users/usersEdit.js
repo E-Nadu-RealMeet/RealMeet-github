@@ -3,6 +3,9 @@ function formCheck() {
 	var password = document.getElementById('password');
 	var password_check = document.getElementById('passwordCheck');
 	var member_phoneNumber = document.getElementById('phoneNumber');
+	var email_check = document.getElementById('email');
+	
+	var email_format  = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	
 	var interest = new Array();
 	$("input[name=interest]:checked").each(function(){
@@ -51,6 +54,18 @@ function formCheck() {
 		focus.member_phoneNumber;
 		return false;
 	}
+	if(email_check.value == '' ||email_check.value == null){
+		alert("이메일 주소를 입력해주세요.");
+		focus.email_check;
+		return false;
+	}
+	
+	if(email_format.test(email_check.value) == false){
+		alert("유효한 이메일 주소를 입력해주세요.");
+		focus.email_check;
+		return false;
+	}
+	
 	if(interest.length < 1){
 		alert('최소 한개이상의 흥미 카테고리를 선택하여야 합니다.');
 		return false;

@@ -26,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -111,10 +112,7 @@ public class UsersController {
 		u.setInterest(interest);
 		int af = usersDao.insertUsers(u);
 		model.addAttribute("id", u.getId());
-		/*---------------------이메일 전송----------------------------*/
-		String email = request.getParameter("email");
-		sendEmail(email);		
-		/*---------------------------------------------------------*/
+
 
 		if (af > 0) {
 			log.info("회원추가 성공");
@@ -124,6 +122,19 @@ public class UsersController {
 			log.info("회원추가 실패");
 			return "redirect:join";
 		}
+	}
+	
+	@RequestMapping(value = "echeck")
+	@ResponseBody
+	public String checkemail(HttpServletRequest request, Model model, HttpServletResponse res) throws Exception {
+		/*---------------------이메일 전송----------------------------*/
+		String email = request.getParameter("email");
+		int authnum = sendEmail(email);
+		log.info("email=" + email);
+		log.info("authnum ="+authnum);
+		return Integer.toString(authnum);
+		/*---------------------------------------------------------*/
+		
 	}
 
 	// 회원정보
@@ -343,14 +354,16 @@ public class UsersController {
 		return beforePage;
 	}
 	
-	public void sendEmail(String email){
+	public int sendEmail(String email){
 		String host = "smtp.gmail.com";
 		String subject = "이메일 인증";
 		String fromName = "관리자";
 		String from = "thephm89@gmail.com";
 		String to = email;
+		String authNum = RandomNum();
 		
-		String content = "<a href='http://www.naver.com'>http://www.naver.com</a>";
+		/*String content = "<a href='http://www.naver.com'>http://www.naver.com</a>";*/
+		String content = "인증번호 :["+ authNum +"]";
 		
 		try {
 			Properties props = new Properties();
@@ -386,5 +399,16 @@ public class UsersController {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		return Integer.parseInt(authNum);
+	}
+	
+	public String RandomNum(){
+		StringBuffer buffer = new StringBuffer();
+		for(int i=0; i<=6; i++){
+			int n = (int) (Math.random()*10);
+			buffer.append(n);
+		}
+		return buffer.toString();
 	}
 }

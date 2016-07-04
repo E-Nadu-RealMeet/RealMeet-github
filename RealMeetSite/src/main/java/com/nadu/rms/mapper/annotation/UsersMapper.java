@@ -20,7 +20,7 @@ public interface UsersMapper {
 	@Delete("DELETE USERS WHERE ID = #{id}")
 	public int delUsers(String id);
 	
-	@Insert("INSERT INTO USERS(ID, PWD, NICKNAME, PHONE, INTEREST) VALUES(#{id, jdbcType=NVARCHAR}, #{pwd, jdbcType=VARCHAR}, #{nickname, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{interest, jdbcType=VARCHAR})")
+	@Insert("INSERT INTO USERS(ID, PWD, NICKNAME, PHONE, INTEREST, EMAIL) VALUES(#{id, jdbcType=NVARCHAR}, #{pwd, jdbcType=VARCHAR}, #{nickname, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, #{interest, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR})")
 	public int insertUsers(Users u);
 	
 	@Update("UPDATE USERS SET IMGSRC=#{newFileName, jdbcType=VARCHAR} WHERE ID=#{mid, jdbcType=VARCHAR}")
